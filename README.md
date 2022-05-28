@@ -11,10 +11,9 @@ Made with React Native combined with Firebase to assist user authentication.
 As avid travellers, we believe that planning your own trips would bring more freedom and flexibility in travelling as opposed to hopping in on tours. However, planning our own trip comes with a lot of hassle. Compounded with the lack of a proper trip-planning platform (opting for notes/google docs with limited planning features), detailing an itinerary might deter one’s enthusiasm of travelling.
 
 ## User Stories
-1. As an avid traveler, I would like to plan my travel itinerary down to the hours so that I won’t waste any time.
+1. As an avid traveler, I would like to be able to be flexible with planning my travel itinerary down to each activity, accommodation, and transport details so that I won’t waste any time.
 2. As a first-time traveler, I would like to be guided on making a detailed travel itinerary.
-3. I want to know the estimated amount that I will be spending in a day for transport, accommodation and activities.
-4. I would like to have a visual representation of how I would spend my time and resources during my travel, all in one place.
+3. As first-time travelers, we would find it easier to be guided in making my travel plans and have a place to store all the necessary documents in one place so that we won't forget them.
 
 ## Aim
 We hope to provide a one-stop application that would not only ease, but also encourage people to plan their own travels – solo or in a group, starting with Singapore as our pilot country. Users could easily add their planned activities, transport, and accommodation by our built-in functions that guides them in filling in their travel details. We hope that users could spend less time making a visual, detailed travel itinerary.
