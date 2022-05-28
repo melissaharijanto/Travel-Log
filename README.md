@@ -30,4 +30,5 @@ Link to Figma:
 
 # Development Plan and Concepts to Be Tackled
 Development Plan:
+
 Concepts to Be Tackled: 
