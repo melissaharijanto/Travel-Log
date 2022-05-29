@@ -32,4 +32,3 @@ Link to Figma:
 Development Plan: https://docs.google.com/spreadsheets/d/1mYGnZncCnt-LIcZ3JnWp9C4aTH9PHHvQ91TdY70SNvM/edit?usp=sharing
 
 Concepts to Be Tackled: https://docs.google.com/spreadsheets/d/1Y0crUXilsoeYeINNn7aszfTQVOCKPAFMgXpoaLp5qiQ/edit?usp=sharing
-
