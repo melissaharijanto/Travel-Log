@@ -1,6 +1,7 @@
 # Travel Log
 
 Team name: ERC11PM
+
 Level of Achievement: Apollo
 
 ## Overview
@@ -28,6 +29,6 @@ We hope to provide a one-stop application that would not only ease, but also enc
 Link to Figma: 
 
 ## Development Plan and Concepts to Be Tackled
-Development Plan:
+Development Plan: https://docs.google.com/spreadsheets/d/1mYGnZncCnt-LIcZ3JnWp9C4aTH9PHHvQ91TdY70SNvM/edit?usp=sharing
 
-Concepts to Be Tackled: 
+Concepts to Be Tackled: https://docs.google.com/spreadsheets/d/1Y0crUXilsoeYeINNn7aszfTQVOCKPAFMgXpoaLp5qiQ/edit?usp=sharing
