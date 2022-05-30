@@ -26,7 +26,7 @@ We hope to provide a one-stop application that would not only ease, but also enc
 4. The ability to access and search for past itineraries when there are places you want to revisit.
 
 ## Design of the App
-Link to Figma: 
+Link to Figma: https://www.figma.com/file/CKGloIToiN5VlPJoaYpxCx/Travel-Log---Clean
 
 ## Development Plan and Concepts to Be Tackled
 Development Plan: https://docs.google.com/spreadsheets/d/1mYGnZncCnt-LIcZ3JnWp9C4aTH9PHHvQ91TdY70SNvM/edit?usp=sharing
