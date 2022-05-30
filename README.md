@@ -32,3 +32,15 @@ Link to Figma: https://www.figma.com/file/CKGloIToiN5VlPJoaYpxCx/Travel-Log---Cl
 Development Plan: https://docs.google.com/spreadsheets/d/1mYGnZncCnt-LIcZ3JnWp9C4aTH9PHHvQ91TdY70SNvM/edit?usp=sharing
 
 Concepts to Be Tackled: https://docs.google.com/spreadsheets/d/1Y0crUXilsoeYeINNn7aszfTQVOCKPAFMgXpoaLp5qiQ/edit?usp=sharing
+
+## Progress
+As of submission of Milestone #1, only the front end for the Log In and Sign Up pages are finished, along with the navigations.
+We would be happy if you are interested to try it out! Here are the steps to do so:
+1. Please access our repository with this link https://github.com/melissaharijanto/Travel-Log and fork it.
+2. Because the app is customized for android, please use the command 
+```
+npx react-native run-android
+```
+to run the app.
+3. Have fun navigating through!
+
