@@ -13,6 +13,10 @@ import java.util.ArrayList;
 
 // @react-native-firebase/app
 import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
+// react-native-safe-area-context
+import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
+// react-native-screens
+import com.swmansion.rnscreens.RNScreensPackage;
 
 public class PackageList {
   private Application application;
@@ -58,7 +62,9 @@ public class PackageList {
   public ArrayList<ReactPackage> getPackages() {
     return new ArrayList<>(Arrays.<ReactPackage>asList(
       new MainReactPackage(mConfig),
-      new ReactNativeFirebaseAppPackage()
+      new ReactNativeFirebaseAppPackage(),
+      new SafeAreaContextPackage(),
+      new RNScreensPackage()
     ));
   }
 }

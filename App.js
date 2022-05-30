@@ -26,12 +26,12 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import SignInScreen from './src/screens/SignInScreen';
+import Navigation from './src/navigation';
 
 const App = () => {
   return (
     <SafeAreaView style={styles.root}>
-        <SignInScreen />
+        <Navigation />
     </SafeAreaView>
   );
 };
@@ -43,3 +43,4 @@ const styles = StyleSheet.create({
 });
 
 export default App;
+

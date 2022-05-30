@@ -3,21 +3,23 @@ import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 import Logo from '../../../assets/images/logo2.png';
 import CustomInputField from '../../components/CustomInputField';
 import CustomButton from '../../components/CustomButton';
+import { useNavigation } from '@react-navigation/native';
 
 const SignInScreen = () => {
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
+    const navigation = useNavigation();
 
-    const onSignInPressed = () => {
-        console.warn('You have signed in! The next page is wip :)');
+    const onLogInPressed = () => {
+        navigation.navigate("Home");
     }; // to be changed once other screens are made!
 
     const forgotPasswordPressed = () => {
-            console.warn('Email should be sent here!');
+        navigation.navigate('ForgotPassword');
     }; // to be changed once other screens are made!
 
     const onSignUpPressed = () => {
-                console.warn('Sign Up Screen!');
+        navigation.navigate('SignUp');
     }; // to be changed once other screens are made!
 
     return (
@@ -44,7 +46,7 @@ const SignInScreen = () => {
 
             <CustomButton
                 text = "Log In"
-                onPress = { onSignInPressed }
+                onPress = { onLogInPressed }
                 type = "PRIMARY"
             />
 
@@ -90,4 +92,5 @@ const styles = StyleSheet.create({
         maxHeight: 140,
     },
 });
+
 export default SignInScreen
