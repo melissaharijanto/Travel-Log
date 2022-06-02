@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 import Logo from '../../../assets/images/logo2.png';
 import CustomInputField from '../../components/CustomInputField';
 import CustomButton from '../../components/CustomButton';
 import { useNavigation } from '@react-navigation/native';
+import auth from '@react-native-firebase/auth';
 
 const SignInScreen = () => {
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
     const navigation = useNavigation();
 
-    const onLogInPressed = () => {
-        navigation.navigate("Home");
+    const onLogInPressed = async () => {
+            navigation.navigate("HomeWithBottomTab");
     }; // to be changed once other screens are made!
 
     const forgotPasswordPressed = () => {

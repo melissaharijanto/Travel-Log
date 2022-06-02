@@ -4,6 +4,7 @@ import Logo from '../../../assets/images/logo2.png';
 import CustomInputField from '../../components/CustomInputField';
 import CustomButton from '../../components/CustomButton';
 import { useNavigation } from '@react-navigation/native';
+import Auth from '@react-native-firebase/auth';
 
 const SignUpScreen = () => {
     const [username, setUsername] = useState();
@@ -11,12 +12,11 @@ const SignUpScreen = () => {
     const [password, setPassword] = useState();
     const [email, setEmail] = useState();
 
-
     const navigation = useNavigation();
 
     const onSignUpPressed = () => {
         console.warn('You have successfully signed up!');
-        navigation.navigate("Home");
+        navigation.navigate("HomeWithBottomTab");
     };
 
     const onLogInPressed = () => {
