@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
 
 const SignInScreen = () => {
-    const [username, setUsername] = useState();
+    const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const navigation = useNavigation();
 
@@ -33,9 +33,9 @@ const SignInScreen = () => {
             />
 
             <CustomInputField
-                placeholder = "Username"
-                value = { username }
-                setValue = { setUsername }
+                placeholder = "Email"
+                value = { email }
+                setValue = { setEmail }
             />
 
             <CustomInputField

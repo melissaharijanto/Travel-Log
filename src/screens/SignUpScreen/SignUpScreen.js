@@ -7,7 +7,6 @@ import { useNavigation } from '@react-navigation/native';
 import Auth from '@react-native-firebase/auth';
 
 const SignUpScreen = () => {
-    const [username, setUsername] = useState();
     const [name, setName] = useState();
     const [password, setPassword] = useState();
     const [email, setEmail] = useState();
@@ -36,12 +35,6 @@ const SignUpScreen = () => {
                 placeholder = "Name"
                 value = { name }
                 setValue = { setName }
-            />
-
-            <CustomInputField
-                placeholder = "Username"
-                value = { username }
-                setValue = { setUsername }
             />
 
             <CustomInputField
@@ -87,7 +80,7 @@ const styles = StyleSheet.create({
     root: {
         alignItems: 'center',
         paddingHorizontal: '10%',
-        paddingTop: '30%',
+        paddingTop: '48%',
         backgroundColor: '#70DAD3'
     },
     logo: {
