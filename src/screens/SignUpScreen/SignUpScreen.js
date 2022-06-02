@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 import Logo from '../../../assets/images/logo2.png';
 import CustomInputField from '../../components/CustomInputField';
 import CustomButton from '../../components/CustomButton';
 import { useNavigation } from '@react-navigation/native';
-import Auth from '@react-native-firebase/auth';
+import auth from '@react-native-firebase/auth';
+
 
 const SignUpScreen = () => {
-    const [username, setUsername] = useState();
     const [name, setName] = useState();
     const [password, setPassword] = useState();
     const [email, setEmail] = useState();
@@ -15,8 +15,25 @@ const SignUpScreen = () => {
     const navigation = useNavigation();
 
     const onSignUpPressed = () => {
-        console.warn('You have successfully signed up!');
-        navigation.navigate("HomeWithBottomTab");
+        auth()
+          .createUserWithEmailAndPassword(email, password)
+          .then(() => {
+            user.displayName = name;
+            console.log('User account created & signed in!');
+            navigation.navigate("HomeWithBottomTab");
+
+          })
+          .catch(error => {
+            if (error.code === 'auth/user-not-found') {
+              console.log('There is no existing user record corresponding to the provided identifier.');
+            }
+
+            if (error.code === 'auth/invalid-email') {
+              console.log('That email address is invalid!');
+            }
+
+            console.error(error);
+          });
     };
 
     const onLogInPressed = () => {
@@ -24,7 +41,6 @@ const SignUpScreen = () => {
     };
 
     return (
-        <ScrollView>
         <View style = {styles.root}>
             <Image
                 source={ Logo }
@@ -36,12 +52,6 @@ const SignUpScreen = () => {
                 placeholder = "Name"
                 value = { name }
                 setValue = { setName }
-            />
-
-            <CustomInputField
-                placeholder = "Username"
-                value = { username }
-                setValue = { setUsername }
             />
 
             <CustomInputField
@@ -79,7 +89,6 @@ const SignUpScreen = () => {
             />
 
         </View>
-        </ScrollView>
     );
 }
 
@@ -87,7 +96,7 @@ const styles = StyleSheet.create({
     root: {
         alignItems: 'center',
         paddingHorizontal: '10%',
-        paddingTop: '30%',
+        paddingTop: '50%',
         backgroundColor: '#70DAD3'
     },
     logo: {

@@ -1,46 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import SignInScreen from '../screens/SignInScreen';
-import SignUpScreen from '../screens/SignUpScreen';
-import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
-import ConfirmCodeScreen from '../screens/ConfirmCodeScreen';
-import SetNewPasswordScreen from '../screens/SetNewPasswordScreen';
-import HomeScreen from '../screens/HomeScreen';
-import MainItineraryScreen from '../screens/MainItineraryScreen';
-import ProfileScreen from '../screens/ProfileScreen';
 import BottomTabNavigator from './BottomTabNavigator';
-const Stack = createNativeStackNavigator();
+import LandingScreen from '../screens/LandingScreen';
+import auth from '@react-native-firebase/auth'
+import Navigator from './Stack';
+
 
 const Navigation = () => {
-    return (
-    <NavigationContainer>
-        <Stack.Navigator screenOptions={{headerShown: false}}>
-            <Stack.Screen name = "SignIn"
-                component={SignInScreen}
-            />
-            <Stack.Screen name = "SignUp"
-                component={SignUpScreen}
-            />
-            <Stack.Screen name = "ForgotPassword"
-                component={ForgotPasswordScreen}
-            />
-            <Stack.Screen name = "ConfirmCode"
-                component={ConfirmCodeScreen}
-            />
-            <Stack.Screen name = "SetNewPassword"
-                component={SetNewPasswordScreen}
-            />
-            <Stack.Screen name = "HomeWithBottomTab"
-                component={BottomTabNavigator}
-            />
+    const [initializing, setInitializing] = useState(true);
+    const [user, setUser] = useState();
 
+      // Handle user state changes
+      function onAuthStateChanged(user) {
+        setUser(user);
+        if (initializing) setInitializing(false);
+      }
 
-        </Stack.Navigator>
-    </NavigationContainer>
-    )
+      useEffect(() => {
+        const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+        return subscriber; // unsubscribe on unmount
+      }, []);
+
+      if (initializing) return <LandingScreen />;
+
+      return (
+      <NavigationContainer>
+        { user ? <BottomTabNavigator/> : <Navigator/> }
+      </NavigationContainer>
+      );
 }
 
 export default Navigation;

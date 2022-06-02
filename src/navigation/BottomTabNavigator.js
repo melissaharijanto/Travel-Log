@@ -10,8 +10,6 @@ import ProfileIcon from 'react-native-vector-icons/FontAwesome';
 
 const Tab = createBottomTabNavigator();
 
-
-
 const BottomTabNavigator = () => {
     return(
         <Tab.Navigator
@@ -34,7 +32,10 @@ const BottomTabNavigator = () => {
                                 name="home"
                                 color= { focused ? "#3B4949" : "#94C2C6" }
                             />
-                            <Text style={ styles.text }>Home</Text>
+                            <Text
+                                style={[styles.text, {
+                                color: focused ? "#3B4949" : "#94C2C6"
+                            }]}>Home</Text>
                         </View>
                     )
                 }}
@@ -52,8 +53,8 @@ const BottomTabNavigator = () => {
                                 color= { focused ? "#3B4949" : "#94C2C6" }
                             />
                             <Text
-                            style={[styles.text, {
-                            color: focused ? "#3B4949" : "#94C2C6"
+                                style={[styles.text, {
+                                color: focused ? "#3B4949" : "#94C2C6"
                             }]}>Itinerary</Text>
                         </View>
                     )
@@ -71,8 +72,8 @@ const BottomTabNavigator = () => {
                                 color= { focused ? "#3B4949" : "#94C2C6" }
                             />
                             <Text
-                            style={[styles.text, {
-                            color: focused ? "#3B4949" : "#94C2C6"
+                                style={[styles.text, {
+                                color: focused ? "#3B4949" : "#94C2C6"
                             }]}>Profile</Text>
                         </View>
                     )

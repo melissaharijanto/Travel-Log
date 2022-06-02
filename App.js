@@ -27,6 +27,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import Navigation from './src/navigation';
+
 const App = () => {
   return (
     <SafeAreaView style={styles.root}>
@@ -42,4 +43,3 @@ const styles = StyleSheet.create({
 });
 
 export default App;
-

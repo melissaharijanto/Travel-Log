@@ -14,11 +14,6 @@ const MainItineraryScreen = () => {
         <View style = { styles.root }>
         <Text style = { styles.text }> Placeholder Page for Main Itinerary Tab </Text>
 
-        <Pressable onPress = { onGoingBack }>
-            <Text style = { [styles.text, { textDecorationLine: 'underline' }] }>
-            Click here to go back.
-            </Text>
-        </Pressable>
         </View>
         </ScrollView>
     );

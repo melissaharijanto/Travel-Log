@@ -7,13 +7,32 @@ import { useNavigation } from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
 
 const SignInScreen = () => {
-    const [username, setUsername] = useState();
+    const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const navigation = useNavigation();
 
     const onLogInPressed = async () => {
+        auth()
+          .signInWithEmailAndPassword(email, password)
+          .then(() => {
+            console.log('User account created & signed in!');
             navigation.navigate("HomeWithBottomTab");
-    }; // to be changed once other screens are made!
+          })
+          .catch(error => {
+            if (error.code === 'auth/email-already-in-use') {
+              console.log('That email address is already in use!');
+            }
+
+            if (error.code === 'auth/invalid-email') {
+              console.log('That email address is invalid!');
+            }
+
+            if (error.code === 'auth/wrong-password') {
+                console.log('Wrong password.');
+            }
+            console.error(error);
+          });
+    };
 
     const forgotPasswordPressed = () => {
         navigation.navigate('ForgotPassword');
@@ -24,7 +43,6 @@ const SignInScreen = () => {
     }; // to be changed once other screens are made!
 
     return (
-        <ScrollView>
         <View style = {styles.root}>
             <Image
                 source={ Logo }
@@ -33,9 +51,9 @@ const SignInScreen = () => {
             />
 
             <CustomInputField
-                placeholder = "Username"
-                value = { username }
-                setValue = { setUsername }
+                placeholder = "Email"
+                value = { email }
+                setValue = { setEmail }
             />
 
             <CustomInputField
@@ -76,7 +94,6 @@ const SignInScreen = () => {
             />
 
         </View>
-        </ScrollView>
     );
 };
 

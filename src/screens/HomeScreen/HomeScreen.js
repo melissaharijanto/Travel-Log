@@ -1,25 +1,20 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, ScrollView, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import auth from '@react-native-firebase/auth';
 
 const HomeScreen = () => {
 
     const navigation = useNavigation();
 
     const onGoingBack = () => {
-        navigation.goBack();
+        navigation.navigate("LogIn");
     }
     return (
         <ScrollView>
         <View style = { styles.root }>
         <Text style = { styles.text }> Next Page is WIP ;) </Text>
         <Text style = { styles.text }> Thanks for helping us test this! </Text>
-
-        <Pressable onPress = { onGoingBack }>
-            <Text style = { [styles.text, { textDecorationLine: 'underline' }] }>
-            Click here to go back.
-            </Text>
-        </Pressable>
         </View>
         </ScrollView>
     );

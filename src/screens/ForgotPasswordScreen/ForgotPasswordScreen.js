@@ -4,13 +4,16 @@ import Logo from '../../../assets/images/logo2.png';
 import CustomInputField from '../../components/CustomInputField';
 import CustomButton from '../../components/CustomButton';
 import { useNavigation } from '@react-navigation/native';
+import { sendPasswordResetEmail } from '@react-native-firebase/auth';
+import auth from '@react-native-firebase/auth';
+
 
 const ForgotPasswordScreen = () => {
-    const [username, setUsername] = useState();
+    const [email, setEmail] = useState();
     const navigation = useNavigation();
 
-    const onSendCodePressed = () => {
-        console.warn('A code has been sent to your email.');
+    const onSendCodePressed = (email) => {
+        console.log('A code has been sent to your email.');
         navigation.navigate("ConfirmCode");
     }; // to be changed once other screens are made!
 
@@ -21,7 +24,6 @@ const ForgotPasswordScreen = () => {
 
 
     return (
-        <ScrollView>
         <View style = { styles.root }>
             <Image
                 source={ Logo }
@@ -32,9 +34,9 @@ const ForgotPasswordScreen = () => {
             <Text style = { styles.text }>Reset Your Password!</Text>
 
             <CustomInputField
-                placeholder = "Your Account Username"
-                value = { username }
-                setValue = { setUsername }
+                placeholder = "Your Account Email"
+                value = { email }
+                setValue = { setEmail }
             />
 
             <CustomButton
@@ -54,7 +56,6 @@ const ForgotPasswordScreen = () => {
 
 
         </View>
-        </ScrollView>
     );
 };
 
