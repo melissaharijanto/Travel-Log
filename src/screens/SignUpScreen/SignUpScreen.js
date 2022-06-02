@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: '10%',
         paddingTop: '50%',
+        paddingTop: '48%',
         backgroundColor: '#70DAD3'
     },
     logo: {
