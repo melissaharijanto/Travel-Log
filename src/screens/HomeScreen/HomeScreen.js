@@ -3,18 +3,23 @@ import { View, Text, Image, StyleSheet, ScrollView, Pressable } from 'react-nati
 import { useNavigation } from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
 
+
 const HomeScreen = () => {
 
+    const user = auth().currentUser;
     const navigation = useNavigation();
 
     const onGoingBack = () => {
         navigation.navigate("LogIn");
     }
+
     return (
         <ScrollView>
         <View style = { styles.root }>
+        <Text style = { styles.text }>{`Hi ${user.displayName}`} </Text>
         <Text style = { styles.text }> Next Page is WIP ;) </Text>
-        <Text style = { styles.text }> Thanks for helping us test this! </Text>
+        <Text style = { styles.text }> Thanks for helping us test this!</Text>
+
         </View>
         </ScrollView>
     );

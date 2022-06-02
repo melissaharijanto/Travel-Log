@@ -17,12 +17,15 @@ const SignUpScreen = () => {
     const onSignUpPressed = () => {
         auth()
           .createUserWithEmailAndPassword(email, password)
-          .then(() => {
-            user.displayName = name;
-            console.log('User account created & signed in!');
+          .then( async () => {
+            const update = {
+              displayName: name,
+              photoURL: null, // profile picture
+            };
+            await auth().currentUser.updateProfile(update);
+            await console.log('User account created & signed in!');
             navigation.navigate("HomeWithBottomTab");
-
-          })
+            })
           .catch(error => {
             if (error.code === 'auth/user-not-found') {
               console.log('There is no existing user record corresponding to the provided identifier.');

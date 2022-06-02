@@ -18,7 +18,7 @@ const ProfileScreen = () => {
         <Text style = { styles.text }> Placeholder Page for Profile Tab </Text>
         <Pressable onPress = { onSigningOut }>
                     <Text style = { [styles.text, { textDecorationLine: 'underline' }] }>
-                    SignOut
+                    Sign Out
                     </Text>
         </Pressable>
         </View>
