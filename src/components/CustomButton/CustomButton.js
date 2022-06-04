@@ -20,11 +20,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
 
-    container_PRIMARY: {
+    container_PRIMARY: { // container for the log in/sign up button
         backgroundColor: '#17A8A0',
     },
 
     container_SECONDARY: {}, // container for forget password button
+
+    container_TERTIARY: { // container for everything aft the log in button
+        backgroundColor: '#70D9D3',
+    },
 
     text_SECONDARY: {
         color: '#3B4949',
@@ -36,6 +40,12 @@ const styles = StyleSheet.create({
         color: 'white',
         fontFamily: 'Poppins-SemiBold',
     },
+
+    text_TERTIARY: {
+            color: 'white',
+            fontFamily: 'Poppins-SemiBold',
+    },
+
 });
 
 export default CustomButton;

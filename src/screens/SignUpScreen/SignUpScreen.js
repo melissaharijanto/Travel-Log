@@ -4,8 +4,8 @@ import Logo from '../../../assets/images/logo2.png';
 import CustomInputField from '../../components/CustomInputField';
 import CustomButton from '../../components/CustomButton';
 import { useNavigation } from '@react-navigation/native';
+import DefaultProfilePicture from '../../../assets/images/defaultUser.png';
 import auth from '@react-native-firebase/auth';
-
 
 const SignUpScreen = () => {
     const [name, setName] = useState();
@@ -23,7 +23,7 @@ const SignUpScreen = () => {
               photoURL: null, // profile picture
             };
             await auth().currentUser.updateProfile(update);
-            await console.log('User account created & signed in!');
+            console.log('User account created & signed in!');
             navigation.navigate("HomeWithBottomTab");
             })
           .catch(error => {
@@ -44,54 +44,54 @@ const SignUpScreen = () => {
     };
 
     return (
-        <View style = {styles.root}>
-            <Image
-                source={ Logo }
-                style={ styles.logo }
-                resizeMode="contain"
-            />
+                <View style = {styles.root}>
+                    <Image
+                        source={ Logo }
+                        style={ styles.logo }
+                        resizeMode="contain"
+                    />
 
-            <CustomInputField
-                placeholder = "Name"
-                value = { name }
-                setValue = { setName }
-            />
+                    <CustomInputField
+                        placeholder = "Name"
+                        value = { name }
+                        setValue = { setName }
+                    />
 
-            <CustomInputField
-                placeholder = "Email"
-                value = { email }
-                setValue = { setEmail }
-            />
+                    <CustomInputField
+                        placeholder = "Email"
+                        value = { email }
+                        setValue = { setEmail }
+                    />
 
-            <CustomInputField
-                placeholder = "Password"
-                value = { password }
-                setValue = { setPassword }
-                secureTextEntry
-            />
+                    <CustomInputField
+                        placeholder = "Password"
+                        value = { password }
+                        setValue = { setPassword }
+                        secureTextEntry
+                    />
 
-            <CustomButton
-                text = "Sign Up"
-                onPress = { onSignUpPressed }
-                type = "PRIMARY"
-            />
+                    <CustomButton
+                        text = "Sign Up"
+                        onPress = { onSignUpPressed }
+                        type = "PRIMARY"
+                    />
 
-            <CustomButton
-                text = <Text style = {{ fontSize: 12, }}>Have an existing account?
-                       <Text style = {{ fontSize: 12, }}> </Text>
-                       <Text
-                            style = {{
-                            fontFamily: 'Poppins-SemiBold',
-                            textDecorationLine: 'underline',
-                            fontSize: 12,
-                            }}>Log in.
-                       </Text>
-                       </Text>
-                onPress = { onLogInPressed }
-                type = "SECONDARY"
-            />
+                    <CustomButton
+                        text = <Text style = {{ fontSize: 12, }}>Have an existing account?
+                               <Text style = {{ fontSize: 12, }}> </Text>
+                               <Text
+                                    style = {{
+                                    fontFamily: 'Poppins-SemiBold',
+                                    textDecorationLine: 'underline',
+                                    fontSize: 12,
+                                    }}>Log in.
+                               </Text>
+                               </Text>
+                        onPress = { onLogInPressed }
+                        type = "SECONDARY"
+                    />
 
-        </View>
+                </View>
     );
 }
 
@@ -100,7 +100,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: '10%',
         paddingTop: '50%',
-        paddingTop: '48%',
         backgroundColor: '#70DAD3'
     },
     logo: {
