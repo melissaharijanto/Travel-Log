@@ -24,7 +24,6 @@ const SignUpScreen = () => {
             };
             await auth().currentUser.updateProfile(update);
             console.log('User account created & signed in!');
-            navigation.navigate("HomeWithBottomTab");
             })
           .catch(error => {
             if (error.code === 'auth/user-not-found') {

@@ -7,6 +7,7 @@ import BottomTabNavigator from './BottomTabNavigator';
 import LandingScreen from '../screens/LandingScreen';
 import auth from '@react-native-firebase/auth'
 import Navigator from './Stack';
+import LoggedInNavigator from './LoggedInStack';
 
 
 const Navigation = () => {
@@ -28,7 +29,7 @@ const Navigation = () => {
 
       return (
       <NavigationContainer>
-        { user ? <BottomTabNavigator/> : <Navigator/> }
+        { user ? <LoggedInNavigator/> : <Navigator/> }
       </NavigationContainer>
       );
 }

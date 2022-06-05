@@ -18,21 +18,19 @@ import CustomButton from '../../components/CustomButton';
 
 const ProfileScreen = () => {
 
-    const screenHeight = Dimensions.get('window').height;
-    const screenWidth = Dimensions.get('window').width;
-
     const currentUser = auth().currentUser;
     const navigation = useNavigation();
-
-
-    const handleChange = () => {
-    }
 
     const onSigningOut = () => {
         auth()
           .signOut()
           .then(() => console.log('User signed out!'));
     }
+
+    const editIconPressed = () => {
+        navigation.navigate("EditProfile");
+    }
+
     return (
         <View style = { styles.root }>
             <ImageBackground source={Background}
@@ -51,6 +49,7 @@ const ProfileScreen = () => {
                 <EditIcon
                     size={20}
                     name="edit"
+                    onPress = { editIconPressed }
                 />
             </View>
 
@@ -61,6 +60,7 @@ const ProfileScreen = () => {
             <EditIcon
                 size={20}
                 name="edit"
+                onPress = { editIconPressed }
             />
             </View>
 

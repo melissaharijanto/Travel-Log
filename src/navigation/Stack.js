@@ -13,6 +13,7 @@ import MainItineraryScreen from '../screens/MainItineraryScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import LandingScreen from '../screens/LandingScreen';
 import BottomTabNavigator from './BottomTabNavigator';
+import EditProfileScreen from '../screens/EditProfileScreen';
 const Stack = createNativeStackNavigator();
 
 const Navigator = () => {
@@ -35,9 +36,7 @@ const Navigator = () => {
             <Stack.Screen name = "SetNewPassword"
                 component={SetNewPasswordScreen}
             />
-            <Stack.Screen name = "HomeWithBottomTab"
-                component={BottomTabNavigator}
-            />
+
         </Stack.Navigator>
 
     )

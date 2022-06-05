@@ -16,7 +16,12 @@ const HomeScreen = () => {
     return (
         <ScrollView>
         <View style = { styles.root }>
-        <Text style = { styles.text }>{`Hi ${user.displayName}`} </Text>
+        <Text style = { styles.text }> Hi {
+            user
+            ? user.displayName === null
+                ? ''
+                : user.displayName
+            : '' }!</Text>
         <Text style = { styles.text }> Next Page is WIP ;) </Text>
         <Text style = { styles.text }> Thanks for helping us test this!</Text>
 

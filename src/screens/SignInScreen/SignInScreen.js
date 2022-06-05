@@ -16,7 +16,6 @@ const SignInScreen = () => {
           .signInWithEmailAndPassword(email, password)
           .then(() => {
             console.log('User account created & signed in!');
-            navigation.navigate("HomeWithBottomTab");
           })
           .catch(error => {
             if (error.code === 'auth/email-already-in-use') {
