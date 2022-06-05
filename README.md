@@ -41,9 +41,18 @@ Concepts to Be Tackled: https://docs.google.com/spreadsheets/d/1Y0crUXilsoeYeINN
 
 ## Progress
 As of submission of Milestone #1, only the front end for the Log In and Sign Up pages are finished, along with the navigations.
+Current dependencies used are firebase/auth, react-native-vector-icons, react-navigation. Those can be installed by the following commands:
+```
+npm install --save @react-native-firebase/app
+npm install --save @react-native-firebase/auth
+npm install --save react-native-vector-icons
+npm install @react-navigation/native
+npm install @react-navigation/stack
+npm link // to link the dependencies to the app
+```
 We would be happy if you are interested to try it out! Here are the steps to do so:
 1. Please access our repository with this link https://github.com/melissaharijanto/Travel-Log and fork it.
-2. Because the app is customized for android, please use the command 
+2. Because the app is customized for android and uses React Native CLI, please use the command 
 ```
 npm start
 npx react-native run-android
