@@ -28,7 +28,8 @@ We hope to provide a one-stop application that would not only ease, but also enc
 3. Store everything related to your trip (e.g. hotel reservations, flight details) in one place.
 4. The ability to access and search for past itineraries when there are places you want to revisit.
 
-To view the features of each page, please refer to this document: https://docs.google.com/document/d/1Rbl5xvDYa3nckiapXDep-_QBE1GBdg1VTyXYMsfY-6E/edit?usp=sharing
+To view the features of each page, please refer to this document: 
+https://docs.google.com/document/d/1Rbl5xvDYa3nckiapXDep-_QBE1GBdg1VTyXYMsfY-6E/edit?usp=sharing
 
 ## Design of the App
 Link to Figma: https://www.figma.com/file/CKGloIToiN5VlPJoaYpxCx/Travel-Log---Clean
