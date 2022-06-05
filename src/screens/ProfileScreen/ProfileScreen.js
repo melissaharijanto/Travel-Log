@@ -42,7 +42,7 @@ const ProfileScreen = () => {
             <Text style = { styles.name }>{`${currentUser.displayName}`}</Text>
 
 
-            <Text style = { [styles.text, { paddingTop: '30%' } ]}>Name</Text>
+            <Text style = { [styles.text, { paddingTop: '35%' } ]}>Name</Text>
 
             <View style = { styles.horizontal }>
                 <Text style = { styles.userInfo }>{`${currentUser.displayName}`}  </Text>

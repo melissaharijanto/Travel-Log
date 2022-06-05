@@ -28,6 +28,28 @@ const styles = StyleSheet.create({
 
     container_TERTIARY: { // container for everything aft the log in button
         backgroundColor: '#70D9D3',
+        elevation: 4,
+        elevation: 10,
+        shadowColor: '#70D9D3',
+        shadowOffset: {
+            width: 0,
+            height: 0,
+            shadowOpacity: 1.0,
+        }
+    },
+
+    container_QUARTERNARY: { // container for everything aft the log in button
+        backgroundColor: 'white',
+        borderColor: '#70D9D3',
+        borderWidth: 1,
+        elevation: 10,
+        shadowColor: '#70D9D3',
+        shadowOffset: {
+            width: 0,
+            height: 0,
+            shadowOpacity: 1.0,
+        }
+
     },
 
     text_SECONDARY: {
@@ -42,9 +64,16 @@ const styles = StyleSheet.create({
     },
 
     text_TERTIARY: {
-            color: 'white',
-            fontFamily: 'Poppins-SemiBold',
+        color: 'white',
+        fontFamily: 'Poppins-SemiBold',
     },
+
+    text_QUARTERNARY: { // container for everything aft the log in button
+        color: '#70D9D3',
+        fontFamily: 'Poppins-Regular',
+    },
+
+
 
 });
 

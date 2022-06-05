@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, Image, StyleSheet, ScrollView, Alert } from 'react-native';
 import Logo from '../../../assets/images/logo2.png';
 import CustomInputField from '../../components/CustomInputField';
 import CustomButton from '../../components/CustomButton';
@@ -34,7 +34,25 @@ const SignUpScreen = () => {
               console.log('That email address is invalid!');
             }
 
-            console.error(error);
+            Alert.alert(
+                error.code,
+                error.message,
+                [
+                    {
+                        text: "OK",
+                        onPress: () => console.log("OK Pressed"),
+                        style: "OK",
+                    },
+                ],
+                {
+                    cancelable: true,
+                    onDismiss: () =>
+                    console.log(
+                        "This alert was dismissed by tapping outside of the alert dialog."
+                    ),
+                }
+            );
+
           });
     };
 

@@ -6,7 +6,7 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="21"
-9        android:targetSdkVersion="31" />
+9        android:targetSdkVersion="27" />
 10
 11    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 11-->/Users/melissaharijanto/TravelLogApp/android/app/src/debug/AndroidManifest.xml:5:5-77
@@ -14,278 +14,350 @@
 12    <uses-permission android:name="android.permission.INTERNET" />
 12-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:4:5-67
 12-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:4:22-64
-13    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-13-->[com.facebook.flipper:flipper:0.125.0] /Users/melissaharijanto/.gradle/caches/transforms-3/baef8f9fd5badf25733320d45824ec5a/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:16:5-76
-13-->[com.facebook.flipper:flipper:0.125.0] /Users/melissaharijanto/.gradle/caches/transforms-3/baef8f9fd5badf25733320d45824ec5a/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:16:22-73
-14    <uses-permission android:name="android.permission.WAKE_LOCK" />
-14-->[:react-native-firebase_auth] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/auth/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:5-68
-14-->[:react-native-firebase_auth] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/auth/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:22-65
-15    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-15-->[:react-native-firebase_auth] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/auth/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:5-79
-15-->[:react-native-firebase_auth] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/auth/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:22-76
-16    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
-16-->[com.google.android.gms:play-services-measurement-api:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/83b6741dd7511692ac56a5fc84952549/transformed/jetified-play-services-measurement-api-21.0.0/AndroidManifest.xml:25:5-79
-16-->[com.google.android.gms:play-services-measurement-api:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/83b6741dd7511692ac56a5fc84952549/transformed/jetified-play-services-measurement-api-21.0.0/AndroidManifest.xml:25:22-76
-17    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
-17-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:26:5-110
-17-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:26:22-107
-18
-19    <application
-19-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:6:5-25:19
-20        android:name="com.travellogapp.MainApplication"
-20-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:7:7-38
-21        android:allowBackup="false"
-21-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:11:7-34
-22        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-22-->[androidx.core:core:1.5.0] /Users/melissaharijanto/.gradle/caches/transforms-3/20885dd90e11e58c268fef9efd1e4628/transformed/core-1.5.0/AndroidManifest.xml:24:18-86
-23        android:debuggable="true"
-24        android:icon="@mipmap/ic_launcher"
-24-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:9:7-41
-25        android:label="@string/app_name"
-25-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:8:7-39
-26        android:roundIcon="@mipmap/ic_launcher_round"
-26-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:10:7-52
-27        android:theme="@style/AppTheme"
-27-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:12:7-38
-28        android:usesCleartextTraffic="true" >
-28-->/Users/melissaharijanto/TravelLogApp/android/app/src/debug/AndroidManifest.xml:8:9-44
-29        <activity
-29-->/Users/melissaharijanto/TravelLogApp/android/app/src/debug/AndroidManifest.xml:11:9-111
-30            android:name="com.facebook.react.devsupport.DevSettingsActivity"
-30-->/Users/melissaharijanto/TravelLogApp/android/app/src/debug/AndroidManifest.xml:11:19-83
-31            android:exported="false" />
-31-->/Users/melissaharijanto/TravelLogApp/android/app/src/debug/AndroidManifest.xml:11:84-108
-32        <activity
-32-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:13:7-24:18
-33            android:name="com.travellogapp.MainActivity"
-33-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:14:9-37
-34            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
-34-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:16:9-118
-35            android:exported="true"
-35-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:19:9-32
-36            android:label="@string/app_name"
-36-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:15:9-41
-37            android:launchMode="singleTask"
-37-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:17:9-40
-38            android:windowSoftInputMode="adjustResize" >
-38-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:18:9-51
-39            <intent-filter>
-39-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:20:9-23:25
-40                <action android:name="android.intent.action.MAIN" />
-40-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:21:13-65
-40-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:21:21-62
-41
-42                <category android:name="android.intent.category.LAUNCHER" />
-42-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:22:13-73
-42-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:22:23-70
-43            </intent-filter>
-44        </activity>
-45
-46        <meta-data
-46-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-12:36
-47            android:name="app_data_collection_default_enabled"
-47-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-63
-48            android:value="true" />
-48-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-33
-49
-50        <service
-50-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:9-18:19
-51            android:name="com.google.firebase.components.ComponentDiscoveryService"
-51-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:18-89
-52            android:directBootAware="true"
-52-->[com.google.firebase:firebase-common:20.1.1] /Users/melissaharijanto/.gradle/caches/transforms-3/e7f63944be48d511fec559dbc7569295/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:35:13-43
-53            android:exported="false" >
-53-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:66:13-37
-54            <meta-data
-54-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-17:85
-55                android:name="com.google.firebase.components:io.invertase.firebase.app.ReactNativeFirebaseAppRegistrar"
-55-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:17-120
-56                android:value="com.google.firebase.components.ComponentRegistrar" />
-56-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:17-82
-57            <meta-data
-57-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:67:13-69:85
-58                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
-58-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:68:17-109
-59                android:value="com.google.firebase.components.ComponentRegistrar" />
-59-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:69:17-82
-60            <meta-data
-60-->[com.google.android.gms:play-services-measurement-api:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/83b6741dd7511692ac56a5fc84952549/transformed/jetified-play-services-measurement-api-21.0.0/AndroidManifest.xml:31:13-33:85
-61                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
-61-->[com.google.android.gms:play-services-measurement-api:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/83b6741dd7511692ac56a5fc84952549/transformed/jetified-play-services-measurement-api-21.0.0/AndroidManifest.xml:32:17-139
-62                android:value="com.google.firebase.components.ComponentRegistrar" />
-62-->[com.google.android.gms:play-services-measurement-api:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/83b6741dd7511692ac56a5fc84952549/transformed/jetified-play-services-measurement-api-21.0.0/AndroidManifest.xml:33:17-82
-63            <meta-data
-63-->[com.google.firebase:firebase-installations:17.0.1] /Users/melissaharijanto/.gradle/caches/transforms-3/9f6bbe09836d61d2afd8d1de9abc19ca/transformed/jetified-firebase-installations-17.0.1/AndroidManifest.xml:18:13-20:85
-64                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
-64-->[com.google.firebase:firebase-installations:17.0.1] /Users/melissaharijanto/.gradle/caches/transforms-3/9f6bbe09836d61d2afd8d1de9abc19ca/transformed/jetified-firebase-installations-17.0.1/AndroidManifest.xml:19:17-127
-65                android:value="com.google.firebase.components.ComponentRegistrar" />
-65-->[com.google.firebase:firebase-installations:17.0.1] /Users/melissaharijanto/.gradle/caches/transforms-3/9f6bbe09836d61d2afd8d1de9abc19ca/transformed/jetified-firebase-installations-17.0.1/AndroidManifest.xml:20:17-82
-66        </service>
-67
-68        <provider
-68-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:20:9-24:38
-69            android:name="io.invertase.firebase.app.ReactNativeFirebaseAppInitProvider"
-69-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:21:13-88
-70            android:authorities="com.travellogapp.reactnativefirebaseappinitprovider"
-70-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:22:13-86
-71            android:exported="false"
-71-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:23:13-37
-72            android:initOrder="99" />
-72-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:24:13-35
-73
-74        <activity
-74-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:27:9-44:20
-75            android:name="com.google.firebase.auth.internal.GenericIdpActivity"
-75-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:28:13-80
-76            android:excludeFromRecents="true"
-76-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:29:13-46
-77            android:exported="true"
-77-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:30:13-36
-78            android:launchMode="singleTask"
-78-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:31:13-44
-79            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-79-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:32:13-72
-80            <intent-filter>
-80-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:33:13-43:29
-81                <action android:name="android.intent.action.VIEW" />
-81-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:34:17-69
-81-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:34:25-66
-82
-83                <category android:name="android.intent.category.DEFAULT" />
-83-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:36:17-76
-83-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:36:27-73
-84                <category android:name="android.intent.category.BROWSABLE" />
-84-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:37:17-78
-84-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:37:27-75
-85
-86                <data
-86-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:39:17-42:51
-87                    android:host="firebase.auth"
-87-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:40:21-49
-88                    android:path="/"
-88-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:41:21-37
-89                    android:scheme="genericidp" />
-89-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:42:21-48
-90            </intent-filter>
-91        </activity>
-92        <activity
-92-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:45:9-62:20
-93            android:name="com.google.firebase.auth.internal.RecaptchaActivity"
-93-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:46:13-79
-94            android:excludeFromRecents="true"
-94-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:47:13-46
-95            android:exported="true"
-95-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:48:13-36
-96            android:launchMode="singleTask"
-96-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:49:13-44
-97            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-97-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:50:13-72
-98            <intent-filter>
-98-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:51:13-61:29
-99                <action android:name="android.intent.action.VIEW" />
-99-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:34:17-69
-99-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:34:25-66
-100
-101                <category android:name="android.intent.category.DEFAULT" />
-101-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:36:17-76
-101-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:36:27-73
-102                <category android:name="android.intent.category.BROWSABLE" />
-102-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:37:17-78
-102-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:37:27-75
-103
-104                <data
-104-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:39:17-42:51
-105                    android:host="firebase.auth"
-105-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:40:21-49
-106                    android:path="/"
-106-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:41:21-37
-107                    android:scheme="recaptcha" />
-107-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:42:21-48
-108            </intent-filter>
-109        </activity>
-110
-111        <provider
-111-->[com.google.firebase:firebase-common:20.1.1] /Users/melissaharijanto/.gradle/caches/transforms-3/e7f63944be48d511fec559dbc7569295/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:26:9-31:39
-112            android:name="com.google.firebase.provider.FirebaseInitProvider"
-112-->[com.google.firebase:firebase-common:20.1.1] /Users/melissaharijanto/.gradle/caches/transforms-3/e7f63944be48d511fec559dbc7569295/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:27:13-77
-113            android:authorities="com.travellogapp.firebaseinitprovider"
-113-->[com.google.firebase:firebase-common:20.1.1] /Users/melissaharijanto/.gradle/caches/transforms-3/e7f63944be48d511fec559dbc7569295/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:28:13-72
-114            android:directBootAware="true"
-114-->[com.google.firebase:firebase-common:20.1.1] /Users/melissaharijanto/.gradle/caches/transforms-3/e7f63944be48d511fec559dbc7569295/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:29:13-43
-115            android:exported="false"
-115-->[com.google.firebase:firebase-common:20.1.1] /Users/melissaharijanto/.gradle/caches/transforms-3/e7f63944be48d511fec559dbc7569295/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:30:13-37
-116            android:initOrder="100" />
-116-->[com.google.firebase:firebase-common:20.1.1] /Users/melissaharijanto/.gradle/caches/transforms-3/e7f63944be48d511fec559dbc7569295/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:31:13-36
-117
-118        <activity
-118-->[com.google.android.gms:play-services-auth:20.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ab6d07be4d11d6fd14a46e3a3de23097/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:23:9-27:75
-119            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
-119-->[com.google.android.gms:play-services-auth:20.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ab6d07be4d11d6fd14a46e3a3de23097/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:24:13-93
-120            android:excludeFromRecents="true"
-120-->[com.google.android.gms:play-services-auth:20.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ab6d07be4d11d6fd14a46e3a3de23097/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:25:13-46
-121            android:exported="false"
-121-->[com.google.android.gms:play-services-auth:20.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ab6d07be4d11d6fd14a46e3a3de23097/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:26:13-37
-122            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-122-->[com.google.android.gms:play-services-auth:20.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ab6d07be4d11d6fd14a46e3a3de23097/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:27:13-72
-123        <!--
-124            Service handling Google Sign-In user revocation. For apps that do not integrate with
-125            Google Sign-In, this service will never be started.
-126        -->
-127        <service
-127-->[com.google.android.gms:play-services-auth:20.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ab6d07be4d11d6fd14a46e3a3de23097/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:33:9-37:51
-128            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
-128-->[com.google.android.gms:play-services-auth:20.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ab6d07be4d11d6fd14a46e3a3de23097/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:34:13-89
-129            android:exported="true"
-129-->[com.google.android.gms:play-services-auth:20.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ab6d07be4d11d6fd14a46e3a3de23097/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:35:13-36
-130            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
-130-->[com.google.android.gms:play-services-auth:20.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ab6d07be4d11d6fd14a46e3a3de23097/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:36:13-107
-131            android:visibleToInstantApps="true" />
-131-->[com.google.android.gms:play-services-auth:20.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ab6d07be4d11d6fd14a46e3a3de23097/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:37:13-48
-132
-133        <activity
-133-->[com.google.android.gms:play-services-base:18.0.1] /Users/melissaharijanto/.gradle/caches/transforms-3/07e00fd4a881a5e0977285b218ec9906/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
-134            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-134-->[com.google.android.gms:play-services-base:18.0.1] /Users/melissaharijanto/.gradle/caches/transforms-3/07e00fd4a881a5e0977285b218ec9906/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:19-85
-135            android:exported="false"
-135-->[com.google.android.gms:play-services-base:18.0.1] /Users/melissaharijanto/.gradle/caches/transforms-3/07e00fd4a881a5e0977285b218ec9906/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:22:19-43
-136            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-136-->[com.google.android.gms:play-services-base:18.0.1] /Users/melissaharijanto/.gradle/caches/transforms-3/07e00fd4a881a5e0977285b218ec9906/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:21:19-78
+13    <uses-permission android:name="android.permission.CAMERA" />
+13-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:5:5-64
+13-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:5:22-62
+14
+15    <uses-feature
+15-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:6:5-85
+16        android:name="android.hardware.camera"
+16-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:6:19-57
+17        android:required="false" />
+17-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:6:58-82
+18    <uses-feature
+18-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:7:5-91
+19        android:name="android.hardware.camera.front"
+19-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:7:19-63
+20        android:required="false" />
+20-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:7:64-88
+21
+22    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+22-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:8:5-81
+22-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:8:22-78
+23    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+23-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:9:5-80
+23-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:9:22-77
+24    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+24-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:10:5-82
+24-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:10:22-79
+25    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+25-->[com.facebook.flipper:flipper:0.125.0] /Users/melissaharijanto/.gradle/caches/transforms-3/baef8f9fd5badf25733320d45824ec5a/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:16:5-76
+25-->[com.facebook.flipper:flipper:0.125.0] /Users/melissaharijanto/.gradle/caches/transforms-3/baef8f9fd5badf25733320d45824ec5a/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:16:22-73
+26    <uses-permission android:name="android.permission.WAKE_LOCK" />
+26-->[:react-native-firebase_auth] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/auth/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:5-68
+26-->[:react-native-firebase_auth] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/auth/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:22-65
+27    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+27-->[:react-native-firebase_auth] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/auth/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:5-79
+27-->[:react-native-firebase_auth] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/auth/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:22-76
+28
+29    <queries>
+29-->[:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-13:15
+30        <intent>
+30-->[:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-12:18
+31            <action android:name="android.media.action.IMAGE_CAPTURE" />
+31-->[:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-73
+31-->[:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:21-70
+32        </intent>
+33    </queries>
+34
+35    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+35-->[com.google.android.gms:play-services-measurement-api:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/83b6741dd7511692ac56a5fc84952549/transformed/jetified-play-services-measurement-api-21.0.0/AndroidManifest.xml:25:5-79
+35-->[com.google.android.gms:play-services-measurement-api:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/83b6741dd7511692ac56a5fc84952549/transformed/jetified-play-services-measurement-api-21.0.0/AndroidManifest.xml:25:22-76
+36    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+36-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:26:5-110
+36-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:26:22-107
+37
+38    <application
+38-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:12:5-31:19
+39        android:name="com.travellogapp.MainApplication"
+39-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:13:7-38
+40        android:allowBackup="false"
+40-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:17:7-34
+41        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+41-->[androidx.core:core:1.5.0] /Users/melissaharijanto/.gradle/caches/transforms-3/20885dd90e11e58c268fef9efd1e4628/transformed/core-1.5.0/AndroidManifest.xml:24:18-86
+42        android:debuggable="true"
+43        android:icon="@mipmap/ic_launcher"
+43-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:15:7-41
+44        android:label="@string/app_name"
+44-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:14:7-39
+45        android:roundIcon="@mipmap/ic_launcher_round"
+45-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:16:7-52
+46        android:theme="@style/AppTheme"
+46-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:18:7-38
+47        android:usesCleartextTraffic="true" >
+47-->/Users/melissaharijanto/TravelLogApp/android/app/src/debug/AndroidManifest.xml:8:9-44
+48        <activity
+48-->/Users/melissaharijanto/TravelLogApp/android/app/src/debug/AndroidManifest.xml:11:9-111
+49            android:name="com.facebook.react.devsupport.DevSettingsActivity"
+49-->/Users/melissaharijanto/TravelLogApp/android/app/src/debug/AndroidManifest.xml:11:19-83
+50            android:exported="false" />
+50-->/Users/melissaharijanto/TravelLogApp/android/app/src/debug/AndroidManifest.xml:11:84-108
+51        <activity
+51-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:19:7-30:18
+52            android:name="com.travellogapp.MainActivity"
+52-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:20:9-37
+53            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+53-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:22:9-118
+54            android:exported="true"
+54-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:25:9-32
+55            android:label="@string/app_name"
+55-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:21:9-41
+56            android:launchMode="singleTask"
+56-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:23:9-40
+57            android:windowSoftInputMode="adjustResize" >
+57-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:24:9-51
+58            <intent-filter>
+58-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:26:9-29:25
+59                <action android:name="android.intent.action.MAIN" />
+59-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:27:13-65
+59-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:27:21-62
+60
+61                <category android:name="android.intent.category.LAUNCHER" />
+61-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:28:13-73
+61-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:28:23-70
+62            </intent-filter>
+63        </activity>
+64
+65        <meta-data
+65-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-12:36
+66            android:name="app_data_collection_default_enabled"
+66-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-63
+67            android:value="true" />
+67-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-33
+68
+69        <service
+69-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:9-18:19
+70            android:name="com.google.firebase.components.ComponentDiscoveryService"
+70-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:18-89
+71            android:directBootAware="true"
+71-->[com.google.firebase:firebase-common:20.1.1] /Users/melissaharijanto/.gradle/caches/transforms-3/e7f63944be48d511fec559dbc7569295/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:35:13-43
+72            android:exported="false" >
+72-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:66:13-37
+73            <meta-data
+73-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-17:85
+74                android:name="com.google.firebase.components:io.invertase.firebase.app.ReactNativeFirebaseAppRegistrar"
+74-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:17-120
+75                android:value="com.google.firebase.components.ComponentRegistrar" />
+75-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:17-82
+76            <meta-data
+76-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:67:13-69:85
+77                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+77-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:68:17-109
+78                android:value="com.google.firebase.components.ComponentRegistrar" />
+78-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:69:17-82
+79            <meta-data
+79-->[com.google.firebase:firebase-firestore:24.1.2] /Users/melissaharijanto/.gradle/caches/transforms-3/957bca1613b61b77fe2db7da1b45afa7/transformed/jetified-firebase-firestore-24.1.2/AndroidManifest.xml:20:13-22:85
+80                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
+80-->[com.google.firebase:firebase-firestore:24.1.2] /Users/melissaharijanto/.gradle/caches/transforms-3/957bca1613b61b77fe2db7da1b45afa7/transformed/jetified-firebase-firestore-24.1.2/AndroidManifest.xml:21:17-111
+81                android:value="com.google.firebase.components.ComponentRegistrar" />
+81-->[com.google.firebase:firebase-firestore:24.1.2] /Users/melissaharijanto/.gradle/caches/transforms-3/957bca1613b61b77fe2db7da1b45afa7/transformed/jetified-firebase-firestore-24.1.2/AndroidManifest.xml:22:17-82
+82            <meta-data
+82-->[com.google.firebase:firebase-storage:20.0.1] /Users/melissaharijanto/.gradle/caches/transforms-3/c6c8b88f143f37cf16ce75c484d9748b/transformed/jetified-firebase-storage-20.0.1/AndroidManifest.xml:33:13-35:85
+83                android:name="com.google.firebase.components:com.google.firebase.storage.StorageRegistrar"
+83-->[com.google.firebase:firebase-storage:20.0.1] /Users/melissaharijanto/.gradle/caches/transforms-3/c6c8b88f143f37cf16ce75c484d9748b/transformed/jetified-firebase-storage-20.0.1/AndroidManifest.xml:34:17-107
+84                android:value="com.google.firebase.components.ComponentRegistrar" />
+84-->[com.google.firebase:firebase-storage:20.0.1] /Users/melissaharijanto/.gradle/caches/transforms-3/c6c8b88f143f37cf16ce75c484d9748b/transformed/jetified-firebase-storage-20.0.1/AndroidManifest.xml:35:17-82
+85            <meta-data
+85-->[com.google.android.gms:play-services-measurement-api:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/83b6741dd7511692ac56a5fc84952549/transformed/jetified-play-services-measurement-api-21.0.0/AndroidManifest.xml:31:13-33:85
+86                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+86-->[com.google.android.gms:play-services-measurement-api:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/83b6741dd7511692ac56a5fc84952549/transformed/jetified-play-services-measurement-api-21.0.0/AndroidManifest.xml:32:17-139
+87                android:value="com.google.firebase.components.ComponentRegistrar" />
+87-->[com.google.android.gms:play-services-measurement-api:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/83b6741dd7511692ac56a5fc84952549/transformed/jetified-play-services-measurement-api-21.0.0/AndroidManifest.xml:33:17-82
+88            <meta-data
+88-->[com.google.firebase:firebase-installations:17.0.1] /Users/melissaharijanto/.gradle/caches/transforms-3/9f6bbe09836d61d2afd8d1de9abc19ca/transformed/jetified-firebase-installations-17.0.1/AndroidManifest.xml:18:13-20:85
+89                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+89-->[com.google.firebase:firebase-installations:17.0.1] /Users/melissaharijanto/.gradle/caches/transforms-3/9f6bbe09836d61d2afd8d1de9abc19ca/transformed/jetified-firebase-installations-17.0.1/AndroidManifest.xml:19:17-127
+90                android:value="com.google.firebase.components.ComponentRegistrar" />
+90-->[com.google.firebase:firebase-installations:17.0.1] /Users/melissaharijanto/.gradle/caches/transforms-3/9f6bbe09836d61d2afd8d1de9abc19ca/transformed/jetified-firebase-installations-17.0.1/AndroidManifest.xml:20:17-82
+91        </service>
+92
+93        <provider
+93-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:20:9-24:38
+94            android:name="io.invertase.firebase.app.ReactNativeFirebaseAppInitProvider"
+94-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:21:13-88
+95            android:authorities="com.travellogapp.reactnativefirebaseappinitprovider"
+95-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:22:13-86
+96            android:exported="false"
+96-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:23:13-37
+97            android:initOrder="99" />
+97-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:24:13-35
+98        <provider
+98-->[:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:18:9-26:20
+99            android:name="androidx.core.content.FileProvider"
+99-->[:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:19:13-62
+100            android:authorities="com.travellogapp.provider"
+100-->[:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:20:13-60
+101            android:exported="false"
+101-->[:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:21:13-37
+102            android:grantUriPermissions="true" >
+102-->[:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:22:13-47
+103            <meta-data
+103-->[:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:23:13-25:58
+104                android:name="android.support.FILE_PROVIDER_PATHS"
+104-->[:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:24:17-67
+105                android:resource="@xml/provider_paths" />
+105-->[:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:25:17-55
+106        </provider>
+107
+108        <activity
+108-->[:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:28:9-30:72
+109            android:name="com.yalantis.ucrop.UCropActivity"
+109-->[:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:29:13-60
+110            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+110-->[:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:30:13-69
+111        <activity
+111-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:27:9-44:20
+112            android:name="com.google.firebase.auth.internal.GenericIdpActivity"
+112-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:28:13-80
+113            android:excludeFromRecents="true"
+113-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:29:13-46
+114            android:exported="true"
+114-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:30:13-36
+115            android:launchMode="singleTask"
+115-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:31:13-44
+116            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+116-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:32:13-72
+117            <intent-filter>
+117-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:33:13-43:29
+118                <action android:name="android.intent.action.VIEW" />
+118-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:34:17-69
+118-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:34:25-66
+119
+120                <category android:name="android.intent.category.DEFAULT" />
+120-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:36:17-76
+120-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:36:27-73
+121                <category android:name="android.intent.category.BROWSABLE" />
+121-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:37:17-78
+121-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:37:27-75
+122
+123                <data
+123-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:39:17-42:51
+124                    android:host="firebase.auth"
+124-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:40:21-49
+125                    android:path="/"
+125-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:41:21-37
+126                    android:scheme="genericidp" />
+126-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:42:21-48
+127            </intent-filter>
+128        </activity>
+129        <activity
+129-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:45:9-62:20
+130            android:name="com.google.firebase.auth.internal.RecaptchaActivity"
+130-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:46:13-79
+131            android:excludeFromRecents="true"
+131-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:47:13-46
+132            android:exported="true"
+132-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:48:13-36
+133            android:launchMode="singleTask"
+133-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:49:13-44
+134            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+134-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:50:13-72
+135            <intent-filter>
+135-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:51:13-61:29
+136                <action android:name="android.intent.action.VIEW" />
+136-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:34:17-69
+136-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:34:25-66
 137
-138        <receiver
-138-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:29:9-33:20
-139            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
-139-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:30:13-85
-140            android:enabled="true"
-140-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:31:13-35
-141            android:exported="false" >
-141-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:32:13-37
-142        </receiver>
-143
-144        <service
-144-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:35:9-38:40
-145            android:name="com.google.android.gms.measurement.AppMeasurementService"
-145-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:36:13-84
-146            android:enabled="true"
-146-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:37:13-35
-147            android:exported="false" />
-147-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:38:13-37
-148        <service
-148-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:39:9-43:72
-149            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
-149-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:40:13-87
-150            android:enabled="true"
-150-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:41:13-35
-151            android:exported="false"
-151-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:42:13-37
-152            android:permission="android.permission.BIND_JOB_SERVICE" />
-152-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:43:13-69
-153
-154        <meta-data
-154-->[com.google.android.gms:play-services-basement:18.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/be944647bfd82958aafff760cc43d854/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:21:9-23:69
-155            android:name="com.google.android.gms.version"
-155-->[com.google.android.gms:play-services-basement:18.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/be944647bfd82958aafff760cc43d854/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:22:13-58
-156            android:value="@integer/google_play_services_version" />
-156-->[com.google.android.gms:play-services-basement:18.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/be944647bfd82958aafff760cc43d854/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:23:13-66
-157    </application>
-158
-159</manifest>
+138                <category android:name="android.intent.category.DEFAULT" />
+138-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:36:17-76
+138-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:36:27-73
+139                <category android:name="android.intent.category.BROWSABLE" />
+139-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:37:17-78
+139-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:37:27-75
+140
+141                <data
+141-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:39:17-42:51
+142                    android:host="firebase.auth"
+142-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:40:21-49
+143                    android:path="/"
+143-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:41:21-37
+144                    android:scheme="recaptcha" />
+144-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:42:21-48
+145            </intent-filter>
+146        </activity>
+147
+148        <provider
+148-->[com.google.firebase:firebase-common:20.1.1] /Users/melissaharijanto/.gradle/caches/transforms-3/e7f63944be48d511fec559dbc7569295/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:26:9-31:39
+149            android:name="com.google.firebase.provider.FirebaseInitProvider"
+149-->[com.google.firebase:firebase-common:20.1.1] /Users/melissaharijanto/.gradle/caches/transforms-3/e7f63944be48d511fec559dbc7569295/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:27:13-77
+150            android:authorities="com.travellogapp.firebaseinitprovider"
+150-->[com.google.firebase:firebase-common:20.1.1] /Users/melissaharijanto/.gradle/caches/transforms-3/e7f63944be48d511fec559dbc7569295/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:28:13-72
+151            android:directBootAware="true"
+151-->[com.google.firebase:firebase-common:20.1.1] /Users/melissaharijanto/.gradle/caches/transforms-3/e7f63944be48d511fec559dbc7569295/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:29:13-43
+152            android:exported="false"
+152-->[com.google.firebase:firebase-common:20.1.1] /Users/melissaharijanto/.gradle/caches/transforms-3/e7f63944be48d511fec559dbc7569295/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:30:13-37
+153            android:initOrder="100" />
+153-->[com.google.firebase:firebase-common:20.1.1] /Users/melissaharijanto/.gradle/caches/transforms-3/e7f63944be48d511fec559dbc7569295/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:31:13-36
+154
+155        <activity
+155-->[com.google.android.gms:play-services-auth:20.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ab6d07be4d11d6fd14a46e3a3de23097/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:23:9-27:75
+156            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+156-->[com.google.android.gms:play-services-auth:20.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ab6d07be4d11d6fd14a46e3a3de23097/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:24:13-93
+157            android:excludeFromRecents="true"
+157-->[com.google.android.gms:play-services-auth:20.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ab6d07be4d11d6fd14a46e3a3de23097/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:25:13-46
+158            android:exported="false"
+158-->[com.google.android.gms:play-services-auth:20.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ab6d07be4d11d6fd14a46e3a3de23097/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:26:13-37
+159            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+159-->[com.google.android.gms:play-services-auth:20.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ab6d07be4d11d6fd14a46e3a3de23097/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:27:13-72
+160        <!--
+161            Service handling Google Sign-In user revocation. For apps that do not integrate with
+162            Google Sign-In, this service will never be started.
+163        -->
+164        <service
+164-->[com.google.android.gms:play-services-auth:20.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ab6d07be4d11d6fd14a46e3a3de23097/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:33:9-37:51
+165            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+165-->[com.google.android.gms:play-services-auth:20.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ab6d07be4d11d6fd14a46e3a3de23097/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:34:13-89
+166            android:exported="true"
+166-->[com.google.android.gms:play-services-auth:20.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ab6d07be4d11d6fd14a46e3a3de23097/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:35:13-36
+167            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+167-->[com.google.android.gms:play-services-auth:20.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ab6d07be4d11d6fd14a46e3a3de23097/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:36:13-107
+168            android:visibleToInstantApps="true" />
+168-->[com.google.android.gms:play-services-auth:20.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ab6d07be4d11d6fd14a46e3a3de23097/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:37:13-48
+169
+170        <activity
+170-->[com.google.android.gms:play-services-base:18.0.1] /Users/melissaharijanto/.gradle/caches/transforms-3/07e00fd4a881a5e0977285b218ec9906/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
+171            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+171-->[com.google.android.gms:play-services-base:18.0.1] /Users/melissaharijanto/.gradle/caches/transforms-3/07e00fd4a881a5e0977285b218ec9906/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:19-85
+172            android:exported="false"
+172-->[com.google.android.gms:play-services-base:18.0.1] /Users/melissaharijanto/.gradle/caches/transforms-3/07e00fd4a881a5e0977285b218ec9906/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:22:19-43
+173            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+173-->[com.google.android.gms:play-services-base:18.0.1] /Users/melissaharijanto/.gradle/caches/transforms-3/07e00fd4a881a5e0977285b218ec9906/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:21:19-78
+174
+175        <receiver
+175-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:29:9-33:20
+176            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+176-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:30:13-85
+177            android:enabled="true"
+177-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:31:13-35
+178            android:exported="false" >
+178-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:32:13-37
+179        </receiver>
+180
+181        <service
+181-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:35:9-38:40
+182            android:name="com.google.android.gms.measurement.AppMeasurementService"
+182-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:36:13-84
+183            android:enabled="true"
+183-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:37:13-35
+184            android:exported="false" />
+184-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:38:13-37
+185        <service
+185-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:39:9-43:72
+186            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+186-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:40:13-87
+187            android:enabled="true"
+187-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:41:13-35
+188            android:exported="false"
+188-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:42:13-37
+189            android:permission="android.permission.BIND_JOB_SERVICE" />
+189-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:43:13-69
+190
+191        <meta-data
+191-->[com.google.android.gms:play-services-basement:18.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/be944647bfd82958aafff760cc43d854/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:21:9-23:69
+192            android:name="com.google.android.gms.version"
+192-->[com.google.android.gms:play-services-basement:18.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/be944647bfd82958aafff760cc43d854/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:22:13-58
+193            android:value="@integer/google_play_services_version" />
+193-->[com.google.android.gms:play-services-basement:18.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/be944647bfd82958aafff760cc43d854/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:23:13-66
+194    </application>
+195
+196</manifest>

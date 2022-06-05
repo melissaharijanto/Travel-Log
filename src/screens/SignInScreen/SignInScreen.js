@@ -29,7 +29,26 @@ const SignInScreen = () => {
             if (error.code === 'auth/wrong-password') {
                 console.log('Wrong password.');
             }
-            console.error(error);
+
+            Alert.alert(
+                error.code,
+                error.message,
+                [
+                    {
+                        text: "OK",
+                        onPress: () => console.log("OK Pressed"),
+                        style: "OK",
+                    },
+                ],
+                {
+                    cancelable: true,
+                    onDismiss: () =>
+                    console.log(
+                        "This alert was dismissed by tapping outside of the alert dialog."
+                    ),
+                }
+            );
+
           });
     };
 
