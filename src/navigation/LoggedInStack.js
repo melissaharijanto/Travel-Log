@@ -14,6 +14,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 import LandingScreen from '../screens/LandingScreen';
 import BottomTabNavigator from './BottomTabNavigator';
 import EditProfileScreen from '../screens/EditProfileScreen';
+import NewItineraryScreen from '../screens/NewItineraryScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +28,10 @@ const LoggedInNavigator = () => {
 
             <Stack.Screen name = "EditProfile"
                 component={EditProfileScreen}
+            />
+
+            <Stack.Screen name = "NewItineraryScreen"
+                component={NewItineraryScreen}
             />
 
         </Stack.Navigator>

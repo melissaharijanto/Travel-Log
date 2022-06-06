@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         }
     },
 
-    container_QUARTERNARY: { // container for everything aft the log in button
+    container_QUATERNARY: { // container for everything aft the log in button
         backgroundColor: 'white',
         borderColor: '#70D9D3',
         borderWidth: 1,
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Poppins-SemiBold',
     },
 
-    text_QUARTERNARY: { // container for everything aft the log in button
+    text_QUATERNARY: { // container for everything aft the log in button
         color: '#70D9D3',
         fontFamily: 'Poppins-Regular',
     },

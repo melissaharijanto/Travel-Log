@@ -58,6 +58,7 @@ const EditProfileScreen = () => {
         });
       };
 
+    //possble unhandled promise rejection
     const uploadImage = async () => {
         if( image == null ) {
             return null;
@@ -143,8 +144,7 @@ const EditProfileScreen = () => {
 
             <Text style = { styles.name }>{`${currentUser.displayName}`}</Text>
 
-
-            <Text style = { [styles.text, { paddingTop: '30%' } ]}>Name</Text>
+            <Text style = { [styles.text, { paddingTop: '20%' } ]}>Name</Text>
 
             <InputFieldAfterLogIn
                 placeholder = "Enter your new name here."
@@ -175,7 +175,7 @@ const EditProfileScreen = () => {
             <CustomButton
                 text = "Cancel"
                 onPress = { onCanceling }
-                type = "QUARTERNARY"
+                type = "QUATERNARY"
             />
 
             <CustomButton
@@ -221,7 +221,7 @@ const styles = StyleSheet.create({
     name: {
         fontFamily: 'Poppins-SemiBold',
         fontSize: 26,
-        top: '13%',
+        top: '8%',
         color: 'black',
     },
     text: {

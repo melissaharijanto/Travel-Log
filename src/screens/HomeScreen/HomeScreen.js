@@ -9,8 +9,8 @@ const HomeScreen = () => {
     const user = auth().currentUser;
     const navigation = useNavigation();
 
-    const onGoingBack = () => {
-        navigation.navigate("LogIn");
+    const addNewItinerary = () => {
+        navigation.navigate("NewItineraryScreen");
     }
 
     return (
@@ -24,7 +24,9 @@ const HomeScreen = () => {
             : '' }!</Text>
         <Text style = { styles.text }> Next Page is WIP ;) </Text>
         <Text style = { styles.text }> Thanks for helping us test this!</Text>
-
+        <Pressable onPress={ addNewItinerary }>
+            <Text style={[styles.text, {textDecorationLine: 'underline'}]}>New Itinerary Screen</Text>
+        </Pressable>
         </View>
         </ScrollView>
     );

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, Image, StyleSheet, ScrollView, Alert } from 'react-native';
 import Logo from '../../../assets/images/logo2.png';
 import CustomInputField from '../../components/CustomInputField';
 import CustomButton from '../../components/CustomButton';
@@ -18,9 +18,6 @@ const SignInScreen = () => {
             console.log('User account created & signed in!');
           })
           .catch(error => {
-            if (error.code === 'auth/email-already-in-use') {
-              console.log('That email address is already in use!');
-            }
 
             if (error.code === 'auth/invalid-email') {
               console.log('That email address is invalid!');
