@@ -1,8 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from '../screens/HomeScreen';
 import MainItineraryScreen from '../screens/MainItineraryScreen';
+import NewItineraryScreen from '../screens/NewItineraryScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import HomeIcon from 'react-native-vector-icons/Entypo';
 import ItineraryIcon from 'react-native-vector-icons/MaterialIcons';
@@ -10,6 +12,15 @@ import ProfileIcon from 'react-native-vector-icons/FontAwesome';
 
 const Tab = createBottomTabNavigator();
 
+const HomeStack = createNativeStackNavigator();
+const HomeStackScreen = () => {
+    return (
+    <HomeStack.Navigator screenOptions={{headerShown: false}}>
+        <HomeStack.Screen name="HomeScreen" component={HomeScreen} />
+        <HomeStack.Screen name="NewItinerary" component={NewItineraryScreen} />
+    </HomeStack.Navigator>
+    );
+}
 const BottomTabNavigator = () => {
     return(
         <Tab.Navigator
@@ -23,7 +34,7 @@ const BottomTabNavigator = () => {
             }}
         >
             <Tab.Screen name = "Home"
-                component = {HomeScreen}
+                component = {HomeStackScreen}
                 options = {{
                     tabBarIcon: ({focused}) => (
                         <View style={ styles.root }>

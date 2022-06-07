@@ -30,9 +30,6 @@ const LoggedInNavigator = () => {
                 component={EditProfileScreen}
             />
 
-            <Stack.Screen name = "NewItineraryScreen"
-                component={NewItineraryScreen}
-            />
 
         </Stack.Navigator>
 

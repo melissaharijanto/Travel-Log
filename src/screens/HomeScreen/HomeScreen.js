@@ -10,7 +10,7 @@ const HomeScreen = () => {
     const navigation = useNavigation();
 
     const addNewItinerary = () => {
-        navigation.navigate("NewItineraryScreen");
+        navigation.navigate("NewItinerary");
     }
 
     return (
