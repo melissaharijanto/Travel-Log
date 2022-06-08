@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from '../screens/HomeScreen';
 import MainItineraryScreen from '../screens/MainItineraryScreen';
+import NewDayScreen from '../screens/NewDayScreen';
 import NewItineraryScreen from '../screens/NewItineraryScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import HomeIcon from 'react-native-vector-icons/Entypo';
@@ -21,6 +22,17 @@ const HomeStackScreen = () => {
     </HomeStack.Navigator>
     );
 }
+
+const ItineraryStack = createNativeStackNavigator();
+const ItineraryStackScreen = () => {
+    return (
+    <ItineraryStack.Navigator screenOptions={{headerShown: false}}>
+        <ItineraryStack.Screen name="MainItinerary" component={MainItineraryScreen} />
+        <ItineraryStack.Screen name="NewDay" component={NewDayScreen} />
+    </ItineraryStack.Navigator>
+    );
+}
+
 const BottomTabNavigator = () => {
     return(
         <Tab.Navigator
@@ -54,7 +66,7 @@ const BottomTabNavigator = () => {
 
             <Tab.Screen
                 name = "Itinerary"
-                component = {MainItineraryScreen}
+                component = {ItineraryStackScreen}
                 options = {{
                     tabBarIcon: ({focused}) => (
                         <View style={ styles.root }>
