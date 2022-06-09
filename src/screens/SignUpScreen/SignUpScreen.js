@@ -6,6 +6,7 @@ import CustomButton from '../../components/CustomButton';
 import { useNavigation } from '@react-navigation/native';
 import DefaultProfilePicture from '../../../assets/images/defaultUser.png';
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore'
 
 const SignUpScreen = () => {
     const [name, setName] = useState();
@@ -14,15 +15,16 @@ const SignUpScreen = () => {
 
     const navigation = useNavigation();
 
-    const onSignUpPressed = () => {
-        auth()
+    const onSignUpPressed = async () => {
+        await auth()
           .createUserWithEmailAndPassword(email, password)
           .then( async () => {
-            const update = {
-              displayName: name,
-              photoURL: null, // profile picture
-            };
-            await auth().currentUser.updateProfile(update);
+            await firestore().collection('users').doc(auth().currentUser.uid).set({
+                name: name,
+                email: email,
+                createdAt: firestore.Timestamp.fromDate(new Date()),
+                userImg: null,
+            });
             console.log('User account created & signed in!');
             })
           .catch(error => {

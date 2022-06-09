@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     View,
     Text,
@@ -15,11 +15,31 @@ import Background from '../../../assets/images/profile-background.png';
 import DefaultProfilePicture from '../../../assets/images/defaultUser.png';
 import EditIcon from 'react-native-vector-icons/AntDesign';
 import CustomButton from '../../components/CustomButton';
+import firestore from '@react-native-firebase/firestore';
+
 
 const ProfileScreen = () => {
 
-    const currentUser = auth().currentUser;
+    const user = auth().currentUser;
     const navigation = useNavigation();
+    const [userData, setUserData] = useState(null);
+    const defaultImage = 'https://firebasestorage.googleapis.com/v0/b/travellog-d79e2.appspot.com/o/defaultUser.png?alt=media&token=d56ef526-4058-4152-933b-b98cd0668392'
+
+    const getUser = async () => {
+        await firestore()
+            .collection('users')
+            .doc(user.uid)
+            .onSnapshot((documentSnapshot) => {
+                if( documentSnapshot.exists ) {
+                    console.log('User Data', documentSnapshot.data());
+                    setUserData(documentSnapshot.data());
+                }
+            })
+    }
+
+    useEffect(() => {
+        getUser();
+      }, []);
 
     const onSigningOut = () => {
         auth()
@@ -36,16 +56,21 @@ const ProfileScreen = () => {
             <ImageBackground source={Background}
                 resizeMode="stretch"
                 style={styles.background}>
-            <Image source={ currentUser.photoURL === null
-                    ? DefaultProfilePicture
-                    : currentUser.photoURL } style={styles.pfp}/>
-            <Text style = { styles.name }>{`${currentUser.displayName}`}</Text>
-
+            <Image source={{ uri: userData
+                ? userData.userImg || defaultImage
+                : defaultImage }} style={styles.pfp}/>
+            <Text style = { styles.name }>{ userData
+                ? userData.name === null
+                    ? ''
+                    : userData.name
+                : '' }</Text>
 
             <Text style = { [styles.text, { paddingTop: '35%' } ]}>Name</Text>
 
             <View style = { styles.horizontal }>
-                <Text style = { styles.userInfo }>{`${currentUser.displayName}`}  </Text>
+                <Text style = { styles.userInfo }>{ userData
+                    ? userData.name || ''
+                    : '' }  </Text>
                 <EditIcon
                     size={20}
                     name="edit"
@@ -56,12 +81,9 @@ const ProfileScreen = () => {
             <Text style = { styles.text }>Email</Text>
 
             <View style = { styles.horizontal }>
-            <Text style = { styles.userInfo }>{`${currentUser.email}`}  </Text>
-            <EditIcon
-                size={20}
-                name="edit"
-                onPress = { editIconPressed }
-            />
+            <Text style = { styles.userInfo }>{userData
+                ? userData.email || ''
+                : ''}  </Text>
             </View>
 
             <Text>
@@ -108,6 +130,8 @@ const styles = StyleSheet.create({
         fontSize: 26,
         top: '13%',
         color: 'black',
+        alignSelf: 'center',
+
     },
     text: {
         fontFamily: 'Poppins-Regular',

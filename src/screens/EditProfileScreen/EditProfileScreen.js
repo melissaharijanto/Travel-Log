@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     View,
     Text,
@@ -22,17 +22,52 @@ import InputFieldAfterLogIn from '../../components/InputFieldAfterLogIn';
 import ImagePicker from 'react-native-image-crop-picker';
 import EditProfilePicture from '../../../assets/images/EditProfilePicture.png'
 import storage from '@react-native-firebase/storage';
+import firestore from '@react-native-firebase/firestore';
 
 const EditProfileScreen = () => {
 
-    const currentUser = auth().currentUser;
-    const [image, setImage] = useState();
-    const [name, setName] = useState(currentUser.displayName);
-    const [email, setEmail] = useState(currentUser.email);
+    const user = auth().currentUser;
+    const [name, setName] = useState(userData
+        ? userData.name === null
+            ? ''
+            : userData.name
+        : '');
+    const [email, setEmail] = useState(userData
+        ? userData.email === null
+            ? ''
+            : userData.email
+        : '');
+    // change the image uri
+    const [image, setImage] = useState(userData
+        ? userData.userImg === null
+            ? defaultImage
+            : userData.userImg
+        : defaultImage);
     const [transferred, setTransferred] = useState(0);
     const [upload, setUploading] = useState(false);
+    const [userData, setUserData] = useState(null);
+
+     const getUser = async () => {
+         const currentUser = await firestore()
+         .collection('users')
+         .doc(user.uid)
+         .get()
+         .then((documentSnapshot) => {
+             if( documentSnapshot.exists ) {
+                 console.log('User Data', documentSnapshot.data());
+                 setUserData(documentSnapshot.data());
+                 setEmail(documentSnapshot.data().email);
+                 setName(documentSnapshot.data().name);
+             }
+         })
+     }
+
+     useEffect(() => {
+         getUser();
+       }, []);
 
     const navigation = useNavigation();
+    const defaultImage = 'https://firebasestorage.googleapis.com/v0/b/travellog-d79e2.appspot.com/o/defaultUser.png?alt=media&token=d56ef526-4058-4152-933b-b98cd0668392'
 
     const takePhotoFromCamera = () => {
             ImagePicker.openCamera({
@@ -48,15 +83,18 @@ const EditProfileScreen = () => {
 
     const choosePhotoFromLibrary = () => {
         ImagePicker.openPicker({
-          width: 500,
-          height: 500,
-          cropping: true,
+            width: 500,
+            height: 500,
+            cropping: true,
         }).then((image) => {
-          console.log(image);
-          const imageUri = image.path;
-          setImage(imageUri);
-        });
-      };
+            console.log(image);
+            const imageUri = image.path;
+            setImage(imageUri);
+        })
+        .catch((error => {
+            console.log('User cancelled image selection!')
+        }));
+    };
 
     //possble unhandled promise rejection
     const uploadImage = async () => {
@@ -67,56 +105,75 @@ const EditProfileScreen = () => {
         const uploadUri = image;
         let filename = uploadUri.substring(uploadUri.lastIndexOf('/') + 1);
 
-                // Add timestamp to File Name
-                const extension = filename.split('.').pop();
-                const name = filename.split('.').slice(0, -1).join('.');
-                filename = name + Date.now() + '.' + extension;
+        // Add timestamp to File Name
+        const extension = filename.split('.').pop();
+        const name = filename.split('.').slice(0, -1).join('.');
+        filename = name + Date.now() + '.' + extension;
 
-            setUploading(true);
-            setTransferred(0);
+        setUploading(true);
+        setTransferred(0);
 
-            const storageRef = storage().ref(`photos/${filename}`);
-            const task = storageRef.putFile(uploadUri);
+        const storageRef = storage().ref(`photos/${filename}`);
+        const task = storageRef.putFile(uploadUri);
 
-            // Set transferred state
-            task.on('state_changed', (taskSnapshot) => {
-              console.log(
-                `${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`,
-              );
+        // Set transferred state
+        task.on('state_changed', (taskSnapshot) => {
+          console.log(
+            `${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`,
+          );
 
-              setTransferred(
-                Math.round(taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) *
-                  100,
-              );
+          setTransferred(
+            Math.round(taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) *
+              100,
+          );
+        });
+
+        try {
+          await task;
+          const url = await storageRef.getDownloadURL();
+
+          setUploading(false);
+          setImage(null);
+
+          // Alert.alert(
+          //   'Image uploaded!',
+          //   'Your image has been uploaded to the Firebase Cloud Storage Successfully!',
+          // );
+          return url;
+        } catch (e) {
+          console.log(e);
+          return null;
+        }
+      };
+
+
+
+    const saveChanges = async () => {
+        let imgUrl = await uploadImage();
+
+        if ( imgUrl == null && userData.userImg ) {
+            imgUrl = userData.userImg;
+        }
+
+        firestore()
+            .collection('users')
+            .doc(user.uid)
+            .update({
+                name: name ,
+                email: email,
+                userImg: imgUrl,
+            })
+            .then(() => {
+                console.log('User updated!');
             });
 
-            try {
-              await task;
-              const url = await storageRef.getDownloadURL();
+            const update = {
+                displayName: name,
+                photoURL: null, // profile picture
+            };
 
-              setUploading(false);
-              setImage(null);
+            user.updateProfile(update);
 
-              // Alert.alert(
-              //   'Image uploaded!',
-              //   'Your image has been uploaded to the Firebase Cloud Storage Successfully!',
-              // );
-              return url;
-            } catch (e) {
-              console.log(e);
-              return null;
-            }
-          };
-
-
-
-    const saveChanges = () => {
-        const update = {
-            displayName: name,
-            photoURL: null, // profile picture
-        };
-        currentUser.updateEmail(email);
-        currentUser.updateProfile(update);
         navigation.goBack();
     }
 
@@ -129,9 +186,15 @@ const EditProfileScreen = () => {
             <ImageBackground source={Background}
                 resizeMode="stretch"
                 style={styles.background}>
-            <Image source={ currentUser.photoURL === null
-                    ? DefaultProfilePicture
-                    : currentUser.photoURL }
+            {
+                // Edit source of image to uri
+            }
+            <Image source={{ uri: image
+                    ? image
+                        : userData
+                        ? userData.userImg || defaultImage
+                    : defaultImage
+                }}
                     style={styles.pfp}/>
 
             <TouchableOpacity
@@ -139,10 +202,10 @@ const EditProfileScreen = () => {
                 style={ styles.editPfp }>
             <Image source= {EditProfilePicture}
                 style={styles.editPfp}
-                />
+            />
             </TouchableOpacity>
 
-            <Text style = { styles.name }>{`${currentUser.displayName}`}</Text>
+            <Text style = { styles.name }>{ name }</Text>
 
             <Text style = { [styles.text, { paddingTop: '20%' } ]}>Name</Text>
 
@@ -154,11 +217,7 @@ const EditProfileScreen = () => {
 
             <Text style = { styles.text }>Email</Text>
 
-            <InputFieldAfterLogIn
-                placeholder = "Enter your new email here."
-                value = { email }
-                setValue = { setEmail }
-            />
+            <Text style = { styles.userInfo }>{ email }</Text>
 
             <Text>
                 {'\n'}
@@ -223,6 +282,7 @@ const styles = StyleSheet.create({
         fontSize: 26,
         top: '8%',
         color: 'black',
+
     },
     text: {
         fontFamily: 'Poppins-Regular',

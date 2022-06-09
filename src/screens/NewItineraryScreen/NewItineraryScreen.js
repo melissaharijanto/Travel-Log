@@ -25,13 +25,16 @@ const NewItineraryScreen = () => {
     const choosePhotoFromLibrary = () => {
             ImagePicker.openPicker({
               width: 500,
-              height: 500,
+              height: 500 / 16 * 9,
               cropping: true,
             }).then((image) => {
               console.log(image);
               const imageUri = image.path;
               setImage(imageUri);
-            });
+            })
+            .catch((error => {
+                console.log('User cancelled image selection!')
+            }));
           };
 
     return (
