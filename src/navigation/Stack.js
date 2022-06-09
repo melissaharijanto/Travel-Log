@@ -16,7 +16,7 @@ import BottomTabNavigator from './BottomTabNavigator';
 import EditProfileScreen from '../screens/EditProfileScreen';
 const Stack = createNativeStackNavigator();
 
-const Navigator = () => {
+const AuthNavigator = () => {
     return (
 
         <Stack.Navigator screenOptions={{headerShown: false}}>
@@ -42,4 +42,4 @@ const Navigator = () => {
     )
 }
 
-export default Navigator;
+export default AuthNavigator;

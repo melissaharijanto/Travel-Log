@@ -6,7 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import BottomTabNavigator from './BottomTabNavigator';
 import LandingScreen from '../screens/LandingScreen';
 import auth from '@react-native-firebase/auth'
-import Navigator from './Stack';
+import AuthNavigator from './Stack';
 import LoggedInNavigator from './LoggedInStack';
 
 
@@ -29,7 +29,7 @@ const Navigation = () => {
 
       return (
       <NavigationContainer>
-        { user ? <LoggedInNavigator/> : <Navigator/> }
+        { user ? <LoggedInNavigator/> : <AuthNavigator/> }
       </NavigationContainer>
       );
 }
