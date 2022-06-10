@@ -25,7 +25,7 @@ const NewItineraryScreen = () => {
     const choosePhotoFromLibrary = () => {
             ImagePicker.openPicker({
               width: 500,
-              height: 500 / 16 * 9,
+              height: 500 / 2,
               cropping: true,
             }).then((image) => {
               console.log(image);

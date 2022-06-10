@@ -4,15 +4,13 @@ import {
     Text,
     Image,
     StyleSheet,
-    ScrollView,
-    Pressable,
+    Alert,
     ImageBackground,
     Dimensions
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
 import Background from '../../../assets/images/profile-background.png';
-import DefaultProfilePicture from '../../../assets/images/defaultUser.png';
 import EditIcon from 'react-native-vector-icons/AntDesign';
 import CustomButton from '../../components/CustomButton';
 import firestore from '@react-native-firebase/firestore';
@@ -23,6 +21,7 @@ const ProfileScreen = () => {
     const user = auth().currentUser;
     const navigation = useNavigation();
     const [userData, setUserData] = useState(null);
+    const [image, setImage] = useState(null);
     const defaultImage = 'https://firebasestorage.googleapis.com/v0/b/travellog-d79e2.appspot.com/o/defaultUser.png?alt=media&token=d56ef526-4058-4152-933b-b98cd0668392'
 
     const getUser = async () => {
@@ -33,13 +32,32 @@ const ProfileScreen = () => {
                 if( documentSnapshot.exists ) {
                     console.log('User Data', documentSnapshot.data());
                     setUserData(documentSnapshot.data());
+                    setImage(documentSnapshot.data().imgUrl);
                 }
             })
     }
 
     useEffect(() => {
         getUser();
-      }, []);
+    }, []);
+
+    const onPressLogOut = () => {
+        Alert.alert(
+            "Log Out",
+            "Are you sure you want to log out?",
+            [{
+                text: "Cancel",
+                onPress: () => {
+                    navigation.navigate("Profile");
+                    console.log('User decided not to log out');
+                },
+                style: 'cancel'
+            }, {
+                text: 'Log Out',
+                onPress: onSigningOut ,
+            }]
+        );
+    }
 
     const onSigningOut = () => {
         auth()
@@ -94,7 +112,7 @@ const ProfileScreen = () => {
 
             <CustomButton
                 text = "Log Out"
-                onPress = { onSigningOut }
+                onPress = { onPressLogOut }
                 type = "TERTIARY"
             />
 

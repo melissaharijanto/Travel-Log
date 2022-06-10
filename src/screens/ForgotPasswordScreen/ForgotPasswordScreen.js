@@ -12,9 +12,12 @@ const ForgotPasswordScreen = () => {
     const [email, setEmail] = useState();
     const navigation = useNavigation();
 
-    const onSendCodePressed = (email) => {
-        console.log('A code has been sent to your email.');
-        navigation.navigate("ConfirmCode");
+    const onSendCodePressed = async (email) => {
+        await auth().sendPasswordResetEmail(auth, email)
+        .then(() => {
+            console.log('A password reset email has been sent.');
+            navigation.navigate("ConfirmCode");
+        });
     }; // to be changed once other screens are made!
 
     const onBackToLogInPressed = () => {
@@ -46,10 +49,12 @@ const ForgotPasswordScreen = () => {
             />
 
             <CustomButton
-                text = <Text style = {{
-                            textDecorationLine: 'underline',
-                            fontSize: 11,}}>Back to Log In
-                       </Text>
+                text= {
+                <Text style = {{
+                    textDecorationLine: 'underline',
+                    fontSize: 11,}}>Back to Log In
+                </Text>
+                }
                 onPress = { onBackToLogInPressed }
                 type = "SECONDARY"
             />

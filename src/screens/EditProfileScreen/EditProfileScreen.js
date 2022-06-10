@@ -4,8 +4,6 @@ import {
     Text,
     Image,
     StyleSheet,
-    ScrollView,
-    Pressable,
     ImageBackground,
     Dimensions,
     ActivityIndicator,
@@ -15,8 +13,6 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
 import Background from '../../../assets/images/profile-background.png';
-import DefaultProfilePicture from '../../../assets/images/defaultUser.png';
-import EditIcon from 'react-native-vector-icons/AntDesign';
 import CustomButton from '../../components/CustomButton';
 import InputFieldAfterLogIn from '../../components/InputFieldAfterLogIn';
 import ImagePicker from 'react-native-image-crop-picker';
@@ -44,7 +40,7 @@ const EditProfileScreen = () => {
             : userData.userImg
         : defaultImage);
     const [transferred, setTransferred] = useState(0);
-    const [upload, setUploading] = useState(false);
+    const [uploading, setUploading] = useState(false);
     const [userData, setUserData] = useState(null);
 
      const getUser = async () => {
@@ -213,6 +209,7 @@ const EditProfileScreen = () => {
                 placeholder = "Enter your new name here."
                 value = { name }
                 setValue = { setName  }
+                maxLength = { 20 }
             />
 
             <Text style = { styles.text }>Email</Text>
@@ -225,11 +222,7 @@ const EditProfileScreen = () => {
                 {'\n'}
                 {'\n'}
                 {'\n'}
-                {'\n'}
-                {'\n'}
             </Text>
-
-
 
             <CustomButton
                 text = "Cancel"
@@ -243,6 +236,20 @@ const EditProfileScreen = () => {
                 type = "TERTIARY"
             />
 
+            <Text>
+                {'\n'}
+            </Text>
+
+            { uploading 
+            ? ( 
+            <View style={{ justifyContent: 'center', alignItems: 'center'}}>
+                <ActivityIndicator size="small" color='#000000'/> 
+                <Text style = {styles.text}> {transferred}% completed</Text>
+            </View>
+            )
+            : <View></View>
+            }
+
             </ImageBackground>
         </View>
     );
@@ -252,6 +259,7 @@ const styles = StyleSheet.create({
     root: {
         alignItems: 'center',
         paddingHorizontal: '10%',
+        
    },
 
     background: {

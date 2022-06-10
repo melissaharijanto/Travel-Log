@@ -77,6 +77,8 @@
 		<string>Zocial.ttf</string>
 		<string>Poppins-Bold.otf</string>
 		<string>Poppins-BoldItalic.otf</string>
+		<string>Poppins-ExtraBold.otf</string>
+		<string>Poppins-ExtraBoldItalic.otf</string>
 	</array>
 </dict>
 </plist>

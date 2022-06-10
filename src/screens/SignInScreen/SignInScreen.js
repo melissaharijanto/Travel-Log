@@ -85,25 +85,29 @@ const SignInScreen = () => {
             />
 
             <CustomButton
-                text = <Text style = {{
-                            textDecorationLine: 'underline',
-                            fontSize: 11,}}>Forgot Password?
-                       </Text>
+                text = {
+                <Text style = {{
+                    textDecorationLine: 'underline',
+                    fontSize: 11,}}>Forgot Password?
+                </Text>
+                }
                 onPress = { forgotPasswordPressed }
                 type = "SECONDARY"
             />
 
             <CustomButton
-                text = <Text style = {{ fontSize: 12, }}>Don't have an account?
-                       <Text style = {{ fontSize: 12, }}> </Text>
-                       <Text
-                            style = {{
-                            fontFamily: 'Poppins-SemiBold',
-                            textDecorationLine: 'underline',
-                            fontSize: 12,
-                            }}>Sign Up.
-                       </Text>
-                       </Text>
+                text = {
+                    <Text style = {{ fontSize: 12, }}>Don't have an account?
+                    <Text style = {{ fontSize: 12, }}> </Text>
+                    <Text
+                        style = {{
+                        fontFamily: 'Poppins-SemiBold',
+                        textDecorationLine: 'underline',
+                        fontSize: 12,
+                        }}>Sign Up.
+                    </Text>
+                    </Text>
+                }
                 onPress = { onSignUpPressed }
                 type = "SECONDARY"
             />
@@ -126,4 +130,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default SignInScreen
+export default SignInScreen;

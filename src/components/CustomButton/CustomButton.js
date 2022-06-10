@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Pressable, StyleSheet } from 'react-native';
+import { Text, Pressable, StyleSheet } from 'react-native';
 
 const CustomButton = ({ onPress, text, type }) => {
     return (
@@ -52,6 +52,11 @@ const styles = StyleSheet.create({
 
     },
 
+    container_QUINARY: {
+        backgroundColor: '#94C2C6',
+        borderRadius: 11,
+    },
+
     text_SECONDARY: {
         color: '#3B4949',
         fontFamily: 'Poppins-Regular',
@@ -72,6 +77,12 @@ const styles = StyleSheet.create({
         color: '#70D9D3',
         fontFamily: 'Poppins-Regular',
     },
+
+    text_QUINARY: {
+        fontFamily: 'Poppins-Medium',
+        fontSize: 18,
+        color: 'white',
+    }
 
 
 

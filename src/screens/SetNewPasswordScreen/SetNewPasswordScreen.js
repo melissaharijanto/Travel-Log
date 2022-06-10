@@ -54,10 +54,12 @@ const SetNewPasswordScreen = () => {
             />
 
             <CustomButton
-                text = <Text style = {{
-                            textDecorationLine: 'underline',
-                            fontSize: 11,}}>Back to Log In
-                       </Text>
+                text = {
+                    <Text style = {{
+                        textDecorationLine: 'underline',
+                        fontSize: 11,}}>Back to Log In
+                    </Text>
+                }
                 onPress = { onBackToLogInPressed }
                 type = "SECONDARY"
             />

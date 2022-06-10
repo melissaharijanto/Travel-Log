@@ -74,6 +74,7 @@ const SignUpScreen = () => {
                         placeholder = "Name"
                         value = { name }
                         setValue = { setName }
+                        maxLength = { 20 }
                     />
 
                     <CustomInputField
@@ -96,16 +97,18 @@ const SignUpScreen = () => {
                     />
 
                     <CustomButton
-                        text = <Text style = {{ fontSize: 12, }}>Have an existing account?
-                               <Text style = {{ fontSize: 12, }}> </Text>
-                               <Text
-                                    style = {{
-                                    fontFamily: 'Poppins-SemiBold',
-                                    textDecorationLine: 'underline',
-                                    fontSize: 12,
-                                    }}>Log in.
-                               </Text>
-                               </Text>
+                        text = {
+                            <Text style = {{ fontSize: 12, }}>Have an existing account?
+                            <Text style = {{ fontSize: 12, }}> </Text>
+                            <Text
+                                style = {{
+                                fontFamily: 'Poppins-SemiBold',
+                                textDecorationLine: 'underline',
+                                fontSize: 12,
+                                }}>Log in.
+                            </Text>
+                            </Text>
+                        }
                         onPress = { onLogInPressed }
                         type = "SECONDARY"
                     />
