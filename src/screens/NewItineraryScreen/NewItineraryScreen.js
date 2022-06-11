@@ -26,6 +26,7 @@ const NewItineraryScreen = () => {
     const [endDateString, setEndDateString] = useState('');
     const [isStartVisible, setStartVisible] = useState(false);
     const [isEndVisible, setEndVisible] = useState(false);
+    const [itineraryCount, setItineraryCount] = useState(null);
 
     const showStartDatePicker = () => {
         setStartVisible(true);
@@ -172,13 +173,43 @@ const NewItineraryScreen = () => {
                 .then(() => {
                     console.log('New itinerary created!');
                 });
+            
+            await firestore()
+            .collection('users')
+            .doc(auth().currentUser.uid)
+            .get()
+            .then((documentSnapshot) => {
+                setItineraryCount(documentSnapshot.data().itineraries);
+            })
 
-            // might need to add days into the firestore collection here, maybe
+            // update user's itinerary numbers
+            firestore()
+                .collection('users')
+                .doc(auth().currentUser.uid)
+                .update({
+                    itineraries: itineraryCount + 1,
+                })
+                .then(() => {
+                    console.log('New itinerary created!');
+                });
+
+            // update collection
+            firestore()
+                .collection('users')
+                .doc(auth().currentUser.uid)
+                .collection('itineraries')
+                .doc(id)
+                .set({
+                    id: id,
+                    createdAt: new Date(),
+                })
+
+            // c: might need to add days into the firestore collection here, maybe
 
             // activity indicator stops showing here
             setAdding(false);
-            
-            // should navigate to opening itinerary page instead
+
+            // c: should navigate to opening itinerary page instead
             navigation.navigate("HomeScreen");
         }
     }
