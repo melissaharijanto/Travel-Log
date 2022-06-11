@@ -24,6 +24,7 @@ const SignUpScreen = () => {
                 email: email,
                 createdAt: firestore.Timestamp.fromDate(new Date()),
                 userImg: null,
+                itineraries: 0,
             });
             console.log('User account created & signed in!');
             })

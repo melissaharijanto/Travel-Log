@@ -87,38 +87,48 @@ const HomeScreen = () => {
                 type = "QUINARY"
             />
             
-
+            { userData.itineraries >= 1
+            ? 
+            <View style={{width: '100%'}}>
             <Text style = {[ styles.subtitle, { paddingTop: '5%'}]}>Your latest itinerary</Text>
             
-            {/* Change the onPress={placeholder} into something else */}
             
             <ItineraryTab
                 onPress={placeholder}
                 text='Summer in Singapore'
                 image='https://firebasestorage.googleapis.com/v0/b/travellog-d79e2.appspot.com/o/itineraryImagePlaceholder.png?alt=media&token=5ebb4e2b-9305-48d2-927e-dc637197f2df'
             />
+            </View>
+            : null
+            }
+            
 
-            <Text style = {[ styles.subtitle, { paddingTop: '1%'}]}>Revisit your past itineraries</Text>
-            <ScrollView
-                horizontal={true}
-            > 
-                <View style={ styles.horizontalScrollContainers }>
-                    <ItineraryTab
-                    onPress={placeholder}
-                    text='Summer in Singapore'
-                    image='https://firebasestorage.googleapis.com/v0/b/travellog-d79e2.appspot.com/o/itineraryImagePlaceholder.png?alt=media&token=5ebb4e2b-9305-48d2-927e-dc637197f2df'
-                    />
-                
-                </View>
-                <View style={styles.horizontalScrollContainers}>
-                    <ItineraryTab
-                    onPress={placeholder}
-                    text='Summer in Singapore'
-                    image='https://firebasestorage.googleapis.com/v0/b/travellog-d79e2.appspot.com/o/itineraryImagePlaceholder.png?alt=media&token=5ebb4e2b-9305-48d2-927e-dc637197f2df'
-                    />
-                
-                </View>
-            </ScrollView>
+            { userData.itineraries > 1
+            ? <View> 
+                <Text style = {[ styles.subtitle, { paddingTop: '1%'}]}>Revisit your past itineraries</Text>
+                <ScrollView
+                    horizontal={true}
+                > 
+                    <View style={ styles.horizontalScrollContainers }>
+                        <ItineraryTab
+                        onPress={placeholder}
+                        text='Summer in Singapore'
+                        image='https://firebasestorage.googleapis.com/v0/b/travellog-d79e2.appspot.com/o/itineraryImagePlaceholder.png?alt=media&token=5ebb4e2b-9305-48d2-927e-dc637197f2df'
+                        />
+                    
+                    </View>
+                    <View style={styles.horizontalScrollContainers}>
+                        <ItineraryTab
+                        onPress={placeholder}
+                        text='Summer in Singapore'
+                        image='https://firebasestorage.googleapis.com/v0/b/travellog-d79e2.appspot.com/o/itineraryImagePlaceholder.png?alt=media&token=5ebb4e2b-9305-48d2-927e-dc637197f2df'
+                        />
+                    
+                    </View>
+                </ScrollView>
+            </View>
+            : null
+            }
             
         </View>
         </ScrollView>

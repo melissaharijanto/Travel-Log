@@ -65,17 +65,17 @@ const EditProfileScreen = () => {
     const navigation = useNavigation();
     const defaultImage = 'https://firebasestorage.googleapis.com/v0/b/travellog-d79e2.appspot.com/o/defaultUser.png?alt=media&token=d56ef526-4058-4152-933b-b98cd0668392'
 
-    const takePhotoFromCamera = () => {
-            ImagePicker.openCamera({
-            width: 500,
-            height: 500,
-            cropping: true,
-        }).then((image) => {
-            console.log(image);
-            const imageUri = image.path;
-            setImage(imageUri);
-        });
-    };
+    // const takePhotoFromCamera = () => {
+    //         ImagePicker.openCamera({
+    //         width: 500,
+    //         height: 500,
+    //         cropping: true,
+    //     }).then((image) => {
+    //         console.log(image);
+    //         const imageUri = image.path;
+    //         setImage(imageUri);
+    //     });
+    // };
 
     const choosePhotoFromLibrary = () => {
         ImagePicker.openPicker({
@@ -92,7 +92,6 @@ const EditProfileScreen = () => {
         }));
     };
 
-    //possble unhandled promise rejection
     const uploadImage = async () => {
         if( image == null ) {
             return null;
@@ -241,13 +240,13 @@ const EditProfileScreen = () => {
             </Text>
 
             { uploading 
-            ? ( 
-            <View style={{ justifyContent: 'center', alignItems: 'center'}}>
-                <ActivityIndicator size="small" color='#000000'/> 
-                <Text style = {styles.text}> {transferred}% completed</Text>
-            </View>
-            )
-            : <View></View>
+                ? ( 
+                <View style={{ justifyContent: 'center', alignItems: 'center'}}>
+                    <ActivityIndicator size="small" color='#000000'/> 
+                    <Text style = {styles.text}> {transferred}% completed</Text>
+                </View>
+                )
+                : <View></View>
             }
 
             </ImageBackground>
