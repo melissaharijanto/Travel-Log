@@ -27,6 +27,7 @@ const HomeScreen = () => {
     const [ userData, setUserData ] = useState(null);
     const [ name, setName ] = useState(null);
     const [ code, setCode ] = useState();
+    const [ itineraries, setItineraries] = useState();
     const defaultImage = 'https://firebasestorage.googleapis.com/v0/b/travellog-d79e2.appspot.com/o/defaultUser.png?alt=media&token=d56ef526-4058-4152-933b-b98cd0668392'
 
 
@@ -39,6 +40,7 @@ const HomeScreen = () => {
                     console.log('User Data', documentSnapshot.data());
                     setUserData(documentSnapshot.data());
                     setName(documentSnapshot.data().name);
+                    setItineraries(documentSnapshot.data().itineraries);
                 }
             })
     }
@@ -87,7 +89,7 @@ const HomeScreen = () => {
                 type = "QUINARY"
             />
             
-            { userData.itineraries >= 1
+            { itineraries >= 1
             ? 
             <View style={{width: '100%'}}>
             <Text style = {[ styles.subtitle, { paddingTop: '5%'}]}>Your latest itinerary</Text>
@@ -103,7 +105,7 @@ const HomeScreen = () => {
             }
             
 
-            { userData.itineraries > 1
+            { itineraries > 1
             ? <View> 
                 <Text style = {[ styles.subtitle, { paddingTop: '1%'}]}>Revisit your past itineraries</Text>
                 <ScrollView
