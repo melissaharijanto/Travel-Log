@@ -1,29 +1,65 @@
 import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet, ScrollView, Pressable } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Pressable, Alert, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Back from 'react-native-vector-icons/Feather';
 import InputFieldAfterLogIn from '../../components/InputFieldAfterLogIn';
 import CustomButton from '../../components/CustomButton';
 import ImageIcon from 'react-native-vector-icons/FontAwesome';
 import ImagePicker from 'react-native-image-crop-picker';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import auth from '@react-native-firebase/auth';
+import storage from '@react-native-firebase/storage';
+import firestore from '@react-native-firebase/firestore';
 
 const NewItineraryScreen = () => {
     const navigation = useNavigation();
 
-    const [title, setTitle] = useState();
-    const [startDate, setStartDate] = useState();
-    const [endDate, setEndDate] = useState();
-    const [notes, setNotes] = useState();
+    const [title, setTitle] = useState('');
+    const [notes, setNotes] = useState('');
     const [image, setImage] = useState(null);
-    const [uploading, setUploading] = useState(false);
-    const [transferred, setTransferred] = useState(0);
+    const [adding, setAdding] = useState(false);
+    const [isImageChosen, setChosen] = useState(false);
 
-    const placeholder = () => {
-    }
+    const [endDate, setEndDate] = useState(new Date());
+    const [startDate, setStartDate] = useState(new Date());
+    const [startDateString, setStartDateString] = useState('');
+    const [endDateString, setEndDateString] = useState('');
+    const [isStartVisible, setStartVisible] = useState(false);
+    const [isEndVisible, setEndVisible] = useState(false);
+
+    const showStartDatePicker = () => {
+        setStartVisible(true);
+        setEndVisible(false);
+    };
+
+    const showEndDatePicker = () => {
+        setStartVisible(false);
+        setEndVisible(true);
+    };
+
+    const hideDatePicker = () => {
+        setStartVisible(false);
+        setEndVisible(false);
+    };
+
+    const handleConfirm = (date) => {
+        console.log("A start date has been picked: ", date);
+        setStartDate(date);
+        setStartDateString(date.toLocaleDateString());
+        hideDatePicker();
+    };
+
+    const handleEndConfirm = (date) => {
+        console.log("An end date has been picked: ", date);
+        setEndDate(date);
+        setEndDateString(date.toLocaleDateString());
+        hideDatePicker();
+    };
 
     const goBack = () => {
         navigation.goBack();
     }
+
 
     const choosePhotoFromLibrary = () => {
             ImagePicker.openPicker({
@@ -34,6 +70,7 @@ const NewItineraryScreen = () => {
               console.log(image);
               const imageUri = image.path;
               setImage(imageUri);
+              setChosen(true);
             })
             .catch((error => {
                 console.log('User cancelled image selection!')
@@ -53,29 +90,13 @@ const NewItineraryScreen = () => {
         const name = filename.split('.').slice(0, -1).join('.');
         filename = name + Date.now() + '.' + extension;
 
-        setUploading(true);
-        setTransferred(0);
-
         const storageRef = storage().ref(`photos/${filename}`);
         const task = storageRef.putFile(uploadUri);
-
-        // Set transferred state
-        task.on('state_changed', (taskSnapshot) => {
-            console.log(
-            `${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`,
-            );
-
-            setTransferred(
-            Math.round(taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) *
-                100,
-            );
-        });
 
         try {
             await task;
             const url = await storageRef.getDownloadURL();
 
-            setUploading(false);
             setImage(null);
 
             return url;
@@ -86,37 +107,84 @@ const NewItineraryScreen = () => {
     };
 
     const addNewItinerary = async () => {
-    let imgUrl = await uploadImage();
 
-    // if ( imgUrl == null && userData.userImg ) {
-    //     imgUrl = userData.userImg;
-    // }
+        setAdding(true);
 
-    // firestore()
-    //     .collection('users')
-    //     .doc(user.uid)
-    //     .update({
-    //         name: name ,
-    //         email: email,
-    //         userImg: imgUrl,
-    //     })
-    //     .then(() => {
-    //         console.log('User updated!');
-    //     });
+        const difference = endDate.getTime() - startDate.getTime();
 
-    //     const update = {
-    //         displayName: name,
-    //         photoURL: null, // profile picture
-    //     };
+        if (title === ''){
+            Alert.alert(
+                "Unable to Create Itinerary.",
+                "Title is still empty.",
+            );
+            setAdding(false);
+        } else if (startDateString === '') {
+            Alert.alert(
+                "Unable to Create Itinerary.",
+                "Start date is still empty.",
+            );
+            setAdding(false);
+        } else if (endDateString === '') {
+            Alert.alert(
+                "Unable to Create Itinerary.",
+                "End date still empty.",
+            );
+            setAdding(false);
+        } else if (difference < 0) {
+            Alert.alert(
+                "Unable to Create Itinerary.",
+                "The number of days cannot be negative.",
+            );
+            setAdding(false);
+        } else {
 
-    //     user.updateProfile(update);
+            const days = Math.ceil(difference / (1000 * 3600 * 24));
+            
+            let imgUrl = await uploadImage();
 
-    // navigation.goBack();
+            let id = Math.random().toString(36).slice(2);
+
+            // regenerate unique code if code already exists
+            firestore()
+            .collection('itineraries')
+            .doc(id)
+            .get()
+            .then((documentSnapshot) => {
+                if(documentSnapshot.exists){
+                    id = Math.random().toString(36).slice(2);
+                }
+            })
+
+            firestore()
+                .collection('itineraries')
+                .doc(id)
+                .set({
+                    id: id,
+                    coverImage: imgUrl,
+                    created: new Date().toLocaleString(),
+                    days: days,
+                    endDate: endDate,
+                    notes: notes,
+                    owner: auth().currentUser.uid,
+                    startDate: startDate,
+                    title: title,
+                })
+                .then(() => {
+                    console.log('New itinerary created!');
+                });
+
+            // might need to add days into the firestore collection here, maybe
+
+            // activity indicator stops showing here
+            setAdding(false);
+            
+            // should navigate to opening itinerary page instead
+            navigation.navigate("HomeScreen");
+        }
     }
-    
+        
 
     return (
-        <ScrollView>
         <View style={ styles.root }>
 
             <View style = { styles.header }>
@@ -149,35 +217,60 @@ const NewItineraryScreen = () => {
 
                 <Text style = { styles.text }>Cover Image</Text>
 
-                <Pressable onPress={ choosePhotoFromLibrary } style={styles.button}>
-                <ImageIcon
-                    name = "image"
-                    size = {18}
-                    color = 'white'
-                    style = {{
-                        paddingHorizontal: '1%'
-                    }}
-                    />
+                <View style={styles.horizontal}>
+                    <Pressable onPress={ choosePhotoFromLibrary } style={styles.button}>
+                    <ImageIcon
+                        name = "image"
+                        size = {18}
+                        color = 'white'
+                        style = {{
+                            paddingHorizontal: '1%'
+                        }}
+                        />
 
-                <Text style={styles.buttonText}>Upload Image</Text>
+                    <Text style={styles.buttonText}>Upload Image</Text>
                 </Pressable>
-
+                {
+                    isImageChosen
+                    ? <Text style={[styles.setText, {paddingLeft: 20}]}>Image uploaded.</Text>
+                    : null
+                }
+                </View>
+                
                 <Text style = { styles.text }>Start Date</Text>
-
-                <InputFieldAfterLogIn
-                    placeholder = "Start Date"
-                    value = { startDate }
-                    setValue = { setStartDate }
+                <View style={styles.horizontal}>
+                    <Pressable 
+                        onPress={ showStartDatePicker } 
+                        style={ styles.button }>
+                        <Text style={styles.buttonText}>Pick Start Date</Text>    
+                    </Pressable>
+                    <Text style={[styles.setText, {paddingLeft: 20}]}>{ startDateString }</Text>
+                </View>
+                <DateTimePickerModal
+                    isVisible={isStartVisible}
+                    mode="date"
+                    onConfirm={handleConfirm}
+                    onCancel={hideDatePicker}
                 />
-
+                
                 <Text style = { styles.text }>End Date</Text>
 
-                <InputFieldAfterLogIn
-                    placeholder = "End Date"
-                    value = { endDate }
-                    setValue = { setEndDate }
+                <View style={styles.horizontal}>
+                    <Pressable 
+                        onPress={ showEndDatePicker } 
+                        style={ styles.button }>
+                        <Text style={styles.buttonText}>Pick End Date</Text>    
+                    </Pressable>
+                    <Text style={[styles.setText, {paddingLeft: 20}]}>{ endDateString }</Text>
+                </View>
+                <DateTimePickerModal
+                    isVisible={isEndVisible}
+                    mode="date"
+                    onConfirm={handleEndConfirm}
+                    onCancel={hideDatePicker}
+                    minimumDate={startDate}
                 />
-
+                
                 <Text style = { styles.text }>Additional Notes</Text>
 
                 <InputFieldAfterLogIn
@@ -192,18 +285,31 @@ const NewItineraryScreen = () => {
                     {'\n'}
                     {'\n'}
                 </Text>
+                
                 <CustomButton
                     text= "Add"
                     type= "TERTIARY"
                     onPress= { addNewItinerary }
                 />
 
+                {
+                    adding
+                    ? <View style={{
+                        paddingTop: 20,
+                        alignSelf: 'center',
+                        }}>
+                        <ActivityIndicator 
+                        size='large' 
+                        color='#000000'/>
+                    </View>
+                    : null
+                }
+
             </View>
 
 
 
         </View>
-        </ScrollView>
     )
 }
 
@@ -214,7 +320,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         width: '100%',
    },
-
     button: {
         flexDirection: 'row',
         justifyContent: 'flex-start',
@@ -225,7 +330,6 @@ const styles = StyleSheet.create({
         marginTop: 10,
         marginBottom: 8,
     },
-
     buttonText: {
         fontFamily: 'Poppins-Medium',
         color: 'white',
@@ -244,8 +348,7 @@ const styles = StyleSheet.create({
         shadowColor: '#70D9D3',
         shadowOpacity: 1
     },
-
-   headerText: {
+    headerText: {
         fontFamily: 'Poppins-Bold',
         fontSize: 26,
         color: '#3B4949',
@@ -254,13 +357,23 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingTop: 9,
         flex: 2.8,
-   },
-
-   text: {
+    },
+    horizontal: {
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+    },
+    setText: {
+        fontFamily: 'Poppins-Italic',
+        color: '#333333',
+        paddingTop: 2,
+    },
+     text: {
         fontFamily: 'Poppins-Medium',
         color: '#333333',
         paddingTop: 2,
-   },
+    },
+   
 });
 
 

@@ -12,6 +12,7 @@ MERGED from [:react-native-firebase_auth] /Users/melissaharijanto/TravelLogApp/n
 MERGED from [:react-native-firebase_firestore] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/firestore/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-firebase_storage] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/storage/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-13:12
 MERGED from [:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-27:12
+MERGED from [:react-native-community_datetimepicker] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-community/datetimepicker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-33:12
 MERGED from [:react-native-safe-area-context] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-screens] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
@@ -188,6 +189,8 @@ MERGED from /Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidMan
 MERGED from /Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:12:5-31:19
 MERGED from [:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-25:19
 MERGED from [:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-25:19
+MERGED from [:react-native-community_datetimepicker] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-community/datetimepicker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-20
+MERGED from [:react-native-community_datetimepicker] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-community/datetimepicker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-20
 MERGED from [:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:5-31:19
 MERGED from [:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:5-31:19
 MERGED from [com.facebook.react:react-native:0.68.2] /Users/melissaharijanto/.gradle/caches/transforms-3/458a6cbe4043a5e7378b302c6ec88079/transformed/jetified-react-native-0.68.2/AndroidManifest.xml:9:5-20
@@ -310,6 +313,8 @@ MERGED from [:react-native-firebase_storage] /Users/melissaharijanto/TravelLogAp
 MERGED from [:react-native-firebase_storage] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/storage/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-community_datetimepicker] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-community/datetimepicker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-community_datetimepicker] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-community/datetimepicker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-safe-area-context] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
