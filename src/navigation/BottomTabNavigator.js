@@ -7,6 +7,7 @@ import MainItineraryScreen from '../screens/MainItineraryScreen';
 import NewDayScreen from '../screens/NewDayScreen';
 import NewItineraryScreen from '../screens/NewItineraryScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import EditItineraryScreen from '../screens/EditItineraryScreen/EditItineraryScreen';
 import HomeIcon from 'react-native-vector-icons/Entypo';
 import ItineraryIcon from 'react-native-vector-icons/MaterialIcons';
 import ProfileIcon from 'react-native-vector-icons/FontAwesome';
@@ -29,6 +30,7 @@ const ItineraryStackScreen = () => {
     <ItineraryStack.Navigator screenOptions={{headerShown: false}}>
         <ItineraryStack.Screen name="MainItinerary" component={MainItineraryScreen} />
         <ItineraryStack.Screen name="NewDay" component={NewDayScreen} />
+        <ItineraryStack.Screen name="EditItinerary" component={EditItineraryScreen} />
     </ItineraryStack.Navigator>
     );
 }
