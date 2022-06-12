@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, ImageBackground, Dimensions} from 'react-native';
+import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, Dimensions, FlatList, Pressable, ActivityIndicator} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import auth from '@react-native-firebase/auth';
+import auth, { firebase } from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import CustomButton from '../../components/CustomButton';
 import ItineraryTab from '../../components/ItineraryTab';
@@ -27,9 +27,14 @@ const HomeScreen = () => {
     const [ userData, setUserData ] = useState(null);
     const [ name, setName ] = useState(null);
     const [ code, setCode ] = useState();
-    const [ itineraries, setItineraries] = useState();
+    var [ itineraries, setItineraries] = useState();
+    var [ latestItinerary, setLatestItinerary] = useState(null);
+    var [ latestItineraryTitle, setLatestItineraryTitle] = useState(null);
+    var [ latestItineraryImage, setLatestItineraryImage] = useState(null);
+    var [ pastItineraries, setPastItineraries ] = useState(null);
     const defaultImage = 'https://firebasestorage.googleapis.com/v0/b/travellog-d79e2.appspot.com/o/defaultUser.png?alt=media&token=d56ef526-4058-4152-933b-b98cd0668392'
 
+    
 
     const getUser = async () => {
         await firestore()
@@ -44,11 +49,124 @@ const HomeScreen = () => {
                 }
             })
     }
+    
+    const getLatestItinerary = async () => {
+        await firestore()
+            .collection('users')
+            .doc(user.uid)
+            .collection('itineraries')
+            .orderBy('createdAt', 'desc')
+            .limit(1)
+            .onSnapshot((querySnapshot) => {
+
+                if (querySnapshot.empty) {
+                    console.log('No itineraries have been made yet.');
+                    return;
+                }
+
+                querySnapshot.forEach((doc) => {
+                    const {
+                        id,
+                    } = doc.data();
+                firestore()
+                    .collection('itineraries')
+                    .doc(doc.id)
+                    .onSnapshot((documentSnapshot) => {
+                        setLatestItinerary(documentSnapshot.data());
+                        setLatestItineraryTitle(documentSnapshot.data().title);
+                        setLatestItineraryImage(documentSnapshot.data().coverImage);
+                    })
+                })
+
+                console.log('getLatestItinerary has been run!');
+                })
+                
+        }
+
+        const getPastItineraries = async () => {
+            const itinerariesList = [];
+            console.log('BreakPoint 0');
+            if(latestItinerary != undefined) {
+                firestore()
+                    .collection('users')
+                    .doc(user.uid)
+                    .collection('itineraries')
+                    .where('createdAt', '<', latestItinerary.createdAt)
+                    .orderBy('createdAt', 'desc')
+                    .limit(5)
+                    .onSnapshot((querySnapshot) => {
+
+                        // if (querySnapshot.empty) {
+                        // console.log('No itineraries have been made yet.');
+                        // return;
+                        // }
+                    
+                        querySnapshot.forEach((doc) => {
+                            const {
+                                id,
+                            } = doc.data();
+                        
+                        console.log('BreakPoint 1', doc.data());
+
+                        firestore()
+                            .collection('itineraries')
+                            .where('id','==', doc.id)
+                            .onSnapshot((querySnapshot) => {
+                                // if (querySnapshot.empty) {
+                                //     console.log('No itineraries have been made yet.');
+                                //     return;
+                                // }
+                                
+                                console.log('BreakPoint 2');
+                                querySnapshot.forEach((doc) => {
+                                    const {
+                                        id,
+                                        coverImage,
+                                        createdAt,
+                                        days,
+                                        endDate,
+                                        notes,
+                                        owner,
+                                        startDate,
+                                        title
+                                    } = doc.data();
+
+                                    console.log('BreakPoint 3', doc.data());
+
+                                    itinerariesList.push({
+                                        id: id,
+                                        coverImage: coverImage,
+                                        createdAt: createdAt,
+                                        days: days,
+                                        endDate: endDate,
+                                        notes: notes,
+                                        owner: owner,
+                                        startDate: startDate,
+                                        title: title,
+                                    })
+                                    setPastItineraries(itinerariesList);
+                                    console.log('BreakPoint 4', itinerariesList);    
+                                });
+                            })
+                        
+                    });
+                    
+                });
+            }
+            
+        }
 
     useEffect(() => {
-        getUser();
+        getUser(); 
     }, []);
 
+    useEffect(() => {
+        getLatestItinerary();
+    }, [userData]);
+
+    useEffect(() => {
+        getPastItineraries();
+    }, [latestItinerary]);
 
     return (
         <ScrollView style={{backgroundColor: '#FFFFFF'}}>
@@ -69,7 +187,7 @@ const HomeScreen = () => {
                         style={ styles.pfp }/>
                 </TouchableOpacity>
             </View>
-            
+
             <Text style = { styles.subtitle }>Get started on a new itinerary!</Text>
             <CustomButton
                 text = "+ New Itinerary"
@@ -92,42 +210,38 @@ const HomeScreen = () => {
             { itineraries >= 1
             ? 
             <View style={{width: '100%'}}>
-            <Text style = {[ styles.subtitle, { paddingTop: '5%'}]}>Your latest itinerary</Text>
-            
-            
-            <ItineraryTab
-                onPress={placeholder}
-                text='Summer in Singapore'
-                image='https://firebasestorage.googleapis.com/v0/b/travellog-d79e2.appspot.com/o/itineraryImagePlaceholder.png?alt=media&token=5ebb4e2b-9305-48d2-927e-dc637197f2df'
-            />
+                <Text style = {[ styles.subtitle, { paddingTop: '5%'}]}>Your latest itinerary</Text>
+                
+                <ItineraryTab
+                    onPress={placeholder}
+                    text={ latestItineraryTitle }
+                    image= { latestItineraryImage }
+                />
             </View>
             : null
             }
             
 
             { itineraries > 1
-            ? <View> 
-                <Text style = {[ styles.subtitle, { paddingTop: '1%'}]}>Revisit your past itineraries</Text>
-                <ScrollView
-                    horizontal={true}
-                > 
-                    <View style={ styles.horizontalScrollContainers }>
+            ? 
+            <View>
+                <Text style = { styles.subtitle }>Revisit your past itineraries</Text>
+                <View>
+                    <FlatList
+                    data={ pastItineraries }
+                    horizontal
+                    numColumns={1}
+                    renderItem={({item}) => (
                         <ItineraryTab
-                        onPress={placeholder}
-                        text='Summer in Singapore'
-                        image='https://firebasestorage.googleapis.com/v0/b/travellog-d79e2.appspot.com/o/itineraryImagePlaceholder.png?alt=media&token=5ebb4e2b-9305-48d2-927e-dc637197f2df'
+                            text = { item.title }
+                            image = { item.coverImage }
+                            onPress={ placeholder }
                         />
-                    
-                    </View>
-                    <View style={styles.horizontalScrollContainers}>
-                        <ItineraryTab
-                        onPress={placeholder}
-                        text='Summer in Singapore'
-                        image='https://firebasestorage.googleapis.com/v0/b/travellog-d79e2.appspot.com/o/itineraryImagePlaceholder.png?alt=media&token=5ebb4e2b-9305-48d2-927e-dc637197f2df'
-                        />
-                    
-                    </View>
-                </ScrollView>
+                    )}
+                    ItemSeparatorComponent={ () => <View style={{marginRight: 10}} /> }
+                    keyExtractor={(item) => item.id}
+                    />
+                </View>
             </View>
             : null
             }
@@ -179,5 +293,6 @@ const styles = StyleSheet.create({
         color:'#6C6C6C',
     },
 });
+
 
 export default HomeScreen;

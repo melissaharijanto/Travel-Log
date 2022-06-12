@@ -20,13 +20,13 @@ const ItineraryTab = ({image, onPress, text}) => {
 
 const styles = StyleSheet.create({
     image: {
-        width: '100%',
+        width: Dimensions.get('window').width - 2 * 0.07 * Dimensions.get('window').width,
         height: Dimensions.get('window').width / 2,
         alignItems: 'flex-start',
         justifyContent: 'flex-end',
     },
     button: {
-        paddingBottom: '5%',
+        marginBottom: 15,
     },
     text: {
         fontFamily: 'Poppins-Bold',

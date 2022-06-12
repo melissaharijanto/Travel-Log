@@ -9,7 +9,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import auth from '@react-native-firebase/auth';
 import storage from '@react-native-firebase/storage';
-import firestore from '@react-native-firebase/firestore';
+import firestore, { firebase } from '@react-native-firebase/firestore';
 
 const NewItineraryScreen = () => {
     const navigation = useNavigation();
@@ -26,7 +26,6 @@ const NewItineraryScreen = () => {
     const [endDateString, setEndDateString] = useState('');
     const [isStartVisible, setStartVisible] = useState(false);
     const [isEndVisible, setEndVisible] = useState(false);
-    const [itineraryCount, setItineraryCount] = useState(null);
 
     const showStartDatePicker = () => {
         setStartVisible(true);
@@ -162,7 +161,7 @@ const NewItineraryScreen = () => {
                 .set({
                     id: id,
                     coverImage: imgUrl,
-                    created: new Date().toLocaleString(),
+                    createdAt: new Date(),
                     days: days,
                     endDate: endDate,
                     notes: notes,
@@ -174,27 +173,20 @@ const NewItineraryScreen = () => {
                     console.log('New itinerary created!');
                 });
             
-            await firestore()
-            .collection('users')
-            .doc(auth().currentUser.uid)
-            .get()
-            .then((documentSnapshot) => {
-                setItineraryCount(documentSnapshot.data().itineraries);
-            })
 
             // update user's itinerary numbers
-            firestore()
+            
+            var docRef  = firestore()
                 .collection('users')
-                .doc(auth().currentUser.uid)
-                .update({
-                    itineraries: itineraryCount + 1,
-                })
-                .then(() => {
-                    console.log('New itinerary created!');
-                });
+                .doc(auth().currentUser.uid);
+            
+            docRef.update({
+                itineraries: firebase.firestore.FieldValue.increment(1),
+
+            })
 
             // update collection
-            firestore()
+            await firestore()
                 .collection('users')
                 .doc(auth().currentUser.uid)
                 .collection('itineraries')
