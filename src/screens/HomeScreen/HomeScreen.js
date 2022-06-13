@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, Dimensions, FlatList, Pressable, ActivityIndicator} from 'react-native';
+import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, Dimensions, FlatList} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import auth, { firebase } from '@react-native-firebase/auth';
+import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import CustomButton from '../../components/CustomButton';
 import ItineraryTab from '../../components/ItineraryTab';
@@ -213,7 +213,10 @@ const HomeScreen = () => {
                 <Text style = {[ styles.subtitle, { paddingTop: '5%'}]}>Your latest itinerary</Text>
                 
                 <ItineraryTab
-                    onPress={placeholder}
+                    onPress= {() => { navigation.navigate("OpenItinerary", {
+                        itinerary: latestItinerary,    
+                        })
+                    }}
                     text={ latestItineraryTitle }
                     image= { latestItineraryImage }
                 />
@@ -235,7 +238,9 @@ const HomeScreen = () => {
                         <ItineraryTab
                             text = { item.title }
                             image = { item.coverImage }
-                            onPress={ placeholder }
+                            onPress={ () => { navigation.navigate("OpenItinerary", {
+                                itinerary: item,    
+                            })}}
                         />
                     )}
                     ItemSeparatorComponent={ () => <View style={{marginRight: 10}} /> }

@@ -4,7 +4,7 @@ import Logo from '../../../assets/images/logo2.png';
 import CustomInputField from '../../components/CustomInputField';
 import CustomButton from '../../components/CustomButton';
 import { useNavigation } from '@react-navigation/native';
-import { sendPasswordResetEmail } from '@react-native-firebase/auth';
+import { sendPasswordResetEmail, firebase } from '@react-native-firebase/auth';
 import auth from '@react-native-firebase/auth';
 
 
@@ -13,11 +13,14 @@ const ForgotPasswordScreen = () => {
     const navigation = useNavigation();
 
     const onSendCodePressed = async (email) => {
-        await auth().sendPasswordResetEmail(auth, email)
+        await firebase.auth().sendPasswordResetEmail(email)
         .then(() => {
             console.log('A password reset email has been sent.');
             navigation.navigate("ConfirmCode");
-        });
+        })
+        .catch(error => {
+            console.log(error);
+        })
     }; // to be changed once other screens are made!
 
     const onBackToLogInPressed = () => {

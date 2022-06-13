@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, Pressable, Alert, ActivityIndicator } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, Pressable, Alert, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Back from 'react-native-vector-icons/Feather';
 import InputFieldAfterLogIn from '../../components/InputFieldAfterLogIn';
@@ -7,23 +7,25 @@ import CustomButton from '../../components/CustomButton';
 import DeleteIcon from 'react-native-vector-icons/Feather';
 import ImageIcon from 'react-native-vector-icons/FontAwesome';
 import ImagePicker from 'react-native-image-crop-picker';
-import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import auth from '@react-native-firebase/auth';
 import storage from '@react-native-firebase/storage';
-import firestore, { firebase } from '@react-native-firebase/firestore';
 
-const EditItineraryScreen = () => {
+const EditItineraryScreen = ( {route} ) => {
     const navigation = useNavigation();
 
-    const [title, setTitle] = useState('');
-    const [notes, setNotes] = useState('');
-    const [image, setImage] = useState(null);
+    const { itinerary } = route.params;
+    const [title, setTitle] = useState(itinerary.title);
+    const [notes, setNotes] = useState(itinerary.notes);
+    const [image, setImage] = useState(itinerary.coverImage);
     const [editing, setEditing] = useState(false);
-    const [isImageChosen, setChosen] = useState(false);
+    const [isImageChosen, setChosen] = useState(null);
 
     const goBack = () => {
         navigation.goBack();
     }
+
+    useEffect(() => {
+        itinerary.coverImage == undefined? setChosen(false) : setChosen(true);
+    }, [itinerary]);
 
     const confirmDelete = () => {
         Alert.alert(
@@ -170,10 +172,10 @@ const EditItineraryScreen = () => {
                 </View>
                 
                 <Text style = { styles.text }>Start Date</Text>
-                <Text style = { styles.permanent }>placeholder</Text>
+                <Text style = { styles.permanent }>{ itinerary.startDate.toDate().toLocaleDateString() }</Text>
                 
                 <Text style = { styles.text }>End Date</Text>
-                <Text style = { styles.permanent }>placeholder</Text>
+                <Text style = { styles.permanent }>{ itinerary.endDate.toDate().toLocaleDateString() }</Text>
                 
                 <Text style = { styles.text }>Additional Notes</Text>
 
@@ -199,10 +201,10 @@ const EditItineraryScreen = () => {
                         color='#000000'/>
                     </View>
                     : <Text>
-                    {'\n'}
-                    {'\n'}
-                    {'\n'}
-                    {'\n'}
+                        {'\n'}
+                        {'\n'}
+                        {'\n'}
+                        {'\n'}
                     </Text>
                 }
 
