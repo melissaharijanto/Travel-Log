@@ -8,6 +8,9 @@ import DeleteIcon from 'react-native-vector-icons/Feather';
 import ImageIcon from 'react-native-vector-icons/FontAwesome';
 import ImagePicker from 'react-native-image-crop-picker';
 import storage from '@react-native-firebase/storage';
+import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
+import { firebase } from '@react-native-firebase/firestore';
 
 const EditItineraryScreen = ( {route} ) => {
     const navigation = useNavigation();
@@ -17,6 +20,7 @@ const EditItineraryScreen = ( {route} ) => {
     const [notes, setNotes] = useState(itinerary.notes);
     const [image, setImage] = useState(itinerary.coverImage);
     const [editing, setEditing] = useState(false);
+    const [deleting, setDeleting] = useState(false);
     const [isImageChosen, setChosen] = useState(null);
 
     const goBack = () => {
@@ -51,8 +55,39 @@ const EditItineraryScreen = ( {route} ) => {
     }
 
     // c: implement this
-    const handleDelete = () => {
+    const handleDelete = async () => {
+        setDeleting(true);
 
+        await firestore()
+            .collection('users')
+            .doc(auth().currentUser.uid)
+            .collection('itineraries')
+            .doc(itinerary.id)
+            .delete()
+            .then(() => 
+                console.log('Unbinded from user.')
+            );
+        
+        await firestore()
+            .collection('itineraries')
+            .doc(itinerary.id)
+            .delete()
+            .then(() => {
+                console.log('Deleted.');
+            })
+        
+        //decrement the user's itinerary count
+        var docRef  = firestore()
+                .collection('users')
+                .doc(auth().currentUser.uid);
+            
+        docRef.update({
+            itineraries: firebase.firestore.FieldValue.increment(-1),
+
+        })
+        
+        setDeleting(false);
+        navigation.navigate("HomeScreen");
     }
 
     const choosePhotoFromLibrary = () => {
@@ -104,9 +139,38 @@ const EditItineraryScreen = ( {route} ) => {
 
         setEditing(true);
 
-        // code here
-        // setEditing(false);
-        // navigation.goBack();
+        let imgUrl = await uploadImage();
+        
+        if ( imgUrl == null && itinerary.coverImage ) {
+            imgUrl = itinerary.coverImage;
+        }
+
+        firestore()
+            .collection('itineraries')
+            .doc(itinerary.id)
+            .update({
+                title: title,
+                coverImage: imgUrl,
+                notes: notes,
+            })
+            .then('Itinerary updated!');
+
+        setEditing(false);
+
+
+        navigation.navigate('OpenItinerary', { 
+            itinerary:  {
+                id: itinerary.id,
+                coverImage: imgUrl,
+                title: title,
+                createdAt: itinerary.createdAt,
+                days: itinerary.days,
+                endDate: itinerary.endDate,
+                notes: notes,
+                owner: itinerary.owner,
+                startDate: itinerary.startDate,
+            }
+        });
     }
         
 
@@ -190,7 +254,7 @@ const EditItineraryScreen = ( {route} ) => {
                 </Text>
 
                 {
-                    editing
+                    editing || deleting
                     ? <View style={{
                         paddingTop: 19,
                         paddingBottom: 30,

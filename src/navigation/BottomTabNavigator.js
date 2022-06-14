@@ -23,6 +23,7 @@ const HomeStackScreen = () => {
         <HomeStack.Screen name="NewItinerary" component={NewItineraryScreen} />
         <HomeStack.Screen name="OpenItinerary" component={OpeningItineraryScreen} />
         <HomeStack.Screen name="EditItineraryFromHome" component={EditItineraryScreen} />
+        <HomeStack.Screen name="NewDay" component={NewDayScreen} />
     </HomeStack.Navigator>
     );
 }

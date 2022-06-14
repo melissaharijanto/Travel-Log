@@ -175,7 +175,6 @@ const NewItineraryScreen = () => {
             
 
             // update user's itinerary numbers
-            
             var docRef  = firestore()
                 .collection('users')
                 .doc(auth().currentUser.uid);
@@ -197,7 +196,22 @@ const NewItineraryScreen = () => {
                 })
 
             // c: might need to add days into the firestore collection here, maybe
-
+            
+            let currDate = startDate;
+            for (let i = 1; i <= days; i++) {
+                const stringName = "Day " + i; 
+                await firestore()
+                    .collection('itineraries')
+                    .doc(id)
+                    .collection('days')
+                    .doc(stringName)
+                    .set({
+                        id: i,
+                        label: stringName,
+                        date: currDate,
+                    })
+                currDate = new Date(new Date(currDate).getTime() + 60 * 60 * 24 * 1000);
+            }
             // activity indicator stops showing here
             setAdding(false);
 

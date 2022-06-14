@@ -68,6 +68,7 @@ const HomeScreen = () => {
                     const {
                         id,
                     } = doc.data();
+
                 firestore()
                     .collection('itineraries')
                     .doc(doc.id)
@@ -96,10 +97,10 @@ const HomeScreen = () => {
                     .limit(5)
                     .onSnapshot((querySnapshot) => {
 
-                        // if (querySnapshot.empty) {
-                        // console.log('No itineraries have been made yet.');
-                        // return;
-                        // }
+                        if (querySnapshot.empty) {
+                        console.log('No itineraries have been made yet.');
+                        return;
+                        }
                     
                         querySnapshot.forEach((doc) => {
                             const {
@@ -112,10 +113,6 @@ const HomeScreen = () => {
                             .collection('itineraries')
                             .where('id','==', doc.id)
                             .onSnapshot((querySnapshot) => {
-                                // if (querySnapshot.empty) {
-                                //     console.log('No itineraries have been made yet.');
-                                //     return;
-                                // }
                                 
                                 console.log('BreakPoint 2');
                                 querySnapshot.forEach((doc) => {
@@ -158,14 +155,17 @@ const HomeScreen = () => {
 
     useEffect(() => {
         getUser(); 
+        return;
     }, []);
 
     useEffect(() => {
         getLatestItinerary();
+        return;
     }, [userData]);
 
     useEffect(() => {
         getPastItineraries();
+        return;
     }, [latestItinerary]);
 
     return (
