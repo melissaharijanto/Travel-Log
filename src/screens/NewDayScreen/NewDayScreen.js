@@ -12,6 +12,7 @@ import Accommodation from '../../../assets/images/Accommodation.png';
 import Transport from '../../../assets/images/Transport.png';
 
 const NewDayScreen = ({route}) => {
+    
     const navigation = useNavigation();
 
     const { itinerary } = route.params;

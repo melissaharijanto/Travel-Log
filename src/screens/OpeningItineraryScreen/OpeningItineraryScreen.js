@@ -18,10 +18,17 @@ import Clipboard from '@react-native-community/clipboard';
 import firestore from '@react-native-firebase/firestore';
 
 const OpeningItineraryScreen = ({route}) => {
+    
+    // Initializing parameters passed by previous route.
     const { itinerary } = route.params;
 
+    // Navigation object.
     const navigation = useNavigation();
 
+    /* 
+        Custom date string; will return date in the format as shown in the
+        following example: Wednesday, 15 June 2022.
+    */
     const dateString = (date) => {
         const months = ["January", "February", "March", 
         "April", "May", "June", "July", "August", "September", 
@@ -31,14 +38,23 @@ const OpeningItineraryScreen = ({route}) => {
         return `${days[date.getDay()]}, ${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
     };
 
+    // Navigates to EditItineraryScreen.
     const editItinerary = () => {
         navigation.navigate("EditItineraryFromHome", {
             itinerary: itinerary,
         });
     }
 
+    /* 
+        Initializing the days from the database; data will be used 
+        for the FlatList in the return statement.
+    */
     const [ days, setDays ] = useState(null);
 
+    /*
+        Getting the data for the days from the database and initializing
+        the 'days' state as an array of data.
+    */
     const getDays = async () => {
         try {
         const daysList = [];
@@ -75,15 +91,19 @@ const OpeningItineraryScreen = ({route}) => {
             console.log(e);
         }
     }
+
+    // Navigation function to go back to the previous screen.
     const goBack = () => {
         navigation.goBack();
     }
 
+    // getDays() will run upon navigating to this page.
     useEffect(() => {
         getDays();
         return;
     }, []);
 
+    // getDays() will run upon change of route.
     useEffect(() => {
         getDays();
         return;
@@ -91,6 +111,8 @@ const OpeningItineraryScreen = ({route}) => {
 
     return (
         <View style={styles.view}>
+
+            {/* Displaying the cover image */}
             <ImageBackground 
                 source={{uri: itinerary.coverImage}}
                 style={styles.coverImage}>
@@ -136,6 +158,8 @@ const OpeningItineraryScreen = ({route}) => {
                     />
                 </View>
             </ImageBackground>
+
+            {/* Container for the DayTabs */}
             <View style={styles.content}>
             <FlatList
                 data={ days }

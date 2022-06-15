@@ -9,33 +9,47 @@ import InputFieldAfterLogin from '../../components/InputFieldAfterLogIn';
 
 const HomeScreen = () => {
 
+    // Gets authentication data of the current user logged in.
     const user = auth().currentUser;
+
+    // Navigation object.
     const navigation = useNavigation();
 
+    // Navigates to a page to create new itinerary.
     const addNewItinerary = () => {
         navigation.navigate("NewItinerary");
     }
 
+    // Placeholder function (to be removed later).
     const placeholder = () => {
 
     }
 
+    // Redirects to profile when clicking the icon on the top right.
     const onClickProfile = () => {
         navigation.navigate("Profile");
     }
 
+    // States for initialization of user data from the database.
     const [ userData, setUserData ] = useState(null);
     const [ name, setName ] = useState(null);
+
+    // Code for sharing itinerary.
     const [ code, setCode ] = useState();
+
+    // States for user's itinerary data.
     var [ itineraries, setItineraries] = useState();
     var [ latestItinerary, setLatestItinerary] = useState(null);
     var [ latestItineraryTitle, setLatestItineraryTitle] = useState(null);
     var [ latestItineraryImage, setLatestItineraryImage] = useState(null);
     var [ pastItineraries, setPastItineraries ] = useState(null);
+
+    // Default profile picture (if user has not set their own).
     const defaultImage = 'https://firebasestorage.googleapis.com/v0/b/travellog-d79e2.appspot.com/o/defaultUser.png?alt=media&token=d56ef526-4058-4152-933b-b98cd0668392'
 
     
 
+    // Function to initialize user data from Firestore database.
     const getUser = async () => {
         await firestore()
             .collection('users')
@@ -50,6 +64,7 @@ const HomeScreen = () => {
             })
     }
     
+    // Function to initialize latest itinerary data from Firestore database.
     const getLatestItinerary = async () => {
         await firestore()
             .collection('users')
@@ -84,6 +99,10 @@ const HomeScreen = () => {
                 
         }
 
+        /* 
+            Function to initialize the user's 5 most recent itineraries prior to the latest one.
+            If less than 5, will return all the itineraries prior to the latest one.
+        */
         const getPastItineraries = async () => {
             const itinerariesList = [];
             console.log('BreakPoint 0');
@@ -153,16 +172,19 @@ const HomeScreen = () => {
             
         }
 
+    // Initializing the user upon navigating to this page.
     useEffect(() => {
         getUser(); 
         return;
     }, []);
 
+    // Initializes latest itinerary upon change to userData.
     useEffect(() => {
         getLatestItinerary();
         return;
     }, [userData]);
 
+    // Initializes past itineraries upon change to latestItinerary.
     useEffect(() => {
         getPastItineraries();
         return;
@@ -171,6 +193,8 @@ const HomeScreen = () => {
     return (
         <ScrollView style={{backgroundColor: '#FFFFFF'}}>
         <View style = { styles.root }>
+
+            {/* header */}
             <View style={ styles.horizontal }>
                 <View style={ styles.header }>
                     <Text style={ styles.welcome }>
@@ -188,6 +212,7 @@ const HomeScreen = () => {
                 </TouchableOpacity>
             </View>
 
+            {/* block to create a new itinerary. */}
             <Text style = { styles.subtitle }>Get started on a new itinerary!</Text>
             <CustomButton
                 text = "+ New Itinerary"
@@ -195,6 +220,7 @@ const HomeScreen = () => {
                 type = "QUINARY"
             />
 
+            {/* block to view a friend's itinerary. */}
             <Text style={[styles.subtitle, {paddingTop: '3%'}]}>View a friend's itinerary</Text>
             <InputFieldAfterLogin
                 placeholder= "Enter the code here..."
@@ -207,6 +233,7 @@ const HomeScreen = () => {
                 type = "QUINARY"
             />
             
+            {/* block for latest itinerary; will only show if user has at least 1 itinerary. */}
             { itineraries >= 1
             ? 
             <View style={{width: '100%'}}>
@@ -224,7 +251,7 @@ const HomeScreen = () => {
             : null
             }
             
-
+            {/* block for past itineraries; will only show if user has more than 1 itinerary. */}
             { itineraries > 1
             ? 
             <View>

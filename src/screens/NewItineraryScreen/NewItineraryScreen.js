@@ -12,36 +12,52 @@ import storage from '@react-native-firebase/storage';
 import firestore, { firebase } from '@react-native-firebase/firestore';
 
 const NewItineraryScreen = () => {
+    
+    // Navigation object.
     const navigation = useNavigation();
 
+    // States for the input fields.
     const [title, setTitle] = useState('');
     const [notes, setNotes] = useState('');
     const [image, setImage] = useState(null);
+
+    // State for visibility of ActivityIndicator; if true, it will show.
     const [adding, setAdding] = useState(false);
+
+    // State to show whether an image has been uploaded or not.
     const [isImageChosen, setChosen] = useState(false);
 
+    // State for start date and end date in Date form
     const [endDate, setEndDate] = useState(new Date());
     const [startDate, setStartDate] = useState(new Date());
+
+    // State for start date and end date after calling toLocaleDateString() ont them.
     const [startDateString, setStartDateString] = useState('');
     const [endDateString, setEndDateString] = useState('');
+
+    // States to show the visibility of the date pickers.
     const [isStartVisible, setStartVisible] = useState(false);
     const [isEndVisible, setEndVisible] = useState(false);
 
+    // Function to show date picker for the start date.
     const showStartDatePicker = () => {
         setStartVisible(true);
         setEndVisible(false);
     };
 
+    // Function to show date picker for the end date.
     const showEndDatePicker = () => {
         setStartVisible(false);
         setEndVisible(true);
     };
 
+    // Function to hide the date pickers.
     const hideDatePicker = () => {
         setStartVisible(false);
         setEndVisible(false);
     };
 
+    // Function to confirm and set the start date.
     const handleConfirm = (date) => {
         console.log("A start date has been picked: ", date);
         setStartDate(date);
@@ -49,6 +65,7 @@ const NewItineraryScreen = () => {
         hideDatePicker();
     };
 
+    // Function to confirm and set the end date.
     const handleEndConfirm = (date) => {
         console.log("An end date has been picked: ", date);
         setEndDate(date);
@@ -56,11 +73,12 @@ const NewItineraryScreen = () => {
         hideDatePicker();
     };
 
+    // Function to navigate to the previous screen on the stack.
     const goBack = () => {
         navigation.goBack();
     }
 
-
+    // Function to choose photo from the phone gallery.
     const choosePhotoFromLibrary = () => {
             ImagePicker.openPicker({
               width: 500,
@@ -77,6 +95,7 @@ const NewItineraryScreen = () => {
             }));
           };
 
+    // Function to upload the cover image to the database.
     const uploadImage = async () => {
         if( image == null ) {
             return null;
@@ -106,6 +125,7 @@ const NewItineraryScreen = () => {
         }
     };
 
+    // Function to add new itinerary to the database.
     const addNewItinerary = async () => {
 
         setAdding(true);
@@ -225,6 +245,7 @@ const NewItineraryScreen = () => {
     return (
         <View style={ styles.root }>
 
+            {/* header */}
             <View style = { styles.header }>
                 <Back
                     size={35}
@@ -239,11 +260,14 @@ const NewItineraryScreen = () => {
                 <Text style = { styles.headerText }>New Itinerary</Text>
             </View>
 
+            {/* Empty text field to make the shadow of the header visible. */}
             <Text></Text>
 
             <View style = {[styles.root, {
                 paddingHorizontal: '8%',
                 backgroundColor: 'white'}]}>
+
+                {/* Field to input title */}
                 <Text style = { styles.text }>Title</Text>
 
                 <InputFieldAfterLogIn
@@ -252,6 +276,7 @@ const NewItineraryScreen = () => {
                     setValue = { setTitle  }
                 />
 
+                {/* Field to input cover image */}
                 <Text style = { styles.text }>Cover Image</Text>
 
                 <View style={styles.horizontal}>
@@ -274,6 +299,7 @@ const NewItineraryScreen = () => {
                 }
                 </View>
                 
+                {/* Field to input start date */}
                 <Text style = { styles.text }>Start Date</Text>
                 <View style={styles.horizontal}>
                     <Pressable 
@@ -290,6 +316,7 @@ const NewItineraryScreen = () => {
                     onCancel={hideDatePicker}
                 />
                 
+                {/* Field to input end date */}
                 <Text style = { styles.text }>End Date</Text>
 
                 <View style={styles.horizontal}>
@@ -308,6 +335,7 @@ const NewItineraryScreen = () => {
                     minimumDate={startDate}
                 />
                 
+                {/* Field to input additional notes. */}
                 <Text style = { styles.text }>Additional Notes</Text>
 
                 <InputFieldAfterLogIn
@@ -316,6 +344,7 @@ const NewItineraryScreen = () => {
                     setValue = { setNotes }
                 />
 
+                {/* Line breaks. */}
                 <Text>
                     {'\n'}
                     {'\n'}
@@ -323,12 +352,15 @@ const NewItineraryScreen = () => {
                     {'\n'}
                 </Text>
                 
+                {/* Button to add itinerary to the database */}
                 <CustomButton
                     text= "Add"
                     type= "TERTIARY"
                     onPress= { addNewItinerary }
                 />
 
+                {/* ActivityIndicator will show when adding itinerary to database
+                (adding is set to true). */}
                 {
                     adding
                     ? <View style={{
@@ -343,8 +375,6 @@ const NewItineraryScreen = () => {
                 }
 
             </View>
-
-
 
         </View>
     )

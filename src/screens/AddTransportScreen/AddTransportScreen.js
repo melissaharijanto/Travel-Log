@@ -140,7 +140,7 @@ const AddTransportScreen = () => {
                 <Text style = { styles.text }>Destination</Text>
 
                 <InputFieldAfterLogIn
-                    placeholder = "Mode of Transport"
+                    placeholder = "Destination"
                     value = { destination }
                     setValue = { setDestination }
                 />
@@ -169,7 +169,6 @@ const AddTransportScreen = () => {
                     <Text style={styles.acceptedFiles}>Accepted file formats: .pdf, .docx, .jpeg, .png</Text>
 
                 {/* Line breaks */}
-                <Text>{'\n'}</Text>
                 <Text>{'\n'}</Text>
                 <Text>{'\n'}</Text>
                 <Text>{'\n'}</Text>

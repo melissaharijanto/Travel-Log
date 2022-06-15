@@ -18,9 +18,6 @@ const MainItineraryScreen = () => {
         <ScrollView>
         <View style = { styles.root }>
         <Text style = { styles.text }> Placeholder Page for Main Itinerary Tab </Text>
-        <Pressable onPress={ navigateToNewDay }>
-            <Text style={[styles.text, {textDecorationLine: 'underline'}]}>New Day Screen</Text>
-        </Pressable>
         </View>
         </ScrollView>
     );
