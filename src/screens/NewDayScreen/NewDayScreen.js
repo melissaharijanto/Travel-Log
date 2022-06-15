@@ -11,15 +11,11 @@ import Activity from '../../../assets/images/Activity.png';
 import Accommodation from '../../../assets/images/Accommodation.png';
 import Transport from '../../../assets/images/Transport.png';
 
-const NewDayScreen = () => {
+const NewDayScreen = ({route}) => {
     const navigation = useNavigation();
 
-    const [title, setTitle] = useState();
-    const [startDate, setStartDate] = useState();
-    const [endDate, setEndDate] = useState();
-    const [notes, setNotes] = useState();
-
-
+    const { itinerary } = route.params;
+    
     const goToEditPage = () => {
         // do nothing
     }
@@ -97,7 +93,7 @@ const NewDayScreen = () => {
                     size= {55}
                     buttonColor='#70D9D3'
                     title = "Accommodation"
-                    onPress = { placeholder }
+                    onPress = { () => navigation.navigate('AddAccommodation') }
                     textStyle = { styles.buttonText }
                     shadowStyle = { styles.shadow }>
                     <Image source= {Accommodation} style = {{width: 55, height: 55}}/>
@@ -107,7 +103,7 @@ const NewDayScreen = () => {
                     size= {55}
                     buttonColor='#70D9D3'
                     title = "Activity"
-                    onPress = { placeholder }
+                    onPress = { () => navigation.navigate('AddActivity') }
                     textStyle = { styles.buttonText }
                     shadowStyle = { styles.shadow }>
                     <Image source= {Activity} style = {{width: 55, height: 55}}/>
@@ -117,7 +113,7 @@ const NewDayScreen = () => {
                     size= {55}
                     buttonColor='#70D9D3'
                     title = "Transport"
-                    onPress = { placeholder }
+                    onPress = { () => navigation.navigate('AddTransport') }
                     textStyle = { styles.buttonText }
                     shadowStyle = { styles.shadow }>
                     <Image source= {Transport} style = {{width: 55, height: 55}}/>

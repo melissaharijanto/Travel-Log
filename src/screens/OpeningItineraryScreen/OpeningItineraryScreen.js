@@ -7,6 +7,7 @@ import {
     ImageBackground, 
     Dimensions, 
     FlatList,
+    Alert,
 } from 'react-native';
 import EditIcon from 'react-native-vector-icons/AntDesign';
 import CopyIcon from 'react-native-vector-icons/MaterialIcons'
@@ -125,7 +126,7 @@ const OpeningItineraryScreen = ({route}) => {
                         color="#FFFFFF"
                         onPress={() => {
                             Clipboard.setString(itinerary.id);
-                            console.log('Copied to clipboard.');
+                            Alert.alert('Success!', 'Invite code has been copied to clipboard.');
                             }
                         }
                         style = {{
@@ -143,10 +144,13 @@ const OpeningItineraryScreen = ({route}) => {
                     <DayTab
                         text = { item.label }
                         subtext = { dateString(item.date.toDate()) }
-                        onPress={ () => { navigation.navigate("NewDay") }}
+                        onPress={ () => { navigation.navigate("NewDay", {
+                                itinerary: itinerary,
+                            }) 
+                        }}
                     />
                 )}
-                ItemSeparatorComponent={ () => <View style={{marginBottom: 8}} /> }
+                ItemSeparatorComponent={ () => <View style={{marginBottom: 5}} /> }
             ></FlatList>
             </View>
         </View>
@@ -155,8 +159,9 @@ const OpeningItineraryScreen = ({route}) => {
 const styles = StyleSheet.create({
     content:{
         paddingHorizontal: '4%',
-        paddingTop: 15,
+        paddingTop: 10,
         flex: 1,
+        paddingBottom: 10,
     },
     coverImage: {
         width: Dimensions.get('window').width,

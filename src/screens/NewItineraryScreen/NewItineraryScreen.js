@@ -209,6 +209,7 @@ const NewItineraryScreen = () => {
                         id: i,
                         label: stringName,
                         date: currDate,
+                        from: id,
                     })
                 currDate = new Date(new Date(currDate).getTime() + 60 * 60 * 24 * 1000);
             }
@@ -249,7 +250,6 @@ const NewItineraryScreen = () => {
                     placeholder = "Title"
                     value = { title }
                     setValue = { setTitle  }
-                    style = { styles.textBox }
                 />
 
                 <Text style = { styles.text }>Cover Image</Text>
@@ -263,7 +263,7 @@ const NewItineraryScreen = () => {
                         style = {{
                             paddingHorizontal: '1%'
                         }}
-                        />
+                    />
 
                     <Text style={styles.buttonText}>Upload Image</Text>
                 </Pressable>
@@ -405,7 +405,7 @@ const styles = StyleSheet.create({
         color: '#333333',
         paddingTop: 2,
     },
-     text: {
+    text: {
         fontFamily: 'Poppins-Medium',
         color: '#333333',
         paddingTop: 2,

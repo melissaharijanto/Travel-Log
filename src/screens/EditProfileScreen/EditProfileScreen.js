@@ -43,18 +43,18 @@ const EditProfileScreen = () => {
     const [userData, setUserData] = useState(null);
 
      const getUser = async () => {
-         const currentUser = await firestore()
-         .collection('users')
-         .doc(user.uid)
-         .get()
-         .then((documentSnapshot) => {
-             if( documentSnapshot.exists ) {
-                 console.log('User Data', documentSnapshot.data());
-                 setUserData(documentSnapshot.data());
-                 setEmail(documentSnapshot.data().email);
-                 setName(documentSnapshot.data().name);
-             }
-         })
+        await firestore()
+            .collection('users')
+            .doc(user.uid)
+            .get()
+            .then((documentSnapshot) => {
+                if( documentSnapshot.exists ) {
+                    console.log('User Data', documentSnapshot.data());
+                    setUserData(documentSnapshot.data());
+                    setEmail(documentSnapshot.data().email);
+                    setName(documentSnapshot.data().name);
+                }
+            })
      }
 
      useEffect(() => {
@@ -139,7 +139,6 @@ const EditProfileScreen = () => {
           return null;
         }
       };
-
 
 
     const saveChanges = async () => {

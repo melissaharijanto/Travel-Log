@@ -12,6 +12,9 @@ import OpeningItineraryScreen from '../screens/OpeningItineraryScreen';
 import HomeIcon from 'react-native-vector-icons/Entypo';
 import ItineraryIcon from 'react-native-vector-icons/MaterialIcons';
 import ProfileIcon from 'react-native-vector-icons/FontAwesome';
+import AddAccommodationScreen from '../screens/AddAccommodationScreen';
+import AddActivityScreen from '../screens/AddActivityScreen';
+import AddTransportScreen from '../screens/AddTransportScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -24,6 +27,9 @@ const HomeStackScreen = () => {
         <HomeStack.Screen name="OpenItinerary" component={OpeningItineraryScreen} />
         <HomeStack.Screen name="EditItineraryFromHome" component={EditItineraryScreen} />
         <HomeStack.Screen name="NewDay" component={NewDayScreen} />
+        <HomeStack.Screen name="AddAccommodation" component={AddAccommodationScreen}/>
+        <HomeStack.Screen name="AddActivity" component={AddActivityScreen}/>
+        <HomeStack.Screen name="AddTransport" component={AddTransportScreen}/>
     </HomeStack.Navigator>
     );
 }

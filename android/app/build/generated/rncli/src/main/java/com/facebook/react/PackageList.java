@@ -23,6 +23,10 @@ import io.invertase.firebase.auth.ReactNativeFirebaseAuthPackage;
 import io.invertase.firebase.firestore.ReactNativeFirebaseFirestorePackage;
 // @react-native-firebase/storage
 import io.invertase.firebase.storage.ReactNativeFirebaseStoragePackage;
+// react-native-document-picker
+import com.reactnativedocumentpicker.DocumentPickerPackage;
+// react-native-fs
+import com.rnfs.RNFSPackage;
 // react-native-image-crop-picker
 import com.reactnative.ivpusic.imagepicker.PickerPackage;
 // react-native-safe-area-context
@@ -82,6 +86,8 @@ public class PackageList {
       new ReactNativeFirebaseAuthPackage(),
       new ReactNativeFirebaseFirestorePackage(),
       new ReactNativeFirebaseStoragePackage(),
+      new DocumentPickerPackage(),
+      new RNFSPackage(),
       new PickerPackage(),
       new SafeAreaContextPackage(),
       new RNScreensPackage(),
