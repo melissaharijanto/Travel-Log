@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet, ScrollView, Pressable } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, Image, StyleSheet, ScrollView, Pressable, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Back from 'react-native-vector-icons/Feather';
 import Rearrange from 'react-native-vector-icons/Entypo';
@@ -10,12 +10,15 @@ import ActionButton from 'react-native-action-button-warnings-fixed';
 import Activity from '../../../assets/images/Activity.png';
 import Accommodation from '../../../assets/images/Accommodation.png';
 import Transport from '../../../assets/images/Transport.png';
+import firestore from '@react-native-firebase/firestore';
 
 const NewDayScreen = ({route}) => {
     
     const navigation = useNavigation();
 
-    const { itinerary } = route.params;
+    const [plans, setPlans] = useState(null);
+
+    const { id, dayLabel } = route.params;
     
     const goToEditPage = () => {
         // do nothing
@@ -28,6 +31,69 @@ const NewDayScreen = ({route}) => {
     const goBack = () => {
         navigation.goBack();
     }
+
+    const getPlans = async () => {
+        const plansList = [];
+        await firestore()
+            .collection('itineraries')
+            .doc(id)
+            .collection('days')
+            .doc(dayLabel)
+            .collection('plans')
+            .onSnapshot((querySnapshot) => {
+                if (querySnapshot.empty) {
+                    console.log('Query is empty.');
+                    return;
+                }
+                querySnapshot.forEach((doc) => {
+                    const {
+                        name,
+                        checkInDate,
+                        checkOutDate,
+                        notes,
+                        type,
+                        location,
+                        startingPoint,
+                        destination
+                    } = doc.data();
+                    
+                    if (type === 'accommodation'){
+                    plansList.push({
+                        name: name,
+                        checkInDate: checkInDate,
+                        checkOutDate: checkOutDate,
+                        notes: notes,
+                        type: type,
+                    })
+                    }
+
+                    if (type === 'activity'){
+                        plansList.push({
+                            name: name,
+                            notes: notes,
+                            type: type,
+                            location: location,
+                        })
+                    }
+
+                    if (type === 'transport'){
+                        plansList.push({
+                            name: name,
+                            notes: notes,
+                            type: type,
+                            startingPoint: startingPoint,
+                            destination: destination,
+                        })
+                    }
+                    setPlans(plansList);
+            })
+        })
+    }
+
+    useEffect(() =>{
+        getPlans();
+        return;
+    }, [route]);
 
     return (
         <View style={ styles.root }>
@@ -43,7 +109,7 @@ const NewDayScreen = ({route}) => {
                     }}
                 />
 
-                <Text style = { styles.headerText }>Day 1</Text>
+                <Text style = { styles.headerText }>{ dayLabel }</Text>
 
                 <Rearrange
                     size={35}
@@ -57,32 +123,40 @@ const NewDayScreen = ({route}) => {
             </View>
 
             <Text></Text>
-            <ScrollView style= {{
-                paddingHorizontal: '5%',
-                width: '100%',
-                backgroundColor: 'white'}}>
-                <View style = {[styles.root]}>
+            <View style={{width: '100%', paddingHorizontal: '5%'}}>
+            <FlatList
+                data={ plans }
+                numColumns={1}
+                renderItem={({item}) => {
+                        if(item.type === 'accommodation') {
+                        return <AccommodationTab onPress={() => navigation.navigate("ViewAccommodation",{
+                            id: id,
+                            dayLabel: dayLabel,
+                            itemId: item.id,
+                        })}
+                            text={ item.name }
+                            subtext={`${item.checkInDate.toDate().toLocaleDateString()} - ${item.checkOutDate.toDate().toLocaleDateString()}`}
+                        />
+                        }
 
-                <ActivityTab
-                    text= 'Activity Name'
-                    subtext= 'Activity Details'
-                    onPress= { goToEditPage }
-                />
+                        if(item.type === 'activity') {
+                            return <ActivityTab onPress={() => {}}
+                                text={ item.name }
+                                subtext={ item.location }
+                            />
+                        }
 
-                <AccommodationTab
-                    text= 'Accommodation Name'
-                    subtext= 'Accommodation Details'
-                    onPress= { goToEditPage }
-                />
-
-                <TransportTab
-                    text= 'Transport Name'
-                    subtext= 'Transport Details'
-                    onPress= { goToEditPage }
-                />
-
-                </View>
-            </ScrollView>
+                        if(item.type === 'transport') {
+                            return <TransportTab onPress={() => {}}
+                                text={ item.name }
+                                subtext={`${item.startingPoint} - ${item.destination}`}
+                            />
+                        }
+                }}
+                 
+                ItemSeparatorComponent={ () => <View style={{marginBottom: 5}} /> }
+            ></FlatList>
+            </View>
 
             {/* Edit action button onPress later */}
             <ActionButton
@@ -94,7 +168,10 @@ const NewDayScreen = ({route}) => {
                     size= {55}
                     buttonColor='#70D9D3'
                     title = "Accommodation"
-                    onPress = { () => navigation.navigate('AddAccommodation') }
+                    onPress = { () => navigation.navigate('AddAccommodation', {
+                        dayLabel: dayLabel,
+                        id: id,
+                    })}
                     textStyle = { styles.buttonText }
                     shadowStyle = { styles.shadow }>
                     <Image source= {Accommodation} style = {{width: 55, height: 55}}/>
@@ -104,7 +181,10 @@ const NewDayScreen = ({route}) => {
                     size= {55}
                     buttonColor='#70D9D3'
                     title = "Activity"
-                    onPress = { () => navigation.navigate('AddActivity') }
+                    onPress = { () => navigation.navigate('AddActivity', {
+                        dayLabel: dayLabel,
+                        id: id,
+                    }) }
                     textStyle = { styles.buttonText }
                     shadowStyle = { styles.shadow }>
                     <Image source= {Activity} style = {{width: 55, height: 55}}/>
@@ -114,7 +194,10 @@ const NewDayScreen = ({route}) => {
                     size= {55}
                     buttonColor='#70D9D3'
                     title = "Transport"
-                    onPress = { () => navigation.navigate('AddTransport') }
+                    onPress = { () => navigation.navigate('AddTransport', {
+                        dayLabel: dayLabel,
+                        id: id,
+                    }) }
                     textStyle = { styles.buttonText }
                     shadowStyle = { styles.shadow }>
                     <Image source= {Transport} style = {{width: 55, height: 55}}/>

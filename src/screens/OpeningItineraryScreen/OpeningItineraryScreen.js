@@ -75,12 +75,14 @@ const OpeningItineraryScreen = ({route}) => {
                         date,
                         id,
                         label,
+                        from,
                     } = doc.data();
                     
                     daysList.push({
                         id: id,
                         date: date,
                         label: label,
+                        from: from,
                     })
     
                     setDays(daysList);
@@ -169,9 +171,9 @@ const OpeningItineraryScreen = ({route}) => {
                         text = { item.label }
                         subtext = { dateString(item.date.toDate()) }
                         onPress={ () => { navigation.navigate("NewDay", {
-                                itinerary: itinerary,
-                            }) 
-                        }}
+                            id: itinerary.id,
+                            dayLabel: item.label,
+                        })}}
                     />
                 )}
                 ItemSeparatorComponent={ () => <View style={{marginBottom: 5}} /> }

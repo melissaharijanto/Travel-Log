@@ -26,9 +26,9 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: '#70D9D320',
         borderRadius: 10,
-        width: '100%',
         padding: 8,
         marginVertical: 5,
+        width: '100%'
     },
     horizontal: {
         flexDirection: 'row',

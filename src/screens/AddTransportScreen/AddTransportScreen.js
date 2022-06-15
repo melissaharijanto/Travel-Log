@@ -12,10 +12,12 @@ import DocumentPicker, {
 import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
 
-const AddTransportScreen = () => {
+const AddTransportScreen = ({route}) => {
     
     const navigation = useNavigation();
     
+    const {id, dayLabel} = route.params;
+
     // Set initial states of each field to be empty.
     const [name, setName] = useState();
     const [startingPoint, setStartingPoint] = useState();
@@ -88,10 +90,31 @@ const AddTransportScreen = () => {
     };
 
     const add = async () => {
+        setAdding(true);
         let fileUrl = await uploadFile();
 
+        let itemId = Math.random().toString(36).slice(2);
 
-        navigation.goBack();
+        await firestore()
+            .collection('itineraries')
+            .doc(id)
+            .collection('days')
+            .doc(dayLabel)
+            .collection('plans')
+            .doc(itemId)
+            .set({
+                name: name,
+                startingPoint: startingPoint,
+                destination: destination,
+                type: 'transport',
+                id: itemId,
+            })
+
+        setAdding(false);
+        navigation.navigate('NewDay', {
+            id: id,
+            dayLabel: dayLabel,
+        });
     }
 
     return (

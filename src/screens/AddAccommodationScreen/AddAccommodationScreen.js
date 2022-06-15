@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Pressable, ActivityIndicator } from 'react-native';
 import Back from 'react-native-vector-icons/Feather';
 import Document from 'react-native-vector-icons/Ionicons';
@@ -13,8 +13,10 @@ import DocumentPicker, {
 import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
 
-const AddAccommodationScreen = () => {
+const AddAccommodationScreen = ({route}) => {
     
+    const { id, dayLabel } = route.params;
+
     const navigation = useNavigation();
     
     // Set initial states of each field to be empty.
@@ -136,12 +138,32 @@ const AddAccommodationScreen = () => {
     };
 
     const add = async () => {
-
         setAdding(true);
         let fileUrl = await uploadFile();
 
+        let itemId = Math.random().toString(36).slice(2);
+
+        await firestore()
+            .collection('itineraries')
+            .doc(id)
+            .collection('days')
+            .doc(dayLabel)
+            .collection('plans')
+            .doc(itemId)
+            .set({
+                name: name,
+                checkInDate: startDate,
+                checkOutDate: endDate,
+                notes: fileUrl,
+                type: 'accommodation',
+                id: itemId,
+            })
+
         setAdding(false);
-        navigation.goBack();
+        navigation.navigate('NewDay', {
+            id: id,
+            dayLabel: dayLabel,
+        });
     }
 
     return (
