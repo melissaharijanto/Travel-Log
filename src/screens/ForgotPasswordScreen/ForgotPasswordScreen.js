@@ -1,33 +1,20 @@
 import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, Image, StyleSheet, ScrollView, Alert } from 'react-native';
 import Logo from '../../../assets/images/logo2.png';
 import CustomInputField from '../../components/CustomInputField';
 import CustomButton from '../../components/CustomButton';
 import { useNavigation } from '@react-navigation/native';
 import { sendPasswordResetEmail, firebase } from '@react-native-firebase/auth';
-import auth from '@react-native-firebase/auth';
 
 
 const ForgotPasswordScreen = () => {
-    const [email, setEmail] = useState();
+    const [email, setEmail] = useState('');
     const navigation = useNavigation();
 
-    const onSendCodePressed = async (email) => {
-        await firebase.auth().sendPasswordResetEmail(email)
-        .then(() => {
-            console.log('A password reset email has been sent.');
-            navigation.navigate("ConfirmCode");
-        })
-        .catch(error => {
-            console.log(error);
-        })
-    }; // to be changed once other screens are made!
 
     const onBackToLogInPressed = () => {
         navigation.navigate("SignIn");
-    }; // to be changed once other screens are made!
-
-
+    };
 
     return (
         <View style = { styles.root }>
@@ -46,8 +33,20 @@ const ForgotPasswordScreen = () => {
             />
 
             <CustomButton
-                text = "Send Code"
-                onPress = { onSendCodePressed }
+                text = "Send Password Reset Email"
+                onPress = { async () => {
+                    if (email == null || email === '') {
+                        Alert.alert('Email field empty', 'Please enter your email.');
+                    } else {
+                    await firebase.auth().sendPasswordResetEmail(email)
+                        .then(() => {
+                            Alert.alert('Success!', 'A password reset email has been sent.');
+                            navigation.goBack();
+                        })
+                        .catch(error => {
+                            Alert.alert("Error", error.message)
+                        })
+                }}}
                 type = "PRIMARY"
             />
 
