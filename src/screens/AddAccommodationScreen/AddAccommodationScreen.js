@@ -150,6 +150,20 @@ const AddAccommodationScreen = ({route}) => {
             .doc(dayLabel)
             .collection('plans')
             .doc(itemId)
+            .get()
+            .then((documentSnapshot) => {
+                if(documentSnapshot.exists){
+                    id = Math.random().toString(36).slice(2);
+                }
+            })
+        
+        await firestore()
+            .collection('itineraries')
+            .doc(id)
+            .collection('days')
+            .doc(dayLabel)
+            .collection('plans')
+            .doc(itemId)
             .set({
                 name: name,
                 checkInDate: startDate,

@@ -170,7 +170,7 @@ const NewItineraryScreen = () => {
             .doc(id)
             .get()
             .then((documentSnapshot) => {
-                if(documentSnapshot.exists){
+                if (documentSnapshot.exists){
                     id = Math.random().toString(36).slice(2);
                 }
             })
@@ -218,7 +218,7 @@ const NewItineraryScreen = () => {
             // c: might need to add days into the firestore collection here, maybe
             
             let currDate = startDate;
-            for (let i = 1; i <= days; i++) {
+            for (let i = 1; i <= days + 1; i++) {
                 const stringName = "Day " + i; 
                 await firestore()
                     .collection('itineraries')

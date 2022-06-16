@@ -54,7 +54,8 @@ const NewDayScreen = ({route}) => {
                         type,
                         location,
                         startingPoint,
-                        destination
+                        destination,
+                        id,
                     } = doc.data();
                     
                     if (type === 'accommodation'){
@@ -64,6 +65,7 @@ const NewDayScreen = ({route}) => {
                         checkOutDate: checkOutDate,
                         notes: notes,
                         type: type,
+                        id: id,
                     })
                     }
 
@@ -73,6 +75,7 @@ const NewDayScreen = ({route}) => {
                             notes: notes,
                             type: type,
                             location: location,
+                            id: id,
                         })
                     }
 
@@ -83,6 +86,7 @@ const NewDayScreen = ({route}) => {
                             type: type,
                             startingPoint: startingPoint,
                             destination: destination,
+                            id: id,
                         })
                     }
                     setPlans(plansList);
@@ -153,7 +157,7 @@ const NewDayScreen = ({route}) => {
                             />
                         }
                 }}
-                 
+                keyExtractor={(contact, index) => String(index)}
                 ItemSeparatorComponent={ () => <View style={{marginBottom: 5}} /> }
             ></FlatList>
             </View>

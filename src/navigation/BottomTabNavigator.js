@@ -15,6 +15,7 @@ import ProfileIcon from 'react-native-vector-icons/FontAwesome';
 import AddAccommodationScreen from '../screens/AddAccommodationScreen';
 import AddActivityScreen from '../screens/AddActivityScreen';
 import AddTransportScreen from '../screens/AddTransportScreen';
+import ViewAccommodationScreen from '../screens/ViewAccommodationScreen/ViewAccommodationScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -30,6 +31,7 @@ const HomeStackScreen = () => {
         <HomeStack.Screen name="AddAccommodation" component={AddAccommodationScreen}/>
         <HomeStack.Screen name="AddActivity" component={AddActivityScreen}/>
         <HomeStack.Screen name="AddTransport" component={AddTransportScreen}/>
+        <HomeStack.Screen name="ViewAccommodation" component={ViewAccommodationScreen}/>
     </HomeStack.Navigator>
     );
 }
