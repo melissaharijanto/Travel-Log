@@ -58,6 +58,17 @@ const EditItineraryScreen = ( {route} ) => {
     const handleDelete = async () => {
         setDeleting(true);
 
+        //decrement the user's itinerary count
+        var docRef  = 
+        await firestore()
+            .collection('users')
+            .doc(auth().currentUser.uid);
+            
+        docRef.update({
+            itineraries: firebase.firestore.FieldValue.increment(-1),
+
+        })
+
         await firestore()
             .collection('users')
             .doc(auth().currentUser.uid)
@@ -67,27 +78,16 @@ const EditItineraryScreen = ( {route} ) => {
             .then(() => 
                 console.log('Unbinded from user.')
             );
-        
+
         await firestore()
             .collection('itineraries')
             .doc(itinerary.id)
             .delete()
             .then(() => {
                 console.log('Deleted.');
+                setDeleting(false);
+                navigation.navigate("HomeScreen");
             })
-        
-        //decrement the user's itinerary count
-        var docRef  = firestore()
-                .collection('users')
-                .doc(auth().currentUser.uid);
-            
-        docRef.update({
-            itineraries: firebase.firestore.FieldValue.increment(-1),
-
-        })
-        
-        setDeleting(false);
-        navigation.navigate("HomeScreen");
     }
 
     const choosePhotoFromLibrary = () => {

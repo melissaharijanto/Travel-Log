@@ -15,7 +15,7 @@ import firestore from '@react-native-firebase/firestore';
 
 const AddAccommodationScreen = ({route}) => {
     
-    const { id, dayLabel } = route.params;
+    const { id, dayLabel, itineraryStart, itineraryEnd } = route.params;
 
     const navigation = useNavigation();
     
@@ -150,28 +150,43 @@ const AddAccommodationScreen = ({route}) => {
             .doc(dayLabel)
             .collection('plans')
             .doc(itemId)
-            .get()
-            .then((documentSnapshot) => {
+            .onSnapshot((documentSnapshot) => {
                 if(documentSnapshot.exists){
-                    id = Math.random().toString(36).slice(2);
+                    itemId = Math.random().toString(36).slice(2);
                 }
             })
         
-        await firestore()
-            .collection('itineraries')
-            .doc(id)
-            .collection('days')
-            .doc(dayLabel)
-            .collection('plans')
-            .doc(itemId)
-            .set({
-                name: name,
-                checkInDate: startDate,
-                checkOutDate: endDate,
-                notes: fileUrl,
-                type: 'accommodation',
-                id: itemId,
-            })
+            //split dayLabel into "day" and "number"
+
+            const difference = endDate.getTime() - startDate.getTime();
+
+            const days = Math.ceil(difference / (1000 * 3600 * 24));
+
+            const split = dayLabel.split(" ", 2);
+
+            const dayNumber = split[1];
+        
+            let currDate = startDate;
+            for (let i = dayNumber; i <= days + 1; i++) {
+                const stringName = "Day " + i; 
+                await firestore()
+                    .collection('itineraries')
+                    .doc(id)
+                    .collection('days')
+                    .doc(stringName)
+                    .collection('plans')
+                    .doc(itemId)
+                    .set({
+                        name: name,
+                        checkInDate: startDate,
+                        checkOutDate: endDate,
+                        notes: fileUrl,
+                        type: 'accommodation',
+                        id: itemId,
+                    })
+                currDate = new Date(new Date(currDate).getTime() + 60 * 60 * 24 * 1000);
+            }
+
 
         setAdding(false);
         navigation.navigate('NewDay', {
@@ -228,6 +243,8 @@ const AddAccommodationScreen = ({route}) => {
                     mode="date"
                     onConfirm={handleConfirm}
                     onCancel={hideDatePicker}
+                    minimumDate={ itineraryStart.toDate() }
+                    maximumDate={itineraryEnd.toDate()}
                 />
                 
                 {/* Field to input check-out date. */}
@@ -247,6 +264,7 @@ const AddAccommodationScreen = ({route}) => {
                     onConfirm={handleEndConfirm}
                     onCancel={hideDatePicker}
                     minimumDate={startDate}
+                    maximumDate={itineraryEnd.toDate()}
                 />
 
                 {/* Upload additional files */}

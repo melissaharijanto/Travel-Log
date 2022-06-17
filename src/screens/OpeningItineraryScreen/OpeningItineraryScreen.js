@@ -173,6 +173,8 @@ const OpeningItineraryScreen = ({route}) => {
                         onPress={ () => { navigation.navigate("NewDay", {
                             id: itinerary.id,
                             dayLabel: item.label,
+                            itineraryStart: itinerary.startDate,
+                            itineraryEnd: itinerary.endDate,
                         })}}
                     />
                 )}

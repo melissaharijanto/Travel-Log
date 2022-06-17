@@ -16,6 +16,8 @@ import AddAccommodationScreen from '../screens/AddAccommodationScreen';
 import AddActivityScreen from '../screens/AddActivityScreen';
 import AddTransportScreen from '../screens/AddTransportScreen';
 import ViewAccommodationScreen from '../screens/ViewAccommodationScreen/ViewAccommodationScreen';
+import ViewActivityScreen from '../screens/ViewActivityScreen';
+import ViewTransportScreen from '../screens/ViewTransportScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -32,6 +34,8 @@ const HomeStackScreen = () => {
         <HomeStack.Screen name="AddActivity" component={AddActivityScreen}/>
         <HomeStack.Screen name="AddTransport" component={AddTransportScreen}/>
         <HomeStack.Screen name="ViewAccommodation" component={ViewAccommodationScreen}/>
+        <HomeStack.Screen name="ViewActivity" component={ViewActivityScreen}/>
+        <HomeStack.Screen name="ViewTransport" component={ViewTransportScreen}/>
     </HomeStack.Navigator>
     );
 }

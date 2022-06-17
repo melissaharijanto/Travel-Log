@@ -18,7 +18,17 @@ const NewDayScreen = ({route}) => {
 
     const [plans, setPlans] = useState(null);
 
-    const { id, dayLabel } = route.params;
+    const { id, dayLabel, itineraryStart, itineraryEnd } = route.params;
+    
+    const [title, setTitle] = useState();
+    const [notes, setNotes] = useState();
+    const [image, setImage] = useState();
+    const [startDate, setStartDate] = useState();
+    const [endDate, setEndDate] = useState();
+    const [currImage, setCurrImage] = useState();
+    const [editing, setEditing] = useState(false);
+    const [deleting, setDeleting] = useState(false);
+    const [isImageChosen, setChosen] = useState(null);
     
     const goToEditPage = () => {
         // do nothing
@@ -137,6 +147,8 @@ const NewDayScreen = ({route}) => {
                             id: id,
                             dayLabel: dayLabel,
                             itemId: item.id,
+                            itineraryStart: itineraryStart,
+                            itineraryEnd: itineraryEnd,
                         })}
                             text={ item.name }
                             subtext={`${item.checkInDate.toDate().toLocaleDateString()} - ${item.checkOutDate.toDate().toLocaleDateString()}`}
@@ -144,16 +156,24 @@ const NewDayScreen = ({route}) => {
                         }
 
                         if(item.type === 'activity') {
-                            return <ActivityTab onPress={() => {}}
+                            return <ActivityTab onPress={() => navigation.navigate("ViewActivity", {
+                                id: id,
+                                dayLabel: dayLabel,
+                                itemId: item.id,
+                            })}
                                 text={ item.name }
                                 subtext={ item.location }
                             />
                         }
 
                         if(item.type === 'transport') {
-                            return <TransportTab onPress={() => {}}
+                            return <TransportTab onPress={() => navigation.navigate("ViewTransport", {
+                                id: id,
+                                dayLabel: dayLabel,
+                                itemId: item.id,
+                            })}
                                 text={ item.name }
-                                subtext={`${item.startingPoint} - ${item.destination}`}
+                                subtext={`${item.startingPoint} >> ${item.destination}`}
                             />
                         }
                 }}
@@ -175,6 +195,8 @@ const NewDayScreen = ({route}) => {
                     onPress = { () => navigation.navigate('AddAccommodation', {
                         dayLabel: dayLabel,
                         id: id,
+                        itineraryStart: itineraryStart,
+                        itineraryEnd: itineraryEnd,
                     })}
                     textStyle = { styles.buttonText }
                     shadowStyle = { styles.shadow }>

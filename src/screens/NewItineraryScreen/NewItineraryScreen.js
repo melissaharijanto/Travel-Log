@@ -165,7 +165,7 @@ const NewItineraryScreen = () => {
             let id = Math.random().toString(36).slice(2);
 
             // regenerate unique code if code already exists
-            firestore()
+            await firestore()
             .collection('itineraries')
             .doc(id)
             .get()
@@ -175,7 +175,7 @@ const NewItineraryScreen = () => {
                 }
             })
 
-            firestore()
+            await firestore()
                 .collection('itineraries')
                 .doc(id)
                 .set({
@@ -192,17 +192,6 @@ const NewItineraryScreen = () => {
                 .then(() => {
                     console.log('New itinerary created!');
                 });
-            
-
-            // update user's itinerary numbers
-            var docRef  = firestore()
-                .collection('users')
-                .doc(auth().currentUser.uid);
-            
-            docRef.update({
-                itineraries: firebase.firestore.FieldValue.increment(1),
-
-            })
 
             // update collection
             await firestore()
@@ -233,11 +222,21 @@ const NewItineraryScreen = () => {
                     })
                 currDate = new Date(new Date(currDate).getTime() + 60 * 60 * 24 * 1000);
             }
-            // activity indicator stops showing here
-            setAdding(false);
 
-            // c: should navigate to opening itinerary page instead
+            // update user's itinerary numbers
+            var docRef  = await firestore()
+                .collection('users')
+                .doc(auth().currentUser.uid);
+            
+            docRef.update({
+                itineraries: firebase.firestore.FieldValue.increment(1),
+            })
+            .then(() => {
+                // activity indicator stops showing here
+            setAdding(false);
             navigation.navigate("HomeScreen");
+            })
+            
         }
     }
         

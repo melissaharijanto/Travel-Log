@@ -38,7 +38,7 @@ const HomeScreen = () => {
     const [ code, setCode ] = useState();
 
     // States for user's itinerary data.
-    var [ itineraries, setItineraries] = useState();
+    var [ itineraries, setItineraries] = useState(0);
     var [ latestItinerary, setLatestItinerary] = useState(null);
     var [ latestItineraryTitle, setLatestItineraryTitle] = useState(null);
     var [ latestItineraryImage, setLatestItineraryImage] = useState(null);
@@ -46,8 +46,6 @@ const HomeScreen = () => {
 
     // Default profile picture (if user has not set their own).
     const defaultImage = 'https://firebasestorage.googleapis.com/v0/b/travellog-d79e2.appspot.com/o/defaultUser.png?alt=media&token=d56ef526-4058-4152-933b-b98cd0668392'
-
-    
 
     // Function to initialize user data from Firestore database.
     const getUser = async () => {
@@ -66,6 +64,7 @@ const HomeScreen = () => {
     
     // Function to initialize latest itinerary data from Firestore database.
     const getLatestItinerary = async () => {
+        if (itineraries > 0) {
         await firestore()
             .collection('users')
             .doc(user.uid)
@@ -88,15 +87,18 @@ const HomeScreen = () => {
                     .collection('itineraries')
                     .doc(doc.id)
                     .onSnapshot((documentSnapshot) => {
+                        if (documentSnapshot.exists) {
                         setLatestItinerary(documentSnapshot.data());
                         setLatestItineraryTitle(documentSnapshot.data().title);
                         setLatestItineraryImage(documentSnapshot.data().coverImage);
+                        }
                     })
                 })
 
-                console.log('getLatestItinerary has been run!');
+                const hasRun = () => console.log('getLatestItinerary has been run!');
+                hasRun();
                 })
-                
+            }
         }
 
         /* 
@@ -106,7 +108,7 @@ const HomeScreen = () => {
         const getPastItineraries = async () => {
             const itinerariesList = [];
             console.log('BreakPoint 0');
-            if(latestItinerary != undefined) {
+            if(latestItinerary != undefined && itineraries > 1) {
                 firestore()
                     .collection('users')
                     .doc(user.uid)
@@ -117,7 +119,7 @@ const HomeScreen = () => {
                     .onSnapshot((querySnapshot) => {
 
                         if (querySnapshot.empty) {
-                        console.log('No itineraries have been made yet.');
+                        console.log('No more than one itinerary has been made yet.');
                         return;
                         }
                     
@@ -162,6 +164,7 @@ const HomeScreen = () => {
                                     })
                                     setPastItineraries(itinerariesList);
                                     console.log('BreakPoint 4', itinerariesList);    
+                                    
                                 });
                             })
                         
@@ -174,21 +177,30 @@ const HomeScreen = () => {
 
     // Initializing the user upon navigating to this page.
     useEffect(() => {
+        let isCancelled = false;
         getUser(); 
-        return;
+        return () => {
+            isCancelled = true;
+        }
     }, []);
 
     // Initializes latest itinerary upon change to userData.
     useEffect(() => {
+        let isCancelled = false;
         getLatestItinerary();
-        return;
-    }, [userData]);
+        return () => {
+            isCancelled = true;
+        }
+    }, [itineraries]);
 
     // Initializes past itineraries upon change to latestItinerary.
     useEffect(() => {
+        let isCancelled = false;
         getPastItineraries();
-        return;
-    }, [latestItinerary]);
+        return () => {
+            isCancelled = true;
+        }
+    }, [itineraries, latestItineraryTitle]);
 
     return (
         <ScrollView style={{backgroundColor: '#FFFFFF'}}>

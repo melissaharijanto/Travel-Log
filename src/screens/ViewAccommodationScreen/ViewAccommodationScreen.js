@@ -1,16 +1,9 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Pressable, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import Back from 'react-native-vector-icons/Feather';
-import Document from 'react-native-vector-icons/Ionicons';
-import InputFieldAfterLogIn from '../../components/InputFieldAfterLogIn';
-import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import CustomButton from '../../components/CustomButton';
-import DocumentPicker, {
-    isInProgress,
-    types,
-  } from 'react-native-document-picker';
-import storage, { firebase, refFromURL } from '@react-native-firebase/storage';
+import { firebase } from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
 
 
@@ -46,64 +39,6 @@ const ViewAccommodationScreen = ({route}) => {
     const [fileName, setFileName] = useState(null);
     const [file, setFile] = useState(null);
 
-    //State to show activity indicator when adding accommodation.
-    const [adding, setAdding] = useState(false);
-
-    //Choose which file to upload.
-    const chooseFile = async () => {
-        try {
-            const pickerResult = await DocumentPicker.pickSingle({
-                presentationStyle: 'fullScreen',
-                copyTo: 'cachesDirectory',
-                type: [types.doc, types.docx, types.pdf, types.images],
-            })
-            setFile(pickerResult);
-            setFileUri(pickerResult.fileCopyUri);
-            console.log(pickerResult);
-            setFileName(pickerResult.name);
-            setChosen(true);
-        } catch (e) {
-            if (DocumentPicker.isCancel(e)) {
-                console.log('cancelled')
-                // User cancelled the picker, exit any dialogs or menus and move on
-              } else if (isInProgress(e)) {
-                console.log('multiple pickers were opened, only the last will be considered')
-              } else {
-                console.log(e);
-              }
-        }
-    }
-
-    // Uploading file to Firebase Storage
-    const uploadFile = async () => {
-        if( file == null ) {
-            return null;
-        }
-
-        const uploadUri = fileUri;
-        let filename = uploadUri.substring(uploadUri.lastIndexOf('/') + 1);
-
-        // Add timestamp to File Name
-        const extension = filename.split('.').pop();
-        const name = filename.split('.').slice(0, -1).join('.');
-        filename = name + Date.now() + '.' + extension;
-
-        const storageRef = storage().ref(`files/${filename}`);
-        const task = storageRef.putFile(uploadUri);
-
-        try {
-            await task;
-            const url = await storageRef.getDownloadURL();
-
-            setFile(null);
-
-            return url;
-        } catch (e) {
-            console.log(e);
-            return null;
-        }
-    };
-
     const getData = async () => {
         await firestore()
             .collection('itineraries')
@@ -120,14 +55,15 @@ const ViewAccommodationScreen = ({route}) => {
                 setEndDateString(documentSnapshot.data().checkOutDate.toDate().toLocaleDateString());
                 setFileUri(documentSnapshot.data().notes);
                 
-                if (fileUri != null) {
-                    setChosen(true);
-                    const fileNotes = firebase.storage().refFromURL(fileUri).name;
-                    setFileName(fileNotes);
-                }
             })
+    }
 
-           
+    const getFileName = async () => {
+        if (fileUri != null) {
+            setChosen(true);
+            const fileNotes = firebase.storage().refFromURL(fileUri).name;
+            setFileName(fileNotes);
+        }
     }
 
     useEffect(() => {
@@ -135,8 +71,9 @@ const ViewAccommodationScreen = ({route}) => {
     }, [route])
 
     useEffect(() => {
-        getData();
-    }, [])
+        getFileName();
+    }, [fileUri])
+
     
     return (
         <View style={styles.root}>
@@ -182,7 +119,7 @@ const ViewAccommodationScreen = ({route}) => {
                 {
                     fileUri != null
                     ? <Text style={[styles.text, {paddingLeft: 20}]}>{ fileName }</Text>
-                    : <Text style={ [styles.text, {paddingLeft: 20}]}>No details have been added.</Text>
+                    : <Text style={ [styles.text, {paddingLeft: 20}]}>-</Text>
                 }
                 
                 {/* Line breaks */}
@@ -199,18 +136,6 @@ const ViewAccommodationScreen = ({route}) => {
                     type='TERTIARY'
                 />
                 
-                {
-                    adding
-                    ? <View style={{
-                        paddingTop: 20,
-                        alignSelf: 'center',
-                        }}>
-                        <ActivityIndicator 
-                        size='large' 
-                        color='#000000'/>
-                    </View>
-                    : null
-                }
             </View>
         </View>
     )
@@ -241,7 +166,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         alignItems: 'center',
         paddingTop: 9,
-        flex: 3.8,
+        flex: 3.5,
     },
     horizontal: {
         flexDirection: 'row',
