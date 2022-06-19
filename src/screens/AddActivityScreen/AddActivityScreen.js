@@ -17,14 +17,17 @@ const AddActivityScreen = ({route}) => {
     
     const navigation = useNavigation();
     
-    const { id, dayLabel } = route.params;
+    const { id, dayLabel, date } = route.params;
 
     // Set initial states of each field to be empty.
     const [name, setName] = useState();
     const [location, setLocation] = useState();
+    const [startTime, setStartTime] = useState();
 
-    // Shows whether document for additional notes has been uploaded or not.
+    // Shows whether document for additional notes/ time has been uploaded or not.
     const [isDocChosen, setChosen] = useState(false);
+    const [isTimeChosen, setTimeChosen] = useState(false);
+
 
     //States for file uploading
     const [fileUri, setFileUri] = useState(null);
@@ -33,6 +36,38 @@ const AddActivityScreen = ({route}) => {
 
     //State to show activity indicator when adding accommodation.
     const [adding, setAdding] = useState(false);
+
+    const [isStartVisible, setStartVisible] = useState(false);
+
+    const showStartDatePicker = () => {
+        setStartVisible(true);
+        console.log(date);
+    };
+
+    const hideDatePicker = () => {
+        setStartVisible(false);
+    };
+
+    const handleConfirm = (time) => {
+        console.log("A start time has been picked: ", time);
+        setStartTime(time);
+        setTimeChosen(true);
+        hideDatePicker();
+    };
+
+    const getTime = (time) => {
+        let minutes = time.getMinutes();
+        let hours = time.getHours();
+
+        if (hours < 10) {
+            hours = `0${hours}`;
+        }
+
+        if (minutes < 10) {
+            minutes = `0${minutes}`;
+        }
+        return `${hours}:${minutes}`
+    }
 
     //Choose which file to upload.
     const chooseFile = async () => {
@@ -109,12 +144,14 @@ const AddActivityScreen = ({route}) => {
                 notes: fileUrl,
                 type: 'activity',
                 id: itemId,
+                time: startTime,
             })
 
         setAdding(false);
         navigation.navigate('NewDay', {
             id: id,
             dayLabel: dayLabel,
+            date: date,
         });
     }
 
@@ -159,6 +196,27 @@ const AddActivityScreen = ({route}) => {
                     setValue = { setLocation  }
                 />
 
+                {/* Pick start time */}
+                <Text style = { styles.text }>Start Time</Text>
+                <View style={styles.horizontal}>
+                    <Pressable onPress={ showStartDatePicker } style={styles.button}>
+                        <Text style={styles.buttonText}>Pick Start Time</Text>
+                    </Pressable>
+                    {
+                        isTimeChosen
+                        ? <Text style={[styles.setText, {paddingLeft: 20}]}>{ getTime(startTime) }</Text>
+                        : null
+                    }
+                </View>
+                <DateTimePickerModal
+                    isVisible={isStartVisible}
+                    mode="time"
+                    onConfirm={handleConfirm}
+                    onCancel={hideDatePicker}
+                    date={date.toDate()}
+                />
+                
+
                 {/* Upload additional files */}
                 <Text style = { styles.text }>Additional Notes</Text>
                 <View style={styles.horizontal}>
@@ -183,9 +241,6 @@ const AddActivityScreen = ({route}) => {
                     <Text style={styles.acceptedFiles}>Accepted file formats: .pdf, .docx, .jpeg, .png</Text>
 
                 {/* Line breaks */}
-                <Text>{'\n'}</Text>
-                <Text>{'\n'}</Text>
-                <Text>{'\n'}</Text>
                 <Text>{'\n'}</Text>
                 <Text>{'\n'}</Text>
                 <Text>{'\n'}</Text>

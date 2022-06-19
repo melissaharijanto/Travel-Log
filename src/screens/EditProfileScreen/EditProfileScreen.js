@@ -58,7 +58,11 @@ const EditProfileScreen = () => {
      }
 
      useEffect(() => {
-         getUser();
+        let unmounted = false;
+        getUser();
+        return () => {
+            unmounted = true;
+        }
        }, []);
 
     const navigation = useNavigation();

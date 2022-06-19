@@ -16,6 +16,7 @@ MERGED from [:react-native-fs] /Users/melissaharijanto/TravelLogApp/node_modules
 MERGED from [:react-native-community_clipboard] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-community/clipboard/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-community_datetimepicker] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-community/datetimepicker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-document-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-document-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:react-native-gesture-handler] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-gesture-handler/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-33:12
 MERGED from [:react-native-safe-area-context] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-screens] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
@@ -24,6 +25,7 @@ MERGED from [com.facebook.react:react-native:0.68.2] /Users/melissaharijanto/.gr
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] /Users/melissaharijanto/.gradle/caches/transforms-3/8ff2ee8b67ad4ec00c7064fa6656dfe6/transformed/swiperefreshlayout-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.firebase:firebase-analytics:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ee3540eeb1e8b3f93bc0e83bcd0070ba/transformed/jetified-firebase-analytics-21.0.0/AndroidManifest.xml:2:1-9:12
 MERGED from [org.webkit:android-jsc:r250230] /Users/melissaharijanto/.gradle/caches/transforms-3/3ad599c9fca7ba95a58db2a02e0ff875/transformed/jetified-android-jsc-r250230/AndroidManifest.xml:2:1-11:12
+MERGED from [:react-native-reanimated] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-reanimated/android/build/.transforms/68a2a7bcf7051f2502192da7b100455e/transformed/jetified-react-native-reanimated-68-jsc/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:17:1-73:12
 MERGED from [com.google.firebase:firebase-firestore:24.1.2] /Users/melissaharijanto/.gradle/caches/transforms-3/957bca1613b61b77fe2db7da1b45afa7/transformed/jetified-firebase-firestore-24.1.2/AndroidManifest.xml:2:1-26:12
 MERGED from [com.google.firebase:firebase-storage:20.0.1] /Users/melissaharijanto/.gradle/caches/transforms-3/c6c8b88f143f37cf16ce75c484d9748b/transformed/jetified-firebase-storage-20.0.1/AndroidManifest.xml:15:1-39:12
@@ -55,8 +57,8 @@ MERGED from [androidx.sqlite:sqlite-framework:2.1.0] /Users/melissaharijanto/.gr
 MERGED from [androidx.autofill:autofill:1.1.0] /Users/melissaharijanto/.gradle/caches/transforms-3/9099636fbd5d884ab000f83c5f28eb01/transformed/jetified-autofill-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [com.facebook.fresco:middleware:2.6.0] /Users/melissaharijanto/.gradle/caches/transforms-3/101873a7583f5044930098b124d46c18/transformed/jetified-middleware-2.6.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.fresco:ui-common:2.6.0] /Users/melissaharijanto/.gradle/caches/transforms-3/0526f9a5cd519b332f3bb91c4aa4cceb/transformed/jetified-ui-common-2.6.0/AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.core:core-ktx:1.6.0] /Users/melissaharijanto/.gradle/caches/transforms-3/23a4a628c481bc46181e760a1820f32a/transformed/jetified-core-ktx-1.6.0/AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/melissaharijanto/.gradle/caches/transforms-3/e60ee58f05e70a6939f7d32cb26168b9/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.core:core-ktx:1.5.0] /Users/melissaharijanto/.gradle/caches/transforms-3/0e43b3eb180fe1783919c3a9ee99f081/transformed/jetified-core-ktx-1.5.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-auth:20.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ab6d07be4d11d6fd14a46e3a3de23097/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:17:1-40:12
 MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.1] /Users/melissaharijanto/.gradle/caches/transforms-3/7fe96ee7c37f55842e9438dbdd690bed/transformed/jetified-play-services-auth-api-phone-18.0.1/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.gms:play-services-auth-base:18.0.1] /Users/melissaharijanto/.gradle/caches/transforms-3/660d7ab2f1b35c0a142da6ac4de9d7d7/transformed/jetified-play-services-auth-base-18.0.1/AndroidManifest.xml:2:1-7:12
@@ -76,9 +78,12 @@ MERGED from [com.google.firebase:firebase-measurement-connector:19.0.0] /Users/m
 MERGED from [com.google.android.gms:play-services-basement:18.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/be944647bfd82958aafff760cc43d854/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:16:1-26:12
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/5379f99d35d79edb68860ac2faf01d33/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.fragment:fragment:1.3.4] /Users/melissaharijanto/.gradle/caches/transforms-3/69debd5194a9826ffbe83fd8c1f7e748/transformed/fragment-1.3.4/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/73e8205a47cf07c88af4e762cc10d3f0/transformed/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.activity:activity:1.2.3] /Users/melissaharijanto/.gradle/caches/transforms-3/78d21a78ceabdcdf9db77999e85e6036/transformed/jetified-activity-1.2.3/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat-resources:1.3.0] /Users/melissaharijanto/.gradle/caches/transforms-3/41f37ceeb0cbb17c64e39ad570188f39/transformed/jetified-appcompat-resources-1.3.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/c2b91ed3534aedcc001d90df4e064969/transformed/drawerlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] /Users/melissaharijanto/.gradle/caches/transforms-3/50093ec74c7364f92b47287426adbfbb/transformed/jetified-lifecycle-viewmodel-savedstate-2.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.1.0] /Users/melissaharijanto/.gradle/caches/transforms-3/4f5df902dd815d3d4783eddcb7e1dfb9/transformed/jetified-savedstate-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/9e88ee5870971a1b5be837854510b0f6/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.loader:loader:1.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/cd3103176b384d291d273889ebaca016/transformed/loader-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.browser:browser:1.4.0] /Users/melissaharijanto/.gradle/caches/transforms-3/eddcf852664e1e9b8ef1f8e7deab47f6/transformed/browser-1.4.0/AndroidManifest.xml:17:1-24:12
@@ -88,10 +93,7 @@ MERGED from [androidx.customview:customview:1.0.0] /Users/melissaharijanto/.grad
 MERGED from [androidx.transition:transition:1.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/867588162ba4925d86a53ef845b8a7ab/transformed/transition-1.2.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/melissaharijanto/.gradle/caches/transforms-3/912d2819b06ae7d1ffd1dc4bfe9645ad/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/melissaharijanto/.gradle/caches/transforms-3/6594bdc38b54ccf09d6b82ee79e0b342/transformed/vectordrawable-1.1.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.core:core:1.5.0] /Users/melissaharijanto/.gradle/caches/transforms-3/20885dd90e11e58c268fef9efd1e4628/transformed/core-1.5.0/AndroidManifest.xml:17:1-26:12
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/73e8205a47cf07c88af4e762cc10d3f0/transformed/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] /Users/melissaharijanto/.gradle/caches/transforms-3/50093ec74c7364f92b47287426adbfbb/transformed/jetified-lifecycle-viewmodel-savedstate-2.3.1/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.savedstate:savedstate:1.1.0] /Users/melissaharijanto/.gradle/caches/transforms-3/4f5df902dd815d3d4783eddcb7e1dfb9/transformed/jetified-savedstate-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core:1.6.0] /Users/melissaharijanto/.gradle/caches/transforms-3/826bfb294122aa78ed3602b6bf66ff26/transformed/core-1.6.0/AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] /Users/melissaharijanto/.gradle/caches/transforms-3/a659146c7439b9a25ade64d0482be747/transformed/lifecycle-runtime-2.3.1/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] /Users/melissaharijanto/.gradle/caches/transforms-3/1b3b07b629a601d990b26a3d2cbe24d2/transformed/lifecycle-viewmodel-2.3.1/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.sqlite:sqlite:2.1.0] /Users/melissaharijanto/.gradle/caches/transforms-3/b2dab74bf95a5ae19d85184d90c872cf/transformed/sqlite-2.1.0/AndroidManifest.xml:17:1-24:12
@@ -109,7 +111,7 @@ MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/melissaharijanto/.
 MERGED from [androidx.print:print:1.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/b8da900311946eabf3d7e1966ac9941b/transformed/print-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [com.facebook.fresco:fbcore:2.6.0] /Users/melissaharijanto/.gradle/caches/transforms-3/919e17cd71f568e3e07de030c6fc1b27/transformed/jetified-fbcore-2.6.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/a26b3f16c1bb066bc90ceb14352408aa/transformed/jetified-protolite-well-known-types-18.0.0/AndroidManifest.xml:2:1-11:12
-MERGED from [androidx.annotation:annotation-experimental:1.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/63611191e5cb61fefb4bb98cd4736898/transformed/jetified-annotation-experimental-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/melissaharijanto/.gradle/caches/transforms-3/29db03521d6a5380ac66c5fc8b8a949a/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:17:1-24:12
 INJECTED from /Users/melissaharijanto/TravelLogApp/android/app/src/debug/AndroidManifest.xml:2:1-13:12
 INJECTED from /Users/melissaharijanto/TravelLogApp/android/app/src/debug/AndroidManifest.xml:2:1-13:12
 INJECTED from /Users/melissaharijanto/TravelLogApp/android/app/src/debug/AndroidManifest.xml:2:1-13:12
@@ -276,12 +278,12 @@ MERGED from [com.google.firebase:firebase-measurement-connector:19.0.0] /Users/m
 MERGED from [com.google.firebase:firebase-measurement-connector:19.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/8501e04d4790057d96622d7c5f03ac2a/transformed/jetified-firebase-measurement-connector-19.0.0/AndroidManifest.xml:22:5-23:19
 MERGED from [com.google.android.gms:play-services-basement:18.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/be944647bfd82958aafff760cc43d854/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:20:5-24:19
 MERGED from [com.google.android.gms:play-services-basement:18.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/be944647bfd82958aafff760cc43d854/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:20:5-24:19
-MERGED from [androidx.core:core:1.5.0] /Users/melissaharijanto/.gradle/caches/transforms-3/20885dd90e11e58c268fef9efd1e4628/transformed/core-1.5.0/AndroidManifest.xml:24:5-89
-MERGED from [androidx.core:core:1.5.0] /Users/melissaharijanto/.gradle/caches/transforms-3/20885dd90e11e58c268fef9efd1e4628/transformed/core-1.5.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.6.0] /Users/melissaharijanto/.gradle/caches/transforms-3/826bfb294122aa78ed3602b6bf66ff26/transformed/core-1.6.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.6.0] /Users/melissaharijanto/.gradle/caches/transforms-3/826bfb294122aa78ed3602b6bf66ff26/transformed/core-1.6.0/AndroidManifest.xml:24:5-89
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/melissaharijanto/.gradle/caches/transforms-3/5cde47109f2fa76399f66cce7917893a/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/melissaharijanto/.gradle/caches/transforms-3/5cde47109f2fa76399f66cce7917893a/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
 	android:appComponentFactory
-		ADDED from [androidx.core:core:1.5.0] /Users/melissaharijanto/.gradle/caches/transforms-3/20885dd90e11e58c268fef9efd1e4628/transformed/core-1.5.0/AndroidManifest.xml:24:18-86
+		ADDED from [androidx.core:core:1.6.0] /Users/melissaharijanto/.gradle/caches/transforms-3/826bfb294122aa78ed3602b6bf66ff26/transformed/core-1.6.0/AndroidManifest.xml:24:18-86
 	android:label
 		ADDED from /Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:16:7-39
 		ADDED from /Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:16:7-39
@@ -360,6 +362,8 @@ MERGED from [:react-native-community_datetimepicker] /Users/melissaharijanto/Tra
 MERGED from [:react-native-community_datetimepicker] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-community/datetimepicker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-document-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-document-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-document-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-document-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-gesture-handler] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-gesture-handler/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-gesture-handler] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-gesture-handler/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-safe-area-context] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
@@ -376,6 +380,8 @@ MERGED from [com.google.firebase:firebase-analytics:21.0.0] /Users/melissaharija
 MERGED from [com.google.firebase:firebase-analytics:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ee3540eeb1e8b3f93bc0e83bcd0070ba/transformed/jetified-firebase-analytics-21.0.0/AndroidManifest.xml:5:5-44
 MERGED from [org.webkit:android-jsc:r250230] /Users/melissaharijanto/.gradle/caches/transforms-3/3ad599c9fca7ba95a58db2a02e0ff875/transformed/jetified-android-jsc-r250230/AndroidManifest.xml:7:5-9:41
 MERGED from [org.webkit:android-jsc:r250230] /Users/melissaharijanto/.gradle/caches/transforms-3/3ad599c9fca7ba95a58db2a02e0ff875/transformed/jetified-android-jsc-r250230/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-reanimated] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-reanimated/android/build/.transforms/68a2a7bcf7051f2502192da7b100455e/transformed/jetified-react-native-reanimated-68-jsc/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-reanimated] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-reanimated/android/build/.transforms/68a2a7bcf7051f2502192da7b100455e/transformed/jetified-react-native-reanimated-68-jsc/AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:21:5-44
 MERGED from [com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:21:5-44
 MERGED from [com.google.firebase:firebase-firestore:24.1.2] /Users/melissaharijanto/.gradle/caches/transforms-3/957bca1613b61b77fe2db7da1b45afa7/transformed/jetified-firebase-firestore-24.1.2/AndroidManifest.xml:7:5-9:41
@@ -438,10 +444,10 @@ MERGED from [com.facebook.fresco:middleware:2.6.0] /Users/melissaharijanto/.grad
 MERGED from [com.facebook.fresco:middleware:2.6.0] /Users/melissaharijanto/.gradle/caches/transforms-3/101873a7583f5044930098b124d46c18/transformed/jetified-middleware-2.6.0/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:ui-common:2.6.0] /Users/melissaharijanto/.gradle/caches/transforms-3/0526f9a5cd519b332f3bb91c4aa4cceb/transformed/jetified-ui-common-2.6.0/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:ui-common:2.6.0] /Users/melissaharijanto/.gradle/caches/transforms-3/0526f9a5cd519b332f3bb91c4aa4cceb/transformed/jetified-ui-common-2.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.core:core-ktx:1.6.0] /Users/melissaharijanto/.gradle/caches/transforms-3/23a4a628c481bc46181e760a1820f32a/transformed/jetified-core-ktx-1.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.core:core-ktx:1.6.0] /Users/melissaharijanto/.gradle/caches/transforms-3/23a4a628c481bc46181e760a1820f32a/transformed/jetified-core-ktx-1.6.0/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/melissaharijanto/.gradle/caches/transforms-3/e60ee58f05e70a6939f7d32cb26168b9/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/melissaharijanto/.gradle/caches/transforms-3/e60ee58f05e70a6939f7d32cb26168b9/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.core:core-ktx:1.5.0] /Users/melissaharijanto/.gradle/caches/transforms-3/0e43b3eb180fe1783919c3a9ee99f081/transformed/jetified-core-ktx-1.5.0/AndroidManifest.xml:5:5-7:41
-MERGED from [androidx.core:core-ktx:1.5.0] /Users/melissaharijanto/.gradle/caches/transforms-3/0e43b3eb180fe1783919c3a9ee99f081/transformed/jetified-core-ktx-1.5.0/AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.android.gms:play-services-auth:20.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ab6d07be4d11d6fd14a46e3a3de23097/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-auth:20.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ab6d07be4d11d6fd14a46e3a3de23097/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.1] /Users/melissaharijanto/.gradle/caches/transforms-3/7fe96ee7c37f55842e9438dbdd690bed/transformed/jetified-play-services-auth-api-phone-18.0.1/AndroidManifest.xml:5:5-44
@@ -480,12 +486,18 @@ MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/melissaharijanto/.grad
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/5379f99d35d79edb68860ac2faf01d33/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment:1.3.4] /Users/melissaharijanto/.gradle/caches/transforms-3/69debd5194a9826ffbe83fd8c1f7e748/transformed/fragment-1.3.4/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment:1.3.4] /Users/melissaharijanto/.gradle/caches/transforms-3/69debd5194a9826ffbe83fd8c1f7e748/transformed/fragment-1.3.4/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/73e8205a47cf07c88af4e762cc10d3f0/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/73e8205a47cf07c88af4e762cc10d3f0/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.activity:activity:1.2.3] /Users/melissaharijanto/.gradle/caches/transforms-3/78d21a78ceabdcdf9db77999e85e6036/transformed/jetified-activity-1.2.3/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.activity:activity:1.2.3] /Users/melissaharijanto/.gradle/caches/transforms-3/78d21a78ceabdcdf9db77999e85e6036/transformed/jetified-activity-1.2.3/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.appcompat:appcompat-resources:1.3.0] /Users/melissaharijanto/.gradle/caches/transforms-3/41f37ceeb0cbb17c64e39ad570188f39/transformed/jetified-appcompat-resources-1.3.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.appcompat:appcompat-resources:1.3.0] /Users/melissaharijanto/.gradle/caches/transforms-3/41f37ceeb0cbb17c64e39ad570188f39/transformed/jetified-appcompat-resources-1.3.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/c2b91ed3534aedcc001d90df4e064969/transformed/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/c2b91ed3534aedcc001d90df4e064969/transformed/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] /Users/melissaharijanto/.gradle/caches/transforms-3/50093ec74c7364f92b47287426adbfbb/transformed/jetified-lifecycle-viewmodel-savedstate-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] /Users/melissaharijanto/.gradle/caches/transforms-3/50093ec74c7364f92b47287426adbfbb/transformed/jetified-lifecycle-viewmodel-savedstate-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.1.0] /Users/melissaharijanto/.gradle/caches/transforms-3/4f5df902dd815d3d4783eddcb7e1dfb9/transformed/jetified-savedstate-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.1.0] /Users/melissaharijanto/.gradle/caches/transforms-3/4f5df902dd815d3d4783eddcb7e1dfb9/transformed/jetified-savedstate-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/9e88ee5870971a1b5be837854510b0f6/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/9e88ee5870971a1b5be837854510b0f6/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.loader:loader:1.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/cd3103176b384d291d273889ebaca016/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
@@ -504,14 +516,8 @@ MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/melis
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/melissaharijanto/.gradle/caches/transforms-3/912d2819b06ae7d1ffd1dc4bfe9645ad/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/melissaharijanto/.gradle/caches/transforms-3/6594bdc38b54ccf09d6b82ee79e0b342/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/melissaharijanto/.gradle/caches/transforms-3/6594bdc38b54ccf09d6b82ee79e0b342/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.core:core:1.5.0] /Users/melissaharijanto/.gradle/caches/transforms-3/20885dd90e11e58c268fef9efd1e4628/transformed/core-1.5.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.core:core:1.5.0] /Users/melissaharijanto/.gradle/caches/transforms-3/20885dd90e11e58c268fef9efd1e4628/transformed/core-1.5.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/73e8205a47cf07c88af4e762cc10d3f0/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/73e8205a47cf07c88af4e762cc10d3f0/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] /Users/melissaharijanto/.gradle/caches/transforms-3/50093ec74c7364f92b47287426adbfbb/transformed/jetified-lifecycle-viewmodel-savedstate-2.3.1/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] /Users/melissaharijanto/.gradle/caches/transforms-3/50093ec74c7364f92b47287426adbfbb/transformed/jetified-lifecycle-viewmodel-savedstate-2.3.1/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.savedstate:savedstate:1.1.0] /Users/melissaharijanto/.gradle/caches/transforms-3/4f5df902dd815d3d4783eddcb7e1dfb9/transformed/jetified-savedstate-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.savedstate:savedstate:1.1.0] /Users/melissaharijanto/.gradle/caches/transforms-3/4f5df902dd815d3d4783eddcb7e1dfb9/transformed/jetified-savedstate-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.6.0] /Users/melissaharijanto/.gradle/caches/transforms-3/826bfb294122aa78ed3602b6bf66ff26/transformed/core-1.6.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.6.0] /Users/melissaharijanto/.gradle/caches/transforms-3/826bfb294122aa78ed3602b6bf66ff26/transformed/core-1.6.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] /Users/melissaharijanto/.gradle/caches/transforms-3/a659146c7439b9a25ade64d0482be747/transformed/lifecycle-runtime-2.3.1/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] /Users/melissaharijanto/.gradle/caches/transforms-3/a659146c7439b9a25ade64d0482be747/transformed/lifecycle-runtime-2.3.1/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] /Users/melissaharijanto/.gradle/caches/transforms-3/1b3b07b629a601d990b26a3d2cbe24d2/transformed/lifecycle-viewmodel-2.3.1/AndroidManifest.xml:20:5-22:41
@@ -546,8 +552,8 @@ MERGED from [com.facebook.fresco:fbcore:2.6.0] /Users/melissaharijanto/.gradle/c
 MERGED from [com.facebook.fresco:fbcore:2.6.0] /Users/melissaharijanto/.gradle/caches/transforms-3/919e17cd71f568e3e07de030c6fc1b27/transformed/jetified-fbcore-2.6.0/AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/a26b3f16c1bb066bc90ceb14352408aa/transformed/jetified-protolite-well-known-types-18.0.0/AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/a26b3f16c1bb066bc90ceb14352408aa/transformed/jetified-protolite-well-known-types-18.0.0/AndroidManifest.xml:7:5-9:41
-MERGED from [androidx.annotation:annotation-experimental:1.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/63611191e5cb61fefb4bb98cd4736898/transformed/jetified-annotation-experimental-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.annotation:annotation-experimental:1.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/63611191e5cb61fefb4bb98cd4736898/transformed/jetified-annotation-experimental-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/melissaharijanto/.gradle/caches/transforms-3/29db03521d6a5380ac66c5fc8b8a949a/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/melissaharijanto/.gradle/caches/transforms-3/29db03521d6a5380ac66c5fc8b8a949a/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
 INJECTED from /Users/melissaharijanto/TravelLogApp/android/app/src/debug/AndroidManifest.xml
 INJECTED from /Users/melissaharijanto/TravelLogApp/android/app/src/debug/AndroidManifest.xml
 	android:targetSdkVersion

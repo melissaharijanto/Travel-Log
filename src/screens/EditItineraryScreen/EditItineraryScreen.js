@@ -68,26 +68,29 @@ const EditItineraryScreen = ( {route} ) => {
             itineraries: firebase.firestore.FieldValue.increment(-1),
 
         })
+        try {
+            await firestore()
+                .collection('users')
+                .doc(auth().currentUser.uid)
+                .collection('itineraries')
+                .doc(itinerary.id)
+                .delete()
+                .then(() => 
+                    console.log('Unbinded from user.')
+                );
 
-        await firestore()
-            .collection('users')
-            .doc(auth().currentUser.uid)
-            .collection('itineraries')
-            .doc(itinerary.id)
-            .delete()
-            .then(() => 
-                console.log('Unbinded from user.')
-            );
-
-        await firestore()
-            .collection('itineraries')
-            .doc(itinerary.id)
-            .delete()
-            .then(() => {
-                console.log('Deleted.');
-                setDeleting(false);
-                navigation.navigate("HomeScreen");
-            })
+            await firestore()
+                .collection('itineraries')
+                .doc(itinerary.id)
+                .delete()
+                .then(() => {
+                    console.log('Deleted.');
+                    setDeleting(false);
+                    navigation.navigate("HomeScreen");
+                })
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     const choosePhotoFromLibrary = () => {
@@ -190,12 +193,12 @@ const EditItineraryScreen = ( {route} ) => {
 
                 <Text style = { styles.headerText }>Edit Itinerary</Text>
                 <DeleteIcon
-                        name = "trash-2"
-                        size = {25}
-                        onPress = { confirmDelete }
-                        style = {{
-                            paddingRight: 20
-                        }}
+                    name = "trash-2"
+                    size = {25}
+                    onPress = { confirmDelete }
+                    style = {{
+                        paddingRight: 20
+                    }}
                 />
             </View>
 

@@ -4,6 +4,23 @@
             "outputFile": "/Users/melissaharijanto/TravelLogApp/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-tr/values-tr.xml",
             "map": [
                 {
+                    "source": "/Users/melissaharijanto/.gradle/caches/transforms-3/826bfb294122aa78ed3602b6bf66ff26/transformed/core-1.6.0/res/values-tr/values-tr.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "52",
+                        "startColumns": "4",
+                        "startOffsets": "5547",
+                        "endColumns": "100",
+                        "endOffsets": "5643"
+                    }
+                },
+                {
                     "source": "/Users/melissaharijanto/.gradle/caches/transforms-3/07e00fd4a881a5e0977285b218ec9906/transformed/jetified-play-services-base-18.0.1/res/values-tr/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
@@ -69,23 +86,6 @@
                         "startOffsets": "3813",
                         "endColumns": "146",
                         "endOffsets": "3955"
-                    }
-                },
-                {
-                    "source": "/Users/melissaharijanto/.gradle/caches/transforms-3/20885dd90e11e58c268fef9efd1e4628/transformed/core-1.5.0/res/values-tr/values-tr.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "52",
-                        "startColumns": "4",
-                        "startOffsets": "5547",
-                        "endColumns": "100",
-                        "endOffsets": "5643"
                     }
                 }
             ]

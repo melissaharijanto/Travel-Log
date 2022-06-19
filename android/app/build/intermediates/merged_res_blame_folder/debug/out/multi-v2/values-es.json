@@ -4,23 +4,6 @@
             "outputFile": "/Users/melissaharijanto/TravelLogApp/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-es/values-es.xml",
             "map": [
                 {
-                    "source": "/Users/melissaharijanto/.gradle/caches/transforms-3/20885dd90e11e58c268fef9efd1e4628/transformed/core-1.5.0/res/values-es/values-es.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "52",
-                        "startColumns": "4",
-                        "startOffsets": "5684",
-                        "endColumns": "100",
-                        "endOffsets": "5780"
-                    }
-                },
-                {
                     "source": "/Users/melissaharijanto/.gradle/caches/transforms-3/ddeb2fc4b6f338c6bb277d580b392529/transformed/jetified-ucrop-2.2.6-native/res/values-es/values-es.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7",
@@ -103,6 +86,23 @@
                         "startOffsets": "105,207,320,428,513,614,742,828,909,1001,1095,1192,1286,1386,1480,1576,1672,1764,1856,1938,2045,2156,2255,2363,2471,2578,2737,5601",
                         "endColumns": "101,112,107,84,100,127,85,80,91,93,96,93,99,93,95,95,91,91,81,106,110,98,107,107,106,158,98,82",
                         "endOffsets": "202,315,423,508,609,737,823,904,996,1090,1187,1281,1381,1475,1571,1667,1759,1851,1933,2040,2151,2250,2358,2466,2573,2732,2831,5679"
+                    }
+                },
+                {
+                    "source": "/Users/melissaharijanto/.gradle/caches/transforms-3/826bfb294122aa78ed3602b6bf66ff26/transformed/core-1.6.0/res/values-es/values-es.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "52",
+                        "startColumns": "4",
+                        "startOffsets": "5684",
+                        "endColumns": "100",
+                        "endOffsets": "5780"
                     }
                 }
             ]

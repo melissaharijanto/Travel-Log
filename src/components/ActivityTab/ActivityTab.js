@@ -1,10 +1,14 @@
 import React from 'react';
-import { View, Text, Pressable, StyleSheet, Image } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import Activity from '../../../assets/images/Activity.png';
 
-const ActivityTab = ({ onPress, text, subtext }) => {
+const ActivityTab = ({ onPress, text, subtext, isActive, onLongPress }) => {
     return (
-        <Pressable onPress= { onPress } style= { styles.container }>
+        <TouchableOpacity 
+            onPress= { onPress } 
+            style= { styles.container }
+            disabled={isActive}
+            onLongPress={onLongPress}>
             <View style= { styles.horizontal }>
                     <Image source = { Activity }
                         style = { [styles.icon, styles.horizontal] }/>
@@ -18,7 +22,7 @@ const ActivityTab = ({ onPress, text, subtext }) => {
                 </View>
             </View>
 
-        </Pressable>
+        </TouchableOpacity>
     )
 }
 

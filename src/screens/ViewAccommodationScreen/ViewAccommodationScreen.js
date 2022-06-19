@@ -9,12 +9,12 @@ import firestore from '@react-native-firebase/firestore';
 
 const ViewAccommodationScreen = ({route}) => {
 
-    const { id, itemId, dayLabel } = route.params;
+    const { id, itineraryStart, itineraryEnd, itemId } = route.params;
 
     const navigation = useNavigation();
     
     // Set initial states of each field to be empty.
-    const [name, setName] = useState();
+    const [name, setName] = useState('');
 
     // Date picker states.
     const [endDate, setEndDate] = useState(new Date());
@@ -43,9 +43,7 @@ const ViewAccommodationScreen = ({route}) => {
         await firestore()
             .collection('itineraries')
             .doc(id)
-            .collection('days')
-            .doc(dayLabel)
-            .collection('plans')
+            .collection('accommodation')
             .doc(itemId)
             .onSnapshot((documentSnapshot) => {
                 setName(documentSnapshot.data().name);
@@ -67,11 +65,19 @@ const ViewAccommodationScreen = ({route}) => {
     }
 
     useEffect(() => {
+        let unmounted = false;
         getData();
+        return () => {
+            unmounted = true;
+        }
     }, [route])
 
     useEffect(() => {
+        let unmounted = false;
         getFileName();
+        return () => {
+            unmounted = true;
+        }
     }, [fileUri])
 
     
@@ -132,7 +138,14 @@ const ViewAccommodationScreen = ({route}) => {
 
                 <CustomButton
                     text='Edit'
-                    onPress= { () => {} }
+                    onPress= { () => {
+                        navigation.navigate('EditAccommodation', {
+                            id: id,
+                            itemId: itemId,
+                            itineraryStart: itineraryStart,
+                            itineraryEnd: itineraryEnd,
+                        });
+                    } }
                     type='TERTIARY'
                 />
                 

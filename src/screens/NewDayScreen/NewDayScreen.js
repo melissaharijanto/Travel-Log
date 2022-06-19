@@ -4,13 +4,12 @@ import { useNavigation } from '@react-navigation/native';
 import Back from 'react-native-vector-icons/Feather';
 import Rearrange from 'react-native-vector-icons/Entypo';
 import ActivityTab from '../../components/ActivityTab';
-import AccommodationTab from '../../components/AccommodationTab';
 import TransportTab from '../../components/TransportTab';
 import ActionButton from 'react-native-action-button-warnings-fixed';
 import Activity from '../../../assets/images/Activity.png';
-import Accommodation from '../../../assets/images/Accommodation.png';
 import Transport from '../../../assets/images/Transport.png';
 import firestore from '@react-native-firebase/firestore';
+
 
 const NewDayScreen = ({route}) => {
     
@@ -18,24 +17,24 @@ const NewDayScreen = ({route}) => {
 
     const [plans, setPlans] = useState(null);
 
-    const { id, dayLabel, itineraryStart, itineraryEnd } = route.params;
-    
-    const [title, setTitle] = useState();
-    const [notes, setNotes] = useState();
-    const [image, setImage] = useState();
-    const [startDate, setStartDate] = useState();
-    const [endDate, setEndDate] = useState();
-    const [currImage, setCurrImage] = useState();
-    const [editing, setEditing] = useState(false);
-    const [deleting, setDeleting] = useState(false);
-    const [isImageChosen, setChosen] = useState(null);
-    
-    const goToEditPage = () => {
-        // do nothing
-    }
+    const { id, dayLabel, date } = route.params;
 
     const placeholder = () => {
 
+    }
+
+    const getTime = (time) => {
+        let minutes = time.toDate().getMinutes();
+        let hours = time.toDate().getHours();
+
+        if (hours < 10) {
+            hours = `0${hours}`;
+        }
+
+        if (minutes < 10) {
+            minutes = `0${minutes}`;
+        }
+        return `${hours}:${minutes}`;
     }
 
     const goBack = () => {
@@ -50,6 +49,7 @@ const NewDayScreen = ({route}) => {
             .collection('days')
             .doc(dayLabel)
             .collection('plans')
+            .orderBy('time')
             .onSnapshot((querySnapshot) => {
                 if (querySnapshot.empty) {
                     console.log('Query is empty.');
@@ -58,26 +58,14 @@ const NewDayScreen = ({route}) => {
                 querySnapshot.forEach((doc) => {
                     const {
                         name,
-                        checkInDate,
-                        checkOutDate,
                         notes,
                         type,
                         location,
                         startingPoint,
                         destination,
                         id,
+                        time,
                     } = doc.data();
-                    
-                    if (type === 'accommodation'){
-                    plansList.push({
-                        name: name,
-                        checkInDate: checkInDate,
-                        checkOutDate: checkOutDate,
-                        notes: notes,
-                        type: type,
-                        id: id,
-                    })
-                    }
 
                     if (type === 'activity'){
                         plansList.push({
@@ -86,6 +74,7 @@ const NewDayScreen = ({route}) => {
                             type: type,
                             location: location,
                             id: id,
+                            time: time,
                         })
                     }
 
@@ -97,6 +86,7 @@ const NewDayScreen = ({route}) => {
                             startingPoint: startingPoint,
                             destination: destination,
                             id: id,
+                            time: time,
                         })
                     }
                     setPlans(plansList);
@@ -105,9 +95,12 @@ const NewDayScreen = ({route}) => {
     }
 
     useEffect(() =>{
+        let unmounted = false;
         getPlans();
-        return;
-    }, [route]);
+        return () => {
+            unmounted = true;
+        };
+    }, []);
 
     return (
         <View style={ styles.root }>
@@ -124,16 +117,6 @@ const NewDayScreen = ({route}) => {
                 />
 
                 <Text style = { styles.headerText }>{ dayLabel }</Text>
-
-                <Rearrange
-                    size={35}
-                    name="grid"
-                    onPress = { goToEditPage }
-                    style = {{
-                        flex: 0.3,
-                        paddingTop: 2
-                    }}
-                />
             </View>
 
             <Text></Text>
@@ -142,27 +125,15 @@ const NewDayScreen = ({route}) => {
                 data={ plans }
                 numColumns={1}
                 renderItem={({item}) => {
-                        if(item.type === 'accommodation') {
-                        return <AccommodationTab onPress={() => navigation.navigate("ViewAccommodation",{
-                            id: id,
-                            dayLabel: dayLabel,
-                            itemId: item.id,
-                            itineraryStart: itineraryStart,
-                            itineraryEnd: itineraryEnd,
-                        })}
-                            text={ item.name }
-                            subtext={`${item.checkInDate.toDate().toLocaleDateString()} - ${item.checkOutDate.toDate().toLocaleDateString()}`}
-                        />
-                        }
-
                         if(item.type === 'activity') {
                             return <ActivityTab onPress={() => navigation.navigate("ViewActivity", {
                                 id: id,
                                 dayLabel: dayLabel,
                                 itemId: item.id,
+                                date: date,
                             })}
                                 text={ item.name }
-                                subtext={ item.location }
+                                subtext={ `${getTime(item.time)} - ${item.location}` }
                             />
                         }
 
@@ -171,9 +142,10 @@ const NewDayScreen = ({route}) => {
                                 id: id,
                                 dayLabel: dayLabel,
                                 itemId: item.id,
+                                date: date,
                             })}
                                 text={ item.name }
-                                subtext={`${item.startingPoint} >> ${item.destination}`}
+                                subtext={`${getTime(item.time)} - ${item.startingPoint} >> ${item.destination}`}
                             />
                         }
                 }}
@@ -188,20 +160,6 @@ const NewDayScreen = ({route}) => {
                 buttonColor='#70D9D3'
                 size= {65}
                 spacing= {15}>
-                <ActionButton.Item
-                    size= {55}
-                    buttonColor='#70D9D3'
-                    title = "Accommodation"
-                    onPress = { () => navigation.navigate('AddAccommodation', {
-                        dayLabel: dayLabel,
-                        id: id,
-                        itineraryStart: itineraryStart,
-                        itineraryEnd: itineraryEnd,
-                    })}
-                    textStyle = { styles.buttonText }
-                    shadowStyle = { styles.shadow }>
-                    <Image source= {Accommodation} style = {{width: 55, height: 55}}/>
-                </ActionButton.Item>
 
                 <ActionButton.Item
                     size= {55}
@@ -210,6 +168,7 @@ const NewDayScreen = ({route}) => {
                     onPress = { () => navigation.navigate('AddActivity', {
                         dayLabel: dayLabel,
                         id: id,
+                        date: date,
                     }) }
                     textStyle = { styles.buttonText }
                     shadowStyle = { styles.shadow }>
@@ -223,7 +182,8 @@ const NewDayScreen = ({route}) => {
                     onPress = { () => navigation.navigate('AddTransport', {
                         dayLabel: dayLabel,
                         id: id,
-                    }) }
+                        date: date,
+                    })}
                     textStyle = { styles.buttonText }
                     shadowStyle = { styles.shadow }>
                     <Image source= {Transport} style = {{width: 55, height: 55}}/>
@@ -260,7 +220,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         alignItems: 'center',
         paddingTop: 9,
-        flex: 1.1,
+        flex: 1.45,
    },
    text: {
         fontFamily: 'Poppins-Medium',

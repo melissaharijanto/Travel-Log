@@ -46,14 +46,12 @@ const styles = StyleSheet.create({
         height: 50,
         marginLeft: 5,
         marginRight: 13,
-
     },
     text: {
         fontFamily: 'Poppins-ExtraBold',
         color: '#3B4949',
         fontSize: 24,
         paddingTop: 5,
-        
     },
     subtext: {
         fontFamily: 'Poppins-Bold',

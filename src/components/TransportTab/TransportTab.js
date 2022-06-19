@@ -1,10 +1,14 @@
 import React from 'react';
-import { View, Text, Pressable, StyleSheet, Image } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import Transport from '../../../assets/images/Transport.png';
 
-const TransportTab = ({ onPress, text, subtext }) => {
+const TransportTab = ({ onPress, text, subtext, isActive, onLongPress }) => {
     return (
-        <Pressable onPress= { onPress } style= { styles.container }>
+        <TouchableOpacity 
+            onPress= { onPress } 
+            style= { styles.container }
+            onLongPress = {onLongPress}
+            disabled ={isActive}>
             <View style= { styles.horizontal }>
                     <Image source = { Transport }
                         style = { [styles.icon, styles.horizontal] }/>
@@ -18,7 +22,7 @@ const TransportTab = ({ onPress, text, subtext }) => {
                 </View>
             </View>
 
-        </Pressable>
+        </TouchableOpacity>
     )
 }
 

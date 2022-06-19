@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import Back from 'react-native-vector-icons/Feather';
 import CustomButton from '../../components/CustomButton';
 import { firebase } from '@react-native-firebase/storage';
@@ -9,13 +9,26 @@ import firestore from '@react-native-firebase/firestore';
 
 const ViewActivityScreen = ({route}) => {
 
-    const { id, itemId, dayLabel } = route.params;
+    const { id, itemId, dayLabel, date } = route.params;
+
+    const getTime = (time) => {
+        let minutes = time.getMinutes();
+        let hours = time.getHours();
+        if (hours < 10) {
+            hours = `0${hours}`;
+        }
+        if (minutes < 10) {
+            minutes = `0${minutes}`;
+        }
+        return `${hours}:${minutes}`
+    }
 
     const navigation = useNavigation();
     
     // Set initial states of each field to be empty.
-    const [name, setName] = useState();
-    const [location, setLocation] = useState();
+    const [name, setName] = useState(null);
+    const [location, setLocation] = useState(null);
+    const [startTime, setStartTime] = useState(new Date());
 
     // Shows whether document for additional notes has been uploaded or not.
     const [isDocChosen, setChosen] = useState(false);
@@ -25,19 +38,22 @@ const ViewActivityScreen = ({route}) => {
     const [fileName, setFileName] = useState(null);
 
     
-    const getData = async () => {
-        await firestore()
-            .collection('itineraries')
-            .doc(id)
-            .collection('days')
-            .doc(dayLabel)
-            .collection('plans')
-            .doc(itemId)
-            .onSnapshot((documentSnapshot) => {
-                setName(documentSnapshot.data().name);
-                setLocation(documentSnapshot.data().location);
-                setFileUri(documentSnapshot.data().notes);     
-            })
+    const getData = () => {
+        
+            firestore()
+                .collection('itineraries')
+                .doc(id)
+                .collection('days')
+                .doc(dayLabel)
+                .collection('plans')
+                .doc(itemId)
+                .onSnapshot((documentSnapshot) => {
+                    setName(documentSnapshot.data().name);
+                    setLocation(documentSnapshot.data().location);
+                    setStartTime(documentSnapshot.data().time.toDate());
+                    setFileUri(documentSnapshot.data().notes);     
+                })
+                
     }
 
     const getFileName = async () => {
@@ -47,13 +63,21 @@ const ViewActivityScreen = ({route}) => {
             setFileName(fileNotes);
         }
     }
-
+    
     useEffect(() => {
+        let unmounted = false;
         getData();
+        return () => {
+            unmounted = true;
+        }
     }, [route])
 
     useEffect(() => {
+        let unmounted = false;
         getFileName();
+        return () => {
+            unmounted = true;
+        }
     }, [fileUri])
 
     
@@ -64,7 +88,11 @@ const ViewActivityScreen = ({route}) => {
                 <Back
                     size={35}
                     name="chevron-left"
-                    onPress = { () => navigation.goBack() }
+                    onPress = { () => navigation.navigate('NewDay', {
+                        id: id,
+                        dayLabel: dayLabel,
+                        date: date,
+                    }) }
                     style = {{
                         flex: 1,
                         paddingTop: 2
@@ -80,16 +108,22 @@ const ViewActivityScreen = ({route}) => {
             <View style = {[styles.root, {
                 paddingHorizontal: '8%' }]}>
                 
-                {/* Field to input accommodation name. */}
+                {/* Displays accommodation name. */}
                 <Text style = { styles.field }>Activity Name</Text>
 
                 <Text style={[styles.text, {paddingLeft: 20}]}>{ name }</Text>
 
-                {/* Field to input check-in date. */}
+                {/* Displays Location. */}
                 <Text style = { styles.field }>Location</Text>
                
                 <Text style={[styles.text, {paddingLeft: 20}]}>{ location }</Text>
                 
+                {/* Displays start time. */}
+                <Text style = { styles.field }>Start Time</Text>
+               
+               
+                <Text style={[styles.text, {paddingLeft: 20}]}>{ getTime(startTime) }</Text>
+
                 {/* Upload additional files */}
                 <Text style = { styles.field }>Additional Notes</Text>
                 {
@@ -103,17 +137,20 @@ const ViewActivityScreen = ({route}) => {
                 <Text>{'\n'}</Text>
                 <Text>{'\n'}</Text>
                 <Text>{'\n'}</Text>
-                <Text>{'\n'}</Text>
-                <Text>{'\n'}</Text>
-                <Text>{'\n'}</Text>
+
                 <Text style={{paddingTop: 10}}>{'\n'}</Text>
 
                 <CustomButton
                     text='Edit'
-                    onPress= { () => {} }
+                    onPress= {() => { 
+                        navigation.navigate('EditActivity', {
+                            id: id,
+                            itemId: itemId,
+                            dayLabel: dayLabel,
+                            date: date,
+                    })}}
                     type='TERTIARY'
                 />
-                
             </View>
         </View>
     )

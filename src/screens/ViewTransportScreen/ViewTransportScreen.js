@@ -55,11 +55,19 @@ const ViewTransportScreen = ({route}) => {
     }
 
     useEffect(() => {
+        let unmounted = false;
         getData();
+        return () => {
+            unmounted = true;
+        }
     }, [route])
 
     useEffect(() => {
+        let unmounted = false;
         getFileName();
+        return () => {
+            unmounted = true;
+        }
     }, [fileUri])
 
     

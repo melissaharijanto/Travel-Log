@@ -8,6 +8,7 @@ import {
     Dimensions, 
     FlatList,
     Alert,
+    TouchableOpacity,
 } from 'react-native';
 import EditIcon from 'react-native-vector-icons/AntDesign';
 import CopyIcon from 'react-native-vector-icons/MaterialIcons'
@@ -16,6 +17,7 @@ import { useNavigation } from '@react-navigation/native';
 import DayTab from '../../components/DayTab';
 import Clipboard from '@react-native-community/clipboard';
 import firestore from '@react-native-firebase/firestore';
+import AccommodationMainTab from '../../components/AccommodationMainTab';
 
 const OpeningItineraryScreen = ({route}) => {
     
@@ -33,8 +35,8 @@ const OpeningItineraryScreen = ({route}) => {
         const months = ["January", "February", "March", 
         "April", "May", "June", "July", "August", "September", 
         "October", "November", "December"];
-        const days = ["Monday", "Tuesday", "Wednesday", "Thursday", 
-        "Friday", "Saturday", "Sunday"];
+        const days = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", 
+        "Friday", "Saturday"];
         return `${days[date.getDay()]}, ${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
     };
 
@@ -161,6 +163,24 @@ const OpeningItineraryScreen = ({route}) => {
                 </View>
             </ImageBackground>
 
+            <View style={{paddingHorizontal: '4%',
+                marginTop: 5,
+                marginBottom: 10}}>
+                <AccommodationMainTab onPress={() => {
+                    navigation.navigate('NewAccommodation',{
+                        id: itinerary.id,
+                        itineraryStart: itinerary.startDate,
+                        itineraryEnd: itinerary.endDate,
+                    });
+                }}/>
+            </View>
+
+            <View style={{
+                borderBottomColor: '#70D9D3',
+                borderBottomWidth: StyleSheet.hairlineWidth,
+                }}></View>
+            
+
             {/* Container for the DayTabs */}
             <View style={styles.content}>
             <FlatList
@@ -175,6 +195,7 @@ const OpeningItineraryScreen = ({route}) => {
                             dayLabel: item.label,
                             itineraryStart: itinerary.startDate,
                             itineraryEnd: itinerary.endDate,
+                            date: item.date,
                         })}}
                     />
                 )}

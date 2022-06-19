@@ -15,7 +15,7 @@ import firestore from '@react-native-firebase/firestore';
 
 const AddAccommodationScreen = ({route}) => {
     
-    const { id, dayLabel, itineraryStart, itineraryEnd } = route.params;
+    const { id, itineraryStart, itineraryEnd } = route.params;
 
     const navigation = useNavigation();
     
@@ -146,9 +146,7 @@ const AddAccommodationScreen = ({route}) => {
         await firestore()
             .collection('itineraries')
             .doc(id)
-            .collection('days')
-            .doc(dayLabel)
-            .collection('plans')
+            .collection('accommodation')
             .doc(itemId)
             .onSnapshot((documentSnapshot) => {
                 if(documentSnapshot.exists){
@@ -156,42 +154,26 @@ const AddAccommodationScreen = ({route}) => {
                 }
             })
         
-            //split dayLabel into "day" and "number"
-
-            const difference = endDate.getTime() - startDate.getTime();
-
-            const days = Math.ceil(difference / (1000 * 3600 * 24));
-
-            const split = dayLabel.split(" ", 2);
-
-            const dayNumber = split[1];
-        
-            let currDate = startDate;
-            for (let i = dayNumber; i <= days + 1; i++) {
-                const stringName = "Day " + i; 
-                await firestore()
-                    .collection('itineraries')
-                    .doc(id)
-                    .collection('days')
-                    .doc(stringName)
-                    .collection('plans')
-                    .doc(itemId)
-                    .set({
-                        name: name,
-                        checkInDate: startDate,
-                        checkOutDate: endDate,
-                        notes: fileUrl,
-                        type: 'accommodation',
-                        id: itemId,
-                    })
-                currDate = new Date(new Date(currDate).getTime() + 60 * 60 * 24 * 1000);
-            }
+            await firestore()
+                .collection('itineraries')
+                .doc(id)
+                .collection('accommodation')
+                .doc(itemId)
+                .set({
+                    name: name,
+                    checkInDate: startDate,
+                    checkOutDate: endDate,
+                    notes: fileUrl,
+                    type: 'accommodation',
+                    id: itemId,
+                })
 
 
         setAdding(false);
-        navigation.navigate('NewDay', {
+        navigation.navigate('NewAccommodation', {
             id: id,
-            dayLabel: dayLabel,
+            itineraryStart: itineraryStart,
+            itineraryEnd: itineraryEnd,
         });
     }
 

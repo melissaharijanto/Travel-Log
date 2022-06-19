@@ -88,9 +88,9 @@ const HomeScreen = () => {
                     .doc(doc.id)
                     .onSnapshot((documentSnapshot) => {
                         if (documentSnapshot.exists) {
-                        setLatestItinerary(documentSnapshot.data());
-                        setLatestItineraryTitle(documentSnapshot.data().title);
-                        setLatestItineraryImage(documentSnapshot.data().coverImage);
+                            setLatestItinerary(documentSnapshot.data());
+                            setLatestItineraryTitle(documentSnapshot.data().title);
+                            setLatestItineraryImage(documentSnapshot.data().coverImage);
                         }
                     })
                 })
@@ -283,7 +283,7 @@ const HomeScreen = () => {
                         />
                     )}
                     ItemSeparatorComponent={ () => <View style={{marginRight: 10}} /> }
-                    keyExtractor={(item) => item.id}
+                    keyExtractor={(contact, index) => String(index)}
                     />
                 </View>
             </View>

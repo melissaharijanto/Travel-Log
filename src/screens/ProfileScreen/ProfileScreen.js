@@ -38,7 +38,11 @@ const ProfileScreen = () => {
     }
 
     useEffect(() => {
+        let unmounted = false;
         getUser();
+        return () => {
+            unmounted = true;
+        }
     }, []);
 
     const onPressLogOut = () => {
