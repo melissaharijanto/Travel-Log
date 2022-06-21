@@ -2,16 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, Image, StyleSheet, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Back from 'react-native-vector-icons/Feather';
-import Rearrange from 'react-native-vector-icons/Entypo';
-import ActivityTab from '../../components/ActivityTab';
 import AccommodationTab from '../../components/AccommodationTab';
-import TransportTab from '../../components/TransportTab';
 import ActionButton from 'react-native-action-button-warnings-fixed';
-import Activity from '../../../assets/images/Activity.png';
 import Accommodation from '../../../assets/images/Accommodation.png';
-import Transport from '../../../assets/images/Transport.png';
 import firestore from '@react-native-firebase/firestore';
-import { template } from '@babel/core';
 
 const NewAccommodationScreen = ({route}) => {
     
@@ -35,44 +29,48 @@ const NewAccommodationScreen = ({route}) => {
 
     const getAccommodation = async () => {
         const accommodationList = [];
-        await firestore()
+        firestore()
             .collection('itineraries')
             .doc(id)
             .collection('accommodation')
+            .orderBy('checkInDate')
             .onSnapshot((querySnapshot) => {
 
                 if (querySnapshot.empty) {
                     return;
                 }
 
-                querySnapshot.forEach((doc) => {
-                    const {
-                        name,
-                        checkInDate,
-                        checkOutDate,
-                        notes,
-                        id,
-                        type
-                    } = doc.data();
+                querySnapshot.forEach((doc) => { 
+                        const {
+                            name,
+                            checkInDate,
+                            checkOutDate,
+                            notes,
+                            id,
+                            type
+                        } = doc.data();
 
-                    accommodationList.push({
-                        name: name,
-                        checkInDate: checkInDate,
-                        checkOutDate: checkOutDate,
-                        notes: notes,
-                        type: type,
-                        id: id,
-                    })
-                    setAccommodation(accommodationList);
+                        accommodationList.push({
+                            name: name,
+                            checkInDate: checkInDate,
+                            checkOutDate: checkOutDate,
+                            notes: notes,
+                            type: type,
+                            id: id,
+                        })
+                        setAccommodation(accommodationList);
                 })
-                
             });
+            console.log('getaccommodation run')
     }
 
     useEffect(() =>{
+        let unmounted = false;
         getAccommodation();
-        return;
-    }, [route]);
+        return () => {
+            unmounted = true;
+        }
+    }, [route.params]);
 
     return (
         <View style={styles.root}>

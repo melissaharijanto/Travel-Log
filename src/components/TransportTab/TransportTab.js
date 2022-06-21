@@ -12,13 +12,13 @@ const TransportTab = ({ onPress, text, subtext, isActive, onLongPress }) => {
             <View style= { styles.horizontal }>
                     <Image source = { Transport }
                         style = { [styles.icon, styles.horizontal] }/>
-                <View>
-                <Text style = {styles.text}>
-                { text }
-                </Text>
-                <Text style = {styles.subtext}>
-                { subtext }
-                </Text>
+                <View style = {{width: '75%'}}>
+                    <Text style = {styles.text}>
+                    { text }
+                    </Text>
+                    <Text style = {styles.subtext}>
+                    { subtext }
+                    </Text>
                 </View>
             </View>
 

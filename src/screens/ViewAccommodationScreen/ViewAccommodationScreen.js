@@ -46,13 +46,14 @@ const ViewAccommodationScreen = ({route}) => {
             .collection('accommodation')
             .doc(itemId)
             .onSnapshot((documentSnapshot) => {
-                setName(documentSnapshot.data().name);
-                setStartDate(documentSnapshot.data().checkInDate);
-                setEndDate(documentSnapshot.data().checkOutDate);
-                setStartDateString(documentSnapshot.data().checkInDate.toDate().toLocaleDateString());
-                setEndDateString(documentSnapshot.data().checkOutDate.toDate().toLocaleDateString());
-                setFileUri(documentSnapshot.data().notes);
-                
+                if (documentSnapshot.exists) {
+                    setName(documentSnapshot.data().name);
+                    setStartDate(documentSnapshot.data().checkInDate);
+                    setEndDate(documentSnapshot.data().checkOutDate);
+                    setStartDateString(documentSnapshot.data().checkInDate.toDate().toLocaleDateString());
+                    setEndDateString(documentSnapshot.data().checkOutDate.toDate().toLocaleDateString());
+                    setFileUri(documentSnapshot.data().notes);
+                }
             })
     }
 
@@ -88,7 +89,11 @@ const ViewAccommodationScreen = ({route}) => {
                 <Back
                     size={35}
                     name="chevron-left"
-                    onPress = { () => navigation.goBack() }
+                    onPress = { () => navigation.navigate('NewAccommodation',{
+                        id: id,
+                        itineraryStart: itineraryStart,
+                        itineraryEnd: itineraryEnd,
+                    }) }
                     style = {{
                         flex: 1,
                         paddingTop: 2

@@ -164,7 +164,12 @@ const EditActivityScreen = ({route}) => {
                 {
                     text: "Cancel",
                     onPress: () => {
-                        navigation.navigate("EditActivity");
+                        navigation.navigate("EditActivity", {
+                            id: id,
+                            dayLabel: dayLabel,
+                            date: date,
+                            itemId: itemId,
+                        });
                 },
                 style: "cancel"
                 }, {
@@ -178,7 +183,6 @@ const EditActivityScreen = ({route}) => {
         )
     }
 
-    // c: implement this
     const handleDelete = () => {
         setDeleting(true);
             firestore()
@@ -211,11 +215,13 @@ const EditActivityScreen = ({route}) => {
             .collection('plans')
             .doc(itemId)
             .onSnapshot((documentSnapshot) => {
-                setName(documentSnapshot.data().name);
-                setLocation(documentSnapshot.data().location);
-                setStartTime(documentSnapshot.data().time.toDate());
-                setTimeChosen(true);
-                setFileUri(documentSnapshot.data().notes);     
+                if (documentSnapshot.exists) {
+                    setName(documentSnapshot.data().name);
+                    setLocation(documentSnapshot.data().location);
+                    setStartTime(documentSnapshot.data().time.toDate());
+                    setTimeChosen(true);
+                    setFileUri(documentSnapshot.data().notes);     
+                }
             })
     }
 

@@ -2,23 +2,21 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import Activity from '../../../assets/images/Activity.png';
 
-const ActivityTab = ({ onPress, text, subtext, isActive, onLongPress }) => {
+const ActivityTab = ({ onPress, text, subtext }) => {
     return (
         <TouchableOpacity 
             onPress= { onPress } 
-            style= { styles.container }
-            disabled={isActive}
-            onLongPress={onLongPress}>
+            style= { styles.container }>
             <View style= { styles.horizontal }>
                     <Image source = { Activity }
                         style = { [styles.icon, styles.horizontal] }/>
-                <View>
-                <Text style = {styles.text}>
-                { text }
-                </Text>
-                <Text style = {styles.subtext}>
-                { subtext }
-                </Text>
+                <View style = {{width: '75%'}}>
+                    <Text style = {styles.text}>
+                        { text }
+                    </Text>
+                    <Text style = {styles.subtext}>
+                        { subtext }
+                    </Text>
                 </View>
             </View>
 

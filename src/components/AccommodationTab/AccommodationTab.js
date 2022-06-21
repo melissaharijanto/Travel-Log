@@ -12,7 +12,7 @@ const AccommodationTab = ({ onPress, text, subtext, isActive, onLongPress }) => 
             <View style= { styles.horizontal }>
                     <Image source = { Accommodation }
                         style = { [styles.icon, styles.horizontal] }/>
-                <View>
+                <View style = {{width: '75%'}}>
                 <Text style = {styles.text}>
                 { text }
                 </Text>

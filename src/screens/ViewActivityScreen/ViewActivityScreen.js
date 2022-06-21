@@ -38,9 +38,9 @@ const ViewActivityScreen = ({route}) => {
     const [fileName, setFileName] = useState(null);
 
     
-    const getData = () => {
+    const getData = async () => {
         
-            firestore()
+            await firestore()
                 .collection('itineraries')
                 .doc(id)
                 .collection('days')
@@ -48,10 +48,12 @@ const ViewActivityScreen = ({route}) => {
                 .collection('plans')
                 .doc(itemId)
                 .onSnapshot((documentSnapshot) => {
-                    setName(documentSnapshot.data().name);
-                    setLocation(documentSnapshot.data().location);
-                    setStartTime(documentSnapshot.data().time.toDate());
-                    setFileUri(documentSnapshot.data().notes);     
+                    if (documentSnapshot.exists) {
+                        setName(documentSnapshot.data().name);
+                        setLocation(documentSnapshot.data().location);
+                        setStartTime(documentSnapshot.data().time.toDate());
+                        setFileUri(documentSnapshot.data().notes);  
+                    }   
                 })
                 
     }

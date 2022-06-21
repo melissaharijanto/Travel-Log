@@ -19,9 +19,6 @@ const NewDayScreen = ({route}) => {
 
     const { id, dayLabel, date } = route.params;
 
-    const placeholder = () => {
-
-    }
 
     const getTime = (time) => {
         let minutes = time.toDate().getMinutes();
@@ -41,9 +38,9 @@ const NewDayScreen = ({route}) => {
         navigation.goBack();
     }
 
-    const getPlans = async () => {
+    const getPlans = () => {
         const plansList = [];
-        await firestore()
+        firestore()
             .collection('itineraries')
             .doc(id)
             .collection('days')
@@ -55,28 +52,30 @@ const NewDayScreen = ({route}) => {
                     console.log('Query is empty.');
                     return;
                 }
-                querySnapshot.forEach((doc) => {
-                    const {
-                        name,
-                        notes,
-                        type,
-                        location,
-                        startingPoint,
-                        destination,
-                        id,
-                        time,
-                    } = doc.data();
 
-                    if (type === 'activity'){
-                        plansList.push({
-                            name: name,
-                            notes: notes,
-                            type: type,
-                            location: location,
-                            id: id,
-                            time: time,
-                        })
-                    }
+                querySnapshot.forEach((doc) => {
+                    if (doc.exists) {
+                        const {
+                            name,
+                            notes,
+                            type,
+                            location,
+                            startingPoint,
+                            destination,
+                            id,
+                            time,
+                        } = doc.data();
+
+                        if (type === 'activity'){
+                            plansList.push({
+                                name: name,
+                                notes: notes,
+                                type: type,
+                                location: location,
+                                id: id,
+                                time: time,
+                            })
+                        } 
 
                     if (type === 'transport'){
                         plansList.push({
@@ -89,8 +88,10 @@ const NewDayScreen = ({route}) => {
                             time: time,
                         })
                     }
-                    setPlans(plansList);
+                    
+                }
             })
+            setPlans(plansList);
         })
     }
 
@@ -100,7 +101,7 @@ const NewDayScreen = ({route}) => {
         return () => {
             unmounted = true;
         };
-    }, []);
+    }, [route]);
 
     return (
         <View style={ styles.root }>

@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ActivityIndicator, Pressable } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator, Pressable, Alert } from 'react-native';
 import Back from 'react-native-vector-icons/Feather';
 import CustomButton from '../../components/CustomButton';
 import { firebase } from '@react-native-firebase/storage';
@@ -13,7 +13,7 @@ import DocumentPicker, {
     types,
   } from 'react-native-document-picker';
 import storage from '@react-native-firebase/storage';
-
+import DeleteIcon from 'react-native-vector-icons/Feather';
 
 const EditAccommodationScreen = ({route}) => {
 
@@ -49,6 +49,7 @@ const EditAccommodationScreen = ({route}) => {
 
     // Updating state
     const [updating, setUpdating] = useState(false);
+    const [deleting, setDeleting] = useState(false);
 
     // Date picker function to show the date picker for the check-in date.
     const showStartDatePicker = () => {
@@ -170,19 +171,70 @@ const EditAccommodationScreen = ({route}) => {
         });
     }
 
-    const getData = async () => {
-        await firestore()
+    const confirmDelete = () => {
+        Alert.alert(
+            "Confirm Delete",
+            "Are you sure you want to delete this accommodation?",
+            [ 
+                {
+                    text: "Cancel",
+                    onPress: () => {
+                        navigation.navigate("EditAccommodation", {
+                            id: id,
+                            itemId: itemId,
+                            itineraryStart: itineraryStart,
+                            itineraryEnd: itineraryEnd,
+                        });
+                },
+                style: "cancel"
+                }, {
+                    text: "OK", 
+                    onPress: async () => { 
+                        await handleDelete(); 
+                        console.log('Deleted.');
+                    }
+                }
+            ]
+        )
+    }
+
+    // c: implement this
+    const handleDelete = async () => {
+        setDeleting(true);
+            await firestore()
+                .collection('itineraries')
+                .doc(id)
+                .collection('accommodation')
+                .doc(itemId)
+                .delete()
+                .then(() => {
+                    console.log('Accommodation deleted.');
+                    setDeleting(false);
+                    navigation.navigate('NewAccommodation', {
+                        id: id,
+                        itineraryStart: itineraryStart,
+                        itineraryEnd: itineraryEnd,
+                    });
+                }).catch((error) => {
+                    console.log(error);
+                })
+    }
+
+    const getData = () => {
+        firestore()
             .collection('itineraries')
             .doc(id)
             .collection('accommodation')
             .doc(itemId)
             .onSnapshot((documentSnapshot) => {
-                setName(documentSnapshot.data().name);
-                setStartDate(documentSnapshot.data().checkInDate.toDate());
-                setEndDate(documentSnapshot.data().checkOutDate.toDate());
-                setStartDateString(documentSnapshot.data().checkInDate.toDate().toLocaleDateString());
-                setEndDateString(documentSnapshot.data().checkOutDate.toDate().toLocaleDateString());
-                setFileUri(documentSnapshot.data().notes); 
+                if (documentSnapshot.exists) {
+                    setName(documentSnapshot.data().name);
+                    setStartDate(documentSnapshot.data().checkInDate.toDate());
+                    setEndDate(documentSnapshot.data().checkOutDate.toDate());
+                    setStartDateString(documentSnapshot.data().checkInDate.toDate().toLocaleDateString());
+                    setEndDateString(documentSnapshot.data().checkOutDate.toDate().toLocaleDateString());
+                    setFileUri(documentSnapshot.data().notes); 
+                }
             })
     }
 
@@ -216,13 +268,27 @@ const EditAccommodationScreen = ({route}) => {
                 <Back
                     size={35}
                     name="chevron-left"
-                    onPress = { () => navigation.goBack() }
+                    onPress = { () => navigation.navigate('ViewAccommodation',{
+                        id: id, 
+                        itemId: itemId,
+                        itineraryStart: itineraryStart,
+                        itineraryEnd: itineraryEnd,
+                    }) }
                     style = {{
                         flex: 1,
                         paddingTop: 2
                     }}
                 />
                 <Text style = { styles.headerText }>Accommodation</Text>
+
+                <DeleteIcon
+                    name = "trash-2"
+                    size = {25}
+                    onPress = { confirmDelete }
+                    style = {{
+                        paddingRight: 20
+                    }}
+                />
             </View>
             
             {/* empty space so shadow can be visible */}
@@ -319,7 +385,7 @@ const EditAccommodationScreen = ({route}) => {
                 />
 
                 {
-                    updating
+                    updating || deleting
                     ? <View style={{
                         paddingTop: 20,
                         alignSelf: 'center',
@@ -382,7 +448,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         alignItems: 'center',
         paddingTop: 9,
-        flex: 3.5,
+        flex: 3.1,
     },
     horizontal: {
         flexDirection: 'row',

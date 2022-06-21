@@ -144,12 +144,14 @@ const AddTransportScreen = ({route}) => {
                 type: 'transport',
                 id: itemId,
                 time: startTime,
+                notes: fileUrl,
             })
 
         setAdding(false);
         navigation.navigate('NewDay', {
             id: id,
             dayLabel: dayLabel,
+            date: date,
         });
     }
 
@@ -161,7 +163,11 @@ const AddTransportScreen = ({route}) => {
                 <Back
                     size={35}
                     name="chevron-left"
-                    onPress = { () => navigation.goBack() }
+                    onPress = { () => navigation.navigate('NewDay', {
+                        id: id,
+                        dayLabel: dayLabel,
+                        date: date,
+                    }) }
                     style = {{
                         flex: 1,
                         paddingTop: 2

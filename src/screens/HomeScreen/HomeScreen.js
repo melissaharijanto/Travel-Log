@@ -79,21 +79,24 @@ const HomeScreen = () => {
                 }
 
                 querySnapshot.forEach((doc) => {
+                    if (doc.exists) {
                     const {
                         id,
                     } = doc.data();
 
-                firestore()
-                    .collection('itineraries')
-                    .doc(doc.id)
-                    .onSnapshot((documentSnapshot) => {
-                        if (documentSnapshot.exists) {
-                            setLatestItinerary(documentSnapshot.data());
-                            setLatestItineraryTitle(documentSnapshot.data().title);
-                            setLatestItineraryImage(documentSnapshot.data().coverImage);
-                        }
-                    })
+                    firestore()
+                        .collection('itineraries')
+                        .doc(doc.id)
+                        .onSnapshot((documentSnapshot) => {
+                            if (documentSnapshot.exists) {
+                                setLatestItinerary(documentSnapshot.data());
+                                setLatestItineraryTitle(documentSnapshot.data().title);
+                                setLatestItineraryImage(documentSnapshot.data().coverImage);
+                            }
+                        })
+                    }
                 })
+                
 
                 const hasRun = () => console.log('getLatestItinerary has been run!');
                 hasRun();
@@ -119,56 +122,58 @@ const HomeScreen = () => {
                     .onSnapshot((querySnapshot) => {
 
                         if (querySnapshot.empty) {
-                        console.log('No more than one itinerary has been made yet.');
+                            console.log('No more than one itinerary has been made yet.');
                         return;
                         }
                     
                         querySnapshot.forEach((doc) => {
-                            const {
-                                id,
-                            } = doc.data();
+                            if (doc.exists) {
+                                const {
+                                    id,
+                                } = doc.data();
                         
-                        console.log('BreakPoint 1', doc.data());
+                            console.log('BreakPoint 1', doc.data());
 
-                        firestore()
-                            .collection('itineraries')
-                            .where('id','==', doc.id)
-                            .onSnapshot((querySnapshot) => {
-                                
-                                console.log('BreakPoint 2');
-                                querySnapshot.forEach((doc) => {
-                                    const {
-                                        id,
-                                        coverImage,
-                                        createdAt,
-                                        days,
-                                        endDate,
-                                        notes,
-                                        owner,
-                                        startDate,
-                                        title
-                                    } = doc.data();
-
-                                    console.log('BreakPoint 3', doc.data());
-
-                                    itinerariesList.push({
-                                        id: id,
-                                        coverImage: coverImage,
-                                        createdAt: createdAt,
-                                        days: days,
-                                        endDate: endDate,
-                                        notes: notes,
-                                        owner: owner,
-                                        startDate: startDate,
-                                        title: title,
-                                    })
-                                    setPastItineraries(itinerariesList);
-                                    console.log('BreakPoint 4', itinerariesList);    
+                            firestore()
+                                .collection('itineraries')
+                                .where('id','==', doc.id)
+                                .onSnapshot((querySnapshot) => {
                                     
-                                });
-                            })
-                        
-                    });
+                                    console.log('BreakPoint 2');
+                                    querySnapshot.forEach((doc) => {
+                                        if (doc.exists) {
+                                            const {
+                                                id,
+                                                coverImage,
+                                                createdAt,
+                                                days,
+                                                endDate,
+                                                notes,
+                                                owner,
+                                                startDate,
+                                                title
+                                            } = doc.data();
+
+                                            console.log('BreakPoint 3', doc.data());
+
+                                            itinerariesList.push({
+                                                id: id,
+                                                coverImage: coverImage,
+                                                createdAt: createdAt,
+                                                days: days,
+                                                endDate: endDate,
+                                                notes: notes,
+                                                owner: owner,
+                                                startDate: startDate,
+                                                title: title,
+                                            })
+                                            setPastItineraries(itinerariesList);
+                                            console.log('BreakPoint 4', itinerariesList);    
+                                            
+                                }
+                            });
+                        })
+                    }});
                     
                 });
             }

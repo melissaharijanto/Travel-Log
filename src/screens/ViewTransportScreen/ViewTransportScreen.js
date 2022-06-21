@@ -3,17 +3,13 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import Back from 'react-native-vector-icons/Feather';
 import CustomButton from '../../components/CustomButton';
-import DocumentPicker, {
-    isInProgress,
-    types,
-  } from 'react-native-document-picker';
-import storage, { firebase } from '@react-native-firebase/storage';
+import { firebase } from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
 
 
 const ViewTransportScreen = ({route}) => {
 
-    const { id, itemId, dayLabel } = route.params;
+    const { id, itemId, dayLabel, date } = route.params;
 
     const navigation = useNavigation();
     
@@ -30,8 +26,8 @@ const ViewTransportScreen = ({route}) => {
     const [fileName, setFileName] = useState(null);
     const [file, setFile] = useState(null);
 
-    const getData = async () => {
-        await firestore()
+    const getData = () => {
+        firestore()
             .collection('itineraries')
             .doc(id)
             .collection('days')
@@ -39,14 +35,16 @@ const ViewTransportScreen = ({route}) => {
             .collection('plans')
             .doc(itemId)
             .onSnapshot((documentSnapshot) => {
-                setName(documentSnapshot.data().name);
-                setStartingPoint(documentSnapshot.data().startingPoint);
-                setDestination(documentSnapshot.data().destination);
-                setFileUri(documentSnapshot.data().notes);     
+                if (documentSnapshot.exists) {
+                    setName(documentSnapshot.data().name);
+                    setStartingPoint(documentSnapshot.data().startingPoint);
+                    setDestination(documentSnapshot.data().destination);
+                    setFileUri(documentSnapshot.data().notes); 
+                }    
             })
     }
 
-    const getFileName = async () => {
+    const getFileName = () => {
         if (fileUri != null) {
             setChosen(true);
             const fileNotes = firebase.storage().refFromURL(fileUri).name;
@@ -78,7 +76,12 @@ const ViewTransportScreen = ({route}) => {
                 <Back
                     size={35}
                     name="chevron-left"
-                    onPress = { () => navigation.goBack() }
+                    onPress = { () => navigation.navigate('NewDay', {
+                        id: id,
+                        dayLabel: dayLabel,
+                        itemId: itemId,
+                        date: date,
+                    }) }
                     style = {{
                         flex: 1,
                         paddingTop: 2
@@ -126,7 +129,12 @@ const ViewTransportScreen = ({route}) => {
 
                 <CustomButton
                     text='Edit'
-                    onPress= { () => {} }
+                    onPress= { () => { navigation.navigate('EditTransport', {
+                        id: id,
+                        dayLabel: dayLabel,
+                        itemId: itemId,
+                        date: date,
+                    })} }
                     type='TERTIARY'
                 />
                 

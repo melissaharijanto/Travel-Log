@@ -68,6 +68,7 @@ const EditItineraryScreen = ( {route} ) => {
             itineraries: firebase.firestore.FieldValue.increment(-1),
 
         })
+        
         try {
             await firestore()
                 .collection('users')
