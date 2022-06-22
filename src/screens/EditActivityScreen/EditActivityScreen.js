@@ -16,7 +16,7 @@ import DeleteIcon from 'react-native-vector-icons/Feather';
 
 const EditActivityScreen = ({route}) => {
 
-    const { id, itemId, dayLabel, date } = route.params;
+    const { id, itemId, dayLabel, date, owner } = route.params;
 
     const getTime = (time) => {
         let minutes = time.getMinutes();
@@ -153,6 +153,7 @@ const EditActivityScreen = ({route}) => {
             dayLabel: dayLabel,
             date: date,
             itemId: itemId,
+            owner: owner,
         });
     }
 
@@ -169,6 +170,7 @@ const EditActivityScreen = ({route}) => {
                             dayLabel: dayLabel,
                             date: date,
                             itemId: itemId,
+                            owner: owner,
                         });
                 },
                 style: "cancel"
@@ -200,6 +202,7 @@ const EditActivityScreen = ({route}) => {
                         id: id,
                         dayLabel: dayLabel,
                         date: date,
+                        owner: owner,
                     });
                 }).catch((error) => {
                     console.log(error);

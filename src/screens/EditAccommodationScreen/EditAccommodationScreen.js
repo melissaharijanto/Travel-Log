@@ -17,7 +17,7 @@ import DeleteIcon from 'react-native-vector-icons/Feather';
 
 const EditAccommodationScreen = ({route}) => {
 
-    const { id, itemId, itineraryStart, itineraryEnd } = route.params;
+    const { id, itemId, itineraryStart, itineraryEnd, owner } = route.params;
 
     const navigation = useNavigation();
     
@@ -168,6 +168,7 @@ const EditAccommodationScreen = ({route}) => {
             itemId: itemId,
             itineraryStart: itineraryStart,
             itineraryEnd: itineraryEnd,
+            owner: owner,
         });
     }
 
@@ -184,6 +185,7 @@ const EditAccommodationScreen = ({route}) => {
                             itemId: itemId,
                             itineraryStart: itineraryStart,
                             itineraryEnd: itineraryEnd,
+                            owner: owner,
                         });
                 },
                 style: "cancel"
@@ -214,6 +216,7 @@ const EditAccommodationScreen = ({route}) => {
                         id: id,
                         itineraryStart: itineraryStart,
                         itineraryEnd: itineraryEnd,
+                        owner: owner,
                     });
                 }).catch((error) => {
                     console.log(error);
@@ -273,6 +276,7 @@ const EditAccommodationScreen = ({route}) => {
                         itemId: itemId,
                         itineraryStart: itineraryStart,
                         itineraryEnd: itineraryEnd,
+                        owner: owner,
                     }) }
                     style = {{
                         flex: 1,

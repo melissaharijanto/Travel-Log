@@ -25,6 +25,8 @@ import io.invertase.firebase.firestore.ReactNativeFirebaseFirestorePackage;
 import io.invertase.firebase.storage.ReactNativeFirebaseStoragePackage;
 // react-native-document-picker
 import com.reactnativedocumentpicker.DocumentPickerPackage;
+// react-native-file-viewer
+import com.vinzscam.reactnativefileviewer.RNFileViewerPackage;
 // react-native-fs
 import com.rnfs.RNFSPackage;
 // react-native-gesture-handler
@@ -91,6 +93,7 @@ public class PackageList {
       new ReactNativeFirebaseFirestorePackage(),
       new ReactNativeFirebaseStoragePackage(),
       new DocumentPickerPackage(),
+      new RNFileViewerPackage(),
       new RNFSPackage(),
       new RNGestureHandlerPackage(),
       new PickerPackage(),

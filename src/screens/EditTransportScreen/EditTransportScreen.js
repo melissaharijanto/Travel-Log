@@ -18,7 +18,7 @@ const EditTransportScreen = ({route}) => {
     
     const navigation = useNavigation();
     
-    const {id, dayLabel, date, itemId} = route.params;
+    const {id, dayLabel, date, itemId, owner} = route.params;
 
     // Set initial states of each field to be empty.
     const [name, setName] = useState();
@@ -178,6 +178,7 @@ const EditTransportScreen = ({route}) => {
             id: id,
             dayLabel: dayLabel,
             date: date,
+            owner: owner,
         });
     }
 
@@ -194,6 +195,7 @@ const EditTransportScreen = ({route}) => {
                             dayLabel: dayLabel,
                             date: date,
                             itemId: itemId,
+                            owner: owner,
                         });
                 },
                 style: "cancel"
@@ -225,6 +227,7 @@ const EditTransportScreen = ({route}) => {
                         id: id,
                         dayLabel: dayLabel,
                         date: date,
+                        owner: owner,
                     });
                 }).catch((error) => {
                     console.log(error);

@@ -9,6 +9,7 @@ import ActionButton from 'react-native-action-button-warnings-fixed';
 import Activity from '../../../assets/images/Activity.png';
 import Transport from '../../../assets/images/Transport.png';
 import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth'
 
 
 const NewDayScreen = ({route}) => {
@@ -17,8 +18,11 @@ const NewDayScreen = ({route}) => {
 
     const [plans, setPlans] = useState(null);
 
-    const { id, dayLabel, date } = route.params;
+    const { id, dayLabel, date, owner } = route.params;
 
+    // View-only function
+    const viewOnly = () => {};
+    const [itineraryOwner, isOwner] = useState(true);
 
     const getTime = (time) => {
         let minutes = time.toDate().getMinutes();
@@ -93,7 +97,18 @@ const NewDayScreen = ({route}) => {
             })
             setPlans(plansList);
         })
+        
     }
+
+    useEffect(() =>{
+        if (auth().currentUser.uid === owner) {
+            isOwner(true);
+            console.log('Is owner!')
+        } else {
+            isOwner(false);
+            console.log('Not owner!');
+        }
+    }, [route]);
 
     useEffect(() =>{
         let unmounted = false;
@@ -127,24 +142,36 @@ const NewDayScreen = ({route}) => {
                 numColumns={1}
                 renderItem={({item}) => {
                         if(item.type === 'activity') {
-                            return <ActivityTab onPress={() => navigation.navigate("ViewActivity", {
-                                id: id,
-                                dayLabel: dayLabel,
-                                itemId: item.id,
-                                date: date,
-                            })}
+                            return <ActivityTab onPress={() => {
+                                if (itineraryOwner) {
+                                    navigation.navigate("ViewActivity", {
+                                        id: id,
+                                        dayLabel: dayLabel,
+                                        itemId: item.id,
+                                        date: date,
+                                        owner: owner,
+                                })} else {
+                                    viewOnly();
+                                }
+                            }}
                                 text={ item.name }
                                 subtext={ `${getTime(item.time)} - ${item.location}` }
                             />
                         }
 
                         if(item.type === 'transport') {
-                            return <TransportTab onPress={() => navigation.navigate("ViewTransport", {
-                                id: id,
-                                dayLabel: dayLabel,
-                                itemId: item.id,
-                                date: date,
-                            })}
+                            return <TransportTab onPress={() => {
+                                if (itineraryOwner) {
+                                navigation.navigate("ViewTransport", {
+                                    id: id,
+                                    dayLabel: dayLabel,
+                                    itemId: item.id,
+                                    date: date,
+                                    owner: owner,
+                            })} else {
+                                viewOnly();
+                            }
+                        }}
                                 text={ item.name }
                                 subtext={`${getTime(item.time)} - ${item.startingPoint} >> ${item.destination}`}
                             />
@@ -156,40 +183,49 @@ const NewDayScreen = ({route}) => {
             </View>
 
             {/* Edit action button onPress later */}
-            <ActionButton
-                shadowStyle = { styles.shadow }
-                buttonColor='#70D9D3'
-                size= {65}
-                spacing= {15}>
-
-                <ActionButton.Item
-                    size= {55}
+            {itineraryOwner?
+                <ActionButton
+                    shadowStyle = { styles.shadow }
                     buttonColor='#70D9D3'
-                    title = "Activity"
-                    onPress = { () => navigation.navigate('AddActivity', {
-                        dayLabel: dayLabel,
-                        id: id,
-                        date: date,
-                    }) }
-                    textStyle = { styles.buttonText }
-                    shadowStyle = { styles.shadow }>
-                    <Image source= {Activity} style = {{width: 55, height: 55}}/>
-                </ActionButton.Item>
+                    size= {65}
+                    spacing= {15}>
 
-                <ActionButton.Item
-                    size= {55}
-                    buttonColor='#70D9D3'
-                    title = "Transport"
-                    onPress = { () => navigation.navigate('AddTransport', {
-                        dayLabel: dayLabel,
-                        id: id,
-                        date: date,
-                    })}
-                    textStyle = { styles.buttonText }
-                    shadowStyle = { styles.shadow }>
-                    <Image source= {Transport} style = {{width: 55, height: 55}}/>
-                </ActionButton.Item>
-            </ActionButton>
+                    <ActionButton.Item
+                        size= {55}
+                        buttonColor='#70D9D3'
+                        title = "Activity"
+                        onPress = { () => {
+                                navigation.navigate('AddActivity', {
+                                dayLabel: dayLabel,
+                                id: id,
+                                date: date,
+                                owner: owner,
+                            })} 
+                        }
+                        textStyle = { styles.buttonText }
+                        shadowStyle = { styles.shadow }>
+                        <Image source= {Activity} style = {{width: 55, height: 55}}/>
+                    </ActionButton.Item>
+
+                    <ActionButton.Item
+                        size= {55}
+                        buttonColor='#70D9D3'
+                        title = "Transport"
+                        onPress = { () => {
+                                navigation.navigate('AddTransport', {
+                                dayLabel: dayLabel,
+                                id: id,
+                                date: date,
+                                owner: owner,
+                            })}
+                        }
+                        textStyle = { styles.buttonText }
+                        shadowStyle = { styles.shadow }>
+                        <Image source= {Transport} style = {{width: 55, height: 55}}/>
+                    </ActionButton.Item>
+                </ActionButton>
+            : null
+            }
         </View>
     )
 }

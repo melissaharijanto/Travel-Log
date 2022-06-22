@@ -8,7 +8,6 @@ import {
     Dimensions, 
     FlatList,
     Alert,
-    TouchableOpacity,
 } from 'react-native';
 import EditIcon from 'react-native-vector-icons/AntDesign';
 import CopyIcon from 'react-native-vector-icons/MaterialIcons'
@@ -18,6 +17,7 @@ import DayTab from '../../components/DayTab';
 import Clipboard from '@react-native-community/clipboard';
 import firestore from '@react-native-firebase/firestore';
 import AccommodationMainTab from '../../components/AccommodationMainTab';
+import auth from '@react-native-firebase/auth'
 
 const OpeningItineraryScreen = ({route}) => {
     
@@ -47,6 +47,10 @@ const OpeningItineraryScreen = ({route}) => {
         });
     }
 
+    const notOwner = () => {
+        Alert.alert('Unable to edit', 
+            'You are not the owner of this itinerary.') 
+    }
     /* 
         Initializing the days from the database; data will be used 
         for the FlatList in the return statement.
@@ -141,7 +145,10 @@ const OpeningItineraryScreen = ({route}) => {
                         size={25}
                         name="edit"
                         color="#FFFFFF"
-                        onPress = { editItinerary }
+                        onPress = { itinerary.owner === auth().currentUser.uid
+                            ? editItinerary 
+                            : notOwner
+                            }
                     />
                 </View>
                 <View style={styles.horizontal}>
@@ -171,6 +178,7 @@ const OpeningItineraryScreen = ({route}) => {
                         id: itinerary.id,
                         itineraryStart: itinerary.startDate,
                         itineraryEnd: itinerary.endDate,
+                        owner: itinerary.owner,
                     });
                 }}/>
             </View>
@@ -193,8 +201,7 @@ const OpeningItineraryScreen = ({route}) => {
                         onPress={ () => { navigation.navigate("NewDay", {
                             id: itinerary.id,
                             dayLabel: item.label,
-                            itineraryStart: itinerary.startDate,
-                            itineraryEnd: itinerary.endDate,
+                            owner: itinerary.owner,
                             date: item.date,
                         })}}
                     />

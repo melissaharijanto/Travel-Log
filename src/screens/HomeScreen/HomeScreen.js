@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, Dimensions, FlatList} from 'react-native';
+import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, Dimensions, FlatList, Alert} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
@@ -21,8 +21,22 @@ const HomeScreen = () => {
     }
 
     // Placeholder function (to be removed later).
-    const placeholder = () => {
-
+    const viewItinerary = () => {
+        firestore()
+            .collection('itineraries')
+            .doc(code)
+            .get()
+            .then((documentSnapshot) => {
+                if (documentSnapshot.exists) {
+                    navigation.navigate('OpenItinerary', {
+                        itinerary: documentSnapshot.data(),
+                    })
+                } else {
+                    Alert.alert('Invalid Code', 'Itinerary not found!');
+                }
+            }).catch(e => {
+                console.log('Itinerary not found!')
+            })
     }
 
     // Redirects to profile when clicking the icon on the top right.
@@ -182,28 +196,28 @@ const HomeScreen = () => {
 
     // Initializing the user upon navigating to this page.
     useEffect(() => {
-        let isCancelled = false;
+        let unmounted = false;
         getUser(); 
         return () => {
-            isCancelled = true;
+            unmounted = true;
         }
     }, []);
 
     // Initializes latest itinerary upon change to userData.
     useEffect(() => {
-        let isCancelled = false;
+        let unmounted = false;
         getLatestItinerary();
         return () => {
-            isCancelled = true;
+            unmounted = true;
         }
     }, [itineraries]);
 
     // Initializes past itineraries upon change to latestItinerary.
     useEffect(() => {
-        let isCancelled = false;
+        let unmounted = false;
         getPastItineraries();
         return () => {
-            isCancelled = true;
+            unmounted = true;
         }
     }, [itineraries, latestItineraryTitle]);
 
@@ -246,7 +260,7 @@ const HomeScreen = () => {
             />
             <CustomButton
                 text = "View"
-                onPress = { placeholder }
+                onPress = { viewItinerary }
                 type = "QUINARY"
             />
             

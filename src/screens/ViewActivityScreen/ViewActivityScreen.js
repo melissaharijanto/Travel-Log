@@ -9,7 +9,7 @@ import firestore from '@react-native-firebase/firestore';
 
 const ViewActivityScreen = ({route}) => {
 
-    const { id, itemId, dayLabel, date } = route.params;
+    const { id, itemId, dayLabel, date, owner } = route.params;
 
     const getTime = (time) => {
         let minutes = time.getMinutes();
@@ -94,6 +94,7 @@ const ViewActivityScreen = ({route}) => {
                         id: id,
                         dayLabel: dayLabel,
                         date: date,
+                        owner: owner,
                     }) }
                     style = {{
                         flex: 1,
@@ -150,6 +151,7 @@ const ViewActivityScreen = ({route}) => {
                             itemId: itemId,
                             dayLabel: dayLabel,
                             date: date,
+                            owner: owner,
                     })}}
                     type='TERTIARY'
                 />

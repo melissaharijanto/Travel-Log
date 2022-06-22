@@ -9,7 +9,7 @@ import firestore from '@react-native-firebase/firestore';
 
 const ViewAccommodationScreen = ({route}) => {
 
-    const { id, itineraryStart, itineraryEnd, itemId } = route.params;
+    const { id, itineraryStart, itineraryEnd, itemId, owner } = route.params;
 
     const navigation = useNavigation();
     
@@ -93,6 +93,7 @@ const ViewAccommodationScreen = ({route}) => {
                         id: id,
                         itineraryStart: itineraryStart,
                         itineraryEnd: itineraryEnd,
+                        owner: owner,
                     }) }
                     style = {{
                         flex: 1,
@@ -149,6 +150,7 @@ const ViewAccommodationScreen = ({route}) => {
                             itemId: itemId,
                             itineraryStart: itineraryStart,
                             itineraryEnd: itineraryEnd,
+                            owner: owner,
                         });
                     } }
                     type='TERTIARY'

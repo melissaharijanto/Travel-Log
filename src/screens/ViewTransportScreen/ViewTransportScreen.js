@@ -9,7 +9,7 @@ import firestore from '@react-native-firebase/firestore';
 
 const ViewTransportScreen = ({route}) => {
 
-    const { id, itemId, dayLabel, date } = route.params;
+    const { id, itemId, dayLabel, date, owner } = route.params;
 
     const navigation = useNavigation();
     
@@ -81,6 +81,7 @@ const ViewTransportScreen = ({route}) => {
                         dayLabel: dayLabel,
                         itemId: itemId,
                         date: date,
+                        owner: owner,
                     }) }
                     style = {{
                         flex: 1,
@@ -134,6 +135,7 @@ const ViewTransportScreen = ({route}) => {
                         dayLabel: dayLabel,
                         itemId: itemId,
                         date: date,
+                        owner: owner,
                     })} }
                     type='TERTIARY'
                 />

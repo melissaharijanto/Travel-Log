@@ -6,6 +6,7 @@ import AccommodationTab from '../../components/AccommodationTab';
 import ActionButton from 'react-native-action-button-warnings-fixed';
 import Accommodation from '../../../assets/images/Accommodation.png';
 import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
 
 const NewAccommodationScreen = ({route}) => {
     
@@ -13,15 +14,11 @@ const NewAccommodationScreen = ({route}) => {
 
     const [accommodation, setAccommodation] = useState(null);
 
-    const { id, itineraryStart, itineraryEnd } = route.params;
+    const { id, itineraryStart, itineraryEnd, owner } = route.params;
+
+    const [itineraryOwner, isOwner] = useState();
     
-    const goToEditPage = () => {
-        navigation.navigate('EditDay', {
-                data: plans,
-                dayLabel: dayLabel,
-            }
-        );
-    }
+    const viewOnly = () => {};
 
     const placeholder = () => {
 
@@ -65,12 +62,22 @@ const NewAccommodationScreen = ({route}) => {
     }
 
     useEffect(() =>{
+        if (auth().currentUser.uid === owner) {
+            isOwner(true);
+            console.log('Is owner!');
+        } else {
+            isOwner(false);
+            console.log('Not owner!')
+        }
+    }, [route]);
+
+    useEffect(() =>{
         let unmounted = false;
         getAccommodation();
         return () => {
             unmounted = true;
         }
-    }, [route.params]);
+    }, [route]);
 
     return (
         <View style={styles.root}>
@@ -95,12 +102,18 @@ const NewAccommodationScreen = ({route}) => {
                 numColumns={1}
                 renderItem={({item}) => (
                     <AccommodationTab
-                        onPress={() => {navigation.navigate('ViewAccommodation', {
-                            id: id,
-                            itineraryStart: itineraryStart,
-                            itineraryEnd: itineraryEnd,
-                            itemId: item.id,
-                        })}}
+                        onPress={() => {
+                            if (itineraryOwner) {
+                                navigation.navigate('ViewAccommodation', {
+                                    id: id,
+                                    itineraryStart: itineraryStart,
+                                    itineraryEnd: itineraryEnd,
+                                    itemId: item.id,
+                                    owner: owner,
+                            })} else {
+                                viewOnly();
+                            }
+                        }}
                         text = { item.name }
                         subtext={
                             `${item
@@ -120,25 +133,29 @@ const NewAccommodationScreen = ({route}) => {
             </View>
 
             {/* Edit action button onPress later */}
-            <ActionButton
-                shadowStyle = { styles.shadow }
-                buttonColor='#70D9D3'
-                size= {65}
-                spacing= {15}>
-                <ActionButton.Item
-                    size= {55}
+            { itineraryOwner?
+                <ActionButton
+                    shadowStyle = { styles.shadow }
                     buttonColor='#70D9D3'
-                    title = "Accommodation"
-                    onPress = { () => navigation.navigate('AddAccommodation', {
-                        id: id,
-                        itineraryStart: itineraryStart,
-                        itineraryEnd: itineraryEnd,
-                    })}
-                    textStyle = { styles.buttonText }
-                    shadowStyle = { styles.shadow }>
-                    <Image source= {Accommodation} style = {{width: 55, height: 55}}/>
-                </ActionButton.Item>
-            </ActionButton>
+                    size= {65}
+                    spacing= {15}>
+                    <ActionButton.Item
+                        size= {55}
+                        buttonColor='#70D9D3'
+                        title = "Accommodation"
+                        onPress = { () => navigation.navigate('AddAccommodation', {
+                            id: id,
+                            itineraryStart: itineraryStart,
+                            itineraryEnd: itineraryEnd,
+                            owner: owner,
+                        })}
+                        textStyle = { styles.buttonText }
+                        shadowStyle = { styles.shadow }>
+                        <Image source= {Accommodation} style = {{width: 55, height: 55}}/>
+                    </ActionButton.Item>
+                </ActionButton>
+                : null
+            }
         </View>
     )
 }

@@ -296,6 +296,7 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+    
 }
 
 if (isNewArchitectureEnabled()) {

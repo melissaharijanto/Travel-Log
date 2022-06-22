@@ -17,7 +17,7 @@ const AddActivityScreen = ({route}) => {
     
     const navigation = useNavigation();
     
-    const { id, dayLabel, date } = route.params;
+    const { id, dayLabel, date, owner } = route.params;
 
     // Set initial states of each field to be empty.
     const [name, setName] = useState();
@@ -152,6 +152,7 @@ const AddActivityScreen = ({route}) => {
             id: id,
             dayLabel: dayLabel,
             date: date,
+            owner: owner,
         });
     }
 

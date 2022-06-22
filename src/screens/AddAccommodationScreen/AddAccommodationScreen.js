@@ -15,7 +15,7 @@ import firestore from '@react-native-firebase/firestore';
 
 const AddAccommodationScreen = ({route}) => {
     
-    const { id, itineraryStart, itineraryEnd } = route.params;
+    const { id, itineraryStart, itineraryEnd, owner } = route.params;
 
     const navigation = useNavigation();
     
@@ -174,6 +174,7 @@ const AddAccommodationScreen = ({route}) => {
             id: id,
             itineraryStart: itineraryStart,
             itineraryEnd: itineraryEnd,
+            owner: owner,
         });
     }
 

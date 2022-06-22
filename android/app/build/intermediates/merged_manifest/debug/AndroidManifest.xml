@@ -99,6 +99,15 @@
             android:exported="false"
             android:initOrder="99" />
         <provider
+            android:name="com.vinzscam.reactnativefileviewer.FileProvider"
+            android:authorities="com.travellogapp.provider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_viewer_provider_paths" />
+        </provider>
+        <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.travellogapp.provider"
             android:exported="false"
