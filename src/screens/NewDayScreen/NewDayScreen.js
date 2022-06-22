@@ -42,7 +42,8 @@ const NewDayScreen = ({route}) => {
         navigation.goBack();
     }
 
-    const getPlans = () => {
+    const getPlans = async () => {
+        let unmounted = false;
         const plansList = [];
         firestore()
             .collection('itineraries')
@@ -97,7 +98,9 @@ const NewDayScreen = ({route}) => {
             })
             setPlans(plansList);
         })
-        
+        return () => {
+            unmounted = true;
+        }
     }
 
     useEffect(() =>{

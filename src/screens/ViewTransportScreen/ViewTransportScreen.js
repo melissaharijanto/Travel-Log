@@ -1,11 +1,11 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, Pressable } from 'react-native';
 import Back from 'react-native-vector-icons/Feather';
 import CustomButton from '../../components/CustomButton';
 import { firebase } from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
-
+import * as OpenAnything from 'react-native-openanything';
 
 const ViewTransportScreen = ({route}) => {
 
@@ -120,9 +120,23 @@ const ViewTransportScreen = ({route}) => {
                     : <Text style={ [styles.text, {paddingLeft: 20}]}>-</Text>
                 }
                 
+                {
+                    fileUri != null
+                    ? 
+                    <Pressable 
+                        style={styles.button}
+                        onPress = {() => OpenAnything.Web(fileUri)}>
+                        <Text style={styles.buttonText}>View file</Text>
+                    </Pressable>
+                    : null
+                }
+
                 {/* Line breaks */}
-                <Text>{'\n'}</Text>
-                <Text>{'\n'}</Text>
+                { fileUri != null
+                    ? null
+                    : <Text>{'\n'}{'\n'}</Text>
+                }
+                
                 <Text>{'\n'}</Text>
                 <Text>{'\n'}</Text>
                 <Text>{'\n'}</Text>
@@ -149,6 +163,23 @@ const styles = StyleSheet.create({
     root:{
         flex: 1,
         backgroundColor: '#FFFFFF'
+    },
+    button: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 5,
+        backgroundColor: '#70DAD3',
+        borderRadius: 4,
+        marginTop: 10,
+        marginBottom: 8,
+        width: '25%',
+    },
+    buttonText: {
+        fontFamily: 'Poppins-Medium',
+        color: 'white',
+        paddingHorizontal: '2%',
+        paddingTop: '1%',
     },
     header: {
         flexDirection: 'row',

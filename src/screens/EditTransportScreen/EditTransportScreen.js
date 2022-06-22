@@ -154,7 +154,12 @@ const EditTransportScreen = ({route}) => {
 
     const update = async () => {
         setUpdating(true);
+
         let fileUrl = await uploadFile();
+
+        if (fileUrl == null && fileUri) {
+            fileUrl = fileUri;
+        }
 
         await firestore()
             .collection('itineraries')
@@ -174,11 +179,12 @@ const EditTransportScreen = ({route}) => {
             })
 
         setUpdating(false);
-        navigation.navigate('NewDay', {
+        navigation.navigate('ViewTransport', {
             id: id,
             dayLabel: dayLabel,
             date: date,
             owner: owner,
+            itemId: itemId,
         });
     }
 
@@ -345,7 +351,7 @@ const EditTransportScreen = ({route}) => {
                 </Pressable>
                 {
                     isDocChosen
-                    ? <Text style={[styles.setText, {paddingLeft: 20}]}>{ fileName }</Text>
+                    ? <Text style={[styles.setText, {paddingLeft: 20}]}>File Uploaded.</Text>
                     : null
                 }
                 </View>

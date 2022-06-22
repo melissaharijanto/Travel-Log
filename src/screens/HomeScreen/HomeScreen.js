@@ -63,6 +63,7 @@ const HomeScreen = () => {
 
     // Function to initialize user data from Firestore database.
     const getUser = async () => {
+        let unmounted = false;
         await firestore()
             .collection('users')
             .doc(user.uid)
@@ -74,10 +75,14 @@ const HomeScreen = () => {
                     setItineraries(documentSnapshot.data().itineraries);
                 }
             })
+        return () => {
+            unmounted = true;
+        }
     }
     
     // Function to initialize latest itinerary data from Firestore database.
     const getLatestItinerary = async () => {
+        let unmounted = false;
         if (itineraries > 0) {
         await firestore()
             .collection('users')
@@ -116,6 +121,10 @@ const HomeScreen = () => {
                 hasRun();
                 })
             }
+
+            return () => {
+                unmounted = true;
+            }
         }
 
         /* 
@@ -123,6 +132,7 @@ const HomeScreen = () => {
             If less than 5, will return all the itineraries prior to the latest one.
         */
         const getPastItineraries = async () => {
+            let unmounted = false;
             const itinerariesList = [];
             console.log('BreakPoint 0');
             if(latestItinerary != undefined && itineraries > 1) {
@@ -191,7 +201,9 @@ const HomeScreen = () => {
                     
                 });
             }
-            
+            return () => {
+                unmounted = true;
+            }
         }
 
     // Initializing the user upon navigating to this page.

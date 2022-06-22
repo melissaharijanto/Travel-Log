@@ -25,6 +25,7 @@ const ProfileScreen = () => {
     const defaultImage = 'https://firebasestorage.googleapis.com/v0/b/travellog-d79e2.appspot.com/o/defaultUser.png?alt=media&token=d56ef526-4058-4152-933b-b98cd0668392'
 
     const getUser = async () => {
+        let unmounted = false;
         await firestore()
             .collection('users')
             .doc(user.uid)
@@ -35,6 +36,9 @@ const ProfileScreen = () => {
                     setImage(documentSnapshot.data().imgUrl);
                 }
             })
+        return () => {
+            unmounted = true;
+        }
     }
 
     useEffect(() => {

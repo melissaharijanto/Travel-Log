@@ -1,53 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, StyleSheet, ScrollView, Alert } from 'react-native';
+import { View, Text, Image, StyleSheet, ActivityIndicator } from 'react-native';
 import Logo from '../../../assets/images/logo2.png';
 import CustomInputField from '../../components/CustomInputField';
 import CustomButton from '../../components/CustomButton';
 import { useNavigation } from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
+import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
 
 const SignInScreen = () => {
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
     const navigation = useNavigation();
 
-    const onLogInPressed = async () => {
-        auth()
-          .signInWithEmailAndPassword(email, password)
-          .then(() => {
-            console.log('User account created & signed in!');
-          })
-          .catch(error => {
+    const [message, setMessage] = useState(null);
+    const [showMessage, setShowMessage] = useState(false);
+    const [waiting, setWaiting] = useState(false);
 
-            if (error.code === 'auth/invalid-email') {
-              console.log('That email address is invalid!');
-            }
-
-            if (error.code === 'auth/wrong-password') {
-                console.log('Wrong password.');
-            }
-
-            Alert.alert(
-                error.code,
-                error.message,
-                [
-                    {
-                        text: "OK",
-                        onPress: () => console.log("OK Pressed"),
-                        style: "OK",
-                    },
-                ],
-                {
-                    cancelable: true,
-                    onDismiss: () =>
-                    console.log(
-                        "This alert was dismissed by tapping outside of the alert dialog."
-                    ),
-                }
-            );
-
-          });
-    };
+    const userInfo = {
+        email: '',
+        password: '',
+    }
+    
+    const validationSchema = Yup.object({
+        email: Yup.string().email('Invalid email!').required('Email is required!'),
+        password: Yup.string().trim().min(6, 'Password is too short!').required('Password is required!'),
+    })
 
     const forgotPasswordPressed = () => {
         navigation.navigate('ForgotPassword');
@@ -58,61 +35,126 @@ const SignInScreen = () => {
     }; // to be changed once other screens are made!
 
     return (
-        <View style = {styles.root}>
-            <Image
-                source={ Logo }
-                style={ styles.logo }
-                resizeMode="contain"
-            />
+        <KeyboardAvoidingWrapper>
+            <View style = {styles.root}>
+                <Image
+                    source={ Logo }
+                    style={ styles.logo }
+                    resizeMode="contain"
+                />
 
-            <CustomInputField
-                placeholder = "Email"
-                value = { email }
-                setValue = { setEmail }
-            />
+                <Formik 
+                    initialValues={userInfo} 
+                    validationSchema={validationSchema}
+                    onSubmit={ async (values) => {
+                        let unmounted = false;
+                        setWaiting(true);
+                        auth()
+                        .signInWithEmailAndPassword(values.email, values.password)
+                        .then(() => {
+                            setWaiting(false);
+                            console.log('User account created & signed in!');
+                        })
+                        .catch(error => {
 
-            <CustomInputField
-                placeholder = "Password"
-                value = { password }
-                setValue = { setPassword }
-                secureTextEntry
-            />
+                            if (error.code === 'auth/user-not-found') {
+                                console.log('That email address is invalid!');
+                                setMessage('Email is not registered.')
+                                setShowMessage(true);
+                                setWaiting(false);
+                            }
 
-            <CustomButton
-                text = "Log In"
-                onPress = { onLogInPressed }
-                type = "PRIMARY"
-            />
+                            if (error.code === 'auth/wrong-password') {
+                                console.log('Wrong password.');
+                                setMessage('Wrong password.')
+                                setShowMessage(true);
+                                setWaiting(false);
+                            }
+                        });
 
-            <CustomButton
-                text = {
-                <Text style = {{
-                    textDecorationLine: 'underline',
-                    fontSize: 11,}}>Forgot Password?
-                </Text>
-                }
-                onPress = { forgotPasswordPressed }
-                type = "SECONDARY"
-            />
+                        return () => {
+                            unmounted = true;
+                        }
+                    }} 
+                >
+                {({values, handleChange, errors, handleBlur, touched, handleSubmit}) => {
+                    
+                    const {email, password} = values;
+                    
+                return (
+                <>
+                    <CustomInputField
+                        placeholder = "Email"
+                        value = { email }
+                        setValue = { handleChange('email') }
+                        onBlur = { handleBlur('email') }
+                        error = {touched.email && errors.email}
+                    />
 
-            <CustomButton
-                text = {
-                    <Text style = {{ fontSize: 12, }}>Don't have an account?
-                    <Text style = {{ fontSize: 12, }}> </Text>
-                    <Text
-                        style = {{
-                        fontFamily: 'Poppins-SemiBold',
+                    <CustomInputField
+                        placeholder = "Password"
+                        value = { password }
+                        setValue = { handleChange('password') }
+                        onBlur = { handleBlur('password') }
+                        error = {touched.password && errors.password}
+                        secureTextEntry
+                    />
+
+                    <CustomButton
+                        text = "Log In"
+                        onPress = { handleSubmit }
+                        type = "PRIMARY"
+                    />
+
+                    {showMessage
+                    ? 
+                    <Text style={styles.error}>
+                        {message}
+                    </Text>
+                    : null}
+                    
+                </>
+                )}}
+                </Formik>
+
+                <CustomButton
+                    text = {
+                    <Text style = {{
                         textDecorationLine: 'underline',
-                        fontSize: 12,
-                        }}>Sign Up.
+                        fontSize: 11,}}>Forgot Password?
                     </Text>
-                    </Text>
-                }
-                onPress = { onSignUpPressed }
-                type = "SECONDARY"
-            />
+                    }
+                    onPress = { forgotPasswordPressed }
+                    type = "SECONDARY"
+                />
 
-        </View>
+                <CustomButton
+                    text = {
+                        <Text style = {{ fontSize: 12, }}>Don't have an account?
+                        <Text style = {{ fontSize: 12, }}> </Text>
+                        <Text
+                            style = {{
+                            fontFamily: 'Poppins-SemiBold',
+                            textDecorationLine: 'underline',
+                            fontSize: 12,
+                            }}>Sign Up.
+                        </Text>
+                        </Text>
+                    }
+                    onPress = { onSignUpPressed }
+                    type = "SECONDARY"
+                />
+
+                { waiting 
+                    ? <ActivityIndicator
+                        size = 'large'
+                        color = '#3B4949'
+                    /> 
+                    : null
+                }
+
+            </View>
+        </KeyboardAvoidingWrapper>
     );
 };
 
@@ -122,6 +164,11 @@ const styles = StyleSheet.create({
         paddingHorizontal: '10%',
         paddingTop: '50%',
         backgroundColor: '#70DAD3'
+    },
+    error: {
+        color: '#a3160b',
+        fontFamily: 'Poppins-Italic',
+        fontSize: 12,
     },
     logo: {
         width: '75%',
