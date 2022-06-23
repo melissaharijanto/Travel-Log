@@ -25,6 +25,7 @@ const NewAccommodationScreen = ({route}) => {
     }
 
     const getAccommodation = async () => {
+        let unmounted = false;
         const accommodationList = [];
         firestore()
             .collection('itineraries')
@@ -58,16 +59,24 @@ const NewAccommodationScreen = ({route}) => {
                         setAccommodation(accommodationList);
                 })
             });
-            console.log('getaccommodation run')
+            return () => {
+                unmounted = true;
+            }
     }
 
     useEffect(() =>{
+        let unmounted = false;
+        
         if (auth().currentUser.uid === owner) {
             isOwner(true);
             console.log('Is owner!');
         } else {
             isOwner(false);
             console.log('Not owner!')
+        }
+
+        return () => {
+            unmounted = true;
         }
     }, [route]);
 

@@ -20,8 +20,12 @@ const HomeScreen = () => {
         navigation.navigate("NewItinerary");
     }
 
+    const [errorMessage, setErrorMessage] = useState(null);
+    const [showError, setShowError] = useState(false);
+
     // Placeholder function (to be removed later).
-    const viewItinerary = () => {
+    const viewItinerary = async () => {
+        let unmounted = false;
         firestore()
             .collection('itineraries')
             .doc(code)
@@ -32,11 +36,17 @@ const HomeScreen = () => {
                         itinerary: documentSnapshot.data(),
                     })
                 } else {
-                    Alert.alert('Invalid Code', 'Itinerary not found!');
+                    setErrorMessage('Invalid Code: Itinerary not found.')
+                    setShowError(true);
+                    setTimeout(() => setShowError(false), 5000);
+                    console.log('wait over')
                 }
             }).catch(e => {
                 console.log('Itinerary not found!')
             })
+        return () => {
+            unmounted = true;
+        }
     }
 
     // Redirects to profile when clicking the icon on the top right.
@@ -270,6 +280,13 @@ const HomeScreen = () => {
                 value = { code }
                 setValue = { setCode }
             />
+
+            {
+                showError
+                ? <Text style={styles.error}>{errorMessage}</Text>
+                : null
+            }
+
             <CustomButton
                 text = "View"
                 onPress = { viewItinerary }
@@ -331,6 +348,12 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         paddingHorizontal: '7%',
         paddingTop: '10%',
+    },
+    error: {
+        color: '#a3160b',
+        fontFamily: 'Poppins-Italic',
+        fontSize: 12,
+        paddingLeft: 10,
     },
     header: {
         paddingRight: 30,

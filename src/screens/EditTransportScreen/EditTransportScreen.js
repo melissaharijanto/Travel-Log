@@ -126,7 +126,8 @@ const EditTransportScreen = ({route}) => {
         }
     };
 
-    const getData = () => {
+    const getData = async () => {
+        let unmounted = false;
         firestore()
             .collection('itineraries')
             .doc(id)
@@ -144,15 +145,26 @@ const EditTransportScreen = ({route}) => {
                     setTimeChosen(true);
                 }
             })
+        
+        return () => {
+            unmounted = true;
+        }
     }
 
-    const getFileName = () => {
+    const getFileName = async () => {
+        let unmounted = false;
+
         if (fileUri != null) {
             setChosen(true);
+        }
+
+        return () => {
+            unmounted = true;
         }
     }
 
     const update = async () => {
+        let unmounted = false;
         setUpdating(true);
 
         let fileUrl = await uploadFile();
@@ -186,6 +198,10 @@ const EditTransportScreen = ({route}) => {
             owner: owner,
             itemId: itemId,
         });
+
+        return () => {
+            unmounted = true;
+        }
     }
 
     const confirmDelete = () => {
@@ -216,7 +232,8 @@ const EditTransportScreen = ({route}) => {
         )
     }
 
-    const handleDelete = () => {
+    const handleDelete = async () => {
+        let unmounted = false;
         setDeleting(true);
             firestore()
                 .collection('itineraries')
@@ -238,6 +255,10 @@ const EditTransportScreen = ({route}) => {
                 }).catch((error) => {
                     console.log(error);
                 })
+
+        return () => {
+            unmounted = true;
+        }
     }
 
     useEffect(() => {

@@ -141,6 +141,7 @@ const EditAccommodationScreen = ({route}) => {
     };
 
     const update = async () => {
+        let unmounted = false;
         setUpdating(true);
 
         let fileUrl = await uploadFile();
@@ -170,6 +171,10 @@ const EditAccommodationScreen = ({route}) => {
             itineraryEnd: itineraryEnd,
             owner: owner,
         });
+
+        return () => {
+            unmounted = true;
+        }
     }
 
     const confirmDelete = () => {
@@ -202,6 +207,7 @@ const EditAccommodationScreen = ({route}) => {
 
     // c: implement this
     const handleDelete = async () => {
+        let unmounted = false;
         setDeleting(true);
             await firestore()
                 .collection('itineraries')
@@ -221,9 +227,14 @@ const EditAccommodationScreen = ({route}) => {
                 }).catch((error) => {
                     console.log(error);
                 })
+
+        return () => {
+            unmounted = true;
+        }
     }
 
-    const getData = () => {
+    const getData = async () => {
+        let unmounted = false;
         firestore()
             .collection('itineraries')
             .doc(id)
@@ -239,11 +250,20 @@ const EditAccommodationScreen = ({route}) => {
                     setFileUri(documentSnapshot.data().notes); 
                 }
             })
+
+        return () => {
+            unmounted = true;
+        }
     }
 
     const getFileName = async () => {
+        let unmounted = false;
         if (fileUri != null) {
             setChosen(true);
+        }
+
+        return () => {
+            unmounted = true;
         }
     }
 

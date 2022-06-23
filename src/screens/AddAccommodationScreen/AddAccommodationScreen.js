@@ -138,6 +138,7 @@ const AddAccommodationScreen = ({route}) => {
     };
 
     const add = async () => {
+        let unmounted = false;
         setAdding(true);
         let fileUrl = await uploadFile();
 
@@ -176,6 +177,10 @@ const AddAccommodationScreen = ({route}) => {
             itineraryEnd: itineraryEnd,
             owner: owner,
         });
+
+        return () => {
+            unmounted = true;
+        }
     }
 
     return (

@@ -62,6 +62,7 @@ const OpeningItineraryScreen = ({route}) => {
         the 'days' state as an array of data.
     */
     const getDays = async () => {
+        let unmounted = false;
         try {
         const daysList = [];
         await firestore()
@@ -98,6 +99,10 @@ const OpeningItineraryScreen = ({route}) => {
         } catch(e) {
             console.log(e);
         }
+
+        return () => {
+            unmounted = true;
+        }
     }
 
     // Navigation function to go back to the previous screen.
@@ -107,14 +112,20 @@ const OpeningItineraryScreen = ({route}) => {
 
     // getDays() will run upon navigating to this page.
     useEffect(() => {
+        let unmounted = false;
         getDays();
-        return;
+        return () => {
+            unmounted = true;
+        }
     }, []);
 
     // getDays() will run upon change of route.
     useEffect(() => {
+        let unmounted = false;
         getDays();
-        return;
+        return () => {
+            unmounted = true;
+        }
     }, [route]);
 
     return (

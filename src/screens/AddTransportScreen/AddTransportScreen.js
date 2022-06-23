@@ -125,6 +125,7 @@ const AddTransportScreen = ({route}) => {
     };
 
     const add = async () => {
+        let unmounted = false;
         setAdding(true);
         let fileUrl = await uploadFile();
 
@@ -154,6 +155,10 @@ const AddTransportScreen = ({route}) => {
             date: date,
             owner: owner,
         });
+
+        return () => {
+            unmounted = true;
+        }
     }
 
     return (

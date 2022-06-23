@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, Image, StyleSheet, ScrollView, Pressable, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Back from 'react-native-vector-icons/Feather';
-import Rearrange from 'react-native-vector-icons/Entypo';
 import ActivityTab from '../../components/ActivityTab';
 import TransportTab from '../../components/TransportTab';
 import ActionButton from 'react-native-action-button-warnings-fixed';
@@ -104,12 +103,18 @@ const NewDayScreen = ({route}) => {
     }
 
     useEffect(() =>{
+        let unmounted = false;
+
         if (auth().currentUser.uid === owner) {
             isOwner(true);
             console.log('Is owner!')
         } else {
             isOwner(false);
             console.log('Not owner!');
+        }
+        
+        return () => {
+            unmounted = true;
         }
     }, [route]);
 

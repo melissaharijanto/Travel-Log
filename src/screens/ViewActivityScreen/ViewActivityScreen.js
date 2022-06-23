@@ -39,7 +39,8 @@ const ViewActivityScreen = ({route}) => {
 
     
     const getData = async () => {
-        
+            let unmounted = false;
+
             await firestore()
                 .collection('itineraries')
                 .doc(id)
@@ -55,14 +56,24 @@ const ViewActivityScreen = ({route}) => {
                         setFileUri(documentSnapshot.data().notes);  
                     }   
                 })
+            
+            return () => {
+                unmounted = true;
+            }
                 
     }
 
     const getFileName = async () => {
+        let unmounted = false;
+        
         if (fileUri != null) {
             setChosen(true);
             const fileNotes = firebase.storage().refFromURL(fileUri).name;
             setFileName(fileNotes);
+        }
+
+        return () => {
+            unmounted = true;
         }
     }
     

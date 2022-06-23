@@ -68,18 +68,6 @@ const EditProfileScreen = () => {
     const navigation = useNavigation();
     const defaultImage = 'https://firebasestorage.googleapis.com/v0/b/travellog-d79e2.appspot.com/o/defaultUser.png?alt=media&token=d56ef526-4058-4152-933b-b98cd0668392'
 
-    // const takePhotoFromCamera = () => {
-    //         ImagePicker.openCamera({
-    //         width: 500,
-    //         height: 500,
-    //         cropping: true,
-    //     }).then((image) => {
-    //         console.log(image);
-    //         const imageUri = image.path;
-    //         setImage(imageUri);
-    //     });
-    // };
-
     const choosePhotoFromLibrary = () => {
         ImagePicker.openPicker({
             width: 500,
@@ -146,6 +134,7 @@ const EditProfileScreen = () => {
 
 
     const saveChanges = async () => {
+        let unmounted = false;
         let imgUrl = await uploadImage();
 
         if ( imgUrl == null && userData.userImg ) {
@@ -172,6 +161,10 @@ const EditProfileScreen = () => {
             user.updateProfile(update);
 
         navigation.goBack();
+
+        return () => {
+            unmounted = true;
+        }
     }
 
     const onCanceling = () => {

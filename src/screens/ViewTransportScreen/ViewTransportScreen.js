@@ -26,7 +26,8 @@ const ViewTransportScreen = ({route}) => {
     const [fileName, setFileName] = useState(null);
     const [file, setFile] = useState(null);
 
-    const getData = () => {
+    const getData = async () => {
+        let unmounted = false;
         firestore()
             .collection('itineraries')
             .doc(id)
@@ -42,13 +43,22 @@ const ViewTransportScreen = ({route}) => {
                     setFileUri(documentSnapshot.data().notes); 
                 }    
             })
+    
+        return () => {
+            unmounted = true;
+        }
     }
 
     const getFileName = () => {
+        let unmounted = false;
         if (fileUri != null) {
             setChosen(true);
             const fileNotes = firebase.storage().refFromURL(fileUri).name;
             setFileName(fileNotes);
+        }
+
+        return () => {
+            unmounted = true;
         }
     }
 

@@ -127,6 +127,7 @@ const NewItineraryScreen = () => {
 
     // Function to add new itinerary to the database.
     const addNewItinerary = async () => {
+        let unmounted = false;
 
         setAdding(true);
 
@@ -237,6 +238,10 @@ const NewItineraryScreen = () => {
             navigation.navigate("HomeScreen");
             })
             
+        }
+
+        return () => {
+            unmounted = true;
         }
     }
         

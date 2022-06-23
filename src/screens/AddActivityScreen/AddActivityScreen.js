@@ -126,6 +126,7 @@ const AddActivityScreen = ({route}) => {
 
     // Add to database
     const add = async () => {
+        let unmounted = false;
         setAdding(true);
         let fileUrl = await uploadFile();
 
@@ -154,6 +155,10 @@ const AddActivityScreen = ({route}) => {
             date: date,
             owner: owner,
         });
+
+        return () => {
+            unmounted = true;
+        }
     }
 
     return (

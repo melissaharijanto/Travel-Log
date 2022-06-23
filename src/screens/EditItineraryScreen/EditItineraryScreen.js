@@ -28,7 +28,11 @@ const EditItineraryScreen = ( {route} ) => {
     }
 
     useEffect(() => {
+        let unmounted = false;
         itinerary.coverImage == undefined? setChosen(false) : setChosen(true);
+        return () => {
+            unmounted = true;
+        }
     }, [itinerary]);
 
     const confirmDelete = () => {
@@ -56,6 +60,7 @@ const EditItineraryScreen = ( {route} ) => {
 
     // c: implement this
     const handleDelete = async () => {
+        let unmounted = false;
         setDeleting(true);
 
         //decrement the user's itinerary count
@@ -91,6 +96,10 @@ const EditItineraryScreen = ( {route} ) => {
                 })
         } catch (e) {
             console.log(e);
+        }
+    
+        return () => {
+            unmounted = true;
         }
     }
 
@@ -141,6 +150,7 @@ const EditItineraryScreen = ( {route} ) => {
 
     const editItinerary = async () => {
 
+        let unmounted = false;
         setEditing(true);
 
         let imgUrl = await uploadImage();
@@ -175,6 +185,10 @@ const EditItineraryScreen = ( {route} ) => {
                 startDate: itinerary.startDate,
             }
         });
+
+        return () => {
+            unmounted = true;
+        }
     }
         
 
