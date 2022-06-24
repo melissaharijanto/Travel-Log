@@ -1,360 +1,364 @@
-import { useNavigation } from '@react-navigation/native';
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, Pressable, ActivityIndicator } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import React, {useState} from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  ActivityIndicator,
+} from 'react-native';
 import Back from 'react-native-vector-icons/Feather';
 import Document from 'react-native-vector-icons/Ionicons';
 import InputFieldAfterLogIn from '../../components/InputFieldAfterLogIn';
 import CustomButton from '../../components/CustomButton';
 import DocumentPicker, {
-    isInProgress,
-    types,
-  } from 'react-native-document-picker';
+  isInProgress,
+  types,
+} from 'react-native-document-picker';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper';
 
 const AddTransportScreen = ({route}) => {
-    
-    const navigation = useNavigation();
-    
-    const {id, dayLabel, date, owner} = route.params;
+  const navigation = useNavigation();
 
-    // Set initial states of each field to be empty.
-    const [name, setName] = useState();
-    const [startingPoint, setStartingPoint] = useState();
-    const [destination, setDestination] = useState();
-    const [startTime, setStartTime] = useState();
+  const {id, dayLabel, date, owner} = route.params;
 
-    // Shows whether document for additional notes/ time has been uploaded or not.
-    const [isDocChosen, setChosen] = useState(false);
-    const [isTimeChosen, setTimeChosen] = useState(false);
+  // Set initial states of each field to be empty.
+  const [name, setName] = useState();
+  const [startingPoint, setStartingPoint] = useState();
+  const [destination, setDestination] = useState();
+  const [startTime, setStartTime] = useState();
 
-    //States for file uploading
-    const [fileUri, setFileUri] = useState(null);
-    const [fileName, setFileName] = useState(null);
-    const [file, setFile] = useState(null);
+  // Shows whether document for additional notes/ time has been uploaded or not.
+  const [isDocChosen, setChosen] = useState(false);
+  const [isTimeChosen, setTimeChosen] = useState(false);
 
-    //State to show activity indicator when adding accommodation.
-    const [adding, setAdding] = useState(false);
+  // States for file uploading
+  const [fileUri, setFileUri] = useState(null);
+  const [fileName, setFileName] = useState(null);
+  const [file, setFile] = useState(null);
 
-    const [isStartVisible, setStartVisible] = useState(false);
+  // State to show activity indicator when adding accommodation.
+  const [adding, setAdding] = useState(false);
 
-    const showStartDatePicker = () => {
-        setStartVisible(true);
-        console.log(date);
-    };
+  const [isStartVisible, setStartVisible] = useState(false);
 
-    const hideDatePicker = () => {
-        setStartVisible(false);
-    };
+  const showStartDatePicker = () => {
+    setStartVisible(true);
+    console.log(date);
+  };
 
-    const handleConfirm = (time) => {
-        console.log("A start time has been picked: ", time);
-        setStartTime(time);
-        setTimeChosen(true);
-        hideDatePicker();
-    };
+  const hideDatePicker = () => {
+    setStartVisible(false);
+  };
 
-    const getTime = (time) => {
-        let minutes = time.getMinutes();
-        let hours = time.getHours();
+  const handleConfirm = time => {
+    console.log('A start time has been picked: ', time);
+    setStartTime(time);
+    setTimeChosen(true);
+    hideDatePicker();
+  };
 
-        if (hours < 10) {
-            hours = `0${hours}`;
-        }
+  const getTime = time => {
+    let minutes = time.getMinutes();
+    let hours = time.getHours();
 
-        if (minutes < 10) {
-            minutes = `0${minutes}`;
-        }
-        return `${hours}:${minutes}`
+    if (hours < 10) {
+      hours = `0${hours}`;
     }
 
-    //Choose which file to upload.
-    const chooseFile = async () => {
-        try {
-            const pickerResult = await DocumentPicker.pickSingle({
-                presentationStyle: 'fullScreen',
-                copyTo: 'cachesDirectory',
-                type: [types.doc, types.docx, types.pdf, types.images],
-            })
-            setFile(pickerResult);
-            setFileUri(pickerResult.fileCopyUri);
-            console.log(pickerResult);
-            setFileName(pickerResult.name);
-            setChosen(true);
-        } catch (e) {
-            if (DocumentPicker.isCancel(e)) {
-                console.log('cancelled')
-                // User cancelled the picker, exit any dialogs or menus and move on
-              } else if (isInProgress(e)) {
-                console.log('multiple pickers were opened, only the last will be considered')
-              } else {
-                console.log(e);
-              }
-        }
+    if (minutes < 10) {
+      minutes = `0${minutes}`;
+    }
+    return `${hours}:${minutes}`;
+  };
+
+  //Choose which file to upload.
+  const chooseFile = async () => {
+    try {
+      const pickerResult = await DocumentPicker.pickSingle({
+        presentationStyle: 'fullScreen',
+        copyTo: 'cachesDirectory',
+        type: [types.doc, types.docx, types.pdf, types.images],
+      });
+      setFile(pickerResult);
+      setFileUri(pickerResult.fileCopyUri);
+      console.log(pickerResult);
+      setFileName(pickerResult.name);
+      setChosen(true);
+    } catch (e) {
+      if (DocumentPicker.isCancel(e)) {
+        console.log('cancelled');
+        // User cancelled the picker, exit any dialogs or menus and move on
+      } else if (isInProgress(e)) {
+        console.log(
+          'multiple pickers were opened, only the last will be considered',
+        );
+      } else {
+        console.log(e);
+      }
+    }
+  };
+
+  // Uploading file to Firebase Storage
+  const uploadFile = async () => {
+    if (file == null) {
+      return null;
     }
 
-    // Uploading file to Firebase Storage
-    const uploadFile = async () => {
-        if( file == null ) {
-            return null;
-        }
+    const uploadUri = fileUri;
+    let filename = uploadUri.substring(uploadUri.lastIndexOf('/') + 1);
 
-        const uploadUri = fileUri;
-        let filename = uploadUri.substring(uploadUri.lastIndexOf('/') + 1);
+    // Add timestamp to File Name
+    const extension = filename.split('.').pop();
+    const name = filename.split('.').slice(0, -1).join('.');
+    filename = name + Date.now() + '.' + extension;
 
-        // Add timestamp to File Name
-        const extension = filename.split('.').pop();
-        const name = filename.split('.').slice(0, -1).join('.');
-        filename = name + Date.now() + '.' + extension;
+    const storageRef = storage().ref(`files/${filename}`);
+    const task = storageRef.putFile(uploadUri);
 
-        const storageRef = storage().ref(`files/${filename}`);
-        const task = storageRef.putFile(uploadUri);
+    try {
+      await task;
+      const url = await storageRef.getDownloadURL();
 
-        try {
-            await task;
-            const url = await storageRef.getDownloadURL();
+      setFile(null);
 
-            setFile(null);
+      return url;
+    } catch (e) {
+      console.log(e);
+      return null;
+    }
+  };
 
-            return url;
-        } catch (e) {
-            console.log(e);
-            return null;
-        }
+  const add = async () => {
+    let unmounted = false;
+    setAdding(true);
+    let fileUrl = await uploadFile();
+
+    let itemId = Math.random().toString(36).slice(2);
+
+    await firestore()
+      .collection('itineraries')
+      .doc(id)
+      .collection('days')
+      .doc(dayLabel)
+      .collection('plans')
+      .doc(itemId)
+      .set({
+        name: name,
+        startingPoint: startingPoint,
+        destination: destination,
+        type: 'transport',
+        id: itemId,
+        time: startTime,
+        notes: fileUrl,
+      });
+
+    setAdding(false);
+    navigation.navigate('NewDay', {
+      id: id,
+      dayLabel: dayLabel,
+      date: date,
+      owner: owner,
+    });
+
+    return () => {
+      unmounted = true;
     };
+  };
 
-    const add = async () => {
-        let unmounted = false;
-        setAdding(true);
-        let fileUrl = await uploadFile();
+  return (
+    <KeyboardAvoidingWrapper backgroundColor="#FFFFFF">
+      <View style={styles.root}>
+        {/* header */}
+        <View style={styles.header}>
+          <Back
+            size={35}
+            name="chevron-left"
+            color="#808080"
+            onPress={() =>
+              navigation.navigate('NewDay', {
+                id: id,
+                dayLabel: dayLabel,
+                date: date,
+                owner: owner,
+              })
+            }
+            style={{
+              flex: 1,
+              paddingTop: 2,
+            }}
+          />
+          <Text style={styles.headerText}>Transport</Text>
+        </View>
 
-        let itemId = Math.random().toString(36).slice(2);
+        {/* empty space so shadow can be visible */}
+        <Text />
 
-        await firestore()
-            .collection('itineraries')
-            .doc(id)
-            .collection('days')
-            .doc(dayLabel)
-            .collection('plans')
-            .doc(itemId)
-            .set({
-                name: name,
-                startingPoint: startingPoint,
-                destination: destination,
-                type: 'transport',
-                id: itemId,
-                time: startTime,
-                notes: fileUrl,
-            })
+        {/* body */}
+        <View
+          style={[
+            styles.root,
+            {
+              paddingHorizontal: '8%',
+            },
+          ]}>
+          {/* Field to input transport name. */}
+          <Text style={styles.text}>Mode of Transport</Text>
 
-        setAdding(false);
-        navigation.navigate('NewDay', {
-            id: id,
-            dayLabel: dayLabel,
-            date: date,
-            owner: owner,
-        });
+          <InputFieldAfterLogIn
+            placeholder="Mode of Transport"
+            value={name}
+            setValue={setName}
+          />
 
-        return () => {
-            unmounted = true;
-        }
-    }
+          {/* Field to input start location */}
+          <Text style={styles.text}>Starting Point</Text>
 
-    return (
-        <KeyboardAvoidingWrapper backgroundColor='#FFFFFF'>
-            <View style={styles.root}>
-                
-                {/* header */}
-                <View style = { styles.header }>
-                    <Back
-                        size={35}
-                        name="chevron-left"
-                        color="#808080"
-                        onPress = { () => navigation.navigate('NewDay', {
-                            id: id,
-                            dayLabel: dayLabel,
-                            date: date,
-                            owner: owner,
-                        }) }
-                        style = {{
-                            flex: 1,
-                            paddingTop: 2
-                        }}
-                    />
-                    <Text style = { styles.headerText }>Transport</Text>
-                </View>
-                
-                {/* empty space so shadow can be visible */}
-                <Text></Text>
+          <InputFieldAfterLogIn
+            placeholder="From"
+            value={startingPoint}
+            setValue={setStartingPoint}
+          />
 
-                {/* body */}
-                <View style = {[styles.root, {
-                    paddingHorizontal: '8%' }]}>
-                    
-                    {/* Field to input transport name. */}
-                    <Text style = { styles.text }>Mode of Transport</Text>
+          {/* Field to input destination*/}
+          <Text style={styles.text}>Destination</Text>
 
-                    <InputFieldAfterLogIn
-                        placeholder = "Mode of Transport"
-                        value = { name }
-                        setValue = { setName  }
-                    />
+          <InputFieldAfterLogIn
+            placeholder="Destination"
+            value={destination}
+            setValue={setDestination}
+          />
 
-                    {/* Field to input start location */}
-                    <Text style = { styles.text }>Starting Point</Text>
+          <Text style={styles.text}>Start Time</Text>
+          <View style={styles.horizontal}>
+            <Pressable onPress={showStartDatePicker} style={styles.button}>
+              <Text style={styles.buttonText}>Pick Start Time</Text>
+            </Pressable>
+            {isTimeChosen ? (
+              <Text style={[styles.setText, {paddingLeft: 20}]}>
+                {getTime(startTime)}
+              </Text>
+            ) : null}
+          </View>
+          <DateTimePickerModal
+            isVisible={isStartVisible}
+            mode="time"
+            onConfirm={handleConfirm}
+            onCancel={hideDatePicker}
+            date={date.toDate()}
+          />
 
-                    <InputFieldAfterLogIn
-                        placeholder = "From"
-                        value = { startingPoint }
-                        setValue = { setStartingPoint  }
-                    />
-                    
-                    {/* Field to input destination*/}
-                    <Text style = { styles.text }>Destination</Text>
+          {/* Upload additional files */}
+          <Text style={styles.text}>Additional Notes</Text>
+          <View style={styles.horizontal}>
+            <Pressable onPress={chooseFile} style={styles.button}>
+              <Document
+                name="document-outline"
+                size={20}
+                color="white"
+                style={{
+                  paddingLeft: '1%',
+                }}
+              />
 
-                    <InputFieldAfterLogIn
-                        placeholder = "Destination"
-                        value = { destination }
-                        setValue = { setDestination }
-                    />
+              <Text style={styles.buttonText}>Upload Files</Text>
+            </Pressable>
+            {isDocChosen ? (
+              <Text style={[styles.setText, {paddingLeft: 20}]}>
+                {fileName}
+              </Text>
+            ) : null}
+          </View>
+          <Text style={styles.acceptedFiles}>
+            Accepted file formats: .pdf, .docx, .jpeg, .png
+          </Text>
 
-                    <Text style = { styles.text }>Start Time</Text>
-                    <View style={styles.horizontal}>
-                        <Pressable onPress={ showStartDatePicker } style={styles.button}>
-                            <Text style={styles.buttonText}>Pick Start Time</Text>
-                        </Pressable>
-                        {
-                            isTimeChosen
-                            ? <Text style={[styles.setText, {paddingLeft: 20}]}>{ getTime(startTime) }</Text>
-                            : null
-                        }
-                    </View>
-                    <DateTimePickerModal
-                        isVisible={isStartVisible}
-                        mode="time"
-                        onConfirm={handleConfirm}
-                        onCancel={hideDatePicker}
-                        date={date.toDate()}
-                    />
+          {/* Line breaks */}
+          <Text>{'\n'}</Text>
+          <Text>{'\n'}</Text>
 
-                    {/* Upload additional files */}
-                    <Text style = { styles.text }>Additional Notes</Text>
-                    <View style={styles.horizontal}>
-                        <Pressable onPress={ chooseFile } style={styles.button}>
-                        <Document
-                            name = "document-outline"
-                            size = {20}
-                            color = 'white'
-                            style = {{
-                                paddingLeft: '1%'
-                            }}
-                        />
+          <CustomButton text="Add" onPress={add} type="TERTIARY" />
 
-                        <Text style={styles.buttonText}>Upload Files</Text>
-                    </Pressable>
-                    {
-                        isDocChosen
-                        ? <Text style={[styles.setText, {paddingLeft: 20}]}>{ fileName }</Text>
-                        : null
-                    }
-                    </View>
-                        <Text style={styles.acceptedFiles}>Accepted file formats: .pdf, .docx, .jpeg, .png</Text>
-
-                    {/* Line breaks */}
-                    <Text>{'\n'}</Text>
-                    <Text>{'\n'}</Text>
-
-                    <CustomButton
-                        text='Add'
-                        onPress= { add }
-                        type='TERTIARY'
-                    />
-
-                    {
-                        adding
-                        ? <View style={{
-                            paddingTop: 20,
-                            alignSelf: 'center',
-                            }}>
-                            <ActivityIndicator 
-                            size='large' 
-                            color='#000000'/>
-                        </View>
-                        : null
-                    }
-                </View>
-
-                
+          {adding ? (
+            <View
+              style={{
+                paddingTop: 20,
+                alignSelf: 'center',
+              }}>
+              <ActivityIndicator size="large" color="#000000" />
             </View>
-        </KeyboardAvoidingWrapper>
-    )
-}
+          ) : null}
+        </View>
+      </View>
+    </KeyboardAvoidingWrapper>
+  );
+};
 
 const styles = StyleSheet.create({
-    root:{
-        flex: 1,
-        backgroundColor: '#FFFFFF'
-    },
-    acceptedFiles: {
-        fontFamily: 'Poppins-Italic',
-        fontSize: 12,
-        color: '#333333',
-    },
-    header: {
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        backgroundColor: 'white',
-        height: 65,
-        width: '100%',
-        paddingLeft: 10,
-        elevation: 15,
-        shadowColor: '#70D9D3',
-        shadowOpacity: 1,
-    },
-    headerText: {
-        fontFamily: 'Poppins-Bold',
-        fontSize: 26,
-        color: '#3B4949',
-        justifyContent: 'center',
-        alignSelf: 'center',
-        alignItems: 'center',
-        paddingTop: 9,
-        flex: 1.95,
-    },
-    horizontal: {
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-    },
-    button: {
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        padding: 5,
-        backgroundColor: '#70DAD3',
-        borderRadius: 4,
-        marginTop: 10,
-        marginBottom: 8,
-    },
-    buttonText: {
-        fontFamily: 'Poppins-Medium',
-        color: 'white',
-        paddingHorizontal: '2%',
-        paddingTop: '1%',
-    },
-    setText: {
-        fontFamily: 'Poppins-Italic',
-        color: '#333333',
-        paddingTop: 2,
-    },
-    text: {
-        fontFamily: 'Poppins-Medium',
-        color: '#333333',
-        paddingTop: 2,
-    },
-   
-})
+  root: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+  },
+  acceptedFiles: {
+    fontFamily: 'Poppins-Italic',
+    fontSize: 12,
+    color: '#333333',
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    height: 65,
+    width: '100%',
+    paddingLeft: 10,
+    elevation: 15,
+    shadowColor: '#70D9D3',
+    shadowOpacity: 1,
+  },
+  headerText: {
+    fontFamily: 'Poppins-Bold',
+    fontSize: 26,
+    color: '#3B4949',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    alignItems: 'center',
+    paddingTop: 9,
+    flex: 1.95,
+  },
+  horizontal: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  button: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    padding: 5,
+    backgroundColor: '#70DAD3',
+    borderRadius: 4,
+    marginTop: 10,
+    marginBottom: 8,
+  },
+  buttonText: {
+    fontFamily: 'Poppins-Medium',
+    color: 'white',
+    paddingHorizontal: '2%',
+    paddingTop: '1%',
+  },
+  setText: {
+    fontFamily: 'Poppins-Italic',
+    color: '#333333',
+    paddingTop: 2,
+  },
+  text: {
+    fontFamily: 'Poppins-Medium',
+    color: '#333333',
+    paddingTop: 2,
+  },
+});
 export default AddTransportScreen;

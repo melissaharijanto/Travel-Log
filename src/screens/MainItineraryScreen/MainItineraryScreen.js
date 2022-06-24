@@ -1,8 +1,5 @@
-/* eslint-disable no-shadow */
-/* eslint-disable no-unused-vars */
-/* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from 'react';
-import { View, Text, Image, StyleSheet, Pressable, FlatList } from 'react-native';
+import { View, Text, Image, StyleSheet, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Logo from '../../../assets/images/logo3.png';
 import ItineraryTab from '../../components/ItineraryTab';
