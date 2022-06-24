@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/melissaharijanto/TravelLogApp/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v22/values-v22.xml",
+            "outputFile": "C:\\Users\\Livia Michelle\\Travel-Log\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v22\\values-v22.xml",
             "map": [
                 {
-                    "source": "/Users/melissaharijanto/.gradle/caches/transforms-3/c06d0f039cd4e268f242a00e6c84f51e/transformed/appcompat-1.3.0/res/values-v22/values-v22.xml",
+                    "source": "C:\\Users\\Livia Michelle\\.gradle\\caches\\transforms-3\\f4ba5a3ff76900f9d093d35a7e39019f\\transformed\\appcompat-1.3.0\\res\\values-v22\\values-v22.xml",
                     "from": {
                         "startLines": "2,3,4,9",
                         "startColumns": "4,4,4,4",

@@ -9,379 +9,379 @@
 9        android:targetSdkVersion="27" />
 10
 11    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-11-->/Users/melissaharijanto/TravelLogApp/android/app/src/debug/AndroidManifest.xml:5:5-77
-11-->/Users/melissaharijanto/TravelLogApp/android/app/src/debug/AndroidManifest.xml:5:22-75
+11-->C:\Users\Livia Michelle\Travel-Log\android\app\src\debug\AndroidManifest.xml:5:5-77
+11-->C:\Users\Livia Michelle\Travel-Log\android\app\src\debug\AndroidManifest.xml:5:22-75
 12    <uses-permission android:name="android.permission.INTERNET" />
-12-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:4:5-67
-12-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:4:22-64
+12-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:4:5-67
+12-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:4:22-64
 13    <uses-permission android:name="android.permission.CAMERA" />
-13-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:5:5-64
-13-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:5:22-62
+13-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:5:5-64
+13-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:5:22-62
 14
 15    <uses-feature
-15-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:6:5-85
+15-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:6:5-85
 16        android:name="android.hardware.camera"
-16-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:6:19-57
+16-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:6:19-57
 17        android:required="false" />
-17-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:6:58-82
+17-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:6:58-82
 18    <uses-feature
-18-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:7:5-91
+18-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:7:5-91
 19        android:name="android.hardware.camera.front"
-19-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:7:19-63
+19-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:7:19-63
 20        android:required="false" />
-20-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:7:64-88
+20-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:7:64-88
 21
 22    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-22-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:8:5-81
-22-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:8:22-78
+22-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:8:5-81
+22-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:8:22-78
 23    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-23-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:9:5-80
-23-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:9:22-77
+23-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:9:5-80
+23-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:9:22-77
 24    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
-24-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:10:5-82
-24-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:10:22-79
+24-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:10:5-82
+24-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:10:22-79
 25    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
-25-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:11:5-88
-25-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:11:22-85
+25-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:11:5-88
+25-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:11:22-85
 26    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-26-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:12:5-79
-26-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:12:22-76
+26-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:12:5-79
+26-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:12:22-76
 27    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-27-->[com.facebook.flipper:flipper:0.125.0] /Users/melissaharijanto/.gradle/caches/transforms-3/baef8f9fd5badf25733320d45824ec5a/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:16:5-76
-27-->[com.facebook.flipper:flipper:0.125.0] /Users/melissaharijanto/.gradle/caches/transforms-3/baef8f9fd5badf25733320d45824ec5a/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:16:22-73
+27-->[com.facebook.flipper:flipper:0.125.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\b24649aa5fbdef18d352a14cc6c09833\transformed\jetified-flipper-0.125.0\AndroidManifest.xml:16:5-76
+27-->[com.facebook.flipper:flipper:0.125.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\b24649aa5fbdef18d352a14cc6c09833\transformed\jetified-flipper-0.125.0\AndroidManifest.xml:16:22-73
 28    <uses-permission android:name="android.permission.WAKE_LOCK" />
-28-->[:react-native-firebase_auth] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/auth/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:5-68
-28-->[:react-native-firebase_auth] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/auth/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:22-65
+28-->[:react-native-firebase_auth] C:\Users\Livia Michelle\Travel-Log\node_modules\@react-native-firebase\auth\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:10:5-68
+28-->[:react-native-firebase_auth] C:\Users\Livia Michelle\Travel-Log\node_modules\@react-native-firebase\auth\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:10:22-65
 29
 30    <queries>
-30-->[:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-13:15
+30-->[:react-native-image-crop-picker] C:\Users\Livia Michelle\Travel-Log\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-13:15
 31        <intent>
-31-->[:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-12:18
+31-->[:react-native-image-crop-picker] C:\Users\Livia Michelle\Travel-Log\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-12:18
 32            <action android:name="android.media.action.IMAGE_CAPTURE" />
-32-->[:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-73
-32-->[:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:21-70
+32-->[:react-native-image-crop-picker] C:\Users\Livia Michelle\Travel-Log\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-73
+32-->[:react-native-image-crop-picker] C:\Users\Livia Michelle\Travel-Log\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:11:21-70
 33        </intent>
 34    </queries>
 35
 36    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
-36-->[com.google.android.gms:play-services-measurement-api:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/83b6741dd7511692ac56a5fc84952549/transformed/jetified-play-services-measurement-api-21.0.0/AndroidManifest.xml:25:5-79
-36-->[com.google.android.gms:play-services-measurement-api:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/83b6741dd7511692ac56a5fc84952549/transformed/jetified-play-services-measurement-api-21.0.0/AndroidManifest.xml:25:22-76
+36-->[com.google.android.gms:play-services-measurement-api:21.0.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\5a7cf027c2376b4d9940c01e3fba452d\transformed\jetified-play-services-measurement-api-21.0.0\AndroidManifest.xml:25:5-79
+36-->[com.google.android.gms:play-services-measurement-api:21.0.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\5a7cf027c2376b4d9940c01e3fba452d\transformed\jetified-play-services-measurement-api-21.0.0\AndroidManifest.xml:25:22-76
 37    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
-37-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:26:5-110
-37-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:26:22-107
+37-->[com.google.android.gms:play-services-measurement:21.0.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\47839aacd1a36294bbea069597e954b9\transformed\jetified-play-services-measurement-21.0.0\AndroidManifest.xml:26:5-110
+37-->[com.google.android.gms:play-services-measurement:21.0.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\47839aacd1a36294bbea069597e954b9\transformed\jetified-play-services-measurement-21.0.0\AndroidManifest.xml:26:22-107
 38
 39    <application
-39-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:14:5-34:19
+39-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:14:5-34:19
 40        android:name="com.travellogapp.MainApplication"
-40-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:15:7-38
+40-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:15:7-38
 41        android:allowBackup="false"
-41-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:19:7-34
+41-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:19:7-34
 42        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-42-->[androidx.core:core:1.6.0] /Users/melissaharijanto/.gradle/caches/transforms-3/826bfb294122aa78ed3602b6bf66ff26/transformed/core-1.6.0/AndroidManifest.xml:24:18-86
+42-->[androidx.core:core:1.6.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\5a71c8c3af7d887598359e23d5b6b787\transformed\core-1.6.0\AndroidManifest.xml:24:18-86
 43        android:debuggable="true"
 44        android:icon="@mipmap/ic_launcher"
-44-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:17:7-41
+44-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:17:7-41
 45        android:label="@string/app_name"
-45-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:16:7-39
+45-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:16:7-39
 46        android:roundIcon="@mipmap/ic_launcher_round"
-46-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:18:7-52
+46-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:18:7-52
 47        android:theme="@style/AppTheme"
-47-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:20:7-38
+47-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:20:7-38
 48        android:usesCleartextTraffic="true" >
-48-->/Users/melissaharijanto/TravelLogApp/android/app/src/debug/AndroidManifest.xml:8:9-44
+48-->C:\Users\Livia Michelle\Travel-Log\android\app\src\debug\AndroidManifest.xml:8:9-44
 49        <activity
-49-->/Users/melissaharijanto/TravelLogApp/android/app/src/debug/AndroidManifest.xml:11:9-111
+49-->C:\Users\Livia Michelle\Travel-Log\android\app\src\debug\AndroidManifest.xml:11:9-111
 50            android:name="com.facebook.react.devsupport.DevSettingsActivity"
-50-->/Users/melissaharijanto/TravelLogApp/android/app/src/debug/AndroidManifest.xml:11:19-83
+50-->C:\Users\Livia Michelle\Travel-Log\android\app\src\debug\AndroidManifest.xml:11:19-83
 51            android:exported="false" />
-51-->/Users/melissaharijanto/TravelLogApp/android/app/src/debug/AndroidManifest.xml:11:84-108
+51-->C:\Users\Livia Michelle\Travel-Log\android\app\src\debug\AndroidManifest.xml:11:84-108
 52        <activity
-52-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:21:7-33:18
+52-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:21:7-33:18
 53            android:name="com.travellogapp.MainActivity"
-53-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:22:9-37
+53-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:22:9-37
 54            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
-54-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:24:9-118
+54-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:24:9-118
 55            android:exported="true"
-55-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:27:9-32
+55-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:27:9-32
 56            android:label="@string/app_name"
-56-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:23:9-41
+56-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:23:9-41
 57            android:launchMode="singleTask"
-57-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:25:9-40
+57-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:25:9-40
 58            android:windowSoftInputMode="adjustResize" >
-58-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:26:9-51
+58-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:26:9-51
 59            <intent-filter>
-59-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:28:9-32:25
+59-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:28:9-32:25
 60                <action android:name="android.intent.action.MAIN" />
-60-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:29:13-65
-60-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:29:21-62
+60-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:29:13-65
+60-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:29:21-62
 61
 62                <category android:name="android.intent.category.LAUNCHER" />
-62-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:30:13-73
-62-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:30:23-70
+62-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:30:13-73
+62-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:30:23-70
 63
 64                <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
-64-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:31:13-77
-64-->/Users/melissaharijanto/TravelLogApp/android/app/src/main/AndroidManifest.xml:31:21-75
+64-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:31:13-77
+64-->C:\Users\Livia Michelle\Travel-Log\android\app\src\main\AndroidManifest.xml:31:21-75
 65            </intent-filter>
 66        </activity>
 67
 68        <meta-data
-68-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-12:36
+68-->[:react-native-firebase_app] C:\Users\Livia Michelle\Travel-Log\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-12:36
 69            android:name="app_data_collection_default_enabled"
-69-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-63
+69-->[:react-native-firebase_app] C:\Users\Livia Michelle\Travel-Log\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-63
 70            android:value="true" />
-70-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-33
+70-->[:react-native-firebase_app] C:\Users\Livia Michelle\Travel-Log\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-33
 71
 72        <service
-72-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:9-18:19
+72-->[:react-native-firebase_app] C:\Users\Livia Michelle\Travel-Log\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:9-18:19
 73            android:name="com.google.firebase.components.ComponentDiscoveryService"
-73-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:18-89
+73-->[:react-native-firebase_app] C:\Users\Livia Michelle\Travel-Log\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:18-89
 74            android:directBootAware="true"
-74-->[com.google.firebase:firebase-common:20.1.1] /Users/melissaharijanto/.gradle/caches/transforms-3/e7f63944be48d511fec559dbc7569295/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:35:13-43
+74-->[com.google.firebase:firebase-common:20.1.1] C:\Users\Livia Michelle\.gradle\caches\transforms-3\90b0264a270d302f6511f9161eff0e3e\transformed\jetified-firebase-common-20.1.1\AndroidManifest.xml:35:13-43
 75            android:exported="false" >
-75-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:66:13-37
+75-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:66:13-37
 76            <meta-data
-76-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-17:85
+76-->[:react-native-firebase_app] C:\Users\Livia Michelle\Travel-Log\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-17:85
 77                android:name="com.google.firebase.components:io.invertase.firebase.app.ReactNativeFirebaseAppRegistrar"
-77-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:17-120
+77-->[:react-native-firebase_app] C:\Users\Livia Michelle\Travel-Log\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:16:17-120
 78                android:value="com.google.firebase.components.ComponentRegistrar" />
-78-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:17-82
+78-->[:react-native-firebase_app] C:\Users\Livia Michelle\Travel-Log\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:17:17-82
 79            <meta-data
-79-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:67:13-69:85
+79-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:67:13-69:85
 80                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
-80-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:68:17-109
+80-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:68:17-109
 81                android:value="com.google.firebase.components.ComponentRegistrar" />
-81-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:69:17-82
+81-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:69:17-82
 82            <meta-data
-82-->[com.google.firebase:firebase-firestore:24.1.2] /Users/melissaharijanto/.gradle/caches/transforms-3/957bca1613b61b77fe2db7da1b45afa7/transformed/jetified-firebase-firestore-24.1.2/AndroidManifest.xml:20:13-22:85
+82-->[com.google.firebase:firebase-firestore:24.1.2] C:\Users\Livia Michelle\.gradle\caches\transforms-3\77193be723fe9231394208ef424cc1b4\transformed\jetified-firebase-firestore-24.1.2\AndroidManifest.xml:20:13-22:85
 83                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
-83-->[com.google.firebase:firebase-firestore:24.1.2] /Users/melissaharijanto/.gradle/caches/transforms-3/957bca1613b61b77fe2db7da1b45afa7/transformed/jetified-firebase-firestore-24.1.2/AndroidManifest.xml:21:17-111
+83-->[com.google.firebase:firebase-firestore:24.1.2] C:\Users\Livia Michelle\.gradle\caches\transforms-3\77193be723fe9231394208ef424cc1b4\transformed\jetified-firebase-firestore-24.1.2\AndroidManifest.xml:21:17-111
 84                android:value="com.google.firebase.components.ComponentRegistrar" />
-84-->[com.google.firebase:firebase-firestore:24.1.2] /Users/melissaharijanto/.gradle/caches/transforms-3/957bca1613b61b77fe2db7da1b45afa7/transformed/jetified-firebase-firestore-24.1.2/AndroidManifest.xml:22:17-82
+84-->[com.google.firebase:firebase-firestore:24.1.2] C:\Users\Livia Michelle\.gradle\caches\transforms-3\77193be723fe9231394208ef424cc1b4\transformed\jetified-firebase-firestore-24.1.2\AndroidManifest.xml:22:17-82
 85            <meta-data
-85-->[com.google.firebase:firebase-storage:20.0.1] /Users/melissaharijanto/.gradle/caches/transforms-3/c6c8b88f143f37cf16ce75c484d9748b/transformed/jetified-firebase-storage-20.0.1/AndroidManifest.xml:33:13-35:85
+85-->[com.google.firebase:firebase-storage:20.0.1] C:\Users\Livia Michelle\.gradle\caches\transforms-3\5079d913fe3e7ed6bb9e7a4458ce2a9f\transformed\jetified-firebase-storage-20.0.1\AndroidManifest.xml:33:13-35:85
 86                android:name="com.google.firebase.components:com.google.firebase.storage.StorageRegistrar"
-86-->[com.google.firebase:firebase-storage:20.0.1] /Users/melissaharijanto/.gradle/caches/transforms-3/c6c8b88f143f37cf16ce75c484d9748b/transformed/jetified-firebase-storage-20.0.1/AndroidManifest.xml:34:17-107
+86-->[com.google.firebase:firebase-storage:20.0.1] C:\Users\Livia Michelle\.gradle\caches\transforms-3\5079d913fe3e7ed6bb9e7a4458ce2a9f\transformed\jetified-firebase-storage-20.0.1\AndroidManifest.xml:34:17-107
 87                android:value="com.google.firebase.components.ComponentRegistrar" />
-87-->[com.google.firebase:firebase-storage:20.0.1] /Users/melissaharijanto/.gradle/caches/transforms-3/c6c8b88f143f37cf16ce75c484d9748b/transformed/jetified-firebase-storage-20.0.1/AndroidManifest.xml:35:17-82
+87-->[com.google.firebase:firebase-storage:20.0.1] C:\Users\Livia Michelle\.gradle\caches\transforms-3\5079d913fe3e7ed6bb9e7a4458ce2a9f\transformed\jetified-firebase-storage-20.0.1\AndroidManifest.xml:35:17-82
 88            <meta-data
-88-->[com.google.android.gms:play-services-measurement-api:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/83b6741dd7511692ac56a5fc84952549/transformed/jetified-play-services-measurement-api-21.0.0/AndroidManifest.xml:31:13-33:85
+88-->[com.google.android.gms:play-services-measurement-api:21.0.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\5a7cf027c2376b4d9940c01e3fba452d\transformed\jetified-play-services-measurement-api-21.0.0\AndroidManifest.xml:31:13-33:85
 89                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
-89-->[com.google.android.gms:play-services-measurement-api:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/83b6741dd7511692ac56a5fc84952549/transformed/jetified-play-services-measurement-api-21.0.0/AndroidManifest.xml:32:17-139
+89-->[com.google.android.gms:play-services-measurement-api:21.0.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\5a7cf027c2376b4d9940c01e3fba452d\transformed\jetified-play-services-measurement-api-21.0.0\AndroidManifest.xml:32:17-139
 90                android:value="com.google.firebase.components.ComponentRegistrar" />
-90-->[com.google.android.gms:play-services-measurement-api:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/83b6741dd7511692ac56a5fc84952549/transformed/jetified-play-services-measurement-api-21.0.0/AndroidManifest.xml:33:17-82
+90-->[com.google.android.gms:play-services-measurement-api:21.0.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\5a7cf027c2376b4d9940c01e3fba452d\transformed\jetified-play-services-measurement-api-21.0.0\AndroidManifest.xml:33:17-82
 91            <meta-data
-91-->[com.google.firebase:firebase-installations:17.0.1] /Users/melissaharijanto/.gradle/caches/transforms-3/9f6bbe09836d61d2afd8d1de9abc19ca/transformed/jetified-firebase-installations-17.0.1/AndroidManifest.xml:18:13-20:85
+91-->[com.google.firebase:firebase-installations:17.0.1] C:\Users\Livia Michelle\.gradle\caches\transforms-3\d26db6f9c05b0da451da0c062362d8a4\transformed\jetified-firebase-installations-17.0.1\AndroidManifest.xml:18:13-20:85
 92                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
-92-->[com.google.firebase:firebase-installations:17.0.1] /Users/melissaharijanto/.gradle/caches/transforms-3/9f6bbe09836d61d2afd8d1de9abc19ca/transformed/jetified-firebase-installations-17.0.1/AndroidManifest.xml:19:17-127
+92-->[com.google.firebase:firebase-installations:17.0.1] C:\Users\Livia Michelle\.gradle\caches\transforms-3\d26db6f9c05b0da451da0c062362d8a4\transformed\jetified-firebase-installations-17.0.1\AndroidManifest.xml:19:17-127
 93                android:value="com.google.firebase.components.ComponentRegistrar" />
-93-->[com.google.firebase:firebase-installations:17.0.1] /Users/melissaharijanto/.gradle/caches/transforms-3/9f6bbe09836d61d2afd8d1de9abc19ca/transformed/jetified-firebase-installations-17.0.1/AndroidManifest.xml:20:17-82
+93-->[com.google.firebase:firebase-installations:17.0.1] C:\Users\Livia Michelle\.gradle\caches\transforms-3\d26db6f9c05b0da451da0c062362d8a4\transformed\jetified-firebase-installations-17.0.1\AndroidManifest.xml:20:17-82
 94        </service>
 95
 96        <provider
-96-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:20:9-24:38
+96-->[:react-native-firebase_app] C:\Users\Livia Michelle\Travel-Log\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:20:9-24:38
 97            android:name="io.invertase.firebase.app.ReactNativeFirebaseAppInitProvider"
-97-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:21:13-88
+97-->[:react-native-firebase_app] C:\Users\Livia Michelle\Travel-Log\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:21:13-88
 98            android:authorities="com.travellogapp.reactnativefirebaseappinitprovider"
-98-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:22:13-86
+98-->[:react-native-firebase_app] C:\Users\Livia Michelle\Travel-Log\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:22:13-86
 99            android:exported="false"
-99-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:23:13-37
+99-->[:react-native-firebase_app] C:\Users\Livia Michelle\Travel-Log\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:23:13-37
 100            android:initOrder="99" />
-100-->[:react-native-firebase_app] /Users/melissaharijanto/TravelLogApp/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:24:13-35
+100-->[:react-native-firebase_app] C:\Users\Livia Michelle\Travel-Log\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:24:13-35
 101        <provider
-101-->[:react-native-file-viewer] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-18:20
+101-->[:react-native-file-viewer] C:\Users\Livia Michelle\Travel-Log\node_modules\react-native-file-viewer\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-18:20
 102            android:name="com.vinzscam.reactnativefileviewer.FileProvider"
-102-->[:react-native-file-viewer] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-75
+102-->[:react-native-file-viewer] C:\Users\Livia Michelle\Travel-Log\node_modules\react-native-file-viewer\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-75
 103            android:authorities="com.travellogapp.provider"
-103-->[:react-native-file-viewer] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-60
+103-->[:react-native-file-viewer] C:\Users\Livia Michelle\Travel-Log\node_modules\react-native-file-viewer\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-60
 104            android:exported="false"
-104-->[:react-native-file-viewer] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-37
+104-->[:react-native-file-viewer] C:\Users\Livia Michelle\Travel-Log\node_modules\react-native-file-viewer\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-37
 105            android:grantUriPermissions="true" >
-105-->[:react-native-file-viewer] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-47
+105-->[:react-native-file-viewer] C:\Users\Livia Michelle\Travel-Log\node_modules\react-native-file-viewer\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-47
 106            <meta-data
-106-->[:react-native-file-viewer] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-17:70
+106-->[:react-native-file-viewer] C:\Users\Livia Michelle\Travel-Log\node_modules\react-native-file-viewer\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-17:70
 107                android:name="android.support.FILE_PROVIDER_PATHS"
-107-->[:react-native-file-viewer] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:17-67
+107-->[:react-native-file-viewer] C:\Users\Livia Michelle\Travel-Log\node_modules\react-native-file-viewer\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:16:17-67
 108                android:resource="@xml/file_viewer_provider_paths" />
-108-->[:react-native-file-viewer] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:17-67
+108-->[:react-native-file-viewer] C:\Users\Livia Michelle\Travel-Log\node_modules\react-native-file-viewer\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:17:17-67
 109        </provider>
 110        <provider
-110-->[:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:18:9-26:20
+110-->[:react-native-image-crop-picker] C:\Users\Livia Michelle\Travel-Log\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:18:9-26:20
 111            android:name="androidx.core.content.FileProvider"
-111-->[:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:19:13-62
+111-->[:react-native-image-crop-picker] C:\Users\Livia Michelle\Travel-Log\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:19:13-62
 112            android:authorities="com.travellogapp.provider"
-112-->[:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:20:13-60
+112-->[:react-native-image-crop-picker] C:\Users\Livia Michelle\Travel-Log\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:20:13-60
 113            android:exported="false"
-113-->[:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:21:13-37
+113-->[:react-native-image-crop-picker] C:\Users\Livia Michelle\Travel-Log\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:21:13-37
 114            android:grantUriPermissions="true" >
-114-->[:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:22:13-47
+114-->[:react-native-image-crop-picker] C:\Users\Livia Michelle\Travel-Log\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:22:13-47
 115            <meta-data
-115-->[:react-native-file-viewer] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-17:70
+115-->[:react-native-file-viewer] C:\Users\Livia Michelle\Travel-Log\node_modules\react-native-file-viewer\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-17:70
 116                android:name="android.support.FILE_PROVIDER_PATHS"
-116-->[:react-native-file-viewer] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:17-67
+116-->[:react-native-file-viewer] C:\Users\Livia Michelle\Travel-Log\node_modules\react-native-file-viewer\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:16:17-67
 117                android:resource="@xml/provider_paths" />
-117-->[:react-native-file-viewer] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-file-viewer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:17-67
+117-->[:react-native-file-viewer] C:\Users\Livia Michelle\Travel-Log\node_modules\react-native-file-viewer\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:17:17-67
 118        </provider>
 119
 120        <activity
-120-->[:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:28:9-30:72
+120-->[:react-native-image-crop-picker] C:\Users\Livia Michelle\Travel-Log\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:28:9-30:72
 121            android:name="com.yalantis.ucrop.UCropActivity"
-121-->[:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:29:13-60
+121-->[:react-native-image-crop-picker] C:\Users\Livia Michelle\Travel-Log\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:29:13-60
 122            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-122-->[:react-native-image-crop-picker] /Users/melissaharijanto/TravelLogApp/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:30:13-69
+122-->[:react-native-image-crop-picker] C:\Users\Livia Michelle\Travel-Log\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:30:13-69
 123        <activity
-123-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:27:9-44:20
+123-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:27:9-44:20
 124            android:name="com.google.firebase.auth.internal.GenericIdpActivity"
-124-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:28:13-80
+124-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:28:13-80
 125            android:excludeFromRecents="true"
-125-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:29:13-46
+125-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:29:13-46
 126            android:exported="true"
-126-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:30:13-36
+126-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:30:13-36
 127            android:launchMode="singleTask"
-127-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:31:13-44
+127-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:31:13-44
 128            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-128-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:32:13-72
+128-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:32:13-72
 129            <intent-filter>
-129-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:33:13-43:29
+129-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:33:13-43:29
 130                <action android:name="android.intent.action.VIEW" />
-130-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:34:17-69
-130-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:34:25-66
+130-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:34:17-69
+130-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:34:25-66
 131
 132                <category android:name="android.intent.category.DEFAULT" />
-132-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:36:17-76
-132-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:36:27-73
+132-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:36:17-76
+132-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:36:27-73
 133                <category android:name="android.intent.category.BROWSABLE" />
-133-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:37:17-78
-133-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:37:27-75
+133-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:37:17-78
+133-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:37:27-75
 134
 135                <data
-135-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:39:17-42:51
+135-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:39:17-42:51
 136                    android:host="firebase.auth"
-136-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:40:21-49
+136-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:40:21-49
 137                    android:path="/"
-137-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:41:21-37
+137-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:41:21-37
 138                    android:scheme="genericidp" />
-138-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:42:21-48
+138-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:42:21-48
 139            </intent-filter>
 140        </activity>
 141        <activity
-141-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:45:9-62:20
+141-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:45:9-62:20
 142            android:name="com.google.firebase.auth.internal.RecaptchaActivity"
-142-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:46:13-79
+142-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:46:13-79
 143            android:excludeFromRecents="true"
-143-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:47:13-46
+143-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:47:13-46
 144            android:exported="true"
-144-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:48:13-36
+144-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:48:13-36
 145            android:launchMode="singleTask"
-145-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:49:13-44
+145-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:49:13-44
 146            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-146-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:50:13-72
+146-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:50:13-72
 147            <intent-filter>
-147-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:51:13-61:29
+147-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:51:13-61:29
 148                <action android:name="android.intent.action.VIEW" />
-148-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:34:17-69
-148-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:34:25-66
+148-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:34:17-69
+148-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:34:25-66
 149
 150                <category android:name="android.intent.category.DEFAULT" />
-150-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:36:17-76
-150-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:36:27-73
+150-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:36:17-76
+150-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:36:27-73
 151                <category android:name="android.intent.category.BROWSABLE" />
-151-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:37:17-78
-151-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:37:27-75
+151-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:37:17-78
+151-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:37:27-75
 152
 153                <data
-153-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:39:17-42:51
+153-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:39:17-42:51
 154                    android:host="firebase.auth"
-154-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:40:21-49
+154-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:40:21-49
 155                    android:path="/"
-155-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:41:21-37
+155-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:41:21-37
 156                    android:scheme="recaptcha" />
-156-->[com.google.firebase:firebase-auth:21.0.5] /Users/melissaharijanto/.gradle/caches/transforms-3/4e1ef21f5871259c64a22e23277c969e/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:42:21-48
+156-->[com.google.firebase:firebase-auth:21.0.5] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a09075b6c6c7e3cde0b6586b99041b0c\transformed\jetified-firebase-auth-21.0.5\AndroidManifest.xml:42:21-48
 157            </intent-filter>
 158        </activity>
 159
 160        <provider
-160-->[com.google.firebase:firebase-common:20.1.1] /Users/melissaharijanto/.gradle/caches/transforms-3/e7f63944be48d511fec559dbc7569295/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:26:9-31:39
+160-->[com.google.firebase:firebase-common:20.1.1] C:\Users\Livia Michelle\.gradle\caches\transforms-3\90b0264a270d302f6511f9161eff0e3e\transformed\jetified-firebase-common-20.1.1\AndroidManifest.xml:26:9-31:39
 161            android:name="com.google.firebase.provider.FirebaseInitProvider"
-161-->[com.google.firebase:firebase-common:20.1.1] /Users/melissaharijanto/.gradle/caches/transforms-3/e7f63944be48d511fec559dbc7569295/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:27:13-77
+161-->[com.google.firebase:firebase-common:20.1.1] C:\Users\Livia Michelle\.gradle\caches\transforms-3\90b0264a270d302f6511f9161eff0e3e\transformed\jetified-firebase-common-20.1.1\AndroidManifest.xml:27:13-77
 162            android:authorities="com.travellogapp.firebaseinitprovider"
-162-->[com.google.firebase:firebase-common:20.1.1] /Users/melissaharijanto/.gradle/caches/transforms-3/e7f63944be48d511fec559dbc7569295/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:28:13-72
+162-->[com.google.firebase:firebase-common:20.1.1] C:\Users\Livia Michelle\.gradle\caches\transforms-3\90b0264a270d302f6511f9161eff0e3e\transformed\jetified-firebase-common-20.1.1\AndroidManifest.xml:28:13-72
 163            android:directBootAware="true"
-163-->[com.google.firebase:firebase-common:20.1.1] /Users/melissaharijanto/.gradle/caches/transforms-3/e7f63944be48d511fec559dbc7569295/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:29:13-43
+163-->[com.google.firebase:firebase-common:20.1.1] C:\Users\Livia Michelle\.gradle\caches\transforms-3\90b0264a270d302f6511f9161eff0e3e\transformed\jetified-firebase-common-20.1.1\AndroidManifest.xml:29:13-43
 164            android:exported="false"
-164-->[com.google.firebase:firebase-common:20.1.1] /Users/melissaharijanto/.gradle/caches/transforms-3/e7f63944be48d511fec559dbc7569295/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:30:13-37
+164-->[com.google.firebase:firebase-common:20.1.1] C:\Users\Livia Michelle\.gradle\caches\transforms-3\90b0264a270d302f6511f9161eff0e3e\transformed\jetified-firebase-common-20.1.1\AndroidManifest.xml:30:13-37
 165            android:initOrder="100" />
-165-->[com.google.firebase:firebase-common:20.1.1] /Users/melissaharijanto/.gradle/caches/transforms-3/e7f63944be48d511fec559dbc7569295/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:31:13-36
+165-->[com.google.firebase:firebase-common:20.1.1] C:\Users\Livia Michelle\.gradle\caches\transforms-3\90b0264a270d302f6511f9161eff0e3e\transformed\jetified-firebase-common-20.1.1\AndroidManifest.xml:31:13-36
 166
 167        <activity
-167-->[com.google.android.gms:play-services-auth:20.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ab6d07be4d11d6fd14a46e3a3de23097/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:23:9-27:75
+167-->[com.google.android.gms:play-services-auth:20.2.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\64af2e4e85e9081926687a4df3deb2b6\transformed\jetified-play-services-auth-20.2.0\AndroidManifest.xml:23:9-27:75
 168            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
-168-->[com.google.android.gms:play-services-auth:20.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ab6d07be4d11d6fd14a46e3a3de23097/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:24:13-93
+168-->[com.google.android.gms:play-services-auth:20.2.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\64af2e4e85e9081926687a4df3deb2b6\transformed\jetified-play-services-auth-20.2.0\AndroidManifest.xml:24:13-93
 169            android:excludeFromRecents="true"
-169-->[com.google.android.gms:play-services-auth:20.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ab6d07be4d11d6fd14a46e3a3de23097/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:25:13-46
+169-->[com.google.android.gms:play-services-auth:20.2.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\64af2e4e85e9081926687a4df3deb2b6\transformed\jetified-play-services-auth-20.2.0\AndroidManifest.xml:25:13-46
 170            android:exported="false"
-170-->[com.google.android.gms:play-services-auth:20.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ab6d07be4d11d6fd14a46e3a3de23097/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:26:13-37
+170-->[com.google.android.gms:play-services-auth:20.2.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\64af2e4e85e9081926687a4df3deb2b6\transformed\jetified-play-services-auth-20.2.0\AndroidManifest.xml:26:13-37
 171            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-171-->[com.google.android.gms:play-services-auth:20.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ab6d07be4d11d6fd14a46e3a3de23097/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:27:13-72
+171-->[com.google.android.gms:play-services-auth:20.2.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\64af2e4e85e9081926687a4df3deb2b6\transformed\jetified-play-services-auth-20.2.0\AndroidManifest.xml:27:13-72
 172        <!--
 173            Service handling Google Sign-In user revocation. For apps that do not integrate with
 174            Google Sign-In, this service will never be started.
 175        -->
 176        <service
-176-->[com.google.android.gms:play-services-auth:20.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ab6d07be4d11d6fd14a46e3a3de23097/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:33:9-37:51
+176-->[com.google.android.gms:play-services-auth:20.2.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\64af2e4e85e9081926687a4df3deb2b6\transformed\jetified-play-services-auth-20.2.0\AndroidManifest.xml:33:9-37:51
 177            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
-177-->[com.google.android.gms:play-services-auth:20.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ab6d07be4d11d6fd14a46e3a3de23097/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:34:13-89
+177-->[com.google.android.gms:play-services-auth:20.2.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\64af2e4e85e9081926687a4df3deb2b6\transformed\jetified-play-services-auth-20.2.0\AndroidManifest.xml:34:13-89
 178            android:exported="true"
-178-->[com.google.android.gms:play-services-auth:20.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ab6d07be4d11d6fd14a46e3a3de23097/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:35:13-36
+178-->[com.google.android.gms:play-services-auth:20.2.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\64af2e4e85e9081926687a4df3deb2b6\transformed\jetified-play-services-auth-20.2.0\AndroidManifest.xml:35:13-36
 179            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
-179-->[com.google.android.gms:play-services-auth:20.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ab6d07be4d11d6fd14a46e3a3de23097/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:36:13-107
+179-->[com.google.android.gms:play-services-auth:20.2.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\64af2e4e85e9081926687a4df3deb2b6\transformed\jetified-play-services-auth-20.2.0\AndroidManifest.xml:36:13-107
 180            android:visibleToInstantApps="true" />
-180-->[com.google.android.gms:play-services-auth:20.2.0] /Users/melissaharijanto/.gradle/caches/transforms-3/ab6d07be4d11d6fd14a46e3a3de23097/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:37:13-48
+180-->[com.google.android.gms:play-services-auth:20.2.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\64af2e4e85e9081926687a4df3deb2b6\transformed\jetified-play-services-auth-20.2.0\AndroidManifest.xml:37:13-48
 181
 182        <activity
-182-->[com.google.android.gms:play-services-base:18.0.1] /Users/melissaharijanto/.gradle/caches/transforms-3/07e00fd4a881a5e0977285b218ec9906/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
+182-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a7da0ffaf9626d3a8436822864204695\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
 183            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-183-->[com.google.android.gms:play-services-base:18.0.1] /Users/melissaharijanto/.gradle/caches/transforms-3/07e00fd4a881a5e0977285b218ec9906/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:19-85
+183-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a7da0ffaf9626d3a8436822864204695\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:19-85
 184            android:exported="false"
-184-->[com.google.android.gms:play-services-base:18.0.1] /Users/melissaharijanto/.gradle/caches/transforms-3/07e00fd4a881a5e0977285b218ec9906/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:22:19-43
+184-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a7da0ffaf9626d3a8436822864204695\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:22:19-43
 185            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-185-->[com.google.android.gms:play-services-base:18.0.1] /Users/melissaharijanto/.gradle/caches/transforms-3/07e00fd4a881a5e0977285b218ec9906/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:21:19-78
+185-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Livia Michelle\.gradle\caches\transforms-3\a7da0ffaf9626d3a8436822864204695\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:21:19-78
 186
 187        <receiver
-187-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:29:9-33:20
+187-->[com.google.android.gms:play-services-measurement:21.0.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\47839aacd1a36294bbea069597e954b9\transformed\jetified-play-services-measurement-21.0.0\AndroidManifest.xml:29:9-33:20
 188            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
-188-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:30:13-85
+188-->[com.google.android.gms:play-services-measurement:21.0.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\47839aacd1a36294bbea069597e954b9\transformed\jetified-play-services-measurement-21.0.0\AndroidManifest.xml:30:13-85
 189            android:enabled="true"
-189-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:31:13-35
+189-->[com.google.android.gms:play-services-measurement:21.0.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\47839aacd1a36294bbea069597e954b9\transformed\jetified-play-services-measurement-21.0.0\AndroidManifest.xml:31:13-35
 190            android:exported="false" >
-190-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:32:13-37
+190-->[com.google.android.gms:play-services-measurement:21.0.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\47839aacd1a36294bbea069597e954b9\transformed\jetified-play-services-measurement-21.0.0\AndroidManifest.xml:32:13-37
 191        </receiver>
 192
 193        <service
-193-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:35:9-38:40
+193-->[com.google.android.gms:play-services-measurement:21.0.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\47839aacd1a36294bbea069597e954b9\transformed\jetified-play-services-measurement-21.0.0\AndroidManifest.xml:35:9-38:40
 194            android:name="com.google.android.gms.measurement.AppMeasurementService"
-194-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:36:13-84
+194-->[com.google.android.gms:play-services-measurement:21.0.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\47839aacd1a36294bbea069597e954b9\transformed\jetified-play-services-measurement-21.0.0\AndroidManifest.xml:36:13-84
 195            android:enabled="true"
-195-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:37:13-35
+195-->[com.google.android.gms:play-services-measurement:21.0.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\47839aacd1a36294bbea069597e954b9\transformed\jetified-play-services-measurement-21.0.0\AndroidManifest.xml:37:13-35
 196            android:exported="false" />
-196-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:38:13-37
+196-->[com.google.android.gms:play-services-measurement:21.0.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\47839aacd1a36294bbea069597e954b9\transformed\jetified-play-services-measurement-21.0.0\AndroidManifest.xml:38:13-37
 197        <service
-197-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:39:9-43:72
+197-->[com.google.android.gms:play-services-measurement:21.0.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\47839aacd1a36294bbea069597e954b9\transformed\jetified-play-services-measurement-21.0.0\AndroidManifest.xml:39:9-43:72
 198            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
-198-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:40:13-87
+198-->[com.google.android.gms:play-services-measurement:21.0.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\47839aacd1a36294bbea069597e954b9\transformed\jetified-play-services-measurement-21.0.0\AndroidManifest.xml:40:13-87
 199            android:enabled="true"
-199-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:41:13-35
+199-->[com.google.android.gms:play-services-measurement:21.0.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\47839aacd1a36294bbea069597e954b9\transformed\jetified-play-services-measurement-21.0.0\AndroidManifest.xml:41:13-35
 200            android:exported="false"
-200-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:42:13-37
+200-->[com.google.android.gms:play-services-measurement:21.0.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\47839aacd1a36294bbea069597e954b9\transformed\jetified-play-services-measurement-21.0.0\AndroidManifest.xml:42:13-37
 201            android:permission="android.permission.BIND_JOB_SERVICE" />
-201-->[com.google.android.gms:play-services-measurement:21.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/39fe89786ca960381dd0564bbd0f94fb/transformed/jetified-play-services-measurement-21.0.0/AndroidManifest.xml:43:13-69
+201-->[com.google.android.gms:play-services-measurement:21.0.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\47839aacd1a36294bbea069597e954b9\transformed\jetified-play-services-measurement-21.0.0\AndroidManifest.xml:43:13-69
 202
 203        <meta-data
-203-->[com.google.android.gms:play-services-basement:18.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/be944647bfd82958aafff760cc43d854/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:21:9-23:69
+203-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\6dadbc8dcf8ca64485f05cdeae89eefb\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:21:9-23:69
 204            android:name="com.google.android.gms.version"
-204-->[com.google.android.gms:play-services-basement:18.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/be944647bfd82958aafff760cc43d854/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:22:13-58
+204-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\6dadbc8dcf8ca64485f05cdeae89eefb\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:22:13-58
 205            android:value="@integer/google_play_services_version" />
-205-->[com.google.android.gms:play-services-basement:18.0.0] /Users/melissaharijanto/.gradle/caches/transforms-3/be944647bfd82958aafff760cc43d854/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:23:13-66
+205-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\Livia Michelle\.gradle\caches\transforms-3\6dadbc8dcf8ca64485f05cdeae89eefb\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:23:13-66
 206    </application>
 207
 208</manifest>
