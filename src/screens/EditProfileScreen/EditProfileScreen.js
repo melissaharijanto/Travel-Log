@@ -7,7 +7,8 @@ import {
     ImageBackground,
     Dimensions,
     ActivityIndicator,
-    TouchableOpacity
+    TouchableOpacity,
+    ScrollView
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
@@ -172,80 +173,82 @@ const EditProfileScreen = () => {
     }
 
     return (
-        <View style = { styles.root }>
-            <ImageBackground source={Background}
-                resizeMode="stretch"
-                style={styles.background}>
-            {
-                // Edit source of image to uri
-            }
-            <Image source={{ uri: image
-                    ? image
-                        : userData
-                        ? userData.userImg || defaultImage
-                    : defaultImage
-                }}
-                    style={styles.pfp}/>
+        <ScrollView>
+            <View style = { styles.root }>
+                <ImageBackground source={Background}
+                    resizeMode="stretch"
+                    style={styles.background}>
+                {
+                    // Edit source of image to uri
+                }
+                <Image source={{ uri: image
+                        ? image
+                            : userData
+                            ? userData.userImg || defaultImage
+                        : defaultImage
+                    }}
+                        style={styles.pfp}/>
 
-            <TouchableOpacity
-                onPress = {choosePhotoFromLibrary}
-                style={ styles.editPfp }>
-            <Image source= {EditProfilePicture}
-                style={styles.editPfp}
-            />
-            </TouchableOpacity>
+                <TouchableOpacity
+                    onPress = {choosePhotoFromLibrary}
+                    style={ styles.editPfp }>
+                <Image source= {EditProfilePicture}
+                    style={styles.editPfp}
+                />
+                </TouchableOpacity>
 
-            <Text style = { styles.name }>{ name }</Text>
+                <Text style = { styles.name }>{ name }</Text>
 
-            <Text style = { [styles.text, { paddingTop: '20%' } ]}>Name</Text>
+                <Text style = { [styles.text, { paddingTop: '20%' } ]}>Name</Text>
 
-            <InputFieldAfterLogIn
-                placeholder = "Enter your new name here."
-                value = { name }
-                setValue = { setName  }
-                maxLength = { 20 }
-            />
+                <InputFieldAfterLogIn
+                    placeholder = "Enter your new name here."
+                    value = { name }
+                    setValue = { setName  }
+                    maxLength = { 20 }
+                />
 
-            <Text style = { styles.text }>Email</Text>
+                <Text style = { styles.text }>Email</Text>
 
-            <Text style = { styles.userInfo }>{ email }</Text>
+                <Text style = { styles.userInfo }>{ email }</Text>
 
-            <Text>
-                {'\n'}
-                {'\n'}
-                {'\n'}
-                {'\n'}
-                {'\n'}
-            </Text>
+                <Text>
+                    {'\n'}
+                    {'\n'}
+                    {'\n'}
+                    {'\n'}
+                    {'\n'}
+                </Text>
 
-            <CustomButton
-                text = "Cancel"
-                onPress = { onCanceling }
-                type = "QUATERNARY"
-            />
+                <CustomButton
+                    text = "Cancel"
+                    onPress = { onCanceling }
+                    type = "QUATERNARY"
+                />
 
-            <CustomButton
-                text = "Save Changes"
-                onPress = { saveChanges }
-                type = "TERTIARY"
-            />
+                <CustomButton
+                    text = "Save Changes"
+                    onPress = { saveChanges }
+                    type = "TERTIARY"
+                />
 
-            <Text>
-                {'\n'}
-            </Text>
+                <Text>
+                    {'\n'}
+                </Text>
 
-            { uploading 
-                ? ( 
-                <View style={{ justifyContent: 'center', alignItems: 'center'}}>
-                    <ActivityIndicator size="small" color='#000000'/> 
-                    <Text style = {styles.text}> {transferred}% completed</Text>
-                </View>
-                )
-                : <View></View>
-            }
+                { uploading 
+                    ? ( 
+                    <View style={{ justifyContent: 'center', alignItems: 'center'}}>
+                        <ActivityIndicator size="small" color='#000000'/> 
+                        <Text style = {styles.text}> {transferred}% completed</Text>
+                    </View>
+                    )
+                    : <View></View>
+                }
 
-            </ImageBackground>
-        </View>
+                </ImageBackground>
+            </View>
+        </ScrollView>
     );
 };
 

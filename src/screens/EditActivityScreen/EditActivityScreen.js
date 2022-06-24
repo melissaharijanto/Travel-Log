@@ -13,9 +13,11 @@ import DocumentPicker, {
   } from 'react-native-document-picker';
 import storage from '@react-native-firebase/storage';
 import DeleteIcon from 'react-native-vector-icons/Feather';
+import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper';
 
 const EditActivityScreen = ({route}) => {
 
+    // Parameters passed on from the previous route.
     const { id, itemId, dayLabel, date, owner } = route.params;
 
     const getTime = (time) => {
@@ -30,10 +32,10 @@ const EditActivityScreen = ({route}) => {
         return `${hours}:${minutes}`
     }
 
+    // Navigation object.
     const navigation = useNavigation();
     
     // Set initial states of each field to be empty.
-
     const [name, setName] = useState(null);
     const [location, setLocation] = useState(null);
     const [startTime, setStartTime] = useState(new Date());
@@ -42,16 +44,20 @@ const EditActivityScreen = ({route}) => {
     const [isDocChosen, setChosen] = useState(false);
     const [isTimeChosen, setTimeChosen] = useState(false);
 
-    //States for file uploading
+    // States for file uploading
     const [fileUri, setFileUri] = useState(null);
     const [fileName, setFileName] = useState(null);
     const [file, setFile] = useState(null); 
 
-    //State to show activity indicator when adding accommodation.
+    // State to show activity indicator when adding accommodation.
     const [updating, setUpdating] = useState(false);
     const [deleting, setDeleting] = useState(false);
     const [isStartVisible, setStartVisible] = useState(false);
 
+    // Error Messages
+    const [errorMessage, setErrorMessage] = useState('');
+    const [showMessage, setShowMessage] = useState(false);
+    
     const showStartDatePicker = () => {
         setStartVisible(true);
         console.log(date);
@@ -107,6 +113,7 @@ const EditActivityScreen = ({route}) => {
         const name = filename.split('.').slice(0, -1).join('.');
         filename = name + Date.now() + '.' + extension;
 
+        // Referencing firebase storage.
         const storageRef = storage().ref(`files/${filename}`);
         const task = storageRef.putFile(uploadUri);
 
@@ -123,8 +130,11 @@ const EditActivityScreen = ({route}) => {
         }
     };
 
+    // Function to update the itinerary.
     const update = async () => {
+        // Clean-up variable
         let unmounted = false;
+
         setUpdating(true);
         let fileUrl = await uploadFile();
 
@@ -157,11 +167,13 @@ const EditActivityScreen = ({route}) => {
             owner: owner,
         });
 
+        // Returns the clean-up function.
         return () => {
             unmounted = true;
         }
     }
 
+    // Pop-up asking for confirmation to delete the activity
     const confirmDelete = () => {
         Alert.alert(
             "Confirm Delete",
@@ -272,127 +284,130 @@ const EditActivityScreen = ({route}) => {
 
     
     return (
-        <View style={styles.root}>
-            {/* header */}
-            <View style = { styles.header }>
-                <Back
-                    size={35}
-                    name="chevron-left"
-                    onPress = { () => navigation.goBack() }
-                    style = {{
-                        flex: 1,
-                        paddingTop: 2
-                    }}
-                />
-                <Text style = { styles.headerText }>Activity</Text>
-                <DeleteIcon
-                        name = "trash-2"
-                        size = {25}
-                        onPress = { confirmDelete }
+        <KeyboardAvoidingWrapper backgroundColor='#FFFFFF'>
+            <View style={styles.root}>
+                {/* header */}
+                <View style = { styles.header }>
+                    <Back
+                        size={35}
+                        name="chevron-left"
+                        color="#808080"
+                        onPress = { () => navigation.goBack() }
                         style = {{
-                            paddingRight: 20
-                        }}
-                />
-            </View>
-            
-            {/* empty space so shadow can be visible */}
-            <Text></Text>
-
-            {/* body */}
-            <View style = {[styles.root, {
-                paddingHorizontal: '8%' }]}>
-                
-                {/* Displays accommodation name. */}
-                <Text style = { styles.field }>Activity Name</Text>
-
-                <InputFieldAfterLogIn
-                    placeholder='Activity Name'
-                    value={ name }
-                    setValue= { setName }
-                />
-
-                {/* Displays Location. */}
-                <Text style = { styles.field }>Location</Text>
-               
-                <InputFieldAfterLogIn
-                    placeholder='Activity Name'
-                    value={ location }
-                    setValue= { setLocation }
-                />
-                
-                {/* Displays start time. */}
-                <Text style = { styles.field }>Start Time</Text>
-               
-                <View style={styles.horizontal}>
-                    <Pressable onPress={ showStartDatePicker } style={styles.button}>
-                        <Text style={styles.buttonText}>Pick Start Time</Text>
-                    </Pressable>
-                    {
-                        isTimeChosen
-                        ? <Text style={[styles.setText, {paddingLeft: 20}]}>{ getTime(startTime) }</Text>
-                        : null
-                    }
-                </View>
-                <DateTimePickerModal
-                    isVisible={isStartVisible}
-                    mode="time"
-                    onConfirm={handleConfirm}
-                    onCancel={hideDatePicker}
-                    date={date.toDate()}
-                />
-
-                {/* Upload additional files */}
-                <Text style = { styles.field }>Additional Notes</Text>
-                <View style={styles.horizontal}>
-                    <Pressable onPress={ chooseFile } style={styles.button}>
-                    <Document
-                        name = "document-outline"
-                        size = {20}
-                        color = 'white'
-                        style = {{
-                            paddingLeft: '1%'
+                            flex: 1,
+                            paddingTop: 2
                         }}
                     />
-
-                    <Text style={styles.buttonText}>Upload Files</Text>
-                </Pressable>
-                {
-                    isDocChosen
-                    ? <Text style={[styles.setText, {paddingLeft: 20}]}>File uploaded.</Text>
-                    : null
-                }
+                    <Text style = { styles.headerText }>Activity</Text>
+                    <DeleteIcon
+                            name = "trash-2"
+                            size = {25}
+                            onPress = { confirmDelete }
+                            style = {{
+                                paddingRight: 20
+                            }}
+                    />
                 </View>
-                    <Text style={styles.acceptedFiles}>Accepted file formats: .pdf, .docx, .jpeg, .png</Text>
-
                 
-                {/* Line breaks */}
-                <Text>{'\n'}</Text>
-                <Text>{'\n'}</Text>
-                <Text>{'\n'}</Text>
+                {/* empty space so shadow can be visible */}
+                <Text></Text>
 
-                <Text style={{paddingTop: 10}}>{'\n'}</Text>
+                {/* body */}
+                <View style = {[styles.root, {
+                    paddingHorizontal: '8%' }]}>
+                    
+                    {/* Displays accommodation name. */}
+                    <Text style = { styles.field }>Activity Name</Text>
 
-                <CustomButton
-                    text='Update'
-                    onPress= { update }
-                    type='TERTIARY'
-                />
+                    <InputFieldAfterLogIn
+                        placeholder='Activity Name'
+                        value={ name }
+                        setValue= { setName }
+                    />
 
-                {
-                    updating || deleting
-                    ? <View style={{
-                        paddingTop: 20,
-                        alignSelf: 'center',
-                        }}>
-                        <ActivityIndicator 
-                        size='large' 
-                        color='#000000'/>
+                    {/* Displays Location. */}
+                    <Text style = { styles.field }>Location</Text>
+                
+                    <InputFieldAfterLogIn
+                        placeholder='Activity Name'
+                        value={ location }
+                        setValue= { setLocation }
+                    />
+                    
+                    {/* Displays start time. */}
+                    <Text style = { styles.field }>Start Time</Text>
+                
+                    <View style={styles.horizontal}>
+                        <Pressable onPress={ showStartDatePicker } style={styles.button}>
+                            <Text style={styles.buttonText}>Pick Start Time</Text>
+                        </Pressable>
+                        {
+                            isTimeChosen
+                            ? <Text style={[styles.setText, {paddingLeft: 20}]}>{ getTime(startTime) }</Text>
+                            : null
+                        }
                     </View>
-                    : null
-                }
-                
+                    <DateTimePickerModal
+                        isVisible={isStartVisible}
+                        mode="time"
+                        onConfirm={handleConfirm}
+                        onCancel={hideDatePicker}
+                        date={date.toDate()}
+                    />
+
+                    {/* Upload additional files */}
+                    <Text style = { styles.field }>Additional Notes</Text>
+                    <View style={styles.horizontal}>
+                        <Pressable onPress={ chooseFile } style={styles.button}>
+                        <Document
+                            name = "document-outline"
+                            size = {20}
+                            color = 'white'
+                            style = {{
+                                paddingLeft: '1%'
+                            }}
+                        />
+
+                        <Text style={styles.buttonText}>Upload Files</Text>
+                    </Pressable>
+                    {
+                        isDocChosen
+                        ? <Text style={[styles.setText, {paddingLeft: 20}]}>File uploaded.</Text>
+                        : null
+                    }
+                    </View>
+                        <Text style={styles.acceptedFiles}>Accepted file formats: .pdf, .docx, .jpeg, .png</Text>
+
+                    
+                    {/* Line breaks */}
+                    <Text>{'\n'}</Text>
+                    <Text>{'\n'}</Text>
+                    <Text>{'\n'}</Text>
+
+                    <Text style={{paddingTop: 10}}>{'\n'}</Text>
+
+                    <CustomButton
+                        text='Update'
+                        onPress= { update }
+                        type='TERTIARY'
+                    />
+
+                    {
+                        updating || deleting
+                        ? <View style={{
+                            paddingTop: 20,
+                            alignSelf: 'center',
+                            }}>
+                            <ActivityIndicator 
+                            size='large' 
+                            color='#000000'/>
+                        </View>
+                        : null
+                    }
+                    
+                </View>
             </View>
-        </View>
+        </KeyboardAvoidingWrapper>
     )
 }
 

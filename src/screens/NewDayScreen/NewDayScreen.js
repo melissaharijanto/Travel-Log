@@ -133,6 +133,7 @@ const NewDayScreen = ({route}) => {
                 <Back
                     size={35}
                     name="chevron-left"
+                    color="#808080"
                     onPress = { goBack }
                     style = {{
                         flex: 1,

@@ -12,6 +12,7 @@ import DocumentPicker, {
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
+import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper';
 
 const AddTransportScreen = ({route}) => {
     
@@ -162,129 +163,132 @@ const AddTransportScreen = ({route}) => {
     }
 
     return (
-        <View style={styles.root}>
-            
-            {/* header */}
-            <View style = { styles.header }>
-                <Back
-                    size={35}
-                    name="chevron-left"
-                    onPress = { () => navigation.navigate('NewDay', {
-                        id: id,
-                        dayLabel: dayLabel,
-                        date: date,
-                        owner: owner,
-                    }) }
-                    style = {{
-                        flex: 1,
-                        paddingTop: 2
-                    }}
-                />
-                <Text style = { styles.headerText }>Transport</Text>
-            </View>
-            
-            {/* empty space so shadow can be visible */}
-            <Text></Text>
-
-            {/* body */}
-            <View style = {[styles.root, {
-                paddingHorizontal: '8%' }]}>
+        <KeyboardAvoidingWrapper backgroundColor='#FFFFFF'>
+            <View style={styles.root}>
                 
-                {/* Field to input transport name. */}
-                <Text style = { styles.text }>Mode of Transport</Text>
-
-                <InputFieldAfterLogIn
-                    placeholder = "Mode of Transport"
-                    value = { name }
-                    setValue = { setName  }
-                />
-
-                {/* Field to input start location */}
-                <Text style = { styles.text }>Starting Point</Text>
-
-                <InputFieldAfterLogIn
-                    placeholder = "From"
-                    value = { startingPoint }
-                    setValue = { setStartingPoint  }
-                />
+                {/* header */}
+                <View style = { styles.header }>
+                    <Back
+                        size={35}
+                        name="chevron-left"
+                        color="#808080"
+                        onPress = { () => navigation.navigate('NewDay', {
+                            id: id,
+                            dayLabel: dayLabel,
+                            date: date,
+                            owner: owner,
+                        }) }
+                        style = {{
+                            flex: 1,
+                            paddingTop: 2
+                        }}
+                    />
+                    <Text style = { styles.headerText }>Transport</Text>
+                </View>
                 
-                {/* Field to input destination*/}
-                <Text style = { styles.text }>Destination</Text>
+                {/* empty space so shadow can be visible */}
+                <Text></Text>
 
-                <InputFieldAfterLogIn
-                    placeholder = "Destination"
-                    value = { destination }
-                    setValue = { setDestination }
-                />
+                {/* body */}
+                <View style = {[styles.root, {
+                    paddingHorizontal: '8%' }]}>
+                    
+                    {/* Field to input transport name. */}
+                    <Text style = { styles.text }>Mode of Transport</Text>
 
-                <Text style = { styles.text }>Start Time</Text>
-                <View style={styles.horizontal}>
-                    <Pressable onPress={ showStartDatePicker } style={styles.button}>
-                        <Text style={styles.buttonText}>Pick Start Time</Text>
+                    <InputFieldAfterLogIn
+                        placeholder = "Mode of Transport"
+                        value = { name }
+                        setValue = { setName  }
+                    />
+
+                    {/* Field to input start location */}
+                    <Text style = { styles.text }>Starting Point</Text>
+
+                    <InputFieldAfterLogIn
+                        placeholder = "From"
+                        value = { startingPoint }
+                        setValue = { setStartingPoint  }
+                    />
+                    
+                    {/* Field to input destination*/}
+                    <Text style = { styles.text }>Destination</Text>
+
+                    <InputFieldAfterLogIn
+                        placeholder = "Destination"
+                        value = { destination }
+                        setValue = { setDestination }
+                    />
+
+                    <Text style = { styles.text }>Start Time</Text>
+                    <View style={styles.horizontal}>
+                        <Pressable onPress={ showStartDatePicker } style={styles.button}>
+                            <Text style={styles.buttonText}>Pick Start Time</Text>
+                        </Pressable>
+                        {
+                            isTimeChosen
+                            ? <Text style={[styles.setText, {paddingLeft: 20}]}>{ getTime(startTime) }</Text>
+                            : null
+                        }
+                    </View>
+                    <DateTimePickerModal
+                        isVisible={isStartVisible}
+                        mode="time"
+                        onConfirm={handleConfirm}
+                        onCancel={hideDatePicker}
+                        date={date.toDate()}
+                    />
+
+                    {/* Upload additional files */}
+                    <Text style = { styles.text }>Additional Notes</Text>
+                    <View style={styles.horizontal}>
+                        <Pressable onPress={ chooseFile } style={styles.button}>
+                        <Document
+                            name = "document-outline"
+                            size = {20}
+                            color = 'white'
+                            style = {{
+                                paddingLeft: '1%'
+                            }}
+                        />
+
+                        <Text style={styles.buttonText}>Upload Files</Text>
                     </Pressable>
                     {
-                        isTimeChosen
-                        ? <Text style={[styles.setText, {paddingLeft: 20}]}>{ getTime(startTime) }</Text>
+                        isDocChosen
+                        ? <Text style={[styles.setText, {paddingLeft: 20}]}>{ fileName }</Text>
+                        : null
+                    }
+                    </View>
+                        <Text style={styles.acceptedFiles}>Accepted file formats: .pdf, .docx, .jpeg, .png</Text>
+
+                    {/* Line breaks */}
+                    <Text>{'\n'}</Text>
+                    <Text>{'\n'}</Text>
+
+                    <CustomButton
+                        text='Add'
+                        onPress= { add }
+                        type='TERTIARY'
+                    />
+
+                    {
+                        adding
+                        ? <View style={{
+                            paddingTop: 20,
+                            alignSelf: 'center',
+                            }}>
+                            <ActivityIndicator 
+                            size='large' 
+                            color='#000000'/>
+                        </View>
                         : null
                     }
                 </View>
-                <DateTimePickerModal
-                    isVisible={isStartVisible}
-                    mode="time"
-                    onConfirm={handleConfirm}
-                    onCancel={hideDatePicker}
-                    date={date.toDate()}
-                />
 
-                {/* Upload additional files */}
-                <Text style = { styles.text }>Additional Notes</Text>
-                <View style={styles.horizontal}>
-                    <Pressable onPress={ chooseFile } style={styles.button}>
-                    <Document
-                        name = "document-outline"
-                        size = {20}
-                        color = 'white'
-                        style = {{
-                            paddingLeft: '1%'
-                        }}
-                    />
-
-                    <Text style={styles.buttonText}>Upload Files</Text>
-                </Pressable>
-                {
-                    isDocChosen
-                    ? <Text style={[styles.setText, {paddingLeft: 20}]}>{ fileName }</Text>
-                    : null
-                }
-                </View>
-                    <Text style={styles.acceptedFiles}>Accepted file formats: .pdf, .docx, .jpeg, .png</Text>
-
-                {/* Line breaks */}
-                <Text>{'\n'}</Text>
-                <Text>{'\n'}</Text>
-
-                <CustomButton
-                    text='Add'
-                    onPress= { add }
-                    type='TERTIARY'
-                />
-
-                {
-                    adding
-                    ? <View style={{
-                        paddingTop: 20,
-                        alignSelf: 'center',
-                        }}>
-                        <ActivityIndicator 
-                        size='large' 
-                        color='#000000'/>
-                    </View>
-                    : null
-                }
+                
             </View>
-
-            
-        </View>
+        </KeyboardAvoidingWrapper>
     )
 }
 

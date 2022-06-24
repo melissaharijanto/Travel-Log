@@ -28,7 +28,7 @@ const Tab = createBottomTabNavigator();
 const HomeStack = createNativeStackNavigator();
 const HomeStackScreen = () => {
     return (
-    <HomeStack.Navigator screenOptions={{headerShown: false}}>
+    <HomeStack.Navigator screenOptions={{headerShown: false,}}>
         <HomeStack.Screen name="HomeScreen" component={HomeScreen} />
         <HomeStack.Screen name="NewItinerary" component={NewItineraryScreen} />
         <HomeStack.Screen name="OpenItinerary" component={OpeningItineraryScreen} />

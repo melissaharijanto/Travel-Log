@@ -12,6 +12,7 @@ import DocumentPicker, {
   } from 'react-native-document-picker';
 import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
+import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper';
 
 const AddActivityScreen = ({route}) => {
     
@@ -162,119 +163,121 @@ const AddActivityScreen = ({route}) => {
     }
 
     return (
-        <View style={styles.root}>
-            
-            {/* header */}
-            <View style = { styles.header }>
-                <Back
-                    size={35}
-                    name="chevron-left"
-                    onPress = { () => navigation.goBack() }
-                    style = {{
-                        flex: 1,
-                        paddingTop: 2
-                    }}
-                />
-                <Text style = { styles.headerText }>Activity</Text>
-            </View>
-            
-            {/* empty space so shadow can be visible */}
-            <Text></Text>
-
-            {/* body */}
-            <View style = {[styles.root, {
-                paddingHorizontal: '8%' }]}>
+        <KeyboardAvoidingWrapper
+            backgroundColor='#FFFFFF'>
+            <View style={styles.root}>
                 
-                {/* Field to input activity name. */}
-                <Text style = { styles.text }>Activity Name</Text>
+                {/* header */}
+                <View style = { styles.header }>
+                    <Back
+                        size={35}
+                        name="chevron-left"
+                        color="#808080"
+                        onPress = { () => navigation.goBack() }
+                        style = {{
+                            flex: 1,
+                            paddingTop: 2
+                        }}
+                    />
+                    <Text style = { styles.headerText }>Activity</Text>
+                </View>
+                
+                {/* empty space so shadow can be visible */}
+                <Text></Text>
 
-                <InputFieldAfterLogIn
-                    placeholder = "Activity Name"
-                    value = { name }
-                    setValue = { setName  }
-                />
+                {/* body */}
+                <View style = {[styles.root, {
+                    paddingHorizontal: '8%' }]}>
+                    
+                    {/* Field to input activity name. */}
+                    <Text style = { styles.text }>Activity Name</Text>
 
-                <Text style = { styles.text }>Location</Text>
+                    <InputFieldAfterLogIn
+                        placeholder = "Activity Name"
+                        value = { name }
+                        setValue = { setName  }
+                    />
 
-                <InputFieldAfterLogIn
-                    placeholder = "Location"
-                    value = { location }
-                    setValue = { setLocation  }
-                />
+                    <Text style = { styles.text }>Location</Text>
 
-                {/* Pick start time */}
-                <Text style = { styles.text }>Start Time</Text>
-                <View style={styles.horizontal}>
-                    <Pressable onPress={ showStartDatePicker } style={styles.button}>
-                        <Text style={styles.buttonText}>Pick Start Time</Text>
+                    <InputFieldAfterLogIn
+                        placeholder = "Location"
+                        value = { location }
+                        setValue = { setLocation  }
+                    />
+
+                    {/* Pick start time */}
+                    <Text style = { styles.text }>Start Time</Text>
+                    <View style={styles.horizontal}>
+                        <Pressable onPress={ showStartDatePicker } style={styles.button}>
+                            <Text style={styles.buttonText}>Pick Start Time</Text>
+                        </Pressable>
+                        {
+                            isTimeChosen
+                            ? <Text style={[styles.setText, {paddingLeft: 20}]}>{ getTime(startTime) }</Text>
+                            : null
+                        }
+                    </View>
+                    <DateTimePickerModal
+                        isVisible={isStartVisible}
+                        mode="time"
+                        onConfirm={handleConfirm}
+                        onCancel={hideDatePicker}
+                        date={date.toDate()}
+                    />
+                    
+
+                    {/* Upload additional files */}
+                    <Text style = { styles.text }>Additional Notes</Text>
+                    <View style={styles.horizontal}>
+                        <Pressable onPress={ chooseFile } style={styles.button}>
+                        <Document
+                            name = "document-outline"
+                            size = {20}
+                            color = 'white'
+                            style = {{
+                                paddingLeft: '1%'
+                            }}
+                        />
+
+                        <Text style={styles.buttonText}>Upload Files</Text>
                     </Pressable>
                     {
-                        isTimeChosen
-                        ? <Text style={[styles.setText, {paddingLeft: 20}]}>{ getTime(startTime) }</Text>
+                        isDocChosen
+                        ? <Text style={[styles.setText, {paddingLeft: 20}]}>{ fileName }</Text>
+                        : null
+                    }
+                    </View>
+                        <Text style={styles.acceptedFiles}>Accepted file formats: .pdf, .docx, .jpeg, .png</Text>
+
+                    {/* Line breaks */}
+                    <Text>{'\n'}</Text>
+                    <Text>{'\n'}</Text>
+                    <Text>{'\n'}</Text>
+                    <Text>{'\n'}</Text>
+                    <Text>{'\n'}</Text>
+
+                    <CustomButton
+                        text='Add'
+                        onPress= { add }
+                        type='TERTIARY'
+                    />
+
+                    {
+                        adding
+                        ? <View style={{
+                            paddingTop: 20,
+                            alignSelf: 'center',
+                            }}>
+                            <ActivityIndicator 
+                            size='large' 
+                            color='#000000'/>
+                        </View>
                         : null
                     }
                 </View>
-                <DateTimePickerModal
-                    isVisible={isStartVisible}
-                    mode="time"
-                    onConfirm={handleConfirm}
-                    onCancel={hideDatePicker}
-                    date={date.toDate()}
-                />
-                
-
-                {/* Upload additional files */}
-                <Text style = { styles.text }>Additional Notes</Text>
-                <View style={styles.horizontal}>
-                    <Pressable onPress={ chooseFile } style={styles.button}>
-                    <Document
-                        name = "document-outline"
-                        size = {20}
-                        color = 'white'
-                        style = {{
-                            paddingLeft: '1%'
-                        }}
-                    />
-
-                    <Text style={styles.buttonText}>Upload Files</Text>
-                </Pressable>
-                {
-                    isDocChosen
-                    ? <Text style={[styles.setText, {paddingLeft: 20}]}>{ fileName }</Text>
-                    : null
-                }
-                </View>
-                    <Text style={styles.acceptedFiles}>Accepted file formats: .pdf, .docx, .jpeg, .png</Text>
-
-                {/* Line breaks */}
-                <Text>{'\n'}</Text>
-                <Text>{'\n'}</Text>
-                <Text>{'\n'}</Text>
-                <Text>{'\n'}</Text>
-                <Text>{'\n'}</Text>
-
-                <CustomButton
-                    text='Add'
-                    onPress= { add }
-                    type='TERTIARY'
-                />
-
-                {
-                    adding
-                    ? <View style={{
-                        paddingTop: 20,
-                        alignSelf: 'center',
-                        }}>
-                        <ActivityIndicator 
-                        size='large' 
-                        color='#000000'/>
-                    </View>
-                    : null
-                }
             </View>
-
-            
-        </View>
+        </KeyboardAvoidingWrapper>
     )
 }
 

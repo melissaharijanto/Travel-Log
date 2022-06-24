@@ -11,6 +11,7 @@ import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import { firebase } from '@react-native-firebase/firestore';
+import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper';
 
 const EditItineraryScreen = ( {route} ) => {
     const navigation = useNavigation();
@@ -193,122 +194,123 @@ const EditItineraryScreen = ( {route} ) => {
         
 
     return (
-        <View style={ styles.root }>
+        <KeyboardAvoidingWrapper backgroundColor='#FFFFFF'>
+            <View style={ styles.root }>
 
-            <View style = { styles.header }>
-                <Back
-                    size={35}
-                    name="chevron-left"
-                    onPress = { goBack }
-                    style = {{
-                        flex: 1,
-                        paddingTop: 2
-                    }}
-                />
-
-                <Text style = { styles.headerText }>Edit Itinerary</Text>
-                <DeleteIcon
-                    name = "trash-2"
-                    size = {25}
-                    onPress = { confirmDelete }
-                    style = {{
-                        paddingRight: 20
-                    }}
-                />
-            </View>
-
-            <Text></Text>
-
-            <View style = {[styles.root, {
-                paddingHorizontal: '8%',
-                backgroundColor: 'white'}]}>
-                <Text style = { styles.text }>Title</Text>
-
-                <InputFieldAfterLogIn
-                    placeholder = "Title"
-                    value = { title }
-                    setValue = { setTitle  }
-                    style = { styles.textBox }
-                />
-
-                <Text style = { styles.text }>Cover Image</Text>
-
-                <View style={styles.horizontal}>
-                    <Pressable onPress={ choosePhotoFromLibrary } style={styles.button}>
-                    <ImageIcon
-                        name = "image"
-                        size = {18}
-                        color = 'white'
+                <View style = { styles.header }>
+                    <Back
+                        size={35}
+                        name="chevron-left"
+                        color="#808080"
+                        onPress = { goBack }
                         style = {{
-                            paddingHorizontal: '1%'
+                            flex: 1,
+                            paddingTop: 2
                         }}
                     />
 
-                    <Text style={styles.buttonText}>Upload Image</Text>
-                </Pressable>
-                {
-                    isImageChosen
-                    ? <Text style={[styles.setText, {paddingLeft: 20}]}>Image uploaded.</Text>
-                    : null
-                }
+                    <Text style = { styles.headerText }>Edit Itinerary</Text>
+                    <DeleteIcon
+                        name = "trash-2"
+                        size = {25}
+                        onPress = { confirmDelete }
+                        style = {{
+                            paddingRight: 20
+                        }}
+                    />
                 </View>
-                
-                <Text style = { styles.text }>Start Date</Text>
-                <Text style = { styles.permanent }>{ itinerary.startDate.toDate().toLocaleDateString() }</Text>
-                
-                <Text style = { styles.text }>End Date</Text>
-                <Text style = { styles.permanent }>{ itinerary.endDate.toDate().toLocaleDateString() }</Text>
-                
-                <Text style = { styles.text }>Additional Notes</Text>
 
-                <InputFieldAfterLogIn
-                    placeholder = "Notes"
-                    value = { notes }
-                    setValue = { setNotes }
-                />
+                <Text></Text>
 
-                <Text>
-                    {'\n'}
-                </Text>
+                <View style = {[styles.root, {
+                    paddingHorizontal: '8%',
+                    backgroundColor: 'white'}]}>
+                    <Text style = { styles.text }>Title</Text>
 
-                {
-                    editing || deleting
-                    ? <View style={{
-                        paddingTop: 19,
-                        paddingBottom: 30,
-                        alignSelf: 'center',
-                        }}>
-                        <ActivityIndicator 
-                        size='large' 
-                        color='#000000'/>
+                    <InputFieldAfterLogIn
+                        placeholder = "Title"
+                        value = { title }
+                        setValue = { setTitle  }
+                        style = { styles.textBox }
+                    />
+
+                    <Text style = { styles.text }>Cover Image</Text>
+
+                    <View style={styles.horizontal}>
+                        <Pressable onPress={ choosePhotoFromLibrary } style={styles.button}>
+                        <ImageIcon
+                            name = "image"
+                            size = {18}
+                            color = 'white'
+                            style = {{
+                                paddingHorizontal: '1%'
+                            }}
+                        />
+
+                        <Text style={styles.buttonText}>Upload Image</Text>
+                    </Pressable>
+                    {
+                        isImageChosen
+                        ? <Text style={[styles.setText, {paddingLeft: 20}]}>Image uploaded.</Text>
+                        : null
+                    }
                     </View>
-                    : <Text>
-                        {'\n'}
-                        {'\n'}
-                        {'\n'}
+                    
+                    <Text style = { styles.text }>Start Date</Text>
+                    <Text style = { styles.permanent }>{ itinerary.startDate.toDate().toLocaleDateString() }</Text>
+                    
+                    <Text style = { styles.text }>End Date</Text>
+                    <Text style = { styles.permanent }>{ itinerary.endDate.toDate().toLocaleDateString() }</Text>
+                    
+                    <Text style = { styles.text }>Additional Notes</Text>
+
+                    <InputFieldAfterLogIn
+                        placeholder = "Notes"
+                        value = { notes }
+                        setValue = { setNotes }
+                    />
+
+                    <Text>
                         {'\n'}
                     </Text>
-                }
 
-                <CustomButton
-                    text= "Cancel"
-                    type= "QUATERNARY"
-                    onPress= { goBack }
-                />
+                    {
+                        editing || deleting
+                        ? <View style={{
+                            paddingTop: 19,
+                            paddingBottom: 30,
+                            alignSelf: 'center',
+                            }}>
+                            <ActivityIndicator 
+                            size='large' 
+                            color='#000000'/>
+                        </View>
+                        : <Text>
+                            {'\n'}
+                            {'\n'}
+                            {'\n'}
+                            {'\n'}
+                        </Text>
+                    }
 
-                <CustomButton
-                    text= "Update"
-                    type= "TERTIARY"
-                    onPress= { editItinerary }
-                />
+                    <CustomButton
+                        text= "Cancel"
+                        type= "QUATERNARY"
+                        onPress= { goBack }
+                    />
 
-                
+                    <CustomButton
+                        text= "Update"
+                        type= "TERTIARY"
+                        onPress= { editItinerary }
+                    />
+
+                    
+
+                </View>
 
             </View>
-
-
-
-        </View>
+        </KeyboardAvoidingWrapper>
     )
 }
 

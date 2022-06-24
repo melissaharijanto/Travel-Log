@@ -1,11 +1,12 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Pressable } from 'react-native';
+import { View, Text, StyleSheet, Pressable, ScrollView } from 'react-native';
 import Back from 'react-native-vector-icons/Feather';
 import CustomButton from '../../components/CustomButton';
 import { firebase } from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
 import * as OpenAnything from 'react-native-openanything';
+import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper';
 
 const ViewActivityScreen = ({route}) => {
 
@@ -95,94 +96,97 @@ const ViewActivityScreen = ({route}) => {
 
     
     return (
-        <View style={styles.root}>
-            {/* header */}
-            <View style = { styles.header }>
-                <Back
-                    size={35}
-                    name="chevron-left"
-                    onPress = { () => navigation.navigate('NewDay', {
-                        id: id,
-                        dayLabel: dayLabel,
-                        date: date,
-                        owner: owner,
-                    }) }
-                    style = {{
-                        flex: 1,
-                        paddingTop: 2
-                    }}
-                />
-                <Text style = { styles.headerText }>Activity</Text>
-            </View>
-            
-            {/* empty space so shadow can be visible */}
-            <Text></Text>
-
-            {/* body */}
-            <View style = {[styles.root, {
-                paddingHorizontal: '8%' }]}>
-                
-                {/* Displays accommodation name. */}
-                <Text style = { styles.field }>Activity Name</Text>
-
-                <Text style={[styles.text, {paddingLeft: 20}]}>{ name }</Text>
-
-                {/* Displays Location. */}
-                <Text style = { styles.field }>Location</Text>
-               
-                <Text style={[styles.text, {paddingLeft: 20}]}>{ location }</Text>
-                
-                {/* Displays start time. */}
-                <Text style = { styles.field }>Start Time</Text>
-               
-               
-                <Text style={[styles.text, {paddingLeft: 20}]}>{ getTime(startTime) }</Text>
-
-                {/* Upload additional files */}
-                <Text style = { styles.field }>Additional Notes</Text>
-                {
-                    fileUri != null
-                    ? <Text style={[styles.text, {paddingLeft: 20}]}>{ fileName }</Text>
-                    : <Text style={ [styles.text, {paddingLeft: 20}]}>-</Text>
-                }
-
-                {
-                    fileUri != null
-                    ? 
-                    <Pressable 
-                        style={styles.button}
-                        onPress = {() => OpenAnything.Web(fileUri)}>
-                        <Text style={styles.buttonText}>View file</Text>
-                    </Pressable>
-                    : null
-                }
-                
-                {/* Line breaks */}
-                <Text>{'\n'}</Text>
-                <Text>{'\n'}</Text>
-                <Text>{'\n'}</Text>
-                <Text>{'\n'}</Text>
-
-                { 
-                    fileUri != null 
-                    ? null
-                    : <Text style={{paddingTop: 10}}>{'\n'}</Text>
-                }
-                
-                <CustomButton
-                    text='Edit'
-                    onPress= {() => { 
-                        navigation.navigate('EditActivity', {
+        <KeyboardAvoidingWrapper backgroundColor='#FFFFFF'>
+            <View style={styles.root}>
+                {/* header */}
+                <View style = { styles.header }>
+                    <Back
+                        size={35}
+                        name="chevron-left"
+                        color="#808080"
+                        onPress = { () => navigation.navigate('NewDay', {
                             id: id,
-                            itemId: itemId,
                             dayLabel: dayLabel,
                             date: date,
                             owner: owner,
-                    })}}
-                    type='TERTIARY'
-                />
+                        }) }
+                        style = {{
+                            flex: 1,
+                            paddingTop: 2
+                        }}
+                    />
+                    <Text style = { styles.headerText }>Activity</Text>
+                </View>
+                
+                {/* empty space so shadow can be visible */}
+                <Text></Text>
+
+                {/* body */}
+                <View style = {[styles.root, {
+                    paddingHorizontal: '8%' }]}>
+                    
+                    {/* Displays accommodation name. */}
+                    <Text style = { styles.field }>Activity Name</Text>
+
+                    <Text style={[styles.text, {paddingLeft: 20}]}>{ name }</Text>
+
+                    {/* Displays Location. */}
+                    <Text style = { styles.field }>Location</Text>
+                
+                    <Text style={[styles.text, {paddingLeft: 20}]}>{ location }</Text>
+                    
+                    {/* Displays start time. */}
+                    <Text style = { styles.field }>Start Time</Text>
+                
+                
+                    <Text style={[styles.text, {paddingLeft: 20}]}>{ getTime(startTime) }</Text>
+
+                    {/* Upload additional files */}
+                    <Text style = { styles.field }>Additional Notes</Text>
+                    {
+                        fileUri != null
+                        ? <Text style={[styles.text, {paddingLeft: 20}]}>{ fileName }</Text>
+                        : <Text style={ [styles.text, {paddingLeft: 20}]}>-</Text>
+                    }
+
+                    {
+                        fileUri != null
+                        ? 
+                        <Pressable 
+                            style={styles.button}
+                            onPress = {() => OpenAnything.Web(fileUri)}>
+                            <Text style={styles.buttonText}>View file</Text>
+                        </Pressable>
+                        : null
+                    }
+                    
+                    {/* Line breaks */}
+                    <Text>{'\n'}</Text>
+                    <Text>{'\n'}</Text>
+                    <Text>{'\n'}</Text>
+                    <Text>{'\n'}</Text>
+
+                    { 
+                        fileUri != null 
+                        ? null
+                        : <Text style={{paddingTop: 10}}>{'\n'}</Text>
+                    }
+                    
+                    <CustomButton
+                        text='Edit'
+                        onPress= {() => { 
+                            navigation.navigate('EditActivity', {
+                                id: id,
+                                itemId: itemId,
+                                dayLabel: dayLabel,
+                                date: date,
+                                owner: owner,
+                        })}}
+                        type='TERTIARY'
+                    />
+                </View>
             </View>
-        </View>
+        </KeyboardAvoidingWrapper>
     )
 }
 

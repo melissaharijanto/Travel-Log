@@ -52,7 +52,7 @@ const SignInScreen = () => {
                         auth()
                         .signInWithEmailAndPassword(values.email, values.password)
                         .then(() => {
-                            setWaiting(false);
+                            
                             console.log('User account created & signed in!');
                         })
                         .catch(error => {
@@ -72,6 +72,7 @@ const SignInScreen = () => {
                             }
                         });
 
+                        setWaiting(false);
                         return () => {
                             unmounted = true;
                         }

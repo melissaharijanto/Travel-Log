@@ -14,6 +14,8 @@ import Background from '../../../assets/images/profile-background.png';
 import EditIcon from 'react-native-vector-icons/AntDesign';
 import CustomButton from '../../components/CustomButton';
 import firestore from '@react-native-firebase/firestore';
+import { ScrollView } from 'react-native-gesture-handler';
+import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper';
 
 
 const ProfileScreen = () => {
@@ -77,55 +79,58 @@ const ProfileScreen = () => {
         navigation.navigate("EditProfile");
     }
 
-    return (
-        <View style = { styles.root }>
-            <ImageBackground source={Background}
-                resizeMode="stretch"
-                style={styles.background}>
-            <Image source={{ uri: userData
-                ? userData.userImg || defaultImage
-                : defaultImage }} style={styles.pfp}/>
-            <Text style = { styles.name }>{ userData
-                ? userData.name === null
-                    ? ''
-                    : userData.name
-                : '' }</Text>
+    return (   
+        <KeyboardAvoidingWrapper>
+            <View style = { styles.root }>
+                <ImageBackground source={Background}
+                    resizeMode="stretch"
+                    style={styles.background}>
+                <Image source={{ uri: userData
+                    ? userData.userImg || defaultImage
+                    : defaultImage }} style={styles.pfp}/>
+                <Text style = { styles.name }>{ userData
+                    ? userData.name === null
+                        ? ''
+                        : userData.name
+                    : '' }</Text>
 
-            <Text style = { [styles.text, { paddingTop: '35%' } ]}>Name</Text>
+                <Text style = { [styles.text, { paddingTop: '35%' } ]}>Name</Text>
 
-            <View style = { styles.horizontal }>
-                <Text style = { styles.userInfo }>{ userData
-                    ? userData.name || ''
-                    : '' }  </Text>
-                <EditIcon
-                    size={20}
-                    name="edit"
-                    onPress = { editIconPressed }
+                <View style = { styles.horizontal }>
+                    <Text style = { styles.userInfo }>{ userData
+                        ? userData.name || ''
+                        : '' }  </Text>
+                    <EditIcon
+                        size={20}
+                        name="edit"
+                        onPress = { editIconPressed }
+                        color = '#000000'
+                    />
+                </View>
+
+                <Text style = { styles.text }>Email</Text>
+
+                <View style = { styles.horizontal }>
+                <Text style = { styles.userInfo }>{userData
+                    ? userData.email || ''
+                    : ''}  </Text>
+                </View>
+
+                <Text>
+                    {'\n'}
+                    {'\n'}
+                </Text>
+
+
+                <CustomButton
+                    text = "Log Out"
+                    onPress = { onPressLogOut }
+                    type = "TERTIARY"
                 />
+
+                </ImageBackground>
             </View>
-
-            <Text style = { styles.text }>Email</Text>
-
-            <View style = { styles.horizontal }>
-            <Text style = { styles.userInfo }>{userData
-                ? userData.email || ''
-                : ''}  </Text>
-            </View>
-
-            <Text>
-                {'\n'}
-                {'\n'}
-            </Text>
-
-
-            <CustomButton
-                text = "Log Out"
-                onPress = { onPressLogOut }
-                type = "TERTIARY"
-            />
-
-            </ImageBackground>
-        </View>
+        </KeyboardAvoidingWrapper>
     );
 };
 

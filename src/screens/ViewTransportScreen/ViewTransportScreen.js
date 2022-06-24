@@ -6,6 +6,7 @@ import CustomButton from '../../components/CustomButton';
 import { firebase } from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
 import * as OpenAnything from 'react-native-openanything';
+import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper';
 
 const ViewTransportScreen = ({route}) => {
 
@@ -80,92 +81,95 @@ const ViewTransportScreen = ({route}) => {
 
     
     return (
-        <View style={styles.root}>
-            {/* header */}
-            <View style = { styles.header }>
-                <Back
-                    size={35}
-                    name="chevron-left"
-                    onPress = { () => navigation.navigate('NewDay', {
-                        id: id,
-                        dayLabel: dayLabel,
-                        itemId: itemId,
-                        date: date,
-                        owner: owner,
-                    }) }
-                    style = {{
-                        flex: 1,
-                        paddingTop: 2
-                    }}
-                />
-                <Text style = { styles.headerText }>Transport</Text>
+        <KeyboardAvoidingWrapper backgroundColor='#FFFFFF'>
+            <View style={styles.root}>
+                {/* header */}
+                <View style = { styles.header }>
+                    <Back
+                        size={35}
+                        name="chevron-left"
+                        color="#808080"
+                        onPress = { () => navigation.navigate('NewDay', {
+                            id: id,
+                            dayLabel: dayLabel,
+                            itemId: itemId,
+                            date: date,
+                            owner: owner,
+                        }) }
+                        style = {{
+                            flex: 1,
+                            paddingTop: 2
+                        }}
+                    />
+                    <Text style = { styles.headerText }>Transport</Text>
+                </View>
+                
+                {/* empty space so shadow can be visible */}
+                <Text></Text>
+
+                {/* body */}
+                <View style = {[styles.root, {
+                    paddingHorizontal: '8%' }]}>
+                    
+                    {/* Field to input accommodation name. */}
+                    <Text style = { styles.field }>Mode of Transport</Text>
+
+                    <Text style={[styles.text, {paddingLeft: 20}]}>{ name }</Text>
+
+                    {/* Field to input check-in date. */}
+                    <Text style = { styles.field }>Starting Point</Text>
+                
+                    <Text style={[styles.text, {paddingLeft: 20}]}>{ startingPoint }</Text>
+
+                    <Text style = { styles.field }>Destination</Text>
+                
+                    <Text style={[styles.text, {paddingLeft: 20}]}>{ destination }</Text>
+                    
+                    {/* Upload additional files */}
+                    <Text style = { styles.field }>Additional Notes</Text>
+                    {
+                        fileUri != null
+                        ? <Text style={[styles.text, {paddingLeft: 20}]}>{ fileName }</Text>
+                        : <Text style={ [styles.text, {paddingLeft: 20}]}>-</Text>
+                    }
+                    
+                    {
+                        fileUri != null
+                        ? 
+                        <Pressable 
+                            style={styles.button}
+                            onPress = {() => OpenAnything.Web(fileUri)}>
+                            <Text style={styles.buttonText}>View file</Text>
+                        </Pressable>
+                        : null
+                    }
+
+                    {/* Line breaks */}
+                    { fileUri != null
+                        ? null
+                        : <Text>{'\n'}{'\n'}</Text>
+                    }
+                    
+                    <Text>{'\n'}</Text>
+                    <Text>{'\n'}</Text>
+                    <Text>{'\n'}</Text>
+                    <Text>{'\n'}</Text>
+
+                    <CustomButton
+                        text='Edit'
+                        onPress= { () => { navigation.navigate('EditTransport', {
+                            id: id,
+                            dayLabel: dayLabel,
+                            itemId: itemId,
+                            date: date,
+                            owner: owner,
+                        })} }
+                        type='TERTIARY'
+                    />
+                    
+                </View>
             </View>
-            
-            {/* empty space so shadow can be visible */}
-            <Text></Text>
-
-            {/* body */}
-            <View style = {[styles.root, {
-                paddingHorizontal: '8%' }]}>
-                
-                {/* Field to input accommodation name. */}
-                <Text style = { styles.field }>Mode of Transport</Text>
-
-                <Text style={[styles.text, {paddingLeft: 20}]}>{ name }</Text>
-
-                {/* Field to input check-in date. */}
-                <Text style = { styles.field }>Starting Point</Text>
-               
-                <Text style={[styles.text, {paddingLeft: 20}]}>{ startingPoint }</Text>
-
-                <Text style = { styles.field }>Destination</Text>
-               
-                <Text style={[styles.text, {paddingLeft: 20}]}>{ destination }</Text>
-                
-                {/* Upload additional files */}
-                <Text style = { styles.field }>Additional Notes</Text>
-                {
-                    fileUri != null
-                    ? <Text style={[styles.text, {paddingLeft: 20}]}>{ fileName }</Text>
-                    : <Text style={ [styles.text, {paddingLeft: 20}]}>-</Text>
-                }
-                
-                {
-                    fileUri != null
-                    ? 
-                    <Pressable 
-                        style={styles.button}
-                        onPress = {() => OpenAnything.Web(fileUri)}>
-                        <Text style={styles.buttonText}>View file</Text>
-                    </Pressable>
-                    : null
-                }
-
-                {/* Line breaks */}
-                { fileUri != null
-                    ? null
-                    : <Text>{'\n'}{'\n'}</Text>
-                }
-                
-                <Text>{'\n'}</Text>
-                <Text>{'\n'}</Text>
-                <Text>{'\n'}</Text>
-                <Text>{'\n'}</Text>
-
-                <CustomButton
-                    text='Edit'
-                    onPress= { () => { navigation.navigate('EditTransport', {
-                        id: id,
-                        dayLabel: dayLabel,
-                        itemId: itemId,
-                        date: date,
-                        owner: owner,
-                    })} }
-                    type='TERTIARY'
-                />
-                
-            </View>
-        </View>
+        </KeyboardAvoidingWrapper>
     )
 }
 

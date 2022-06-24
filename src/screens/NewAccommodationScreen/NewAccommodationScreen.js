@@ -95,6 +95,7 @@ const NewAccommodationScreen = ({route}) => {
                 <Back
                     size={35}
                     name="chevron-left"
+                    color="#808080"
                     onPress = { () => navigation.goBack() }
                     style = {{
                         flex: 1,
@@ -196,7 +197,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         alignItems: 'center',
         paddingTop: 9,
-        flex: 3.2,
+        flex: 3.5,
    },
    text: {
         fontFamily: 'Poppins-Medium',

@@ -6,6 +6,7 @@ import firestore from '@react-native-firebase/firestore';
 import CustomButton from '../../components/CustomButton';
 import ItineraryTab from '../../components/ItineraryTab';
 import InputFieldAfterLogin from '../../components/InputFieldAfterLogIn';
+import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper';
 
 const HomeScreen = () => {
 
@@ -244,102 +245,102 @@ const HomeScreen = () => {
     }, [itineraries, latestItineraryTitle]);
 
     return (
-        <ScrollView style={{backgroundColor: '#FFFFFF'}}>
-        <View style = { styles.root }>
+        <KeyboardAvoidingWrapper backgroundColor='#FFFFFF'>
+            <View style = { styles.root }>
 
-            {/* header */}
-            <View style={ styles.horizontal }>
-                <View style={ styles.header }>
-                    <Text style={ styles.welcome }>
-                        Welcome back to Travel Log,
-                    </Text>
-                    <Text style = { styles.title }>{ name }!</Text>
+                {/* header */}
+                <View style={ styles.horizontal }>
+                    <View style={ styles.header }>
+                        <Text style={ styles.welcome }>
+                            Welcome back to Travel Log,
+                        </Text>
+                        <Text style = { styles.title }>{ name }!</Text>
+                    </View>
+                    <TouchableOpacity onPress={ onClickProfile }>
+                        <Image source={{ 
+                            uri: userData
+                                ? userData.userImg || defaultImage
+                                : defaultImage 
+                            }} 
+                            style={ styles.pfp }/>
+                    </TouchableOpacity>
                 </View>
-                <TouchableOpacity onPress={ onClickProfile }>
-                    <Image source={{ 
-                        uri: userData
-                            ? userData.userImg || defaultImage
-                            : defaultImage 
-                        }} 
-                        style={ styles.pfp }/>
-                </TouchableOpacity>
-            </View>
 
-            {/* block to create a new itinerary. */}
-            <Text style = { styles.subtitle }>Get started on a new itinerary!</Text>
-            <CustomButton
-                text = "+ New Itinerary"
-                onPress = { addNewItinerary }
-                type = "QUINARY"
-            />
-
-            {/* block to view a friend's itinerary. */}
-            <Text style={[styles.subtitle, {paddingTop: '3%'}]}>View a friend's itinerary</Text>
-            <InputFieldAfterLogin
-                placeholder= "Enter the code here..."
-                value = { code }
-                setValue = { setCode }
-            />
-
-            {
-                showError
-                ? <Text style={styles.error}>{errorMessage}</Text>
-                : null
-            }
-
-            <CustomButton
-                text = "View"
-                onPress = { viewItinerary }
-                type = "QUINARY"
-            />
-            
-            {/* block for latest itinerary; will only show if user has at least 1 itinerary. */}
-            { itineraries >= 1
-            ? 
-            <View style={{width: '100%'}}>
-                <Text style = {[ styles.subtitle, { paddingTop: '5%'}]}>Your latest itinerary</Text>
-                
-                <ItineraryTab
-                    onPress= {() => { navigation.navigate("OpenItinerary", {
-                        itinerary: latestItinerary,    
-                        })
-                    }}
-                    text={ latestItineraryTitle }
-                    image= { latestItineraryImage }
+                {/* block to create a new itinerary. */}
+                <Text style = { styles.subtitle }>Get started on a new itinerary!</Text>
+                <CustomButton
+                    text = "+ New Itinerary"
+                    onPress = { addNewItinerary }
+                    type = "QUINARY"
                 />
-            </View>
-            : null
-            }
-            
-            {/* block for past itineraries; will only show if user has more than 1 itinerary. */}
-            { itineraries > 1
-            ? 
-            <View>
-                <Text style = { styles.subtitle }>Revisit your past itineraries</Text>
-                <View>
-                    <FlatList
-                    data={ pastItineraries }
-                    horizontal
-                    numColumns={1}
-                    renderItem={({item}) => (
-                        <ItineraryTab
-                            text = { item.title }
-                            image = { item.coverImage }
-                            onPress={ () => { navigation.navigate("OpenItinerary", {
-                                itinerary: item,    
-                            })}}
-                        />
-                    )}
-                    ItemSeparatorComponent={ () => <View style={{marginRight: 10}} /> }
-                    keyExtractor={(contact, index) => String(index)}
+
+                {/* block to view a friend's itinerary. */}
+                <Text style={[styles.subtitle, {paddingTop: '3%'}]}>View a friend's itinerary</Text>
+                <InputFieldAfterLogin
+                    placeholder= "Enter the code here..."
+                    value = { code }
+                    setValue = { setCode }
+                />
+
+                {
+                    showError
+                    ? <Text style={styles.error}>{errorMessage}</Text>
+                    : null
+                }
+
+                <CustomButton
+                    text = "View"
+                    onPress = { viewItinerary }
+                    type = "QUINARY"
+                />
+                
+                {/* block for latest itinerary; will only show if user has at least 1 itinerary. */}
+                { itineraries >= 1
+                ? 
+                <View style={{width: '100%'}}>
+                    <Text style = {[ styles.subtitle, { paddingTop: '5%'}]}>Your latest itinerary</Text>
+                    
+                    <ItineraryTab
+                        onPress= {() => { navigation.navigate("OpenItinerary", {
+                            itinerary: latestItinerary,    
+                            })
+                        }}
+                        text={ latestItineraryTitle }
+                        image= { latestItineraryImage }
                     />
                 </View>
+                : null
+                }
+                
+                {/* block for past itineraries; will only show if user has more than 1 itinerary. */}
+                { itineraries > 1
+                ? 
+                <View>
+                    <Text style = { styles.subtitle }>Revisit your past itineraries</Text>
+                    <View>
+                        <FlatList
+                        data={ pastItineraries }
+                        horizontal
+                        numColumns={1}
+                        renderItem={({item}) => (
+                            <ItineraryTab
+                                text = { item.title }
+                                image = { item.coverImage }
+                                onPress={ () => { navigation.navigate("OpenItinerary", {
+                                    itinerary: item,    
+                                })}}
+                            />
+                        )}
+                        ItemSeparatorComponent={ () => <View style={{marginRight: 10}} /> }
+                        keyExtractor={(contact, index) => String(index)}
+                        />
+                    </View>
+                </View>
+                : null
+                }
+                
             </View>
-            : null
-            }
-            
-        </View>
-        </ScrollView>
+       </KeyboardAvoidingWrapper>
     );
 };
 

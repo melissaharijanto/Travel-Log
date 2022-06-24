@@ -13,6 +13,7 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
 import DeleteIcon from 'react-native-vector-icons/Feather';
+import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper';
 
 const EditTransportScreen = ({route}) => {
     
@@ -278,132 +279,135 @@ const EditTransportScreen = ({route}) => {
     }, [fileUri])
 
     return (
-        <View style={styles.root}>
-            
-            {/* header */}
-            <View style = { styles.header }>
-                <Back
-                    size={35}
-                    name="chevron-left"
-                    onPress = { () => navigation.goBack() }
-                    style = {{
-                        flex: 1,
-                        paddingTop: 2
-                    }}
-                />
-                <Text style = { styles.headerText }>Transport</Text>
-                <DeleteIcon
-                        name = "trash-2"
-                        size = {25}
-                        onPress = { confirmDelete }
+        <KeyboardAvoidingWrapper backgroundColor='#FFFFFF'>
+            <View style={styles.root}>
+                
+                {/* header */}
+                <View style = { styles.header }>
+                    <Back
+                        size={35}
+                        name="chevron-left"
+                        color="#808080"
+                        onPress = { () => navigation.goBack() }
                         style = {{
-                            paddingRight: 20
+                            flex: 1,
+                            paddingTop: 2
                         }}
-                />
-            </View>
-            
-            {/* empty space so shadow can be visible */}
-            <Text></Text>
-
-            {/* body */}
-            <View style = {[styles.root, {
-                paddingHorizontal: '8%' }]}>
+                    />
+                    <Text style = { styles.headerText }>Transport</Text>
+                    <DeleteIcon
+                            name = "trash-2"
+                            size = {25}
+                            onPress = { confirmDelete }
+                            style = {{
+                                paddingRight: 20
+                            }}
+                    />
+                </View>
                 
-                {/* Field to input transport name. */}
-                <Text style = { styles.text }>Mode of Transport</Text>
+                {/* empty space so shadow can be visible */}
+                <Text></Text>
 
-                <InputFieldAfterLogIn
-                    placeholder = "Mode of Transport"
-                    value = { name }
-                    setValue = { setName  }
-                />
+                {/* body */}
+                <View style = {[styles.root, {
+                    paddingHorizontal: '8%' }]}>
+                    
+                    {/* Field to input transport name. */}
+                    <Text style = { styles.text }>Mode of Transport</Text>
 
-                {/* Field to input start location */}
-                <Text style = { styles.text }>Starting Point</Text>
+                    <InputFieldAfterLogIn
+                        placeholder = "Mode of Transport"
+                        value = { name }
+                        setValue = { setName  }
+                    />
 
-                <InputFieldAfterLogIn
-                    placeholder = "From"
-                    value = { startingPoint }
-                    setValue = { setStartingPoint  }
-                />
-                
-                {/* Field to input destination*/}
-                <Text style = { styles.text }>Destination</Text>
+                    {/* Field to input start location */}
+                    <Text style = { styles.text }>Starting Point</Text>
 
-                <InputFieldAfterLogIn
-                    placeholder = "Destination"
-                    value = { destination }
-                    setValue = { setDestination }
-                />
+                    <InputFieldAfterLogIn
+                        placeholder = "From"
+                        value = { startingPoint }
+                        setValue = { setStartingPoint  }
+                    />
+                    
+                    {/* Field to input destination*/}
+                    <Text style = { styles.text }>Destination</Text>
 
-                <Text style = { styles.text }>Start Time</Text>
-                <View style={styles.horizontal}>
-                    <Pressable onPress={ showStartDatePicker } style={styles.button}>
-                        <Text style={styles.buttonText}>Pick Start Time</Text>
+                    <InputFieldAfterLogIn
+                        placeholder = "Destination"
+                        value = { destination }
+                        setValue = { setDestination }
+                    />
+
+                    <Text style = { styles.text }>Start Time</Text>
+                    <View style={styles.horizontal}>
+                        <Pressable onPress={ showStartDatePicker } style={styles.button}>
+                            <Text style={styles.buttonText}>Pick Start Time</Text>
+                        </Pressable>
+                        {
+                            isTimeChosen
+                            ? <Text style={[styles.setText, {paddingLeft: 20}]}>{ getTime(startTime) }</Text>
+                            : null
+                        }
+                    </View>
+                    <DateTimePickerModal
+                        isVisible={isStartVisible}
+                        mode="time"
+                        onConfirm={handleConfirm}
+                        onCancel={hideDatePicker}
+                        date={date.toDate()}
+                    />
+
+                    {/* Upload additional files */}
+                    <Text style = { styles.text }>Additional Notes</Text>
+                    <View style={styles.horizontal}>
+                        <Pressable onPress={ chooseFile } style={styles.button}>
+                        <Document
+                            name = "document-outline"
+                            size = {20}
+                            color = 'white'
+                            style = {{
+                                paddingLeft: '1%'
+                            }}
+                        />
+
+                        <Text style={styles.buttonText}>Upload Files</Text>
                     </Pressable>
                     {
-                        isTimeChosen
-                        ? <Text style={[styles.setText, {paddingLeft: 20}]}>{ getTime(startTime) }</Text>
+                        isDocChosen
+                        ? <Text style={[styles.setText, {paddingLeft: 20}]}>File Uploaded.</Text>
+                        : null
+                    }
+                    </View>
+                        <Text style={styles.acceptedFiles}>Accepted file formats: .pdf, .docx, .jpeg, .png</Text>
+
+                    {/* Line breaks */}
+                    <Text>{'\n'}</Text>
+                    <Text>{'\n'}</Text>
+
+                    <CustomButton
+                        text='Add'
+                        onPress= { update }
+                        type='TERTIARY'
+                    />
+
+                    {
+                        updating || deleting
+                        ? <View style={{
+                            paddingTop: 20,
+                            alignSelf: 'center',
+                            }}>
+                            <ActivityIndicator 
+                            size='large' 
+                            color='#000000'/>
+                        </View>
                         : null
                     }
                 </View>
-                <DateTimePickerModal
-                    isVisible={isStartVisible}
-                    mode="time"
-                    onConfirm={handleConfirm}
-                    onCancel={hideDatePicker}
-                    date={date.toDate()}
-                />
 
-                {/* Upload additional files */}
-                <Text style = { styles.text }>Additional Notes</Text>
-                <View style={styles.horizontal}>
-                    <Pressable onPress={ chooseFile } style={styles.button}>
-                    <Document
-                        name = "document-outline"
-                        size = {20}
-                        color = 'white'
-                        style = {{
-                            paddingLeft: '1%'
-                        }}
-                    />
-
-                    <Text style={styles.buttonText}>Upload Files</Text>
-                </Pressable>
-                {
-                    isDocChosen
-                    ? <Text style={[styles.setText, {paddingLeft: 20}]}>File Uploaded.</Text>
-                    : null
-                }
-                </View>
-                    <Text style={styles.acceptedFiles}>Accepted file formats: .pdf, .docx, .jpeg, .png</Text>
-
-                {/* Line breaks */}
-                <Text>{'\n'}</Text>
-                <Text>{'\n'}</Text>
-
-                <CustomButton
-                    text='Add'
-                    onPress= { update }
-                    type='TERTIARY'
-                />
-
-                {
-                    updating || deleting
-                    ? <View style={{
-                        paddingTop: 20,
-                        alignSelf: 'center',
-                        }}>
-                        <ActivityIndicator 
-                        size='large' 
-                        color='#000000'/>
-                    </View>
-                    : null
-                }
+                
             </View>
-
-            
-        </View>
+        </KeyboardAvoidingWrapper>
     )
 }
 

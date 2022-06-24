@@ -14,6 +14,7 @@ import DocumentPicker, {
   } from 'react-native-document-picker';
 import storage from '@react-native-firebase/storage';
 import DeleteIcon from 'react-native-vector-icons/Feather';
+import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper';
 
 const EditAccommodationScreen = ({route}) => {
 
@@ -285,144 +286,147 @@ const EditAccommodationScreen = ({route}) => {
 
     
     return (
-        <View style={styles.root}>
-            {/* header */}
-            <View style = { styles.header }>
-                <Back
-                    size={35}
-                    name="chevron-left"
-                    onPress = { () => navigation.navigate('ViewAccommodation',{
-                        id: id, 
-                        itemId: itemId,
-                        itineraryStart: itineraryStart,
-                        itineraryEnd: itineraryEnd,
-                        owner: owner,
-                    }) }
-                    style = {{
-                        flex: 1,
-                        paddingTop: 2
-                    }}
-                />
-                <Text style = { styles.headerText }>Accommodation</Text>
-
-                <DeleteIcon
-                    name = "trash-2"
-                    size = {25}
-                    onPress = { confirmDelete }
-                    style = {{
-                        paddingRight: 20
-                    }}
-                />
-            </View>
-            
-            {/* empty space so shadow can be visible */}
-            <Text></Text>
-
-            {/* body */}
-            <View style = {[styles.root, {
-                paddingHorizontal: '8%' }]}>
-                
-                {/* Field to input accommodation name. */}
-                <Text style = { styles.field }>Accommodation Name</Text>
-
-                <InputFieldAfterLogIn
-                    placeholder="Accommodation Name"
-                    value= { name }
-                    setValue= { setName }
-                />
-
-                {/* Field to input check-in date. */}
-                <Text style = { styles.field }>Check In Date</Text>
-               
-                <View style={styles.horizontal}>
-                    <Pressable 
-                        onPress={ showStartDatePicker } 
-                        style={ styles.button }>
-                        <Text style={styles.buttonText}>Pick Check In Date</Text>    
-                    </Pressable>
-                    <Text style={[styles.setText, {paddingLeft: 20}]}>{ startDateString }</Text>
-                </View>
-                <DateTimePickerModal
-                    isVisible={isStartVisible}
-                    mode="date"
-                    onConfirm={handleConfirm}
-                    onCancel={hideDatePicker}
-                    minimumDate={ itineraryStart.toDate() }
-                    maximumDate={ itineraryEnd.toDate() }
-                />
-                
-                
-                {/* Field to input check-out date. */}
-                <Text style = { styles.field }>Check Out Date</Text>
-
-                <View style={styles.horizontal}>
-                    <Pressable 
-                        onPress={ showEndDatePicker } 
-                        style={ styles.button }>
-                        <Text style={styles.buttonText}>Pick Check Out Date</Text>    
-                    </Pressable>
-                    <Text style={[styles.setText, {paddingLeft: 20}]}>{ endDateString }</Text>
-                </View>
-                <DateTimePickerModal
-                    isVisible={isEndVisible}
-                    mode="date"
-                    onConfirm={handleEndConfirm}
-                    onCancel={hideDatePicker}
-                    minimumDate={ startDate }
-                    maximumDate={ itineraryEnd.toDate() }
-                />
-
-                {/* Upload additional files */}
-                <Text style = { styles.field }>Additional Notes</Text>
-                <View style={styles.horizontal}>
-                    <Pressable onPress={ chooseFile } style={styles.button}>
-                    <Document
-                        name = "document-outline"
-                        size = {20}
-                        color = 'white'
+        <KeyboardAvoidingWrapper backgroundColor="#FFFFFF">
+            <View style={styles.root}>
+                {/* header */}
+                <View style = { styles.header }>
+                    <Back
+                        size={35}
+                        name="chevron-left"
+                        color="#808080"
+                        onPress = { () => navigation.navigate('ViewAccommodation',{
+                            id: id, 
+                            itemId: itemId,
+                            itineraryStart: itineraryStart,
+                            itineraryEnd: itineraryEnd,
+                            owner: owner,
+                        }) }
                         style = {{
-                            paddingLeft: '1%'
+                            flex: 1,
+                            paddingTop: 2
                         }}
                     />
+                    <Text style = { styles.headerText }>Accommodation</Text>
 
-                    <Text style={styles.buttonText}>Upload Files</Text>
-                </Pressable>
-                {
-                    isDocChosen
-                    ? <Text style={[styles.setText, {paddingLeft: 20}]}>File uploaded.</Text>
-                    : null
-                }
+                    <DeleteIcon
+                        name = "trash-2"
+                        size = {25}
+                        onPress = { confirmDelete }
+                        style = {{
+                            paddingRight: 20
+                        }}
+                    />
                 </View>
                 
-                {/* Line breaks */}
-                <Text>{'\n'}</Text>
-                <Text>{'\n'}</Text>
-                <Text>{'\n'}</Text>
-                <Text>{'\n'}</Text>
-                <Text>{'\n'}</Text>
-                <Text>{'\n'}</Text>
+                {/* empty space so shadow can be visible */}
+                <Text></Text>
 
-                <CustomButton
-                    text='Update'
-                    onPress= { update }
-                    type='TERTIARY'
-                />
+                {/* body */}
+                <View style = {[styles.root, {
+                    paddingHorizontal: '8%' }]}>
+                    
+                    {/* Field to input accommodation name. */}
+                    <Text style = { styles.field }>Accommodation Name</Text>
 
-                {
-                    updating || deleting
-                    ? <View style={{
-                        paddingTop: 20,
-                        alignSelf: 'center',
-                        }}>
-                        <ActivityIndicator 
-                        size='large' 
-                        color='#000000'/>
+                    <InputFieldAfterLogIn
+                        placeholder="Accommodation Name"
+                        value= { name }
+                        setValue= { setName }
+                    />
+
+                    {/* Field to input check-in date. */}
+                    <Text style = { styles.field }>Check In Date</Text>
+                
+                    <View style={styles.horizontal}>
+                        <Pressable 
+                            onPress={ showStartDatePicker } 
+                            style={ styles.button }>
+                            <Text style={styles.buttonText}>Pick Check In Date</Text>    
+                        </Pressable>
+                        <Text style={[styles.setText, {paddingLeft: 20}]}>{ startDateString }</Text>
                     </View>
-                    : null
-                }
+                    <DateTimePickerModal
+                        isVisible={isStartVisible}
+                        mode="date"
+                        onConfirm={handleConfirm}
+                        onCancel={hideDatePicker}
+                        minimumDate={ itineraryStart.toDate() }
+                        maximumDate={ itineraryEnd.toDate() }
+                    />
+                    
+                    
+                    {/* Field to input check-out date. */}
+                    <Text style = { styles.field }>Check Out Date</Text>
 
+                    <View style={styles.horizontal}>
+                        <Pressable 
+                            onPress={ showEndDatePicker } 
+                            style={ styles.button }>
+                            <Text style={styles.buttonText}>Pick Check Out Date</Text>    
+                        </Pressable>
+                        <Text style={[styles.setText, {paddingLeft: 20}]}>{ endDateString }</Text>
+                    </View>
+                    <DateTimePickerModal
+                        isVisible={isEndVisible}
+                        mode="date"
+                        onConfirm={handleEndConfirm}
+                        onCancel={hideDatePicker}
+                        minimumDate={ startDate }
+                        maximumDate={ itineraryEnd.toDate() }
+                    />
+
+                    {/* Upload additional files */}
+                    <Text style = { styles.field }>Additional Notes</Text>
+                    <View style={styles.horizontal}>
+                        <Pressable onPress={ chooseFile } style={styles.button}>
+                        <Document
+                            name = "document-outline"
+                            size = {20}
+                            color = 'white'
+                            style = {{
+                                paddingLeft: '1%'
+                            }}
+                        />
+
+                        <Text style={styles.buttonText}>Upload Files</Text>
+                    </Pressable>
+                    {
+                        isDocChosen
+                        ? <Text style={[styles.setText, {paddingLeft: 20}]}>File uploaded.</Text>
+                        : null
+                    }
+                    </View>
+                    
+                    {/* Line breaks */}
+                    <Text>{'\n'}</Text>
+                    <Text>{'\n'}</Text>
+                    <Text>{'\n'}</Text>
+                    <Text>{'\n'}</Text>
+                    <Text>{'\n'}</Text>
+                    <Text>{'\n'}</Text>
+
+                    <CustomButton
+                        text='Update'
+                        onPress= { update }
+                        type='TERTIARY'
+                    />
+
+                    {
+                        updating || deleting
+                        ? <View style={{
+                            paddingTop: 20,
+                            alignSelf: 'center',
+                            }}>
+                            <ActivityIndicator 
+                            size='large' 
+                            color='#000000'/>
+                        </View>
+                        : null
+                    }
+
+                </View>
             </View>
-        </View>
+        </KeyboardAvoidingWrapper>
     )
 }
 
@@ -472,7 +476,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         alignItems: 'center',
         paddingTop: 9,
-        flex: 3.1,
+        flex: 3.5,
     },
     horizontal: {
         flexDirection: 'row',

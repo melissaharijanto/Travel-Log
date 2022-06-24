@@ -8,6 +8,7 @@ const InputFieldAfterLogIn = ({ value, setValue, placeholder, secureTextEntry, m
                 value = { value }
                 onChangeText = { setValue }
                 placeholder = { placeholder }
+                placeholderTextColor = '#808080'
                 style = { styles.input }
                 secureTextEntry = { secureTextEntry } // for passwords
                 maxLength = { maxLength }

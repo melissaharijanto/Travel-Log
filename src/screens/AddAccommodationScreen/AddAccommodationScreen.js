@@ -12,6 +12,7 @@ import DocumentPicker, {
   } from 'react-native-document-picker';
 import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
+import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper';
 
 const AddAccommodationScreen = ({route}) => {
     
@@ -184,131 +185,132 @@ const AddAccommodationScreen = ({route}) => {
     }
 
     return (
-        <View style={styles.root}>
-            
-            {/* header */}
-            <View style = { styles.header }>
-                <Back
-                    size={35}
-                    name="chevron-left"
-                    onPress = { () => navigation.goBack() }
-                    style = {{
-                        flex: 1,
-                        paddingTop: 2
-                    }}
-                />
-                <Text style = { styles.headerText }>Accommodation</Text>
-            </View>
-            
-            {/* empty space so shadow can be visible */}
-            <Text></Text>
-
-            {/* body */}
-            <View style = {[styles.root, {
-                paddingHorizontal: '8%' }]}>
+        <KeyboardAvoidingWrapper
+            backgroundColor='#FFFFFF'>
+            <View style={styles.root}>
                 
-                {/* Field to input accommodation name. */}
-                <Text style = { styles.text }>Accommodation Name</Text>
-
-                <InputFieldAfterLogIn
-                    placeholder = "Accommodation Name"
-                    value = { name }
-                    setValue = { setName  }
-                />
-
-                {/* Field to input check-in date. */}
-                <Text style = { styles.text }>Check In Date</Text>
-                <View style={styles.horizontal}>
-                    <Pressable 
-                        onPress={ showStartDatePicker } 
-                        style={ styles.button }>
-                        <Text style={styles.buttonText}>Pick Check In Date</Text>    
-                    </Pressable>
-                    <Text style={[styles.setText, {paddingLeft: 20}]}>{ startDateString }</Text>
-                </View>
-                <DateTimePickerModal
-                    isVisible={isStartVisible}
-                    mode="date"
-                    onConfirm={handleConfirm}
-                    onCancel={hideDatePicker}
-                    minimumDate={ itineraryStart.toDate() }
-                    maximumDate={itineraryEnd.toDate()}
-                />
-                
-                {/* Field to input check-out date. */}
-                <Text style = { styles.text }>Check Out Date</Text>
-
-                <View style={styles.horizontal}>
-                    <Pressable 
-                        onPress={ showEndDatePicker } 
-                        style={ styles.button }>
-                        <Text style={styles.buttonText}>Pick Check Out Date</Text>    
-                    </Pressable>
-                    <Text style={[styles.setText, {paddingLeft: 20}]}>{ endDateString }</Text>
-                </View>
-                <DateTimePickerModal
-                    isVisible={isEndVisible}
-                    mode="date"
-                    onConfirm={handleEndConfirm}
-                    onCancel={hideDatePicker}
-                    minimumDate={startDate}
-                    maximumDate={itineraryEnd.toDate()}
-                />
-
-                {/* Upload additional files */}
-                <Text style = { styles.text }>Additional Notes</Text>
-                <View style={styles.horizontal}>
-                    <Pressable onPress={ chooseFile } style={styles.button}>
-                    <Document
-                        name = "document-outline"
-                        size = {20}
-                        color = 'white'
+                {/* header */}
+                <View style = { styles.header }>
+                    <Back
+                        size={35}
+                        name="chevron-left"
+                        color="#808080"
+                        onPress = { () => navigation.goBack() }
                         style = {{
-                            paddingLeft: '1%'
+                            flex: 1,
+                            paddingTop: 2
                         }}
                     />
-
-                    <Text style={styles.buttonText}>Upload Files</Text>
-                </Pressable>
-                {
-                    isDocChosen
-                    ? <Text style={[styles.setText, {paddingLeft: 20}]}>{ fileName }</Text>
-                    : null
-                }
+                    <Text style = { styles.headerText }>Accommodation</Text>
                 </View>
-                    <Text style={styles.acceptedFiles}>Accepted file formats: .pdf, .docx, .jpeg, .png</Text>
-
-                {/* Line breaks */}
-                <Text>{'\n'}</Text>
-                <Text>{'\n'}</Text>
-                <Text>{'\n'}</Text>
-                <Text>{'\n'}</Text>
-                <Text>{'\n'}</Text>
-                <Text>{'\n'}</Text>
-
-                <CustomButton
-                    text='Add'
-                    onPress= { add }
-                    type='TERTIARY'
-                />
                 
-                {
-                    adding
-                    ? <View style={{
-                        paddingTop: 20,
-                        alignSelf: 'center',
-                        }}>
-                        <ActivityIndicator 
-                        size='large' 
-                        color='#000000'/>
-                    </View>
-                    : null
-                }
-            </View>
-            
+                {/* empty space so shadow can be visible */}
+                <Text></Text>
 
-            
-        </View>
+                {/* body */}
+                <View style = {[styles.root, {
+                    paddingHorizontal: '8%' }]}>
+                    
+                    {/* Field to input accommodation name. */}
+                    <Text style = { styles.text }>Accommodation Name</Text>
+
+                    <InputFieldAfterLogIn
+                        placeholder = "Accommodation Name"
+                        value = { name }
+                        setValue = { setName  }
+                    />
+
+                    {/* Field to input check-in date. */}
+                    <Text style = { styles.text }>Check In Date</Text>
+                    <View style={styles.horizontal}>
+                        <Pressable 
+                            onPress={ showStartDatePicker } 
+                            style={ styles.button }>
+                            <Text style={styles.buttonText}>Pick Check In Date</Text>    
+                        </Pressable>
+                        <Text style={[styles.setText, {paddingLeft: 20}]}>{ startDateString }</Text>
+                    </View>
+                    <DateTimePickerModal
+                        isVisible={isStartVisible}
+                        mode="date"
+                        onConfirm={handleConfirm}
+                        onCancel={hideDatePicker}
+                        minimumDate={ itineraryStart.toDate() }
+                        maximumDate={itineraryEnd.toDate()}
+                    />
+                    
+                    {/* Field to input check-out date. */}
+                    <Text style = { styles.text }>Check Out Date</Text>
+
+                    <View style={styles.horizontal}>
+                        <Pressable 
+                            onPress={ showEndDatePicker } 
+                            style={ styles.button }>
+                            <Text style={styles.buttonText}>Pick Check Out Date</Text>    
+                        </Pressable>
+                        <Text style={[styles.setText, {paddingLeft: 20}]}>{ endDateString }</Text>
+                    </View>
+                    <DateTimePickerModal
+                        isVisible={isEndVisible}
+                        mode="date"
+                        onConfirm={handleEndConfirm}
+                        onCancel={hideDatePicker}
+                        minimumDate={startDate}
+                        maximumDate={itineraryEnd.toDate()}
+                    />
+
+                    {/* Upload additional files */}
+                    <Text style = { styles.text }>Additional Notes</Text>
+                    <View style={styles.horizontal}>
+                        <Pressable onPress={ chooseFile } style={styles.button}>
+                        <Document
+                            name = "document-outline"
+                            size = {20}
+                            color = 'white'
+                            style = {{
+                                paddingLeft: '1%'
+                            }}
+                        />
+
+                        <Text style={styles.buttonText}>Upload Files</Text>
+                    </Pressable>
+                    {
+                        isDocChosen
+                        ? <Text style={[styles.setText, {paddingLeft: 20}]}>{ fileName }</Text>
+                        : null
+                    }
+                    </View>
+                        <Text style={styles.acceptedFiles}>Accepted file formats: .pdf, .docx, .jpeg, .png</Text>
+
+                    {/* Line breaks */}
+                    <Text>{'\n'}</Text>
+                    <Text>{'\n'}</Text>
+                    <Text>{'\n'}</Text>
+                    <Text>{'\n'}</Text>
+                    <Text>{'\n'}</Text>
+                    <Text>{'\n'}</Text>
+
+                    <CustomButton
+                        text='Add'
+                        onPress= { add }
+                        type='TERTIARY'
+                    />
+                    
+                    {
+                        adding
+                        ? <View style={{
+                            paddingTop: 20,
+                            alignSelf: 'center',
+                            }}>
+                            <ActivityIndicator 
+                            size='large' 
+                            color='#000000'/>
+                        </View>
+                        : null
+                    }
+                </View>
+            </View>
+        </KeyboardAvoidingWrapper>
     )
 }
 

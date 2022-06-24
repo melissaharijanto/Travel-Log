@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, ScrollView, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper';
 
 const MainItineraryScreen = () => {
 
@@ -15,11 +16,11 @@ const MainItineraryScreen = () => {
     }
 
     return (
-        <ScrollView>
-        <View style = { styles.root }>
-        <Text style = { styles.text }> Placeholder Page for Main Itinerary Tab </Text>
-        </View>
-        </ScrollView>
+        <KeyboardAvoidingWrapper backgroundColor='#FFFFFF'>
+            <View style = { styles.root }>
+                <Text style = { styles.text }> Placeholder Page for Main Itinerary Tab </Text>
+            </View>
+        </KeyboardAvoidingWrapper>
     );
 };
 
