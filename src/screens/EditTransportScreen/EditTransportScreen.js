@@ -245,7 +245,7 @@ const EditTransportScreen = ({route}) => {
   const handleDelete = async () => {
     let unmounted = false;
     setDeleting(true);
-    firestore()
+    await firestore()
       .collection('itineraries')
       .doc(id)
       .collection('days')

@@ -25,9 +25,9 @@ const ProfileScreen = () => {
   const defaultImage =
     'https://firebasestorage.googleapis.com/v0/b/travellog-d79e2.appspot.com/o/defaultUser.png?alt=media&token=d56ef526-4058-4152-933b-b98cd0668392';
 
-  const getUser = async () => {
+  const getUser = () => {
     let unmounted = false;
-    await firestore()
+    firestore()
       .collection('users')
       .doc(user.uid)
       .onSnapshot(documentSnapshot => {

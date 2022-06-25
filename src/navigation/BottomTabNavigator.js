@@ -79,6 +79,48 @@ const ItineraryStackScreen = () => {
         name="EditItinerary"
         component={EditItineraryScreen}
       />
+      <ItineraryStack.Screen
+        name="OpenItinerary"
+        component={OpeningItineraryScreen}
+      />
+
+      <ItineraryStack.Screen
+        name="AddAccommodation"
+        component={AddAccommodationScreen}
+      />
+      <ItineraryStack.Screen name="AddActivity" component={AddActivityScreen} />
+      <ItineraryStack.Screen
+        name="AddTransport"
+        component={AddTransportScreen}
+      />
+      <ItineraryStack.Screen
+        name="ViewAccommodation"
+        component={ViewAccommodationScreen}
+      />
+      <ItineraryStack.Screen
+        name="ViewActivity"
+        component={ViewActivityScreen}
+      />
+      <ItineraryStack.Screen
+        name="ViewTransport"
+        component={ViewTransportScreen}
+      />
+      <ItineraryStack.Screen
+        name="EditAccommodation"
+        component={EditAccommodationScreen}
+      />
+      <ItineraryStack.Screen
+        name="EditActivity"
+        component={EditActivityScreen}
+      />
+      <ItineraryStack.Screen
+        name="NewAccommodation"
+        component={NewAccommodationScreen}
+      />
+      <ItineraryStack.Screen
+        name="EditTransport"
+        component={EditTransportScreen}
+      />
     </ItineraryStack.Navigator>
   );
 };
@@ -155,12 +197,7 @@ const BottomTabNavigator = () => {
                 color={focused ? '#3B4949' : '#94C2C6'}
               />
               <Text
-                style={[
-                  styles.text,
-                  {
-                    color: focused ? '#3B4949' : '#94C2C6',
-                  },
-                ]}>
+                style={[styles.text, {color: focused ? '#3B4949' : '#94C2C6'}]}>
                 Profile
               </Text>
             </View>

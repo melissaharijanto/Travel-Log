@@ -95,7 +95,7 @@ const NewAccommodationScreen = ({route}) => {
       </View>
 
       <Text />
-      <View style={{width: '100%', paddingHorizontal: '5%'}}>
+      <View style={styles.content}>
         <FlatList
           data={accommodation}
           numColumns={1}
@@ -162,6 +162,11 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     backgroundColor: 'white',
     width: '100%',
+  },
+  content: {
+    width: '100%',
+    paddingHorizontal: '5%',
+    flex: 1,
   },
   header: {
     flexDirection: 'row',

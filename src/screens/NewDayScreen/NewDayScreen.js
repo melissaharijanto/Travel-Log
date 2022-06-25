@@ -1,13 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  ScrollView,
-  Pressable,
-  FlatList,
-} from 'react-native';
+import {View, Text, Image, StyleSheet, FlatList} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import Back from 'react-native-vector-icons/Feather';
 import ActivityTab from '../../components/ActivityTab';
@@ -17,6 +9,7 @@ import Activity from '../../../assets/images/Activity.png';
 import Transport from '../../../assets/images/Transport.png';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
+import {useFocusEffect} from '@react-navigation/native';
 
 const NewDayScreen = ({route}) => {
   const navigation = useNavigation();
@@ -47,7 +40,7 @@ const NewDayScreen = ({route}) => {
     navigation.goBack();
   };
 
-  const getPlans = async () => {
+  const getPlans = () => {
     let unmounted = false;
     const plansList = [];
     firestore()
@@ -126,6 +119,7 @@ const NewDayScreen = ({route}) => {
   useEffect(() => {
     let unmounted = false;
     getPlans();
+    console.log(plans);
     return () => {
       unmounted = true;
     };
@@ -149,7 +143,7 @@ const NewDayScreen = ({route}) => {
       </View>
 
       <Text />
-      <View style={{width: '100%', paddingHorizontal: '5%'}}>
+      <View style={styles.content}>
         <FlatList
           data={plans}
           numColumns={1}
@@ -257,6 +251,11 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     backgroundColor: 'white',
     width: '100%',
+  },
+  content: {
+    width: '100%',
+    paddingHorizontal: '5%',
+    flex: 1,
   },
   header: {
     flexDirection: 'row',

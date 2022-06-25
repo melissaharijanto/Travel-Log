@@ -15,6 +15,7 @@ import CustomButton from '../../components/CustomButton';
 import ItineraryTab from '../../components/ItineraryTab';
 import InputFieldAfterLogin from '../../components/InputFieldAfterLogIn';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper';
+import {useFocusEffect} from '@react-navigation/native';
 
 const HomeScreen = () => {
   // Gets authentication data of the current user logged in.
@@ -82,7 +83,7 @@ const HomeScreen = () => {
     'https://firebasestorage.googleapis.com/v0/b/travellog-d79e2.appspot.com/o/defaultUser.png?alt=media&token=d56ef526-4058-4152-933b-b98cd0668392';
 
   // Function to initialize user data from Firestore database.
-  const getUser = async () => {
+  const getUser = () => {
     let unmounted = false;
     firestore()
       .collection('users')
@@ -169,13 +170,10 @@ const HomeScreen = () => {
             if (doc.exists) {
               const {id} = doc.data();
 
-              console.log('BreakPoint 1', doc.data());
-
               firestore()
                 .collection('itineraries')
                 .where('id', '==', doc.id)
                 .onSnapshot(querySnapshot => {
-                  console.log('BreakPoint 2');
                   querySnapshot.forEach(doc => {
                     if (doc.exists) {
                       const {
@@ -190,8 +188,6 @@ const HomeScreen = () => {
                         title,
                       } = doc.data();
 
-                      console.log('BreakPoint 3', doc.data());
-
                       itinerariesList.push({
                         id: id,
                         coverImage: coverImage,
@@ -203,8 +199,15 @@ const HomeScreen = () => {
                         startDate: startDate,
                         title: title,
                       });
+
+                      itinerariesList.sort(function (a, b) {
+                        return (
+                          new Date(b.createdAt.toDate()) -
+                          new Date(a.createdAt.toDate())
+                        );
+                      });
+
                       setPastItineraries(itinerariesList);
-                      console.log('BreakPoint 4', itinerariesList);
                     }
                   });
                 });
@@ -218,13 +221,15 @@ const HomeScreen = () => {
   };
 
   // Initializing the user upon navigating to this page.
-  useEffect(() => {
-    let unmounted = false;
-    getUser();
-    return () => {
-      unmounted = true;
-    };
-  }, []);
+  useFocusEffect(
+    React.useCallback(() => {
+      let unmounted = false;
+      getUser();
+      return () => {
+        unmounted = true;
+      };
+    }, []),
+  );
 
   // Initializes latest itinerary upon change to userData.
   useEffect(() => {
