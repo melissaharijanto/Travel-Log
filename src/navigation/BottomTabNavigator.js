@@ -1,129 +1,14 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import HomeScreen from '../screens/HomeScreen';
-import MainItineraryScreen from '../screens/MainItineraryScreen';
-import NewDayScreen from '../screens/NewDayScreen';
-import NewItineraryScreen from '../screens/NewItineraryScreen';
 import ProfileScreen from '../screens/ProfileScreen';
-import EditItineraryScreen from '../screens/EditItineraryScreen/EditItineraryScreen';
-import OpeningItineraryScreen from '../screens/OpeningItineraryScreen';
 import HomeIcon from 'react-native-vector-icons/Entypo';
 import ItineraryIcon from 'react-native-vector-icons/MaterialIcons';
 import ProfileIcon from 'react-native-vector-icons/FontAwesome';
-import AddAccommodationScreen from '../screens/AddAccommodationScreen';
-import AddActivityScreen from '../screens/AddActivityScreen';
-import AddTransportScreen from '../screens/AddTransportScreen';
-import ViewAccommodationScreen from '../screens/ViewAccommodationScreen/ViewAccommodationScreen';
-import ViewActivityScreen from '../screens/ViewActivityScreen';
-import ViewTransportScreen from '../screens/ViewTransportScreen';
-import EditAccommodationScreen from '../screens/EditAccommodationScreen';
-import EditActivityScreen from '../screens/EditActivityScreen';
-import NewAccommodationScreen from '../screens/NewAccommodationScreen';
-import EditTransportScreen from '../screens/EditTransportScreen';
+import HomeStackScreen from './HomeStackScreen';
+import ItineraryStackScreen from './ItineraryStackScreen';
 
 const Tab = createBottomTabNavigator();
-
-const HomeStack = createNativeStackNavigator();
-const HomeStackScreen = () => {
-  return (
-    <HomeStack.Navigator screenOptions={{headerShown: false}}>
-      <HomeStack.Screen name="HomeScreen" component={HomeScreen} />
-      <HomeStack.Screen name="NewItinerary" component={NewItineraryScreen} />
-      <HomeStack.Screen
-        name="OpenItinerary"
-        component={OpeningItineraryScreen}
-      />
-      <HomeStack.Screen
-        name="EditItineraryFromHome"
-        component={EditItineraryScreen}
-      />
-      <HomeStack.Screen name="NewDay" component={NewDayScreen} />
-      <HomeStack.Screen
-        name="AddAccommodation"
-        component={AddAccommodationScreen}
-      />
-      <HomeStack.Screen name="AddActivity" component={AddActivityScreen} />
-      <HomeStack.Screen name="AddTransport" component={AddTransportScreen} />
-      <HomeStack.Screen
-        name="ViewAccommodation"
-        component={ViewAccommodationScreen}
-      />
-      <HomeStack.Screen name="ViewActivity" component={ViewActivityScreen} />
-      <HomeStack.Screen name="ViewTransport" component={ViewTransportScreen} />
-      <HomeStack.Screen
-        name="EditAccommodation"
-        component={EditAccommodationScreen}
-      />
-      <HomeStack.Screen name="EditActivity" component={EditActivityScreen} />
-      <HomeStack.Screen
-        name="NewAccommodation"
-        component={NewAccommodationScreen}
-      />
-      <HomeStack.Screen name="EditTransport" component={EditTransportScreen} />
-    </HomeStack.Navigator>
-  );
-};
-
-const ItineraryStack = createNativeStackNavigator();
-const ItineraryStackScreen = () => {
-  return (
-    <ItineraryStack.Navigator screenOptions={{headerShown: false}}>
-      <ItineraryStack.Screen
-        name="MainItinerary"
-        component={MainItineraryScreen}
-      />
-      <ItineraryStack.Screen name="NewDay" component={NewDayScreen} />
-      <ItineraryStack.Screen
-        name="EditItinerary"
-        component={EditItineraryScreen}
-      />
-      <ItineraryStack.Screen
-        name="OpenItinerary"
-        component={OpeningItineraryScreen}
-      />
-
-      <ItineraryStack.Screen
-        name="AddAccommodation"
-        component={AddAccommodationScreen}
-      />
-      <ItineraryStack.Screen name="AddActivity" component={AddActivityScreen} />
-      <ItineraryStack.Screen
-        name="AddTransport"
-        component={AddTransportScreen}
-      />
-      <ItineraryStack.Screen
-        name="ViewAccommodation"
-        component={ViewAccommodationScreen}
-      />
-      <ItineraryStack.Screen
-        name="ViewActivity"
-        component={ViewActivityScreen}
-      />
-      <ItineraryStack.Screen
-        name="ViewTransport"
-        component={ViewTransportScreen}
-      />
-      <ItineraryStack.Screen
-        name="EditAccommodation"
-        component={EditAccommodationScreen}
-      />
-      <ItineraryStack.Screen
-        name="EditActivity"
-        component={EditActivityScreen}
-      />
-      <ItineraryStack.Screen
-        name="NewAccommodation"
-        component={NewAccommodationScreen}
-      />
-      <ItineraryStack.Screen
-        name="EditTransport"
-        component={EditTransportScreen}
-      />
-    </ItineraryStack.Navigator>
-  );
-};
 
 const BottomTabNavigator = () => {
   return (

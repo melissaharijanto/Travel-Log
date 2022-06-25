@@ -60,7 +60,7 @@ const OpeningItineraryScreen = ({route}) => {
 
   // Navigates to EditItineraryScreen.
   const editItinerary = () => {
-    navigation.navigate('EditItineraryFromHome', {
+    navigation.navigate('EditItinerary', {
       itinerary: itinerary,
     });
   };
@@ -78,11 +78,11 @@ const OpeningItineraryScreen = ({route}) => {
         Getting the data for the days from the database and initializing
         the 'days' state as an array of data.
     */
-  const getDays = async () => {
+  const getDays = () => {
     let unmounted = false;
     try {
       const daysList = [];
-      await firestore()
+      firestore()
         .collection('itineraries')
         .doc(itinerary.id)
         .collection('days')

@@ -19,8 +19,6 @@ const NewAccommodationScreen = ({route}) => {
 
   const viewOnly = () => {};
 
-  const placeholder = () => {};
-
   const getAccommodation = async () => {
     let unmounted = false;
     const accommodationList = [];

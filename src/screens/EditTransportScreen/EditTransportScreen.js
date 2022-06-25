@@ -400,7 +400,7 @@ const EditTransportScreen = ({route}) => {
           <Text>{'\n'}</Text>
           <Text>{'\n'}</Text>
 
-          <CustomButton text="Add" onPress={update} type="TERTIARY" />
+          <CustomButton text="Update" onPress={update} type="TERTIARY" />
 
           {updating || deleting ? (
             <View

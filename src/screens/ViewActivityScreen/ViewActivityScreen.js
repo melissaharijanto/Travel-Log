@@ -37,10 +37,10 @@ const ViewActivityScreen = ({route}) => {
   const [fileUri, setFileUri] = useState(null);
   const [fileName, setFileName] = useState(null);
 
-  const getData = async () => {
+  const getData = () => {
     let unmounted = false;
 
-    await firestore()
+    firestore()
       .collection('itineraries')
       .doc(id)
       .collection('days')
@@ -61,7 +61,7 @@ const ViewActivityScreen = ({route}) => {
     };
   };
 
-  const getFileName = async () => {
+  const getFileName = () => {
     let unmounted = false;
 
     if (fileUri != null) {

@@ -102,13 +102,13 @@ const SignUpScreen = () => {
         <Formik
           initialValues={userInfo}
           validationSchema={validationSchema}
-          onSubmit={async values => {
+          onSubmit={values => {
             let unmounted = false;
             setWaiting(true);
-            await auth()
+            auth()
               .createUserWithEmailAndPassword(values.email, values.password)
-              .then(async () => {
-                await firestore()
+              .then(() => {
+                firestore()
                   .collection('users')
                   .doc(auth().currentUser.uid)
                   .set({
@@ -119,7 +119,6 @@ const SignUpScreen = () => {
                     itineraries: 0,
                   });
                 console.log('User account created & signed in!');
-                setWaiting(false);
               })
               .catch(error => {
                 if (error.code === 'auth/email-in-use') {
@@ -147,7 +146,7 @@ const SignUpScreen = () => {
                   setWaiting(false);
                 }
               });
-
+            setWaiting(false);
             return () => {
               unmounted = true;
             };

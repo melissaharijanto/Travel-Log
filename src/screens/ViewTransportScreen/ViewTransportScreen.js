@@ -26,7 +26,7 @@ const ViewTransportScreen = ({route}) => {
   const [fileName, setFileName] = useState(null);
   const [file, setFile] = useState(null);
 
-  const getData = async () => {
+  const getData = () => {
     let unmounted = false;
     firestore()
       .collection('itineraries')

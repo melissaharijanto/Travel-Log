@@ -91,9 +91,11 @@ const NewDayScreen = ({route}) => {
                 time: time,
               });
             }
+
+            setPlans(plansList);
           }
         });
-        setPlans(plansList);
+        
       });
     return () => {
       unmounted = true;

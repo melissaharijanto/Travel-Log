@@ -46,6 +46,7 @@ const ForgotPasswordScreen = () => {
           initialValues={userInfo}
           validationSchema={validationSchema}
           onSubmit={async values => {
+            console.log('start');
             let unmounted = false;
             setWaiting(true);
             await firebase
@@ -57,7 +58,6 @@ const ForgotPasswordScreen = () => {
                   'A password reset email has been sent.',
                 );
                 navigation.goBack();
-                setWaiting(false);
               })
               .catch(error => {
                 if (error.code === 'auth/user-not-found') {
@@ -73,7 +73,7 @@ const ForgotPasswordScreen = () => {
                   setWaiting(false);
                 }
               });
-
+            setWaiting(false);
             return () => {
               unmounted = true;
             };
