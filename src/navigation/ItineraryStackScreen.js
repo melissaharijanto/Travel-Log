@@ -2,7 +2,7 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import MainItineraryScreen from '../screens/MainItineraryScreen';
 import NewDayScreen from '../screens/NewDayScreen';
-import EditItineraryScreen from '../screens/EditItineraryScreen/EditItineraryScreen';
+import EditItineraryScreenFromItinerary from '../screens/EditItineraryScreenFromItinerary';
 import OpeningItineraryScreen from '../screens/OpeningItineraryScreen';
 import AddAccommodationScreen from '../screens/AddAccommodationScreen';
 import AddActivityScreen from '../screens/AddActivityScreen';
@@ -26,7 +26,7 @@ const ItineraryStackScreen = () => {
       <ItineraryStack.Screen name="NewDay" component={NewDayScreen} />
       <ItineraryStack.Screen
         name="EditItinerary"
-        component={EditItineraryScreen}
+        component={EditItineraryScreenFromItinerary}
       />
       <ItineraryStack.Screen
         name="OpenItinerary"

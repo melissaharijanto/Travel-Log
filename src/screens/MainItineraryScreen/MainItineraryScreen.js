@@ -46,7 +46,7 @@ const MainItineraryScreen = () => {
     }
   };
 
-  const getPastItineraries = async () => {
+  const getPastItineraries = () => {
     let unmounted = false;
     const itinerariesList = [];
     console.log('BreakPoint 0');

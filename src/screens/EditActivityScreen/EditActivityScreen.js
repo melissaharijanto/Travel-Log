@@ -61,8 +61,14 @@ const EditActivityScreen = ({route}) => {
   const [isStartVisible, setStartVisible] = useState(false);
 
   // Error Messages
-  const [errorMessage, setErrorMessage] = useState('');
-  const [showMessage, setShowMessage] = useState(false);
+  const [nameError, setNameError] = useState('');
+  const [showNameError, setShowNameError] = useState(false);
+
+  const [locationError, setLocationError] = useState('');
+  const [showLocationError, setShowLocationError] = useState(false);
+
+  const [startError, setStartError] = useState('');
+  const [showStartError, setShowStartError] = useState('');
 
   const showStartDatePicker = () => {
     setStartVisible(true);
@@ -77,6 +83,7 @@ const EditActivityScreen = ({route}) => {
     console.log('A start time has been picked: ', time);
     setStartTime(time);
     setTimeChosen(true);
+    setShowStartError(false);
     hideDatePicker();
   };
 
@@ -144,6 +151,27 @@ const EditActivityScreen = ({route}) => {
     let unmounted = false;
 
     setUpdating(true);
+
+    if (name === '') {
+      setNameError('Activity name is still empty.');
+      setShowNameError(true);
+      setUpdating(false);
+      return;
+    } else if (location === '') {
+      setLocationError('Location is still empty.');
+      setShowLocationError(true);
+      setShowNameError(false);
+      setUpdating(false);
+      return;
+    } else if (!isTimeChosen) {
+      setStartError('Please pick a start time.');
+      setShowStartError(true);
+      setShowNameError(false);
+      setShowLocationError(false);
+      setUpdating(false);
+      return;
+    }
+
     let fileUrl = await uploadFile();
 
     if (fileUrl == null && fileUri) {
@@ -241,7 +269,7 @@ const EditActivityScreen = ({route}) => {
     };
   };
 
-  const getData = async () => {
+  const getData = () => {
     let unmounted = false;
     firestore()
       .collection('itineraries')
@@ -265,7 +293,7 @@ const EditActivityScreen = ({route}) => {
     };
   };
 
-  const getFileName = async () => {
+  const getFileName = () => {
     let unmounted = false;
     if (fileUri != null) {
       setChosen(true);
@@ -275,6 +303,14 @@ const EditActivityScreen = ({route}) => {
       unmounted = true;
     };
   };
+
+  useEffect(() => {
+    setShowNameError(false);
+  }, [name]);
+
+  useEffect(() => {
+    setShowLocationError(false);
+  }, [location]);
 
   useEffect(() => {
     let unmounted = false;
@@ -338,14 +374,20 @@ const EditActivityScreen = ({route}) => {
             setValue={setName}
           />
 
+          {showNameError ? <Text style={styles.error}>{nameError}</Text> : null}
+
           {/* Displays Location. */}
           <Text style={styles.field}>Location</Text>
 
           <InputFieldAfterLogIn
-            placeholder="Activity Name"
+            placeholder="Location"
             value={location}
             setValue={setLocation}
           />
+
+          {showLocationError ? (
+            <Text style={styles.error}>{locationError}</Text>
+          ) : null}
 
           {/* Displays start time. */}
           <Text style={styles.field}>Start Time</Text>
@@ -367,6 +409,10 @@ const EditActivityScreen = ({route}) => {
             onCancel={hideDatePicker}
             date={date.toDate()}
           />
+
+          {showStartError ? (
+            <Text style={styles.error}>{startError}</Text>
+          ) : null}
 
           {/* Upload additional files */}
           <Text style={styles.field}>Additional Notes</Text>
@@ -426,6 +472,12 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Italic',
     fontSize: 12,
     color: '#333333',
+  },
+  error: {
+    color: '#a3160b',
+    fontFamily: 'Poppins-Italic',
+    fontSize: 12,
+    paddingLeft: 10,
   },
   button: {
     flexDirection: 'row',

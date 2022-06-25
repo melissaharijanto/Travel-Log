@@ -19,6 +19,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 import EditProfilePicture from '../../../assets/images/EditProfilePicture.png';
 import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
+import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper';
 
 const EditProfileScreen = () => {
   const user = auth().currentUser;
@@ -140,7 +141,7 @@ const EditProfileScreen = () => {
       imgUrl = userData.userImg;
     }
 
-    firestore()
+    await firestore()
       .collection('users')
       .doc(user.uid)
       .update({
@@ -154,7 +155,7 @@ const EditProfileScreen = () => {
 
     const update = {
       displayName: name,
-      photoURL: null, // profile picture
+      photoURL: null,
     };
 
     user.updateProfile(update);
@@ -171,7 +172,7 @@ const EditProfileScreen = () => {
   };
 
   return (
-    <ScrollView>
+    <KeyboardAvoidingWrapper>
       <View style={styles.root}>
         <ImageBackground
           source={Background}
@@ -240,7 +241,7 @@ const EditProfileScreen = () => {
           )}
         </ImageBackground>
       </View>
-    </ScrollView>
+    </KeyboardAvoidingWrapper>
   );
 };
 

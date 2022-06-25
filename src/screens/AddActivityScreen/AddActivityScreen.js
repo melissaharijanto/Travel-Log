@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -26,8 +26,8 @@ const AddActivityScreen = ({route}) => {
   const {id, dayLabel, date, owner} = route.params;
 
   // Set initial states of each field to be empty.
-  const [name, setName] = useState();
-  const [location, setLocation] = useState();
+  const [name, setName] = useState('');
+  const [location, setLocation] = useState('');
   const [startTime, setStartTime] = useState();
 
   // Shows whether document for additional notes/ time has been uploaded or not.
@@ -44,6 +44,16 @@ const AddActivityScreen = ({route}) => {
 
   const [isStartVisible, setStartVisible] = useState(false);
 
+  // Error messages
+  const [nameError, setNameError] = useState('');
+  const [showNameError, setShowNameError] = useState(false);
+
+  const [locationError, setLocationError] = useState('');
+  const [showLocationError, setShowLocationError] = useState(false);
+
+  const [startError, setStartError] = useState('');
+  const [showStartError, setShowStartError] = useState('');
+
   const showStartDatePicker = () => {
     setStartVisible(true);
     console.log(date);
@@ -57,6 +67,7 @@ const AddActivityScreen = ({route}) => {
     console.log('A start time has been picked: ', time);
     setStartTime(time);
     setTimeChosen(true);
+    setShowStartError(false);
     hideDatePicker();
   };
 
@@ -135,6 +146,27 @@ const AddActivityScreen = ({route}) => {
   const add = async () => {
     let unmounted = false;
     setAdding(true);
+
+    if (name === '') {
+      setNameError('Activity name is still empty.');
+      setShowNameError(true);
+      setAdding(false);
+      return;
+    } else if (location === '') {
+      setLocationError('Location is still empty.');
+      setShowLocationError(true);
+      setShowNameError(false);
+      setAdding(false);
+      return;
+    } else if (!isTimeChosen) {
+      setStartError('Please pick a start time.');
+      setShowStartError(true);
+      setShowNameError(false);
+      setShowLocationError(false);
+      setAdding(false);
+      return;
+    }
+
     let fileUrl = await uploadFile();
 
     let itemId = Math.random().toString(36).slice(2);
@@ -167,6 +199,14 @@ const AddActivityScreen = ({route}) => {
       unmounted = true;
     };
   };
+
+  useEffect(() => {
+    setShowNameError(false);
+  }, [name]);
+
+  useEffect(() => {
+    setShowLocationError(false);
+  }, [location]);
 
   return (
     <KeyboardAvoidingWrapper backgroundColor="#FFFFFF">
@@ -206,6 +246,8 @@ const AddActivityScreen = ({route}) => {
             setValue={setName}
           />
 
+          {showNameError ? <Text style={styles.error}>{nameError}</Text> : null}
+
           <Text style={styles.text}>Location</Text>
 
           <InputFieldAfterLogIn
@@ -213,6 +255,10 @@ const AddActivityScreen = ({route}) => {
             value={location}
             setValue={setLocation}
           />
+
+          {showLocationError ? (
+            <Text style={styles.error}>{locationError}</Text>
+          ) : null}
 
           {/* Pick start time */}
           <Text style={styles.text}>Start Time</Text>
@@ -233,6 +279,10 @@ const AddActivityScreen = ({route}) => {
             onCancel={hideDatePicker}
             date={date.toDate()}
           />
+
+          {showStartError ? (
+            <Text style={styles.error}>{startError}</Text>
+          ) : null}
 
           {/* Upload additional files */}
           <Text style={styles.text}>Additional Notes</Text>
@@ -292,6 +342,12 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Italic',
     fontSize: 12,
     color: '#333333',
+  },
+  error: {
+    color: '#a3160b',
+    fontFamily: 'Poppins-Italic',
+    fontSize: 12,
+    paddingLeft: 10,
   },
   header: {
     flexDirection: 'row',

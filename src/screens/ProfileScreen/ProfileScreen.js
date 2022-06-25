@@ -32,7 +32,9 @@ const ProfileScreen = () => {
       .doc(user.uid)
       .onSnapshot(documentSnapshot => {
         if (documentSnapshot.exists) {
-          console.log('User Data', documentSnapshot.data());
+          if (unmounted) {
+            return;
+          }
           setUserData(documentSnapshot.data());
           setImage(documentSnapshot.data().imgUrl);
         }

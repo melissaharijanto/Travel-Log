@@ -51,7 +51,9 @@ const EditItineraryScreen = ({route}) => {
         {
           text: 'Cancel',
           onPress: () => {
-            navigation.navigate('EditItinerary');
+            navigation.navigate('EditItinerary', {
+              itinerary: itinerary,
+            });
             console.log('User decided not to log out');
           },
           style: 'cancel',

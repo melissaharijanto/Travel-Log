@@ -1,11 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
   StyleSheet,
-  ScrollView,
   Pressable,
-  Alert,
   ActivityIndicator,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
@@ -258,9 +256,7 @@ const NewItineraryScreen = () => {
       }
 
       // update user's itinerary numbers
-      var docRef = await firestore()
-        .collection('users')
-        .doc(auth().currentUser.uid);
+      var docRef = firestore().collection('users').doc(auth().currentUser.uid);
 
       docRef
         .update({
@@ -277,6 +273,10 @@ const NewItineraryScreen = () => {
       unmounted = true;
     };
   };
+
+  useEffect(() => {
+    setShowTitleError(false);
+  }, [title]);
 
   return (
     <KeyboardAvoidingWrapper backgroundColor="#FFFFFF">

@@ -40,17 +40,18 @@ const NewDayScreen = ({route}) => {
     navigation.goBack();
   };
 
-  const getPlans = () => {
+  const getPlans = async () => {
     let unmounted = false;
     const plansList = [];
-    firestore()
+    await firestore()
       .collection('itineraries')
       .doc(id)
       .collection('days')
       .doc(dayLabel)
       .collection('plans')
       .orderBy('time')
-      .onSnapshot(querySnapshot => {
+      .get()
+      .then(querySnapshot => {
         if (querySnapshot.empty) {
           console.log('Query is empty.');
           return;
@@ -95,7 +96,6 @@ const NewDayScreen = ({route}) => {
             setPlans(plansList);
           }
         });
-        
       });
     return () => {
       unmounted = true;

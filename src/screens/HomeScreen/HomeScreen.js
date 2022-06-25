@@ -102,7 +102,7 @@ const HomeScreen = () => {
   };
 
   // Function to initialize latest itinerary data from Firestore database.
-  const getLatestItinerary = async () => {
+  const getLatestItinerary = () => {
     let unmounted = false;
     if (itineraries > 0) {
       firestore()
@@ -148,7 +148,7 @@ const HomeScreen = () => {
             Function to initialize the user's 5 most recent itineraries prior to the latest one.
             If less than 5, will return all the itineraries prior to the latest one.
         */
-  const getPastItineraries = async () => {
+  const getPastItineraries = () => {
     let unmounted = false;
     const itinerariesList = [];
     console.log('BreakPoint 0');

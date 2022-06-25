@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {useState} from 'react';
+import React, {useDebugValue, useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -26,10 +26,10 @@ const AddTransportScreen = ({route}) => {
   const {id, dayLabel, date, owner} = route.params;
 
   // Set initial states of each field to be empty.
-  const [name, setName] = useState();
-  const [startingPoint, setStartingPoint] = useState();
-  const [destination, setDestination] = useState();
-  const [startTime, setStartTime] = useState();
+  const [name, setName] = useState('');
+  const [startingPoint, setStartingPoint] = useState('');
+  const [destination, setDestination] = useState('');
+  const [startTime, setStartTime] = useState('');
 
   // Shows whether document for additional notes/ time has been uploaded or not.
   const [isDocChosen, setChosen] = useState(false);
@@ -45,6 +45,19 @@ const AddTransportScreen = ({route}) => {
 
   const [isStartVisible, setStartVisible] = useState(false);
 
+  // Error messages
+  const [nameError, setNameError] = useState('');
+  const [showNameError, setShowNameError] = useState(false);
+
+  const [pointError, setPointError] = useState('');
+  const [showPointError, setShowPointError] = useState(false);
+
+  const [destError, setDestError] = useState('');
+  const [showDestError, setShowDestError] = useState(false);
+
+  const [startError, setStartError] = useState('');
+  const [showStartError, setShowStartError] = useState(false);
+
   const showStartDatePicker = () => {
     setStartVisible(true);
     console.log(date);
@@ -58,6 +71,7 @@ const AddTransportScreen = ({route}) => {
     console.log('A start time has been picked: ', time);
     setStartTime(time);
     setTimeChosen(true);
+    setShowStartError(false);
     hideDatePicker();
   };
 
@@ -135,6 +149,35 @@ const AddTransportScreen = ({route}) => {
   const add = async () => {
     let unmounted = false;
     setAdding(true);
+
+    if (name === '') {
+      setNameError('Mode of transport is still empty.');
+      setShowNameError(true);
+      setAdding(false);
+      return;
+    } else if (startingPoint === '') {
+      setPointError('Starting point is still empty.');
+      setShowPointError(true);
+      setShowNameError(false);
+      setAdding(false);
+      return;
+    } else if (destination === '') {
+      setDestError('Destination is still empty.');
+      setShowDestError(true);
+      setShowPointError(false);
+      setShowNameError(false);
+      setAdding(false);
+      return;
+    } else if (!isTimeChosen) {
+      setStartError('Please pick a start time.');
+      setShowStartError(true);
+      setShowDestError(false);
+      setShowPointError(false);
+      setShowNameError(false);
+      setAdding(false);
+      return;
+    }
+
     let fileUrl = await uploadFile();
 
     let itemId = Math.random().toString(36).slice(2);
@@ -168,6 +211,24 @@ const AddTransportScreen = ({route}) => {
       unmounted = true;
     };
   };
+
+  useEffect(() => {
+    let unmounted = false;
+    setShowNameError(false);
+    return () => (unmounted = true);
+  }, [name]);
+
+  useEffect(() => {
+    let unmounted = false;
+    setShowPointError(false);
+    return () => (unmounted = true);
+  }, [startingPoint]);
+
+  useEffect(() => {
+    let unmounted = false;
+    setShowDestError(false);
+    return () => (unmounted = true);
+  }, [destination]);
 
   return (
     <KeyboardAvoidingWrapper backgroundColor="#FFFFFF">
@@ -214,14 +275,20 @@ const AddTransportScreen = ({route}) => {
             setValue={setName}
           />
 
+          {showNameError ? <Text style={styles.error}>{nameError}</Text> : null}
+
           {/* Field to input start location */}
           <Text style={styles.text}>Starting Point</Text>
 
           <InputFieldAfterLogIn
-            placeholder="From"
+            placeholder="Starting Point"
             value={startingPoint}
             setValue={setStartingPoint}
           />
+
+          {showPointError ? (
+            <Text style={styles.error}>{pointError}</Text>
+          ) : null}
 
           {/* Field to input destination*/}
           <Text style={styles.text}>Destination</Text>
@@ -231,6 +298,8 @@ const AddTransportScreen = ({route}) => {
             value={destination}
             setValue={setDestination}
           />
+
+          {showDestError ? <Text style={styles.error}>{destError}</Text> : null}
 
           <Text style={styles.text}>Start Time</Text>
           <View style={styles.horizontal}>
@@ -250,6 +319,10 @@ const AddTransportScreen = ({route}) => {
             onCancel={hideDatePicker}
             date={date.toDate()}
           />
+
+          {showStartError ? (
+            <Text style={styles.error}>{startError}</Text>
+          ) : null}
 
           {/* Upload additional files */}
           <Text style={styles.text}>Additional Notes</Text>
@@ -301,6 +374,12 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     backgroundColor: '#FFFFFF',
+  },
+  error: {
+    color: '#a3160b',
+    fontFamily: 'Poppins-Italic',
+    fontSize: 12,
+    paddingLeft: 10,
   },
   acceptedFiles: {
     fontFamily: 'Poppins-Italic',

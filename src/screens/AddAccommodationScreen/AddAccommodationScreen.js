@@ -26,7 +26,7 @@ const AddAccommodationScreen = ({route}) => {
   const navigation = useNavigation();
 
   // Set initial states of each field to be empty.
-  const [name, setName] = useState();
+  const [name, setName] = useState('');
 
   // Date picker states.
   const [endDate, setEndDate] = useState(new Date());
@@ -42,6 +42,19 @@ const AddAccommodationScreen = ({route}) => {
     */
   const [isStartVisible, setStartVisible] = useState(false);
   const [isEndVisible, setEndVisible] = useState(false);
+
+  // Error Messages
+  const [nameError, setNameError] = useState('');
+  const [showNameError, setShowNameError] = useState(false);
+
+  const [startError, setStartError] = useState('');
+  const [showStartError, setShowStartError] = useState(false);
+
+  const [endError, setEndError] = useState('');
+  const [showEndError, setShowEndError] = useState(false);
+
+  const [error, setError] = useState('');
+  const [showError, setShowError] = useState('');
 
   // Shows whether document for additional notes has been uploaded or not.
   const [isDocChosen, setChosen] = useState(false);
@@ -77,6 +90,7 @@ const AddAccommodationScreen = ({route}) => {
     console.log('A start date has been picked: ', date);
     setStartDate(date);
     setStartDateString(date.toLocaleDateString());
+    setStartError(false);
     hideDatePicker();
   };
 
@@ -85,6 +99,7 @@ const AddAccommodationScreen = ({route}) => {
     console.log('An end date has been picked: ', date);
     setEndDate(date);
     setEndDateString(date.toLocaleDateString());
+    setEndError(false);
     hideDatePicker();
   };
 
@@ -152,6 +167,44 @@ const AddAccommodationScreen = ({route}) => {
 
     let itemId = Math.random().toString(36).slice(2);
 
+    const difference = endDate.getTime() - startDate.getTime();
+
+    if (name === '') {
+      setNameError('Accommodation name is still empty.');
+      setShowNameError(true);
+      setAdding(false);
+      return () => {
+        unmounted = true;
+      };
+    } else if (startDateString === '') {
+      setShowNameError(false);
+      setStartError('Check in date is still empty.');
+      setShowStartError(true);
+      setAdding(false);
+      return () => {
+        unmounted = true;
+      };
+    } else if (endDateString === '') {
+      setShowStartError(false);
+      setShowNameError(false);
+      setEndError('Check out date is still empty.');
+      setShowEndError(true);
+      setAdding(false);
+      return () => {
+        unmounted = true;
+      };
+    } else if (difference < 0) {
+      setShowStartError(false);
+      setShowNameError(false);
+      setShowEndError(false);
+      setError('Number of days should not be negative.');
+      setShowError(true);
+      setAdding(false);
+      return () => {
+        unmounted = true;
+      };
+    }
+
     firestore()
       .collection('itineraries')
       .doc(id)
@@ -189,6 +242,10 @@ const AddAccommodationScreen = ({route}) => {
       unmounted = true;
     };
   };
+
+  useEffect(() => {
+    setShowNameError(false);
+  }, [name]);
 
   return (
     <KeyboardAvoidingWrapper backgroundColor="#FFFFFF">
@@ -228,6 +285,8 @@ const AddAccommodationScreen = ({route}) => {
             setValue={setName}
           />
 
+          {showNameError ? <Text style={styles.error}>{nameError}</Text> : null}
+
           {/* Field to input check-in date. */}
           <Text style={styles.text}>Check In Date</Text>
           <View style={styles.horizontal}>
@@ -246,6 +305,10 @@ const AddAccommodationScreen = ({route}) => {
             minimumDate={itineraryStart.toDate()}
             maximumDate={itineraryEnd.toDate()}
           />
+
+          {showStartError ? (
+            <Text style={styles.error}>{startError}</Text>
+          ) : null}
 
           {/* Field to input check-out date. */}
           <Text style={styles.text}>Check Out Date</Text>
@@ -266,6 +329,8 @@ const AddAccommodationScreen = ({route}) => {
             minimumDate={startDate}
             maximumDate={itineraryEnd.toDate()}
           />
+
+          {showEndError ? <Text style={styles.error}>{endError}</Text> : null}
 
           {/* Upload additional files */}
           <Text style={styles.text}>Additional Notes</Text>
@@ -297,10 +362,10 @@ const AddAccommodationScreen = ({route}) => {
           <Text>{'\n'}</Text>
           <Text>{'\n'}</Text>
           <Text>{'\n'}</Text>
-          <Text>{'\n'}</Text>
-          <Text>{'\n'}</Text>
 
           <CustomButton text="Add" onPress={add} type="TERTIARY" />
+
+          {showError ? <Text style={styles.error}>{error}</Text> : null}
 
           {adding ? (
             <View
@@ -326,6 +391,12 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Italic',
     fontSize: 12,
     color: '#333333',
+  },
+  error: {
+    color: '#a3160b',
+    fontFamily: 'Poppins-Italic',
+    fontSize: 12,
+    paddingLeft: 10,
   },
   header: {
     flexDirection: 'row',

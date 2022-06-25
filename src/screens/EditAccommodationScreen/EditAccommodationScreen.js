@@ -29,7 +29,7 @@ const EditAccommodationScreen = ({route}) => {
   const navigation = useNavigation();
 
   // Set initial states of each field to be empty.
-  const [name, setName] = useState();
+  const [name, setName] = useState('');
 
   // Date picker states.
   const [endDate, setEndDate] = useState(new Date());
@@ -58,6 +58,19 @@ const EditAccommodationScreen = ({route}) => {
   const [updating, setUpdating] = useState(false);
   const [deleting, setDeleting] = useState(false);
 
+  // Error Messages
+  const [nameError, setNameError] = useState('');
+  const [showNameError, setShowNameError] = useState(false);
+
+  const [startError, setStartError] = useState('');
+  const [showStartError, setShowStartError] = useState(false);
+
+  const [endError, setEndError] = useState('');
+  const [showEndError, setShowEndError] = useState(false);
+
+  const [error, setError] = useState('');
+  const [showError, setShowError] = useState('');
+
   // Date picker function to show the date picker for the check-in date.
   const showStartDatePicker = () => {
     setStartVisible(true);
@@ -81,6 +94,7 @@ const EditAccommodationScreen = ({route}) => {
     console.log('A start date has been picked: ', date);
     setStartDate(date);
     setStartDateString(date.toLocaleDateString());
+    setStartError(false);
     hideDatePicker();
   };
 
@@ -89,6 +103,7 @@ const EditAccommodationScreen = ({route}) => {
     console.log('An end date has been picked: ', date);
     setEndDate(date);
     setEndDateString(date.toLocaleDateString());
+    setEndError(false);
     hideDatePicker();
   };
 
@@ -151,6 +166,45 @@ const EditAccommodationScreen = ({route}) => {
 
   const update = async () => {
     let unmounted = false;
+
+    const difference = endDate.getTime() - startDate.getTime();
+
+    if (name === '') {
+      setNameError('Accommodation name is still empty.');
+      setShowNameError(true);
+      setUpdating(false);
+      return () => {
+        unmounted = true;
+      };
+    } else if (startDateString === '') {
+      setShowNameError(false);
+      setStartError('Check in date is still empty.');
+      setShowStartError(true);
+      setUpdating(false);
+      return () => {
+        unmounted = true;
+      };
+    } else if (endDateString === '') {
+      setShowStartError(false);
+      setShowNameError(false);
+      setEndError('Check out date is still empty.');
+      setShowEndError(true);
+      setUpdating(false);
+      return () => {
+        unmounted = true;
+      };
+    } else if (difference < 0) {
+      setShowStartError(false);
+      setShowNameError(false);
+      setShowEndError(false);
+      setError('Number of days should not be negative.');
+      setShowError(true);
+      setUpdating(false);
+      return () => {
+        unmounted = true;
+      };
+    }
+
     setUpdating(true);
 
     let fileUrl = await uploadFile();
@@ -244,7 +298,7 @@ const EditAccommodationScreen = ({route}) => {
     };
   };
 
-  const getData = async () => {
+  const getData = () => {
     let unmounted = false;
     firestore()
       .collection('itineraries')
@@ -271,7 +325,7 @@ const EditAccommodationScreen = ({route}) => {
     };
   };
 
-  const getFileName = async () => {
+  const getFileName = () => {
     let unmounted = false;
     if (fileUri != null) {
       setChosen(true);
@@ -282,6 +336,9 @@ const EditAccommodationScreen = ({route}) => {
     };
   };
 
+  useEffect(() => {
+    setShowNameError(false);
+  }, [name]);
   useEffect(() => {
     let unmounted = false;
     getData();
@@ -353,6 +410,8 @@ const EditAccommodationScreen = ({route}) => {
             setValue={setName}
           />
 
+          {showNameError ? <Text style={styles.error}>{nameError}</Text> : null}
+
           {/* Field to input check-in date. */}
           <Text style={styles.field}>Check In Date</Text>
 
@@ -373,6 +432,10 @@ const EditAccommodationScreen = ({route}) => {
             maximumDate={itineraryEnd.toDate()}
           />
 
+          {showStartError ? (
+            <Text style={styles.error}>{startError}</Text>
+          ) : null}
+
           {/* Field to input check-out date. */}
           <Text style={styles.field}>Check Out Date</Text>
 
@@ -392,6 +455,8 @@ const EditAccommodationScreen = ({route}) => {
             minimumDate={startDate}
             maximumDate={itineraryEnd.toDate()}
           />
+
+          {showEndError ? <Text style={styles.error}>{endError}</Text> : null}
 
           {/* Upload additional files */}
           <Text style={styles.field}>Additional Notes</Text>
@@ -424,6 +489,8 @@ const EditAccommodationScreen = ({route}) => {
           <Text>{'\n'}</Text>
 
           <CustomButton text="Update" onPress={update} type="TERTIARY" />
+
+          {showError ? <Text style={styles.error}>{error}</Text> : null}
 
           {updating || deleting ? (
             <View
@@ -460,6 +527,12 @@ const styles = StyleSheet.create({
     color: 'white',
     paddingHorizontal: '2%',
     paddingTop: '1%',
+  },
+  error: {
+    color: '#a3160b',
+    fontFamily: 'Poppins-Italic',
+    fontSize: 12,
+    paddingLeft: 10,
   },
   setText: {
     fontFamily: 'Poppins-Italic',
