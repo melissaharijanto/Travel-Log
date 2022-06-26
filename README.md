@@ -7,9 +7,11 @@ Level of Achievement: Apollo
 Project Scope: Mobile application with a database back-end.
 Aided by React Native and Firebase, we plan to make an app that provides user authentication and visuals with various features which will be listed in detail below.
 
-<img src="https://github.com/melissaharijanto/Travel-Log/blob/main/assets/gifs/HomeScreen.gif" width='25%'/>
-<img src="https://github.com/melissaharijanto/Travel-Log/blob/main/assets/gifs/MainItinerary.gif" width='25%'/>
-<img src="https://github.com/melissaharijanto/Travel-Log/blob/main/assets/gifs/Profile.gif" width='25%'/>
+<p float="left">
+    <img src="https://github.com/melissaharijanto/Travel-Log/blob/main/assets/gifs/HomeScreen.gif" width='25%'/>
+    <img src="https://github.com/melissaharijanto/Travel-Log/blob/main/assets/gifs/MainItinerary.gif" width='25%'/>
+    <img src="https://github.com/melissaharijanto/Travel-Log/blob/main/assets/gifs/Profile.gif" width='25%'/>
+</p>
 
 ## Overview
 A mobile application built to assist users in making their travel itinerary.
