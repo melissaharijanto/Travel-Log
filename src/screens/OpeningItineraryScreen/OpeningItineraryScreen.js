@@ -266,6 +266,7 @@ const styles = StyleSheet.create({
     shadowRadius: 1,
     paddingLeft: 20,
     lineHeight: 30,
+    width: '88%',
   },
   imageSubtitle: {
     fontFamily: 'Poppins-Regular',
