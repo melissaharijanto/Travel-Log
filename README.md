@@ -45,13 +45,12 @@ Concepts to Be Tackled: https://docs.google.com/spreadsheets/d/1Y0crUXilsoeYeINN
 
 ## Progress
 As of submission of Milestone #1, only the front end for the Login and Sign Up pages are finished, along with the navigations.
+
 As of submission of Milestone #2, the main features of the app are complete and ready to use.
-    Design changes from Milestone #1:
-    - We previously planned to use a drag-and-drop flatlist to rearrange the days activities, but the animation could not seem 
-    to work on the emulator. Hence, we decided to change it so that it implements the time (based on one of the previous milestone's
-    review) and set a function that automatically sorts based on the time.
-    - Accommodation is now a property that the itinerary has, and the property of a single day.
-    Changes have been reflected in both the app and the features doc.
+    
+Design changes from Milestone #1:
+1. We previously planned to use a drag-and-drop flatlist to rearrange the days activities, but the animation could not seem to work on the emulator. Hence, we decided to change it so that it implements the time (based on one of the previous milestone's review) and set a function that automatically sorts based on the time.
+2. Accommodation is now a property that the itinerary has, and the property of a single day. Changes have been reflected in both the app and the features doc.
 
 
 ## Testing
