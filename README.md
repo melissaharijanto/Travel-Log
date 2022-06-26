@@ -55,7 +55,7 @@ As of submission of Milestone #2, the main features of the app are complete and 
 
 
 ## Testing
-```
+
 We would be happy if you are interested to try it out! Here are the steps to do so:
 1. Please access our repository with this link https://github.com/melissaharijanto/Travel-Log and fork it.
 2. Because the app is customized for android and uses React Native CLI, please use the following commands
