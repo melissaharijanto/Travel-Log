@@ -347,6 +347,7 @@ const EditActivityScreen = ({route}) => {
           <DeleteIcon
             name="trash-2"
             size={25}
+            color="#808080"
             onPress={confirmDelete}
             style={{
               paddingRight: 20,
