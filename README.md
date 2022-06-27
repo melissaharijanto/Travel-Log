@@ -8,6 +8,13 @@ Project Scope: Mobile application with a database back-end.
 Aided by React Native and Firebase, we plan to make an app that provides user authentication and visuals with various features which will be listed in detail below.
 
 ## Overview
+
+<p float="left">
+    <img src="https://github.com/melissaharijanto/Travel-Log/blob/main/assets/gifs/HomeScreen.gif" width='30%'/>
+    <img src="https://github.com/melissaharijanto/Travel-Log/blob/main/assets/gifs/MainItinerary.gif" width='30%'/>
+    <img src="https://github.com/melissaharijanto/Travel-Log/blob/main/assets/gifs/Profile.gif" width='30%'/>
+</p>
+
 A mobile application built to assist users in making their travel itinerary.
 Made with React Native combined with Firebase to assist user authentication.
 
@@ -57,7 +64,7 @@ Design changes from Milestone #1:
 
 We would be happy if you are interested to try it out! Here are the steps to do so:
 
-Assuming that you have React Native CLI set up, 
+Assuming that you have React Native CLI set up (https://reactnative.dev/docs/environment-setup), 
 1. Please access our repository with this link https://github.com/melissaharijanto/Travel-Log and fork it.
 2. Because the app is customized for android and uses React Native CLI, please use the following commands
 inside the root directory of the project:  
