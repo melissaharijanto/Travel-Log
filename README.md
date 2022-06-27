@@ -59,6 +59,9 @@ Design changes from Milestone #1:
 1. We previously planned to use a drag-and-drop flatlist to rearrange the days activities, but the animation could not seem to work on the emulator. Hence, we decided to change it so that it implements the time (based on one of the previous milestone's review) and set a function that automatically sorts based on the time.
 2. Accommodation is now a property that the itinerary has, and the property of a single day. Changes have been reflected in both the app and the features doc.
 
+## Problems Faced
+1. React state unmounted component errors, which we are planning to fix by re-evaluating all of the async functions.
+2. Buggy UI upon deleting objects, in which we will review our code and find more efficient/accurate ways to implement the functions. 
 
 ## Testing
 
