@@ -64,7 +64,7 @@ Design changes from Milestone #1:
 
 We would be happy if you are interested to try it out! Here are the steps to do so:
 
-Assuming that you have React Native CLI set up, 
+Assuming that you have React Native CLI set up (https://reactnative.dev/docs/environment-setup), 
 1. Please access our repository with this link https://github.com/melissaharijanto/Travel-Log and fork it.
 2. Because the app is customized for android and uses React Native CLI, please use the following commands
 inside the root directory of the project:  
