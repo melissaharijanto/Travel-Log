@@ -20,49 +20,137 @@ import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper';
 
+/**
+ * Anonymous class that renders AddActivityScreen.
+ *
+ * @param {*} route Argument that carries over the parameters passed from the previous screen.
+ * @returns Render of AddActivityScreen.
+ */
 const AddActivityScreen = ({route}) => {
+  /**
+   * Navigation object.
+   */
   const navigation = useNavigation();
 
+  /**
+   * Route parameters passed from the previous screen.
+   */
   const {id, dayLabel, date, owner} = route.params;
 
-  // Set initial states of each field to be empty.
+  /**
+   * State for activity name input field; default state is ''.
+   */
   const [name, setName] = useState('');
+
+  /**
+   * State for location name input field; default state is ''.
+   */
   const [location, setLocation] = useState('');
+
+  /**
+   * State to set the start time of the activity.
+   */
   const [startTime, setStartTime] = useState();
 
-  // Shows whether document for additional notes/ time has been uploaded or not.
+  /**
+   * State to show whether a document for additional file field has
+   * been chosen or not; if true, a file has been chosen, and vice versa.
+   */
   const [isDocChosen, setChosen] = useState(false);
+
+  /**
+   * State to show whether the start time has been chosen
+   * or not; if true, a start time has been chosen, and vice versa.
+   */
   const [isTimeChosen, setTimeChosen] = useState(false);
 
-  //States for file uploading
+  /**
+   * State that will store the file uri when the
+   * file is uploaded.
+   */
   const [fileUri, setFileUri] = useState(null);
+
+  /**
+   * State that will store the file name when the
+   * file is uploaded.
+   */
   const [fileName, setFileName] = useState(null);
+
+  /**
+   * State that will store the file that is picked
+   * through the document picker.
+   */
   const [file, setFile] = useState(null);
 
-  //State to show activity indicator when adding accommodation.
+  /**
+   * State to show activity indicator when adding activity.
+   */
   const [adding, setAdding] = useState(false);
 
+  /**
+   * State to show the start-time time picker.
+   */
   const [isStartVisible, setStartVisible] = useState(false);
 
-  // Error messages
+  /**
+   * Error message that will show if
+   * activity name is left as empty.
+   */
   const [nameError, setNameError] = useState('');
+
+  /**
+   * State that will show the error message for the
+   * activity name if left empty. If true, the
+   * message will show.
+   */
   const [showNameError, setShowNameError] = useState(false);
 
+  /**
+   * Error message that will show if
+   * location name is left as empty.
+   */
   const [locationError, setLocationError] = useState('');
+
+  /**
+   * State that will show the error message for the
+   * location name if left empty. If true, the
+   * message will show.
+   */
   const [showLocationError, setShowLocationError] = useState(false);
 
+  /**
+   * Error message that will show if
+   * start time is not picked.
+   */
   const [startError, setStartError] = useState('');
+
+  /**
+   * State that will show the error message for the
+   * start time if not picked. If true, the
+   * message will show.
+   */
   const [showStartError, setShowStartError] = useState('');
 
+  /**
+   * Function to show the start time picker.
+   */
   const showStartDatePicker = () => {
     setStartVisible(true);
     console.log(date);
   };
 
+  /**
+   * Function to hide the start time picker.
+   */
   const hideDatePicker = () => {
     setStartVisible(false);
   };
 
+  /**
+   * Function to save the start time that has been picked by the user.
+   *
+   * @param {Date} time The start time that has been picked by the user.
+   */
   const handleConfirm = time => {
     console.log('A start time has been picked: ', time);
     setStartTime(time);
@@ -71,6 +159,12 @@ const AddActivityScreen = ({route}) => {
     hideDatePicker();
   };
 
+  /**
+   * Function that takes in time and returns it in a custom string format.
+   *
+   * @param {Date} time The start time that has been picked by the user.
+   * @returns {String} Time in hh:mm format.
+   */
   const getTime = time => {
     let minutes = time.getMinutes();
     let hours = time.getHours();
@@ -85,7 +179,9 @@ const AddActivityScreen = ({route}) => {
     return `${hours}:${minutes}`;
   };
 
-  //Choose which file to upload.
+  /**
+   * Function to choose a file via react-native-document-picker.
+   */
   const chooseFile = async () => {
     try {
       const pickerResult = await DocumentPicker.pickSingle({
@@ -112,7 +208,9 @@ const AddActivityScreen = ({route}) => {
     }
   };
 
-  // Uploading file to Firebase Storage
+  /**
+   * Function to upload file to Firebase storage.
+   */
   const uploadFile = async () => {
     if (file == null) {
       return null;
@@ -142,11 +240,17 @@ const AddActivityScreen = ({route}) => {
     }
   };
 
-  // Add to database
+  /**
+   * Function to add activity to Firestore database.
+   */
   const add = async () => {
+    // Variable for clean-up function.
     let unmounted = false;
+
+    // State to show Activity Indicator.
     setAdding(true);
 
+    // Error handling.
     if (name === '') {
       setNameError('Activity name is still empty.');
       setShowNameError(true);
@@ -187,6 +291,7 @@ const AddActivityScreen = ({route}) => {
         time: startTime,
       });
 
+    // State to show Activity Indicator.
     setAdding(false);
     navigation.navigate('NewDay', {
       id: id,
@@ -195,15 +300,24 @@ const AddActivityScreen = ({route}) => {
       owner: owner,
     });
 
+    // Returns clean-up function.
     return () => {
       unmounted = true;
     };
   };
 
+  /**
+   * The state of setShowNameError will be false once a
+   * character is inputted into the name field.
+   */
   useEffect(() => {
     setShowNameError(false);
   }, [name]);
 
+  /**
+   * The state of setShowLocationError will be false once a
+   * character is inputted into the location field.
+   */
   useEffect(() => {
     setShowLocationError(false);
   }, [location]);
@@ -211,7 +325,7 @@ const AddActivityScreen = ({route}) => {
   return (
     <KeyboardAvoidingWrapper backgroundColor="#FFFFFF">
       <View style={styles.root}>
-        {/* header */}
+        {/* Header */}
         <View style={styles.header}>
           <Back
             size={35}
@@ -226,10 +340,10 @@ const AddActivityScreen = ({route}) => {
           <Text style={styles.headerText}>Activity</Text>
         </View>
 
-        {/* empty space so shadow can be visible */}
+        {/* Empty space so shadow can be visible */}
         <Text />
 
-        {/* body */}
+        {/* Body */}
         <View
           style={[
             styles.root,
@@ -263,6 +377,7 @@ const AddActivityScreen = ({route}) => {
           {/* Pick start time */}
           <Text style={styles.text}>Start Time</Text>
           <View style={styles.horizontal}>
+            {/* Button to pick start time */}
             <Pressable onPress={showStartDatePicker} style={styles.button}>
               <Text style={styles.buttonText}>Pick Start Time</Text>
             </Pressable>
@@ -287,6 +402,7 @@ const AddActivityScreen = ({route}) => {
           {/* Upload additional files */}
           <Text style={styles.text}>Additional Notes</Text>
           <View style={styles.horizontal}>
+            {/* Button to pick a document */}
             <Pressable onPress={chooseFile} style={styles.button}>
               <Document
                 name="document-outline"

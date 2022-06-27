@@ -20,72 +20,172 @@ import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper';
 
+/**
+ * Anonymous class that renders AddAccommodationScreen.
+ *
+ * @param {*} route Argument that carries over the parameters passed from the previous screen.
+ * @returns Render of AddAccommodationScreen.
+ */
 const AddAccommodationScreen = ({route}) => {
+  /**
+   * Route parameters passed from the previous screen.
+   */
   const {id, itineraryStart, itineraryEnd, owner} = route.params;
 
+  /**
+   * Navigation object.
+   */
   const navigation = useNavigation();
 
-  // Set initial states of each field to be empty.
+  /**
+   * State for accommodation name input field; default state is ''.
+   */
   const [name, setName] = useState('');
 
-  // Date picker states.
+  /**
+   * State for check-out date input field; default state is current date.
+   */
   const [endDate, setEndDate] = useState(new Date());
+
+  /**
+   * State for the check-in date input field; default state is current date.
+   */
   const [startDate, setStartDate] = useState(new Date());
 
-  // Neater dates to be displayed.
+  /**
+   * Date string that will be displayed when the check-in date is picked.
+   * Will be displayed in form of mm/dd/yy.
+   */
   const [startDateString, setStartDateString] = useState('');
+
+  /**
+   * Date string that will be displayed when the check-out date is picked.
+   * Will be displayed in form of mm/dd/yy.
+   */
   const [endDateString, setEndDateString] = useState('');
 
-  /*
-        Once the date has been decided, the state will turn true
-        and the selected dates will be displayed.
-    */
+  /**
+   * State to display the date picker for the check-in date.
+   * If true, date picker will show; if false, the date picker will be closed.
+   */
   const [isStartVisible, setStartVisible] = useState(false);
+
+  /**
+   * State to display the date picker for the check-out date.
+   * If true, date picker will show; if false, the date picker will be closed.
+   */
   const [isEndVisible, setEndVisible] = useState(false);
 
-  // Error Messages
+  /**
+   * Error message that will show if
+   * accommodation name is left as empty.
+   */
   const [nameError, setNameError] = useState('');
+
+  /**
+   * State that will show the error message for the
+   * accommodation name if left empty. If true, the
+   * message will show.
+   */
   const [showNameError, setShowNameError] = useState(false);
 
+  /**
+   * Error message that will show if
+   * check-in date is not picked.
+   */
   const [startError, setStartError] = useState('');
+
+  /**
+   * State that will show the error message for the
+   * check-in date if not picked. If true, the
+   * message will show.
+   */
   const [showStartError, setShowStartError] = useState(false);
 
+  /**
+   * Error message that will show if
+   * check-out date is not picked.
+   */
   const [endError, setEndError] = useState('');
+
+  /**
+   * State that will show the error message for the
+   * check-out date if not picked. If true, the
+   * message will show.
+   */
   const [showEndError, setShowEndError] = useState(false);
 
+  /**
+   * State that will show the error message if the
+   * check-out date < check-in date (number of days is negative).
+   */
   const [error, setError] = useState('');
+
+  /**
+   * State that will show the error message if the
+   * number of days is negative. If true, the
+   * message will show.
+   */
   const [showError, setShowError] = useState('');
 
-  // Shows whether document for additional notes has been uploaded or not.
+  /**
+   * State that will show whether file for the additional
+   * notes has been picked or not.
+   */
   const [isDocChosen, setChosen] = useState(false);
 
-  //States for file uploading
+  /**
+   * State that will store the file uri when the
+   * file is uploaded.
+   */
   const [fileUri, setFileUri] = useState(null);
+
+  /**
+   * State that will store the file name when the
+   * file is uploaded.
+   */
   const [fileName, setFileName] = useState(null);
+
+  /**
+   * State that will store the file that is picked
+   * through the document picker.
+   */
   const [file, setFile] = useState(null);
 
-  //State to show activity indicator when adding accommodation.
+  /**
+   * State to show activity indicator when adding accommodation.
+   */
   const [adding, setAdding] = useState(false);
 
-  // Date picker function to show the date picker for the check-in date.
+  /**
+   * Function to show the check-in date picker.
+   */
   const showStartDatePicker = () => {
     setStartVisible(true);
     setEndVisible(false);
   };
 
-  // Date picker function to show the date picker for the check-out date.
+  /**
+   * Function to show the check-out date picker.
+   */
   const showEndDatePicker = () => {
     setStartVisible(false);
     setEndVisible(true);
   };
 
-  // Hides date-picker once a date has been selected and confirmed.
+  /**
+   * Function to hide the check-in or check-out date picker.
+   */
   const hideDatePicker = () => {
     setStartVisible(false);
     setEndVisible(false);
   };
 
-  // Sets check-in date once it has been confirmed by the user.
+  /**
+   * Function to save the check-in date that has been picked by the user.
+   *
+   * @param {Date} date The check-in date that has been picked by the user.
+   */
   const handleConfirm = date => {
     console.log('A start date has been picked: ', date);
     setStartDate(date);
@@ -94,7 +194,11 @@ const AddAccommodationScreen = ({route}) => {
     hideDatePicker();
   };
 
-  // Sets check-out date once it has been confirmed by the user.
+  /**
+   * Function to save the check-out date that has been picked by the user.
+   *
+   * @param {Date} date The check-out date that has been picked by the user.
+   */
   const handleEndConfirm = date => {
     console.log('An end date has been picked: ', date);
     setEndDate(date);
@@ -103,7 +207,9 @@ const AddAccommodationScreen = ({route}) => {
     hideDatePicker();
   };
 
-  //Choose which file to upload.
+  /**
+   * Function to choose a file via react-native-document-picker.
+   */
   const chooseFile = async () => {
     try {
       const pickerResult = await DocumentPicker.pickSingle({
@@ -130,7 +236,9 @@ const AddAccommodationScreen = ({route}) => {
     }
   };
 
-  // Uploading file to Firebase Storage
+  /**
+   * Function to upload file to Firebase storage.
+   */
   const uploadFile = async () => {
     if (file == null) {
       return null;
@@ -160,15 +268,23 @@ const AddAccommodationScreen = ({route}) => {
     }
   };
 
+  /**
+   * Function to add accommodation to Firestore database.
+   */
   const add = async () => {
+    // Variable for clean-up function.
     let unmounted = false;
-    setAdding(true);
-    let fileUrl = await uploadFile();
 
+    // State to show Activity Indicator.
+    setAdding(true);
+
+    // Randomizer for unique item id.
     let itemId = Math.random().toString(36).slice(2);
 
+    // Difference of days between the check-out date and check-in date.
     const difference = endDate.getTime() - startDate.getTime();
 
+    // Error handling.
     if (name === '') {
       setNameError('Accommodation name is still empty.');
       setShowNameError(true);
@@ -205,6 +321,8 @@ const AddAccommodationScreen = ({route}) => {
       };
     }
 
+    let fileUrl = await uploadFile();
+
     firestore()
       .collection('itineraries')
       .doc(id)
@@ -230,6 +348,7 @@ const AddAccommodationScreen = ({route}) => {
         id: itemId,
       });
 
+    // State to hide Activity Indicator.
     setAdding(false);
     navigation.navigate('NewAccommodation', {
       id: id,
@@ -238,11 +357,16 @@ const AddAccommodationScreen = ({route}) => {
       owner: owner,
     });
 
+    // Returns clean-up function.
     return () => {
       unmounted = true;
     };
   };
 
+  /**
+   * The state of setShowNameError will be false once a
+   * character is inputted into the name field.
+   */
   useEffect(() => {
     setShowNameError(false);
   }, [name]);
@@ -250,7 +374,7 @@ const AddAccommodationScreen = ({route}) => {
   return (
     <KeyboardAvoidingWrapper backgroundColor="#FFFFFF">
       <View style={styles.root}>
-        {/* header */}
+        {/* Header */}
         <View style={styles.header}>
           <Back
             size={35}
@@ -265,10 +389,10 @@ const AddAccommodationScreen = ({route}) => {
           <Text style={styles.headerText}>Accommodation</Text>
         </View>
 
-        {/* empty space so shadow can be visible */}
+        {/* Empty space so shadow can be visible */}
         <Text />
 
-        {/* body */}
+        {/* Body */}
         <View
           style={[
             styles.root,
@@ -290,6 +414,7 @@ const AddAccommodationScreen = ({route}) => {
           {/* Field to input check-in date. */}
           <Text style={styles.text}>Check In Date</Text>
           <View style={styles.horizontal}>
+            {/* Button to pick check-in date */}
             <Pressable onPress={showStartDatePicker} style={styles.button}>
               <Text style={styles.buttonText}>Pick Check In Date</Text>
             </Pressable>
@@ -310,10 +435,11 @@ const AddAccommodationScreen = ({route}) => {
             <Text style={styles.error}>{startError}</Text>
           ) : null}
 
-          {/* Field to input check-out date. */}
+          {/* Field to input check-out date */}
           <Text style={styles.text}>Check Out Date</Text>
 
           <View style={styles.horizontal}>
+            {/* Button to pick check-out date */}
             <Pressable onPress={showEndDatePicker} style={styles.button}>
               <Text style={styles.buttonText}>Pick Check Out Date</Text>
             </Pressable>
@@ -335,6 +461,7 @@ const AddAccommodationScreen = ({route}) => {
           {/* Upload additional files */}
           <Text style={styles.text}>Additional Notes</Text>
           <View style={styles.horizontal}>
+            {/* Button to pick a document */}
             <Pressable onPress={chooseFile} style={styles.button}>
               <Document
                 name="document-outline"
@@ -344,7 +471,6 @@ const AddAccommodationScreen = ({route}) => {
                   paddingLeft: '1%',
                 }}
               />
-
               <Text style={styles.buttonText}>Upload Files</Text>
             </Pressable>
             {isDocChosen ? (
