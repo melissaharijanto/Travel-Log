@@ -228,6 +228,8 @@ const AddTransportScreen = ({route}) => {
 
   /**
    * Function to upload file to Firebase storage.
+   *
+   * @returns File uri.
    */
   const uploadFile = async () => {
     if (file == null) {
@@ -259,7 +261,9 @@ const AddTransportScreen = ({route}) => {
   };
 
   /**
-   * Function to add activity to Firestore database.
+   * Function to add transport to Firestore database.
+   *
+   * @returns Clean-up function.
    */
   const add = async () => {
     // Variable for clean-up function.

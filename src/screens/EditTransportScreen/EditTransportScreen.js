@@ -22,54 +22,160 @@ import firestore from '@react-native-firebase/firestore';
 import DeleteIcon from 'react-native-vector-icons/Feather';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper';
 
+/**
+ * Anonymous class that renders EditTransportScreen.
+ *
+ * @param {*} route Argument that carries over the parameters passed from the previous screen.
+ * @returns Render of EditTransportScreen.
+ */
 const EditTransportScreen = ({route}) => {
+  /**
+   * Navigation object.
+   */
   const navigation = useNavigation();
 
+  /**
+   * Route parameters passed from the previous screen.
+   */
   const {id, dayLabel, date, itemId, owner} = route.params;
 
-  // Set initial states of each field to be empty.
+  /**
+   * State for accommodation name input field; default state is ''.
+   */
   const [name, setName] = useState();
+
+  /**
+   * State for starting point input field; default state is ''.
+   */
   const [startingPoint, setStartingPoint] = useState();
+
+  /**
+   * State for destination name input field; default state is ''.
+   */
   const [destination, setDestination] = useState();
+
+  /**
+   * State to set the start time of the transport.
+   */
   const [startTime, setStartTime] = useState();
 
-  // Shows whether document for additional notes/ time has been uploaded or not.
+  /**
+   * State to show whether a document for additional file field has
+   * been chosen or not; if true, a file has been chosen, and vice versa.
+   */
   const [isDocChosen, setChosen] = useState(false);
+
+  /**
+   * State to show whether the start time has been chosen
+   * or not; if true, a start time has been chosen, and vice versa.
+   */
   const [isTimeChosen, setTimeChosen] = useState(false);
 
-  //States for file uploading
+  /**
+   * State that will store the file uri when the
+   * file is uploaded.
+   */
   const [fileUri, setFileUri] = useState(null);
+
+  /**
+   * State that will store the file name when the
+   * file is uploaded.
+   */
   const [fileName, setFileName] = useState(null);
+
+  /**
+   * State that will store the file that is picked
+   * through the document picker.
+   */
   const [file, setFile] = useState(null);
 
-  //State to show activity indicator when updating accommodation.
+  /**
+   * State to show activity indicator when updating transport.
+   */
   const [updating, setUpdating] = useState(false);
+
+  /**
+   * State to show activity indicator when deleting transport.
+   */
   const [deleting, setDeleting] = useState(false);
 
-  // Error messages
+  /**
+   * Error message that will show if
+   * mode of transport (transport name) is left as empty.
+   */
   const [nameError, setNameError] = useState('');
+
+  /**
+   * State that will show the error message for the
+   * transport name if left empty. If true, the
+   * message will show.
+   */
   const [showNameError, setShowNameError] = useState(false);
 
+  /**
+   * Error message that will show if
+   * starting point name is left as empty.
+   */
   const [pointError, setPointError] = useState('');
+
+  /**
+   * State that will show the error message for the
+   * starting point name if left empty. If true, the
+   * message will show.
+   */
   const [showPointError, setShowPointError] = useState(false);
 
+  /**
+   * Error message that will show if
+   * destination name is left as empty.
+   */
   const [destError, setDestError] = useState('');
+
+  /**
+   * State that will show the error message for the
+   * destination name if left empty. If true, the
+   * message will show.
+   */
   const [showDestError, setShowDestError] = useState(false);
 
+  /**
+   * Error message that will show if
+   * start time is not picked.
+   */
   const [startError, setStartError] = useState('');
+
+  /**
+   * State that will show the error message for the
+   * start time if not picked. If true, the
+   * message will show.
+   */
   const [showStartError, setShowStartError] = useState(false);
 
+  /**
+   * State to show the start-time time picker.
+   */
   const [isStartVisible, setStartVisible] = useState(false);
 
+  /**
+   * Function to show the start time picker.
+   */
   const showStartDatePicker = () => {
     setStartVisible(true);
     console.log(date);
   };
 
+  /**
+   * Function to hide the start time picker.
+   */
   const hideDatePicker = () => {
     setStartVisible(false);
   };
 
+  /**
+   * Function to save the start time that has been picked by the user.
+   *
+   * @param {Date} time The start time that has been picked by the user.
+   */
   const handleConfirm = time => {
     console.log('A start time has been picked: ', time);
     setStartTime(time);
@@ -78,6 +184,12 @@ const EditTransportScreen = ({route}) => {
     hideDatePicker();
   };
 
+  /**
+   * Function that takes in time and returns it in a custom string format.
+   *
+   * @param {Date} time The start time that has been picked by the user.
+   * @returns {String} Time in hh:mm format.
+   */
   const getTime = time => {
     let minutes = time.getMinutes();
     let hours = time.getHours();
@@ -92,7 +204,9 @@ const EditTransportScreen = ({route}) => {
     return `${hours}:${minutes}`;
   };
 
-  //Choose which file to upload.
+  /**
+   * Function to choose a file via react-native-document-picker.
+   */
   const chooseFile = async () => {
     try {
       const pickerResult = await DocumentPicker.pickSingle({
@@ -119,7 +233,11 @@ const EditTransportScreen = ({route}) => {
     }
   };
 
-  // Uploading file to Firebase Storage
+  /**
+   * Function to upload file to Firebase storage.
+   *
+   * @returns File uri.
+   */
   const uploadFile = async () => {
     if (file == null) {
       return null;
@@ -149,6 +267,11 @@ const EditTransportScreen = ({route}) => {
     }
   };
 
+  /**
+   * Fetches data from the database.
+   *
+   * @returns Clean-up function.
+   */
   const getData = () => {
     let unmounted = false;
     firestore()
@@ -174,7 +297,12 @@ const EditTransportScreen = ({route}) => {
     };
   };
 
-  const getFileName = () => {
+  /**
+   * Fetches file name if a user uploads it to additional notes.
+   *
+   * @returns Clean-up function.
+   */
+  const getFile = () => {
     let unmounted = false;
 
     if (fileUri != null) {
@@ -186,10 +314,19 @@ const EditTransportScreen = ({route}) => {
     };
   };
 
+  /**
+   * Function to update transport to Firestore database.
+   *
+   * @returns Clean-up function.
+   */
   const update = async () => {
+    // Clean-up variable.
     let unmounted = false;
+
+    // State to show activity indicator.
     setUpdating(true);
 
+    // Error Handling.
     if (name === '') {
       setNameError('Mode of transport is still empty.');
       setShowNameError(true);
@@ -220,6 +357,7 @@ const EditTransportScreen = ({route}) => {
 
     let fileUrl = await uploadFile();
 
+    // If current is empty and user uploaded a file previously, it will be displayed.
     if (fileUrl == null && fileUri) {
       fileUrl = fileUri;
     }
@@ -241,6 +379,7 @@ const EditTransportScreen = ({route}) => {
         notes: fileUrl,
       });
 
+    // Hide activity indicator.
     setUpdating(false);
     navigation.navigate('ViewTransport', {
       id: id,
@@ -250,11 +389,15 @@ const EditTransportScreen = ({route}) => {
       itemId: itemId,
     });
 
+    // Return clean-up function.
     return () => {
       unmounted = true;
     };
   };
 
+  /**
+   * Shows alert to confirm deletion of transport.
+   */
   const confirmDelete = () => {
     Alert.alert(
       'Confirm Delete',
@@ -284,8 +427,16 @@ const EditTransportScreen = ({route}) => {
     );
   };
 
+  /**
+   * Function to delete the document from Firestore Database.
+   *
+   * @returns Clean-up function.
+   */
   const handleDelete = async () => {
+    // Clean-up variable.
     let unmounted = false;
+
+    // Show activity indicator
     setDeleting(true);
     await firestore()
       .collection('itineraries')
@@ -297,6 +448,7 @@ const EditTransportScreen = ({route}) => {
       .delete()
       .then(() => {
         console.log('Transport deleted.');
+        // Hide activity indicator.
         setDeleting(false);
         navigation.navigate('NewDay', {
           id: id,
@@ -309,11 +461,15 @@ const EditTransportScreen = ({route}) => {
         console.log(error);
       });
 
+    // Return clean-up function.
     return () => {
       unmounted = true;
     };
   };
 
+  /**
+   * Fetches data from database upon change of the route variable.
+   */
   useEffect(() => {
     let unmounted = false;
     getData();
@@ -322,26 +478,41 @@ const EditTransportScreen = ({route}) => {
     };
   }, [route]);
 
+  /**
+   * Fetches file from database if the fileUri is not null.
+   */
   useEffect(() => {
     let unmounted = false;
-    getFileName();
+    getFile();
     return () => {
       unmounted = true;
     };
   }, [fileUri]);
 
+  /**
+   * The state of setShowNameError will be false once a
+   * character is inputted into the name field.
+   */
   useEffect(() => {
     let unmounted = false;
     setShowNameError(false);
     return () => (unmounted = true);
   }, [name]);
 
+  /**
+   * The state of setShowPointError will be false once a
+   * character is inputted into the starting point field.
+   */
   useEffect(() => {
     let unmounted = false;
     setShowPointError(false);
     return () => (unmounted = true);
   }, [startingPoint]);
 
+  /**
+   * The state of setShowDestError will be false once a
+   * character is inputted into the destination field.
+   */
   useEffect(() => {
     let unmounted = false;
     setShowDestError(false);

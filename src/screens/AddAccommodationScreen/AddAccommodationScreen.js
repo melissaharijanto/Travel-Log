@@ -237,7 +237,9 @@ const AddAccommodationScreen = ({route}) => {
   };
 
   /**
-   * Function to upload file to Firebase storage.
+   * Function to upload file to Firebase Storage.
+   *
+   * @returns File uri.
    */
   const uploadFile = async () => {
     if (file == null) {
@@ -269,7 +271,9 @@ const AddAccommodationScreen = ({route}) => {
   };
 
   /**
-   * Function to add accommodation to Firestore database.
+   * Function to add the document in Firestore Database.
+   *
+   * @returns Clean-up function.
    */
   const add = async () => {
     // Variable for clean-up function.

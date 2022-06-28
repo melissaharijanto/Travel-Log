@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import Back from 'react-native-vector-icons/Feather';
 import CustomButton from '../../components/CustomButton';
-import {firebase} from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
 import InputFieldAfterLogIn from '../../components/InputFieldAfterLogIn';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
@@ -22,74 +21,177 @@ import DocumentPicker, {
 import storage from '@react-native-firebase/storage';
 import DeleteIcon from 'react-native-vector-icons/Feather';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper';
-
+/**
+ * Anonymous class that renders EditAccommodationScreen.
+ *
+ * @param {*} route Argument that carries over the parameters passed from the previous screen.
+ * @returns Render of EditAccommodationScreen.
+ */
 const EditAccommodationScreen = ({route}) => {
+  /**
+   * Route parameters passed from the previous screen.
+   */
   const {id, itemId, itineraryStart, itineraryEnd, owner} = route.params;
 
+  /**
+   * Navigation object.
+   */
   const navigation = useNavigation();
 
-  // Set initial states of each field to be empty.
+  /**
+   * State for accommodation name input field; default state is ''.
+   */
   const [name, setName] = useState('');
 
-  // Date picker states.
+  /**
+   * State for check-out date input field; default state is current date.
+   */
   const [endDate, setEndDate] = useState(new Date());
+
+  /**
+   * State for the check-in date input field; default state is current date.
+   */
   const [startDate, setStartDate] = useState(new Date());
 
-  // Neater dates to be displayed.
+  /**
+   * Date string that will be displayed when the check-in date is picked.
+   * Will be displayed in form of mm/dd/yy.
+   */
   const [startDateString, setStartDateString] = useState('');
+
+  /**
+   * Date string that will be displayed when the check-out date is picked.
+   * Will be displayed in form of mm/dd/yy.
+   */
   const [endDateString, setEndDateString] = useState('');
 
-  /*
-        Once the date has been decided, the state will turn true
-        and the selected dates will be displayed.
-    */
+  /**
+   * State to display the date picker for the check-in date.
+   * If true, date picker will show; if false, the date picker will be closed.
+   */
   const [isStartVisible, setStartVisible] = useState(false);
+
+  /**
+   * State to display the date picker for the check-out date.
+   * If true, date picker will show; if false, the date picker will be closed.
+   */
   const [isEndVisible, setEndVisible] = useState(false);
 
-  // Shows whether document for additional notes has been uploaded or not.
+  /**
+   * State that will show whether file for the additional
+   * notes has been picked or not.
+   */
   const [isDocChosen, setChosen] = useState(false);
 
-  //States for file uploading
+  /**
+   * State that will store the file uri when the
+   * file is uploaded.
+   */
   const [fileUri, setFileUri] = useState(null);
+
+  /**
+   * State that will store the file name when the
+   * file is uploaded.
+   */
   const [fileName, setFileName] = useState(null);
+
+  /**
+   * State that will store the file that is picked
+   * through the document picker.
+   */
   const [file, setFile] = useState(null);
 
-  // Updating state
+  /**
+   * State to show activity indicator when updating accommodation.
+   */
   const [updating, setUpdating] = useState(false);
+
+  /**
+   * State to show activity indicator when deleting accommodation.
+   */
   const [deleting, setDeleting] = useState(false);
 
-  // Error Messages
+  /**
+   * Error message that will show if
+   * accommodation name is left as empty.
+   */
   const [nameError, setNameError] = useState('');
+
+  /**
+   * State that will show the error message for the
+   * accommodation name if left empty. If true, the
+   * message will show.
+   */
   const [showNameError, setShowNameError] = useState(false);
 
+  /**
+   * Error message that will show if
+   * check-in date is not picked.
+   */
   const [startError, setStartError] = useState('');
+
+  /**
+   * State that will show the error message for the
+   * check-in date if not picked. If true, the
+   * message will show.
+   */
   const [showStartError, setShowStartError] = useState(false);
 
+  /**
+   * Error message that will show if
+   * check-out date is not picked.
+   */
   const [endError, setEndError] = useState('');
+
+  /**
+   * State that will show the error message for the
+   * check-out date if not picked. If true, the
+   * message will show.
+   */
   const [showEndError, setShowEndError] = useState(false);
 
+  /**
+   * State that will show the error message if the
+   * check-out date < check-in date (number of days is negative).
+   */
   const [error, setError] = useState('');
+
+  /**
+   * State that will show the error message if the
+   * number of days is negative. If true, the
+   * message will show.
+   */
   const [showError, setShowError] = useState('');
 
-  // Date picker function to show the date picker for the check-in date.
+  /**
+   * Function to show the check-in date picker.
+   */
   const showStartDatePicker = () => {
     setStartVisible(true);
     setEndVisible(false);
   };
 
-  // Date picker function to show the date picker for the check-out date.
+  /**
+   * Function to show the check-out date picker.
+   */
   const showEndDatePicker = () => {
     setStartVisible(false);
     setEndVisible(true);
   };
 
-  // Hides date-picker once a date has been selected and confirmed.
+  /**
+   * Function to hide the check-in or check-out date picker.
+   */
   const hideDatePicker = () => {
     setStartVisible(false);
     setEndVisible(false);
   };
 
-  // Sets check-in date once it has been confirmed by the user.
+  /**
+   * Function to save the check-in date that has been picked by the user.
+   *
+   * @param {Date} date The check-in date that has been picked by the user.
+   */
   const handleConfirm = date => {
     console.log('A start date has been picked: ', date);
     setStartDate(date);
@@ -98,7 +200,11 @@ const EditAccommodationScreen = ({route}) => {
     hideDatePicker();
   };
 
-  // Sets check-out date once it has been confirmed by the user.
+  /**
+   * Function to save the check-out date that has been picked by the user.
+   *
+   * @param {Date} date The check-out date that has been picked by the user.
+   */
   const handleEndConfirm = date => {
     console.log('An end date has been picked: ', date);
     setEndDate(date);
@@ -107,7 +213,9 @@ const EditAccommodationScreen = ({route}) => {
     hideDatePicker();
   };
 
-  //Choose which file to upload.
+  /**
+   * Function to choose a file via react-native-document-picker.
+   */
   const chooseFile = async () => {
     try {
       const pickerResult = await DocumentPicker.pickSingle({
@@ -134,7 +242,11 @@ const EditAccommodationScreen = ({route}) => {
     }
   };
 
-  // Uploading file to Firebase Storage
+  /**
+   * Function to upload file to Firebase Storage.
+   *
+   * @returns File uri.
+   */
   const uploadFile = async () => {
     if (file == null) {
       return null;
@@ -164,11 +276,22 @@ const EditAccommodationScreen = ({route}) => {
     }
   };
 
+  /**
+   * Function to update the document in Firestore Database.
+   *
+   * @returns Clean-up function.
+   */
   const update = async () => {
+    // Variable for clean-up function.
     let unmounted = false;
 
+    // State to show Activity Indicator.
+    setUpdating(true);
+
+    // Difference of days between the check-out date and check-in date.
     const difference = endDate.getTime() - startDate.getTime();
 
+    // Error handling.
     if (name === '') {
       setNameError('Accommodation name is still empty.');
       setShowNameError(true);
@@ -205,10 +328,9 @@ const EditAccommodationScreen = ({route}) => {
       };
     }
 
-    setUpdating(true);
-
     let fileUrl = await uploadFile();
 
+    // If current is empty and user uploaded a file previously, it will be displayed.
     if (fileUrl == null && fileUri) {
       fileUrl = fileUri;
     }
@@ -225,6 +347,7 @@ const EditAccommodationScreen = ({route}) => {
         notes: fileUrl,
       });
 
+    // State to hide Activity Indicator.
     setUpdating(false);
 
     navigation.navigate('ViewAccommodation', {
@@ -235,11 +358,15 @@ const EditAccommodationScreen = ({route}) => {
       owner: owner,
     });
 
+    // Returns clean-up function.
     return () => {
       unmounted = true;
     };
   };
 
+  /**
+   * Shows alert to confirm deletion of accommodation.
+   */
   const confirmDelete = () => {
     Alert.alert(
       'Confirm Delete',
@@ -269,7 +396,11 @@ const EditAccommodationScreen = ({route}) => {
     );
   };
 
-  // c: implement this
+  /**
+   * Function to delete the document from Firestore Database.
+   *
+   * @returns Clean-up function.
+   */
   const handleDelete = async () => {
     let unmounted = false;
     setDeleting(true);
@@ -298,6 +429,11 @@ const EditAccommodationScreen = ({route}) => {
     };
   };
 
+  /**
+   * Fetches data from Firestore Database on realtime.
+   *
+   * @returns Clean-up function.
+   */
   const getData = () => {
     let unmounted = false;
     firestore()
@@ -325,7 +461,12 @@ const EditAccommodationScreen = ({route}) => {
     };
   };
 
-  const getFileName = () => {
+  /**
+   * Fetches file if a user uploads a file for editional notes.
+   *
+   * @returns Clean-up function.
+   */
+  const getFile = () => {
     let unmounted = false;
     if (fileUri != null) {
       setChosen(true);
@@ -336,9 +477,17 @@ const EditAccommodationScreen = ({route}) => {
     };
   };
 
+  /**
+   * The state of setShowNameError will be false once a
+   * character is inputted into the name field.
+   */
   useEffect(() => {
     setShowNameError(false);
   }, [name]);
+
+  /**
+   * Fetches data from database upon change of the route variable.
+   */
   useEffect(() => {
     let unmounted = false;
     getData();
@@ -347,9 +496,12 @@ const EditAccommodationScreen = ({route}) => {
     };
   }, [route]);
 
+  /**
+   * Fetches file from database if the fileUri is not null.
+   */
   useEffect(() => {
     let unmounted = false;
-    getFileName();
+    getFile();
     return () => {
       unmounted = true;
     };
