@@ -8,7 +8,6 @@ import {
   Dimensions,
   ActivityIndicator,
   TouchableOpacity,
-  ScrollView,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
@@ -21,15 +20,42 @@ import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper';
 
+/**
+ * Anonymous class that renders EditProfileScreen.
+ *
+ * @returns Render of EditProfileScreen
+ */
 const EditProfileScreen = () => {
+  /**
+   * Fetches data of the current user logged into the app.
+   */
   const user = auth().currentUser;
+
+  /**
+   * Navigation object.
+   */
+  const navigation = useNavigation();
+
+  /**
+   * State for user's name. Default state is the user's
+   * display name that they set.
+   */
   const [name, setName] = useState(
     userData ? (userData.name === null ? '' : userData.name) : '',
   );
+
+  /**
+   * State for user's email. Default state is the user's email
+   * that they set when they first signed up.
+   */
   const [email, setEmail] = useState(
     userData ? (userData.email === null ? '' : userData.email) : '',
   );
-  // change the image uri
+
+  /**
+   * State for user's profile picture. If a user has not set their profile
+   * picture, it will be set into the default image that is taken from Firebase Storage.
+   */
   const [image, setImage] = useState(
     userData
       ? userData.userImg === null
@@ -37,10 +63,33 @@ const EditProfileScreen = () => {
         : userData.userImg
       : defaultImage,
   );
+
+  /**
+   * Default profile picture that is used if userData.userImg is null.
+   */
+  const defaultImage =
+    'https://firebasestorage.googleapis.com/v0/b/travellog-d79e2.appspot.com/o/defaultUser.png?alt=media&token=d56ef526-4058-4152-933b-b98cd0668392';
+
+  /**
+   * State to show the upload progress of the profile picture
+   * to Firebase storage.
+   */
   const [transferred, setTransferred] = useState(0);
+
+  /**
+   * State to show activity indicator when uploading.
+   */
   const [uploading, setUploading] = useState(false);
+
+  /**
+   * State to store a user's user data after fetching it
+   * from the database.
+   */
   const [userData, setUserData] = useState(null);
 
+  /**
+   * Function to fetch user data from Firestore database.
+   */
   const getUser = async () => {
     await firestore()
       .collection('users')
@@ -56,18 +105,9 @@ const EditProfileScreen = () => {
       });
   };
 
-  useEffect(() => {
-    let unmounted = false;
-    getUser();
-    return () => {
-      unmounted = true;
-    };
-  }, []);
-
-  const navigation = useNavigation();
-  const defaultImage =
-    'https://firebasestorage.googleapis.com/v0/b/travellog-d79e2.appspot.com/o/defaultUser.png?alt=media&token=d56ef526-4058-4152-933b-b98cd0668392';
-
+  /**
+   * Function to choose an image from phone gallery via ImagePicker package.
+   */
   const choosePhotoFromLibrary = () => {
     ImagePicker.openPicker({
       width: 500,
@@ -84,6 +124,12 @@ const EditProfileScreen = () => {
       });
   };
 
+  /**
+   * Function to upload user's profile picture
+   * into Firebase storage.
+   *
+   * @returns File Uri.
+   */
   const uploadImage = async () => {
     if (image == null) {
       return null;
@@ -122,10 +168,6 @@ const EditProfileScreen = () => {
       setUploading(false);
       setImage(null);
 
-      // Alert.alert(
-      //   'Image uploaded!',
-      //   'Your image has been uploaded to the Firebase Cloud Storage Successfully!',
-      // );
       return url;
     } catch (e) {
       console.log(e);
@@ -133,6 +175,12 @@ const EditProfileScreen = () => {
     }
   };
 
+  /**
+   * Function to save changes that the user made to their
+   * profile and store it to the backend.
+   *
+   * @returns Clean-up function.
+   */
   const saveChanges = async () => {
     let unmounted = false;
     let imgUrl = await uploadImage();
@@ -167,9 +215,24 @@ const EditProfileScreen = () => {
     };
   };
 
+  /**
+   * Function to go back to the previous
+   * screen on the stack.
+   */
   const onCanceling = () => {
     navigation.goBack();
   };
+
+  /**
+   * React hook to fetch user data upon accessing the page.
+   */
+  useEffect(() => {
+    let unmounted = false;
+    getUser();
+    return () => {
+      unmounted = true;
+    };
+  }, []);
 
   return (
     <KeyboardAvoidingWrapper>

@@ -20,21 +20,66 @@ import auth from '@react-native-firebase/auth';
 import {firebase} from '@react-native-firebase/firestore';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper';
 
+/**
+ * Anonymous class that renders EditItineraryScreen.
+ * This page will be accessed from the Home Stack.
+ *
+ * @param {*} route Argument that carries over the parameters passed from the previous screen.
+ * @returns Render of EditItineraryScreen.
+ */
 const EditItineraryScreen = ({route}) => {
+  /**
+   * Navigation object.
+   */
   const navigation = useNavigation();
 
+  /**
+   * Route parameters passed from the previous screen.
+   */
   const {itinerary} = route.params;
+
+  /**
+   * State for title name input field.
+   */
   const [title, setTitle] = useState(itinerary.title);
+
+  /**
+   * State for additional notes input field.
+   */
   const [notes, setNotes] = useState(itinerary.notes);
-  const [image, setImage] = useState(itinerary.coverImage);
+
+  /**
+   * State for itinerary cover image.
+   */
+  const [image, setImage] = useState(null);
+
+  /**
+   * State to show activity indicator when editing.
+   */
   const [editing, setEditing] = useState(false);
+
+  /**
+   * State to show activity indicator when deleting.
+   */
   const [deleting, setDeleting] = useState(false);
+
+  /**
+   * State to show whether an itinerary image has been chosen.
+   * If false, will show default itinerary image from database.
+   */
   const [isImageChosen, setChosen] = useState(null);
 
+  /**
+   * Navigation to go back to the previous screen on the stack.
+   */
   const goBack = () => {
     navigation.goBack();
   };
 
+  /**
+   * Updates isImageChosen state to true if itinerary.coverImage is not null
+   * upon change of the itinerary (route parameter).
+   */
   useEffect(() => {
     let unmounted = false;
     itinerary.coverImage == undefined ? setChosen(false) : setChosen(true);
@@ -43,6 +88,9 @@ const EditItineraryScreen = ({route}) => {
     };
   }, [itinerary]);
 
+  /**
+   * Function to show alert confirming itinerary deletion.
+   */
   const confirmDelete = () => {
     Alert.alert(
       'Confirm Delete',
@@ -69,47 +117,59 @@ const EditItineraryScreen = ({route}) => {
     );
   };
 
-  // c: implement this
+  /**
+   * Deletes the itinerary from Firestore database.
+   * Will redirect to Home Page when done.
+   *
+   * @returns Clean-up function.
+   */
   const handleDelete = async () => {
+    // Clean-up variable.
     let unmounted = false;
+
+    // Shows activity indicator.
     setDeleting(true);
 
-    //decrement the user's itinerary count
-    var docRef = await firestore()
-      .collection('users')
-      .doc(auth().currentUser.uid);
+    // Decrement the user's itinerary count
+    var docRef = firestore().collection('users').doc(auth().currentUser.uid);
 
     docRef.update({
       itineraries: firebase.firestore.FieldValue.increment(-1),
     });
 
-    try {
-      await firestore()
-        .collection('users')
-        .doc(auth().currentUser.uid)
-        .collection('itineraries')
-        .doc(itinerary.id)
-        .delete()
-        .then(() => console.log('Unbinded from user.'));
+    await firestore()
+      .collection('users')
+      .doc(auth().currentUser.uid)
+      .collection('itineraries')
+      .doc(itinerary.id)
+      .delete()
+      .then(() => console.log('Unbinded from user.'))
+      .catch(e => {
+        console.log(e);
+      });
 
-      await firestore()
-        .collection('itineraries')
-        .doc(itinerary.id)
-        .delete()
-        .then(() => {
-          console.log('Deleted.');
-          setDeleting(false);
-          navigation.navigate('HomeScreen');
-        });
-    } catch (e) {
-      console.log(e);
-    }
+    await firestore()
+      .collection('itineraries')
+      .doc(itinerary.id)
+      .delete()
+      .then(() => {
+        console.log('Deleted.');
+        setDeleting(false);
+        navigation.navigate('HomeScreen');
+      })
+      .catch(e => {
+        console.log(e);
+      });
 
+    // Returns the clean-up function.
     return () => {
       unmounted = true;
     };
   };
 
+  /**
+   * Chooses image from phone gallery via ImagePicker.
+   */
   const choosePhotoFromLibrary = () => {
     ImagePicker.openPicker({
       width: 500,
@@ -127,6 +187,11 @@ const EditItineraryScreen = ({route}) => {
       });
   };
 
+  /**
+   * Uploads image to Firebase Storage.
+   *
+   * @returns File Uri.
+   */
   const uploadImage = async () => {
     if (image == null) {
       return null;
@@ -156,17 +221,27 @@ const EditItineraryScreen = ({route}) => {
     }
   };
 
+  /**
+   * Function to edit itinerary in the backend.
+   *
+   * @returns Clean-up function.
+   */
   const editItinerary = async () => {
+    // Clean-up variable.
     let unmounted = false;
+
+    // Shows activity indicator.
     setEditing(true);
 
     let imgUrl = await uploadImage();
 
+    // If there is an image uploaded before and user does not upload a new one,
+    // the old url will be used.
     if (imgUrl == null && itinerary.coverImage) {
       imgUrl = itinerary.coverImage;
     }
 
-    firestore()
+    await firestore()
       .collection('itineraries')
       .doc(itinerary.id)
       .update({
@@ -174,8 +249,11 @@ const EditItineraryScreen = ({route}) => {
         coverImage: imgUrl,
         notes: notes,
       })
-      .then('Itinerary updated!');
+      .then(() => {
+        console.log('Itinerary updated!');
+      });
 
+    // Hides activity indicator.
     setEditing(false);
 
     navigation.navigate('OpenItinerary', {
@@ -192,6 +270,7 @@ const EditItineraryScreen = ({route}) => {
       },
     });
 
+    // Returns clean-up function.
     return () => {
       unmounted = true;
     };

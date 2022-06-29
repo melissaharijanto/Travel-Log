@@ -57,6 +57,7 @@ const ForgotPasswordScreen = () => {
                   'Success!',
                   'A password reset email has been sent.',
                 );
+                setWaiting(false);
                 navigation.goBack();
               })
               .catch(error => {
@@ -73,7 +74,7 @@ const ForgotPasswordScreen = () => {
                   setWaiting(false);
                 }
               });
-            setWaiting(false);
+
             return () => {
               unmounted = true;
             };
