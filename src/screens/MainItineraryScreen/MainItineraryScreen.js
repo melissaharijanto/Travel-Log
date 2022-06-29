@@ -8,24 +8,35 @@ import auth from '@react-native-firebase/auth';
 import {useFocusEffect} from '@react-navigation/native';
 import {SearchBar} from '@rneui/themed';
 
+/**
+ * Anonymous class that renders MainItineraryScreen.
+ *
+ * @returns render of MainItineraryScreen.
+ */
 const MainItineraryScreen = () => {
+  /**
+   * Navigation Object.
+   */
   const navigation = useNavigation();
 
-  const onGoingBack = () => {
-    navigation.goBack();
-  };
-
-  const navigateToNewDay = () => {
-    navigation.navigate('NewDay');
-  };
-
-  // Gets authentication data of the current user logged in.
+  /**
+   * Gets authentication data of the current user logged in.
+   */
   const user = auth().currentUser;
 
-  // States for user's itinerary data.
-  var [itineraries, setItineraries] = useState(0);
+  /**
+   * User's itinerary count. Default value is 0.
+   */
+  const [itineraryCount, setItineraryCount] = useState(0);
+
+  /**
+   * User's past itineraries object. Default state is null.
+   */
   var [pastItineraries, setPastItineraries] = useState(null);
 
+  /**
+   * Initial search state.
+   */
   const [search, setSearch] = useState({
     loading: false,
     data: pastItineraries,
@@ -33,6 +44,11 @@ const MainItineraryScreen = () => {
     searchValue: '',
   });
 
+  /**
+   * Search function for search bar.
+   *
+   * @param {String} text String that is used to search for an itinerary title.
+   */
   const searchFunction = text => {
     if (text) {
       const updatedData = pastItineraries.filter(item => {
@@ -46,6 +62,13 @@ const MainItineraryScreen = () => {
     }
   };
 
+  /**
+   * Function to fetch a user's past itineraries.
+   * Unlike in the HomeScreen where it only fetches 5 of the itineraries,
+   * this one fetches all of the user's itineraries.
+   *
+   * @returns Clean-up function.
+   */
   const getPastItineraries = () => {
     let unmounted = false;
     const itinerariesList = [];
@@ -112,7 +135,11 @@ const MainItineraryScreen = () => {
     };
   };
 
-  // Function to initialize user data from Firestore database.
+  /**
+   * Function to fetch user data from Firestore database.
+   *
+   * @returns Clean-up function.
+   */
   const getUser = () => {
     let unmounted = false;
     firestore()
@@ -124,7 +151,7 @@ const MainItineraryScreen = () => {
             return;
           }
           console.log('User Data', documentSnapshot.data());
-          setItineraries(documentSnapshot.data().itineraries);
+          setItineraryCount(documentSnapshot.data().itineraries);
         }
       });
     return () => {
@@ -132,7 +159,9 @@ const MainItineraryScreen = () => {
     };
   };
 
-  // Initializing the user upon navigating to this page.
+  /**
+   * Hook effect to call getUser upon focusing on this page.
+   */
   useFocusEffect(
     React.useCallback(() => {
       let unmounted = false;
@@ -143,7 +172,10 @@ const MainItineraryScreen = () => {
     }, []),
   );
 
-  // Initializes all the user's itineraries upon change to userData.
+  /**
+   * Hook effect to call getPastItineraries upon focusing on this page
+   * and upon calling setItineraryCount.
+   */
   useFocusEffect(
     React.useCallback(() => {
       let unmounted = false;
@@ -151,9 +183,14 @@ const MainItineraryScreen = () => {
       return () => {
         unmounted = true;
       };
-    }, [setItineraries]),
+    }, [setItineraryCount]),
   );
 
+  /**
+   * Hook effect that will show filtered results once the
+   * user types something into the search bar. If the input does not
+   * match any of the user's itinerary titles, nothing will show.
+   */
   useEffect(() => {
     let unmounted = false;
     setSearch({data: pastItineraries});
@@ -195,27 +232,33 @@ const MainItineraryScreen = () => {
         />
       </View>
       <Text />
-      <View style={styles.content}>
-        <FlatList
-          data={search.data}
-          vertical
-          numRows={1}
-          showsVerticalScrollIndicator={false}
-          renderItem={({item}) => (
-            <ItineraryTab
-              text={item.title}
-              image={item.coverImage}
-              onPress={() => {
-                navigation.navigate('OpenItinerary', {
-                  itinerary: item,
-                });
-              }}
-            />
-          )}
-          ItemSeparatorComponent={() => <View style={{marginBottom: 2.5}} />}
-          keyExtractor={(contact, index) => String(index)}
-        />
-      </View>
+      {itineraryCount > 0 ? (
+        <View style={styles.content}>
+          <FlatList
+            data={search.data}
+            vertical
+            numRows={1}
+            showsVerticalScrollIndicator={false}
+            renderItem={({item}) => (
+              <ItineraryTab
+                text={item.title}
+                image={item.coverImage}
+                onPress={() => {
+                  navigation.navigate('OpenItinerary', {
+                    itinerary: item,
+                  });
+                }}
+              />
+            )}
+            ItemSeparatorComponent={() => <View style={{marginBottom: 2.5}} />}
+            keyExtractor={(contact, index) => String(index)}
+          />
+        </View>
+      ) : (
+        <View style={[styles.root, {justifyContent: 'center'}]}>
+          <Text style={styles.text}>You currently have no itineraries.</Text>
+        </View>
+      )}
     </View>
   );
 };
@@ -231,6 +274,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: 'Poppins-SemiBold',
+    color: '#808080',
   },
   logo: {
     width: '50%',

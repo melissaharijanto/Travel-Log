@@ -70,7 +70,6 @@ const SignInScreen = () => {
                 }
               });
 
-            setWaiting(false);
             return () => {
               unmounted = true;
             };

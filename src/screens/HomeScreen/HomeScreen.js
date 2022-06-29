@@ -36,6 +36,15 @@ const HomeScreen = () => {
   };
 
   /**
+   * State to initialize user data fetched from Firestore.
+   */
+  const [userData, setUserData] = useState(null);
+
+  /**
+   * State to initialize user's display name fetched from Firestore.
+   */
+  const [name, setName] = useState(null);
+  /**
    * Error message for 'View others' itineraries' feature.
    * If code is invalid, this will be the error message.
    */
@@ -46,6 +55,37 @@ const HomeScreen = () => {
    * will show, else it will not show.
    */
   const [showError, setShowError] = useState(false);
+
+  /**
+   * State for 'View a friend's itinerary' field.
+   * Should consist of an itinerary's unique code.
+   */
+  const [code, setCode] = useState();
+
+  /**
+   * State for user's itinerary count. Default state is 0.
+   */
+  const [itineraryCount, setItineraryCount] = useState(0);
+
+  /**
+   * State for user's latest itinerary object.
+   */
+  const [latestItinerary, setLatestItinerary] = useState(null);
+
+  /**
+   * State for user's latest itinerary title.
+   */
+  const [latestItineraryTitle, setLatestItineraryTitle] = useState(null);
+
+  /**
+   * State for user's latest itinerary's cover image.
+   */
+  const [latestItineraryImage, setLatestItineraryImage] = useState(null);
+
+  /**
+   * State for user's past itineraries' object.
+   */
+  const [pastItineraries, setPastItineraries] = useState(null);
 
   /**
    * Function to query for the itinerary with the code
@@ -79,30 +119,25 @@ const HomeScreen = () => {
     };
   };
 
-  // Redirects to profile when clicking the icon on the top right.
+  /**
+   * Redirects to profile when clicking the icon on the top right.
+   */
   const onClickProfile = () => {
     navigation.navigate('Profile');
   };
 
-  // States for initialization of user data from the database.
-  const [userData, setUserData] = useState(null);
-  const [name, setName] = useState(null);
-
-  // Code for sharing itinerary.
-  const [code, setCode] = useState();
-
-  // States for user's itinerary data.
-  var [itineraries, setItineraries] = useState(0);
-  var [latestItinerary, setLatestItinerary] = useState(null);
-  var [latestItineraryTitle, setLatestItineraryTitle] = useState(null);
-  var [latestItineraryImage, setLatestItineraryImage] = useState(null);
-  var [pastItineraries, setPastItineraries] = useState(null);
-
-  // Default profile picture (if user has not set their own).
+  /**
+   * If user's profile picture is null, this will be the placeholder icon.
+   * Link is the file uri from Firebase storage.
+   */
   const defaultImage =
     'https://firebasestorage.googleapis.com/v0/b/travellog-d79e2.appspot.com/o/defaultUser.png?alt=media&token=d56ef526-4058-4152-933b-b98cd0668392';
 
-  // Function to initialize user data from Firestore database.
+  /**
+   * Function to initialize user data from Firestore database.
+   *
+   * @returns Clean-up function.
+   */
   const getUser = () => {
     let unmounted = false;
     firestore()
@@ -116,7 +151,7 @@ const HomeScreen = () => {
           console.log('User Data', documentSnapshot.data());
           setUserData(documentSnapshot.data());
           setName(documentSnapshot.data().name);
-          setItineraries(documentSnapshot.data().itineraries);
+          setItineraryCount(documentSnapshot.data().itineraries);
         }
       });
     return () => {
@@ -124,10 +159,14 @@ const HomeScreen = () => {
     };
   };
 
-  // Function to initialize latest itinerary data from Firestore database.
+  /**
+   * Function to initialize latest itinerary from Firestore database.
+   *
+   * @returns Clean-up function.
+   */
   const getLatestItinerary = () => {
     let unmounted = false;
-    if (itineraries > 0) {
+    if (itineraryCount > 0) {
       firestore()
         .collection('users')
         .doc(user.uid)
@@ -170,15 +209,16 @@ const HomeScreen = () => {
     };
   };
 
-  /*
-            Function to initialize the user's 5 most recent itineraries prior to the latest one.
-            If less than 5, will return all the itineraries prior to the latest one.
-        */
+  /**
+   * Function to initialize the user's 5 most recent itineraries prior to the latest one.
+   * If less than 5, will return all the itineraries prior to the latest one.
+   *
+   * @returns Clean-up function.
+   */
   const getPastItineraries = () => {
     let unmounted = false;
     const itinerariesList = [];
-    console.log('BreakPoint 0');
-    if (latestItinerary != undefined && itineraries > 1) {
+    if (latestItinerary != undefined && itineraryCount > 1) {
       firestore()
         .collection('users')
         .doc(user.uid)
@@ -244,7 +284,9 @@ const HomeScreen = () => {
     };
   };
 
-  // Initializing the user upon navigating to this page.
+  /**
+   * Calls getUser when the page is in focus.
+   */
   useFocusEffect(
     React.useCallback(() => {
       let unmounted = false;
@@ -255,23 +297,28 @@ const HomeScreen = () => {
     }, []),
   );
 
-  // Initializes latest itinerary upon change to userData.
+  /**
+   * Calls getLatestItinerary upon change to user's itinerary count.
+   */
   useEffect(() => {
     let unmounted = false;
     getLatestItinerary();
     return () => {
       unmounted = true;
     };
-  }, [itineraries]);
+  }, [itineraryCount]);
 
-  // Initializes past itineraries upon change to latestItinerary.
+  /**
+   * Calls getPastItineraries upon change to itinerary variable
+   * or latest itinerary title variable.
+   */
   useEffect(() => {
     let unmounted = false;
     getPastItineraries();
     return () => {
       unmounted = true;
     };
-  }, [itineraries, latestItineraryTitle]);
+  }, [itineraryCount, latestItineraryTitle]);
 
   return (
     <KeyboardAvoidingWrapper backgroundColor="#FFFFFF">
@@ -315,7 +362,7 @@ const HomeScreen = () => {
         <CustomButton text="View" onPress={viewItinerary} type="QUINARY" />
 
         {/* block for latest itinerary; will only show if user has at least 1 itinerary. */}
-        {itineraries >= 1 ? (
+        {itineraryCount >= 1 ? (
           <View style={{width: '100%'}}>
             <Text style={[styles.subtitle, {paddingTop: '5%'}]}>
               Your latest itinerary
@@ -334,7 +381,7 @@ const HomeScreen = () => {
         ) : null}
 
         {/* block for past itineraries; will only show if user has more than 1 itinerary. */}
-        {itineraries > 1 ? (
+        {itineraryCount > 1 ? (
           <View>
             <Text style={styles.subtitle}>Revisit your past itineraries</Text>
             <View>
