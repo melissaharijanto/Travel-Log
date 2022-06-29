@@ -110,6 +110,9 @@ const HomeScreen = () => {
       .doc(user.uid)
       .onSnapshot(documentSnapshot => {
         if (documentSnapshot.exists) {
+          if (unmounted) {
+            return;
+          }
           console.log('User Data', documentSnapshot.data());
           setUserData(documentSnapshot.data());
           setName(documentSnapshot.data().name);
@@ -146,6 +149,9 @@ const HomeScreen = () => {
                 .doc(doc.id)
                 .onSnapshot(documentSnapshot => {
                   if (documentSnapshot.exists) {
+                    if (unmounted) {
+                      return;
+                    }
                     setLatestItinerary(documentSnapshot.data());
                     setLatestItineraryTitle(documentSnapshot.data().title);
                     setLatestItineraryImage(documentSnapshot.data().coverImage);
@@ -154,7 +160,7 @@ const HomeScreen = () => {
             }
           });
 
-          const hasRun = () => console.log('getLatestItinerary has been run!');
+          const hasRun = () => console.log(latestItinerary);
           hasRun();
         });
     }
@@ -219,17 +225,15 @@ const HomeScreen = () => {
                         startDate: startDate,
                         title: title,
                       });
-
-                      itinerariesList.sort(function (a, b) {
-                        return (
-                          new Date(b.createdAt.toDate()) -
-                          new Date(a.createdAt.toDate())
-                        );
-                      });
-
-                      setPastItineraries(itinerariesList);
                     }
                   });
+                  itinerariesList.sort(function (a, b) {
+                    return (
+                      new Date(b.createdAt.toDate()) -
+                      new Date(a.createdAt.toDate())
+                    );
+                  });
+                  setPastItineraries(itinerariesList);
                 });
             }
           });

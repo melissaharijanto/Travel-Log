@@ -93,21 +93,20 @@ const MainItineraryScreen = () => {
                       startDate: startDate,
                       title: title,
                     });
-
-                    itinerariesList.sort(function (a, b) {
-                      return (
-                        new Date(b.createdAt.toDate()) -
-                        new Date(a.createdAt.toDate())
-                      );
-                    });
-
-                    setPastItineraries(itinerariesList);
                   }
                 });
+                itinerariesList.sort(function (a, b) {
+                  return (
+                    new Date(b.createdAt.toDate()) -
+                    new Date(a.createdAt.toDate())
+                  );
+                });
+                setPastItineraries(itinerariesList);
               });
           }
         });
       });
+
     return () => {
       unmounted = true;
     };
@@ -121,6 +120,9 @@ const MainItineraryScreen = () => {
       .doc(user.uid)
       .onSnapshot(documentSnapshot => {
         if (documentSnapshot.exists) {
+          if (unmounted) {
+            return;
+          }
           console.log('User Data', documentSnapshot.data());
           setItineraries(documentSnapshot.data().itineraries);
         }
@@ -149,7 +151,7 @@ const MainItineraryScreen = () => {
       return () => {
         unmounted = true;
       };
-    }, [itineraries]),
+    }, [setItineraries]),
   );
 
   useEffect(() => {
