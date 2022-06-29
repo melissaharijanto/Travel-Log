@@ -155,7 +155,7 @@ const EditItineraryScreenFromItinerary = ({route}) => {
       .then(() => {
         console.log('Deleted.');
         setDeleting(false);
-        navigation.navigate('HomeScreen');
+        navigation.navigate('MainItinerary');
       })
       .catch(e => {
         console.log(e);

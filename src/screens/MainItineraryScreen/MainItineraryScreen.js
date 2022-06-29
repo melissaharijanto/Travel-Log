@@ -141,14 +141,16 @@ const MainItineraryScreen = () => {
     }, []),
   );
 
-  // Initializes latest itinerary upon change to userData.
-  useEffect(() => {
-    let unmounted = false;
-    getPastItineraries();
-    return () => {
-      unmounted = true;
-    };
-  }, [itineraries]);
+  // Initializes all the user's itineraries upon change to userData.
+  useFocusEffect(
+    React.useCallback(() => {
+      let unmounted = false;
+      getPastItineraries();
+      return () => {
+        unmounted = true;
+      };
+    }, [itineraries]),
+  );
 
   useEffect(() => {
     let unmounted = false;

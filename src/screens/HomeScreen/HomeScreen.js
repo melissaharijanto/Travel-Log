@@ -18,21 +18,41 @@ import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper/Ke
 import {useFocusEffect} from '@react-navigation/native';
 
 const HomeScreen = () => {
-  // Gets authentication data of the current user logged in.
+  /**
+   * Gets authentication data of the current user logged in.
+   */
   const user = auth().currentUser;
 
-  // Navigation object.
+  /**
+   * Navigation object.
+   */
   const navigation = useNavigation();
 
-  // Navigates to a page to create new itinerary.
+  /**
+   * Navigates to a page to create new itinerary.
+   */
   const addNewItinerary = () => {
     navigation.navigate('NewItinerary');
   };
 
+  /**
+   * Error message for 'View others' itineraries' feature.
+   * If code is invalid, this will be the error message.
+   */
   const [errorMessage, setErrorMessage] = useState(null);
+
+  /**
+   * State to show the error message. If true, the error message
+   * will show, else it will not show.
+   */
   const [showError, setShowError] = useState(false);
 
-  // Placeholder function (to be removed later).
+  /**
+   * Function to query for the itinerary with the code
+   * that the user inputted.
+   *
+   * @returns Clean-up function.
+   */
   const viewItinerary = async () => {
     let unmounted = false;
     await firestore()
