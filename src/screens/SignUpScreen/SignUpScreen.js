@@ -102,10 +102,10 @@ const SignUpScreen = () => {
         <Formik
           initialValues={userInfo}
           validationSchema={validationSchema}
-          onSubmit={values => {
+          onSubmit={async values => {
             let unmounted = false;
             setWaiting(true);
-            auth()
+            await auth()
               .createUserWithEmailAndPassword(values.email, values.password)
               .then(() => {
                 firestore()

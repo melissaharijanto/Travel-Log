@@ -47,8 +47,9 @@ const SignInScreen = () => {
           validationSchema={validationSchema}
           onSubmit={async values => {
             let unmounted = false;
+            console.log('Login pressed.');
             setWaiting(true);
-            auth()
+            await auth()
               .signInWithEmailAndPassword(values.email, values.password)
               .then(() => {
                 console.log('User account created & signed in!');

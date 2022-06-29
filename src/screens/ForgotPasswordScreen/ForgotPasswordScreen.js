@@ -16,21 +16,51 @@ import {Formik} from 'formik';
 import * as Yup from 'yup';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper';
 
+/**
+ * Anonymous class that renders ForgotPasswordScreen.
+ *
+ * @returns Render of ForgotPasswordScreen.
+ */
 const ForgotPasswordScreen = () => {
+  /**
+   * Navigation object.
+   */
   const navigation = useNavigation();
 
+  /**
+   * State for error messages.
+   */
   const [message, setMessage] = useState(null);
+
+  /**
+   * State to show error messages. If true, the message will
+   * show. Else, it will not show.
+   */
   const [showMessage, setShowMessage] = useState(false);
+
+  /**
+   * Shows activity indicator if true.
+   */
   const [waiting, setWaiting] = useState(false);
 
+  /**
+   * Initial value for the information that will be
+   * inputted into the field. Used for Formik.
+   */
   const userInfo = {
     email: '',
   };
 
+  /**
+   * Yup object for validating the information inputted in the fields.
+   */
   const validationSchema = Yup.object({
     email: Yup.string().email('Invalid email!').required('Email is required!'),
   });
 
+  /**
+   * Function to navigate back to the login screen.
+   */
   const onBackToLogInPressed = () => {
     navigation.navigate('SignIn');
   };
