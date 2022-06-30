@@ -14,7 +14,6 @@ import Background from '../../../assets/images/profile-background.png';
 import EditIcon from 'react-native-vector-icons/AntDesign';
 import CustomButton from '../../components/CustomButton';
 import firestore from '@react-native-firebase/firestore';
-import {ScrollView} from 'react-native-gesture-handler';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper';
 
 const ProfileScreen = () => {

@@ -6,6 +6,7 @@ import {
   StyleSheet,
   ActivityIndicator,
   Alert,
+  Dimensions,
 } from 'react-native';
 import Logo from '../../../assets/images/logo2.png';
 import CustomInputField from '../../components/CustomInputField';
@@ -167,8 +168,9 @@ const styles = StyleSheet.create({
   root: {
     alignItems: 'center',
     paddingHorizontal: '10%',
-    paddingTop: '55%',
+    justifyContent: 'center',
     backgroundColor: '#70DAD3',
+    height: Dimensions.get('window').height,
   },
   logo: {
     width: '75%',

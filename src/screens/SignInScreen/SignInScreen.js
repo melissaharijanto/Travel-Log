@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {View, Text, Image, StyleSheet, ActivityIndicator} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  ActivityIndicator,
+  Dimensions,
+} from 'react-native';
 import Logo from '../../../assets/images/logo2.png';
 import CustomInputField from '../../components/CustomInputField';
 import CustomButton from '../../components/CustomButton';
@@ -160,8 +167,9 @@ const styles = StyleSheet.create({
   root: {
     alignItems: 'center',
     paddingHorizontal: '10%',
-    paddingTop: '50%',
+    justifyContent: 'center',
     backgroundColor: '#70DAD3',
+    height: Dimensions.get('window').height,
   },
   error: {
     color: '#a3160b',

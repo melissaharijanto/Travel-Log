@@ -654,7 +654,9 @@ const EditTransportScreen = ({route}) => {
               }}>
               <ActivityIndicator size="large" color="#000000" />
             </View>
-          ) : null}
+          ) : (
+            <Text style={{marginTop: 75}} />
+          )}
         </View>
       </View>
     </KeyboardAvoidingWrapper>

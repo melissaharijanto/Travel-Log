@@ -8,18 +8,56 @@ import Accommodation from '../../../assets/images/Accommodation.png';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 
+/**
+ * Anonymous class that renders NewAccommodationScreen.
+ * NewAccommodationScreen shows the list of accommodations that
+ * the user is staying at in one specific trip.
+ *
+ * This page is made specifically to cater to users who like to
+ * travel and switch accommodations after a few days; users are able
+ * to input as many accommodations as they like within the start and
+ * end date of the itinerary that they have specified when they
+ * first made it.
+ *
+ * @param {*} route Argument that carries over the parameters passed from the previous screen.
+ * @returns Render of NewAccommodationScreen.
+ */
 const NewAccommodationScreen = ({route}) => {
+  /**
+   * Navigation object.
+   */
   const navigation = useNavigation();
 
+  /**
+   * State for accommodation list.
+   * Once initialized, it will be an array to store the
+   * accommodation data that is fetched from Firestore.
+   */
   const [accommodation, setAccommodation] = useState(null);
 
+  /**
+   * Route parameters that are passed on from the previous screen.
+   */
   const {id, itineraryStart, itineraryEnd, owner} = route.params;
 
+  /**
+   * State that can be true, or false. This state is used to facilitate the
+   * 'View a friend's itinerary' feature. Can be true or false.
+   */
   const [itineraryOwner, isOwner] = useState();
 
+  /**
+   * An empty function. This is used if itineraryOwner is false; users won't be
+   * able to navigate to ViewAccommodationScreen.
+   */
   const viewOnly = () => {};
 
-  const getAccommodation = async () => {
+  /**
+   * Fetches accommodation data from Firestore database.
+   *
+   * @returns Clean-up function.
+   */
+  const getAccommodation = () => {
     let unmounted = false;
     const accommodationList = [];
     firestore()
@@ -51,9 +89,12 @@ const NewAccommodationScreen = ({route}) => {
     };
   };
 
+  /**
+   * Hook to determine whether the user accessing the itinerary
+   * is the owner upon change of route.
+   */
   useEffect(() => {
     let unmounted = false;
-
     if (auth().currentUser.uid === owner) {
       isOwner(true);
       console.log('Is owner!');
@@ -61,12 +102,14 @@ const NewAccommodationScreen = ({route}) => {
       isOwner(false);
       console.log('Not owner!');
     }
-
     return () => {
       unmounted = true;
     };
   }, [route]);
 
+  /**
+   * Hook to run getAccommodation upon change of route.
+   */
   useEffect(() => {
     let unmounted = false;
     getAccommodation();

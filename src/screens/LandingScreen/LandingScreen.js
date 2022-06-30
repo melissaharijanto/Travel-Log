@@ -2,6 +2,13 @@ import React from 'react';
 import {View, Image, StyleSheet} from 'react-native';
 import Logo from '../../../assets/images/logo2.png';
 
+/**
+ * Anonymous class that renders Landing Screen,
+ * Will appear when the app is first initialized
+ * and user authentication is ongoing.
+ *
+ * @returns Render of the Landing Screen.
+ */
 const LandingScreen = () => {
   return (
     <View style={styles.root}>

@@ -280,9 +280,14 @@ const EditProfileScreen = () => {
             {'\n'}
             {'\n'}
             {'\n'}
-            {'\n'}
-            {'\n'}
           </Text>
+
+          {uploading ? (
+            <View style={{justifyContent: 'center', alignItems: 'center'}}>
+              <ActivityIndicator size="small" color="#000000" />
+              <Text style={styles.text}> {transferred}% completed</Text>
+            </View>
+          ) : null}
 
           <CustomButton text="Cancel" onPress={onCanceling} type="QUATERNARY" />
 
@@ -291,17 +296,6 @@ const EditProfileScreen = () => {
             onPress={saveChanges}
             type="TERTIARY"
           />
-
-          <Text>{'\n'}</Text>
-
-          {uploading ? (
-            <View style={{justifyContent: 'center', alignItems: 'center'}}>
-              <ActivityIndicator size="small" color="#000000" />
-              <Text style={styles.text}> {transferred}% completed</Text>
-            </View>
-          ) : (
-            <View />
-          )}
         </ImageBackground>
       </View>
     </KeyboardAvoidingWrapper>
