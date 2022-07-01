@@ -1,5 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Image, StyleSheet, FlatList} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  FlatList,
+  ActivityIndicator,
+} from 'react-native';
 import {StackRouter, useNavigation} from '@react-navigation/native';
 import Logo from '../../../assets/images/logo3.png';
 import ItineraryTab from '../../components/ItineraryTab';
@@ -32,7 +39,14 @@ const MainItineraryScreen = () => {
   /**
    * User's past itineraries object. Default state is null.
    */
-  var [pastItineraries, setPastItineraries] = useState(null);
+  const [pastItineraries, setPastItineraries] = useState(null);
+
+  /**
+   * State that shows whether an itinerary is loading.
+   * If true, then it is fetching the data from the database; if
+   * false, then the process is done.
+   */
+  const [loadingItineraries, setLoadItineraries] = useState(true);
 
   /**
    * Initial search state.
@@ -130,6 +144,11 @@ const MainItineraryScreen = () => {
         });
       });
 
+    if (loadingItineraries) {
+      setLoadItineraries(false);
+      console.log('reached here');
+    }
+
     return () => {
       unmounted = true;
     };
@@ -150,10 +169,12 @@ const MainItineraryScreen = () => {
           if (unmounted) {
             return;
           }
-          console.log('User Data', documentSnapshot.data());
           setItineraryCount(documentSnapshot.data().itineraries);
+          console.log('User Data', documentSnapshot.data());
         }
       });
+
+    console.log(itineraryCount);
     return () => {
       unmounted = true;
     };
@@ -183,7 +204,7 @@ const MainItineraryScreen = () => {
       return () => {
         unmounted = true;
       };
-    }, [setItineraryCount]),
+    }, [itineraryCount]),
   );
 
   /**
@@ -233,27 +254,35 @@ const MainItineraryScreen = () => {
       </View>
       <Text />
       {itineraryCount > 0 ? (
-        <View style={styles.content}>
-          <FlatList
-            data={search.data}
-            vertical
-            numRows={1}
-            showsVerticalScrollIndicator={false}
-            renderItem={({item}) => (
-              <ItineraryTab
-                text={item.title}
-                image={item.coverImage}
-                onPress={() => {
-                  navigation.navigate('OpenItinerary', {
-                    itinerary: item,
-                  });
-                }}
-              />
-            )}
-            ItemSeparatorComponent={() => <View style={{marginBottom: 2.5}} />}
-            keyExtractor={(contact, index) => String(index)}
-          />
-        </View>
+        loadingItineraries ? (
+          <View style={{justifyContent: 'center'}}>
+            <ActivityIndicator size="large" color="#808080" />
+          </View>
+        ) : (
+          <View style={styles.content}>
+            <FlatList
+              data={search.data}
+              vertical
+              numRows={1}
+              showsVerticalScrollIndicator={false}
+              renderItem={({item}) => (
+                <ItineraryTab
+                  text={item.title}
+                  image={item.coverImage}
+                  onPress={() => {
+                    navigation.navigate('OpenItinerary', {
+                      itinerary: item,
+                    });
+                  }}
+                />
+              )}
+              ItemSeparatorComponent={() => (
+                <View style={{marginBottom: 2.5}} />
+              )}
+              keyExtractor={(contact, index) => String(index)}
+            />
+          </View>
+        )
       ) : (
         <View style={[styles.root, {justifyContent: 'center'}]}>
           <Text style={styles.text}>You currently have no itineraries.</Text>

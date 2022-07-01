@@ -16,6 +16,7 @@ import ItineraryTab from '../../components/ItineraryTab';
 import InputFieldAfterLogin from '../../components/InputFieldAfterLogIn';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper';
 import {useFocusEffect} from '@react-navigation/native';
+import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 
 const HomeScreen = () => {
   /**
@@ -87,6 +88,12 @@ const HomeScreen = () => {
    */
   const [pastItineraries, setPastItineraries] = useState(null);
 
+  const [loadingUser, setLoadUser] = useState(true);
+
+  const [loadingLatestItinerary, setLoadLatestItinerary] = useState(true);
+
+  const [loadingPastItineraries, setLoadPastItineraries] = useState(true);
+
   /**
    * Function to query for the itinerary with the code
    * that the user inputted.
@@ -153,7 +160,14 @@ const HomeScreen = () => {
           setName(documentSnapshot.data().name);
           setItineraryCount(documentSnapshot.data().itineraries);
         }
+
+        if (loadingUser) {
+          setLoadUser(false);
+        }
       });
+
+    console.log(loadingUser);
+
     return () => {
       unmounted = true;
     };
@@ -187,7 +201,7 @@ const HomeScreen = () => {
                 .collection('itineraries')
                 .doc(doc.id)
                 .onSnapshot(documentSnapshot => {
-                  if (documentSnapshot.exists) {
+                  if (documentSnapshot.exists && !unmounted) {
                     if (unmounted) {
                       return;
                     }
@@ -198,11 +212,14 @@ const HomeScreen = () => {
                 });
             }
           });
-
-          const hasRun = () => console.log(latestItinerary);
-          hasRun();
         });
     }
+
+    if (loadingLatestItinerary) {
+      setLoadLatestItinerary(false);
+    }
+
+    console.log(loadingLatestItinerary);
 
     return () => {
       unmounted = true;
@@ -279,6 +296,13 @@ const HomeScreen = () => {
           });
         });
     }
+
+    if (loadingPastItineraries) {
+      setLoadPastItineraries(false);
+    }
+
+    console.log(loadingPastItineraries);
+
     return () => {
       unmounted = true;
     };
@@ -296,6 +320,20 @@ const HomeScreen = () => {
       };
     }, []),
   );
+
+  useEffect(() => {
+    if (loadingUser || loadingLatestItinerary || loadingPastItineraries) {
+      setLoadUser(true);
+      setLoadLatestItinerary(true);
+      setLoadPastItineraries(true);
+    }
+
+    if (!loadingUser && !loadingLatestItinerary && !loadingPastItineraries) {
+      setLoadUser(false);
+      setLoadLatestItinerary(false);
+      setLoadPastItineraries(false);
+    }
+  }, [loadingUser, loadingLatestItinerary, loadingPastItineraries]);
 
   /**
    * Calls getLatestItinerary upon change to user's itinerary count.
@@ -324,89 +362,215 @@ const HomeScreen = () => {
     <KeyboardAvoidingWrapper backgroundColor="#FFFFFF">
       <View style={styles.root}>
         {/* header */}
-        <View style={styles.horizontal}>
-          <View style={styles.header}>
-            <Text style={styles.welcome}>Welcome back to Travel Log,</Text>
-            <Text style={styles.title}>{name}!</Text>
-          </View>
-          <TouchableOpacity onPress={onClickProfile}>
-            <Image
-              source={{
-                uri: userData ? userData.userImg || defaultImage : defaultImage,
-              }}
-              style={styles.pfp}
+
+        {loadingUser ? (
+          <SkeletonPlaceholder>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignSelf: 'flex-start',
+                justifyContent: 'center',
+                alignItems: 'flex-start',
+              }}>
+              <View style={{paddingRight: 30}}>
+                <View
+                  style={{
+                    width: 0.65 * Dimensions.get('window').width,
+                    height: 24,
+                    borderRadius: 4,
+                    marginBottom: '1%',
+                  }}
+                />
+                <View
+                  style={{
+                    marginTop: 7,
+                    width: 0.65 * Dimensions.get('window').width,
+                    height: 35,
+                    borderRadius: 4,
+                  }}
+                />
+              </View>
+              <View style={{width: 60, height: 60, borderRadius: 50}} />
+            </View>
+
+            <View style={{marginTop: '5.5%'}}>
+              <View style={{width: '85%', height: 24, marginBottom: '3%'}} />
+              <View
+                style={{
+                  borderRadius: 10,
+                  padding: 12,
+                  marginVertical: 5,
+                  alignItems: 'center',
+                  height: 54,
+                }}
+              />
+            </View>
+
+            <View style={{marginTop: '3%'}}>
+              <View style={{width: '60%', height: 24, marginBottom: '3%'}} />
+              <View
+                style={{
+                  borderRadius: 10,
+                  padding: 12,
+                  marginVertical: 5,
+                  alignItems: 'center',
+                  height: 54,
+                }}
+              />
+              <View
+                style={{
+                  borderRadius: 10,
+                  padding: 12,
+                  marginVertical: 5,
+                  alignItems: 'center',
+                  height: 54,
+                }}
+              />
+            </View>
+          </SkeletonPlaceholder>
+        ) : (
+          <View style={{width: '100%'}}>
+            <View style={styles.horizontal}>
+              <View style={styles.header}>
+                <Text style={styles.welcome}>Welcome back to Travel Log,</Text>
+                <Text style={styles.title}>{name}!</Text>
+              </View>
+              <TouchableOpacity onPress={onClickProfile}>
+                <Image
+                  source={{
+                    uri: userData
+                      ? userData.userImg || defaultImage
+                      : defaultImage,
+                  }}
+                  style={styles.pfp}
+                />
+              </TouchableOpacity>
+            </View>
+
+            <Text style={styles.subtitle}>Get started on a new itinerary!</Text>
+            <CustomButton
+              text="+ New Itinerary"
+              onPress={addNewItinerary}
+              type="QUINARY"
             />
-          </TouchableOpacity>
-        </View>
 
-        {/* block to create a new itinerary. */}
-        <Text style={styles.subtitle}>Get started on a new itinerary!</Text>
-        <CustomButton
-          text="+ New Itinerary"
-          onPress={addNewItinerary}
-          type="QUINARY"
-        />
+            <Text style={[styles.subtitle, {paddingTop: '3%'}]}>
+              View a friend's itinerary
+            </Text>
+            <InputFieldAfterLogin
+              placeholder="Enter the code here..."
+              value={code}
+              setValue={setCode}
+            />
 
-        {/* block to view a friend's itinerary. */}
-        <Text style={[styles.subtitle, {paddingTop: '3%'}]}>
-          View a friend's itinerary
-        </Text>
-        <InputFieldAfterLogin
-          placeholder="Enter the code here..."
-          value={code}
-          setValue={setCode}
-        />
+            {showError ? (
+              <Text style={styles.error}>{errorMessage}</Text>
+            ) : null}
 
-        {showError ? <Text style={styles.error}>{errorMessage}</Text> : null}
-
-        <CustomButton text="View" onPress={viewItinerary} type="QUINARY" />
+            <CustomButton text="View" onPress={viewItinerary} type="QUINARY" />
+          </View>
+        )}
 
         {/* block for latest itinerary; will only show if user has at least 1 itinerary. */}
         {itineraryCount >= 1 ? (
-          <View style={{width: '100%'}}>
-            <Text style={[styles.subtitle, {paddingTop: '5%'}]}>
-              Your latest itinerary
-            </Text>
+          loadingLatestItinerary ? (
+            <SkeletonPlaceholder>
+              <View style={{marginTop: '3%'}}>
+                <View
+                  style={{
+                    width: 0.6 * Dimensions.get('window').width,
+                    height: 24,
+                    borderRadius: 4,
+                  }}
+                />
 
-            <ItineraryTab
-              onPress={() => {
-                navigation.navigate('OpenItinerary', {
-                  itinerary: latestItinerary,
-                });
-              }}
-              text={latestItineraryTitle}
-              image={latestItineraryImage}
-            />
-          </View>
+                <View
+                  style={{
+                    width:
+                      Dimensions.get('window').width -
+                      2 * 0.07 * Dimensions.get('window').width,
+                    height: Dimensions.get('window').width / 2,
+                    alignItems: 'flex-start',
+                    justifyContent: 'flex-end',
+                    borderRadius: 11,
+                    marginVertical: '2%',
+                  }}
+                />
+              </View>
+            </SkeletonPlaceholder>
+          ) : (
+            <View style={{width: '100%'}}>
+              <Text style={[styles.subtitle, {paddingTop: '5%'}]}>
+                Your latest itinerary
+              </Text>
+
+              <ItineraryTab
+                onPress={() => {
+                  navigation.navigate('OpenItinerary', {
+                    itinerary: latestItinerary,
+                  });
+                }}
+                text={latestItineraryTitle}
+                image={latestItineraryImage}
+              />
+            </View>
+          )
         ) : null}
 
         {/* block for past itineraries; will only show if user has more than 1 itinerary. */}
         {itineraryCount > 1 ? (
-          <View>
-            <Text style={styles.subtitle}>Revisit your past itineraries</Text>
+          loadingPastItineraries ? (
+            <SkeletonPlaceholder>
+              <View style={{marginTop: '6%'}}>
+                <View
+                  style={{
+                    width: 0.6 * Dimensions.get('window').width,
+                    height: 24,
+                    borderRadius: 4,
+                  }}
+                />
+
+                <View
+                  style={{
+                    width:
+                      Dimensions.get('window').width -
+                      2 * 0.07 * Dimensions.get('window').width,
+                    height: Dimensions.get('window').width / 2,
+                    alignItems: 'flex-start',
+                    justifyContent: 'flex-end',
+                    borderRadius: 11,
+                    marginVertical: '2%',
+                  }}
+                />
+              </View>
+            </SkeletonPlaceholder>
+          ) : (
             <View>
-              <FlatList
-                data={pastItineraries}
-                horizontal
-                numColumns={1}
-                renderItem={({item}) => (
-                  <ItineraryTab
-                    text={item.title}
-                    image={item.coverImage}
-                    onPress={() => {
-                      navigation.navigate('OpenItinerary', {
-                        itinerary: item,
-                      });
-                    }}
-                  />
-                )}
-                ItemSeparatorComponent={() => (
-                  <View style={{marginRight: 10}} />
-                )}
-                keyExtractor={(contact, index) => String(index)}
-              />
+              <Text style={styles.subtitle}>Revisit your past itineraries</Text>
+              <View>
+                <FlatList
+                  data={pastItineraries}
+                  horizontal
+                  numColumns={1}
+                  renderItem={({item}) => (
+                    <ItineraryTab
+                      text={item.title}
+                      image={item.coverImage}
+                      onPress={() => {
+                        navigation.navigate('OpenItinerary', {
+                          itinerary: item,
+                        });
+                      }}
+                    />
+                  )}
+                  ItemSeparatorComponent={() => (
+                    <View style={{marginRight: 10}} />
+                  )}
+                  keyExtractor={(contact, index) => String(index)}
+                />
+              </View>
             </View>
-          </View>
+          )
         ) : null}
       </View>
     </KeyboardAvoidingWrapper>

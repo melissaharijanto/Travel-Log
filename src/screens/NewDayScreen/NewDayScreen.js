@@ -9,7 +9,6 @@ import Activity from '../../../assets/images/Activity.png';
 import Transport from '../../../assets/images/Transport.png';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
-import {useFocusEffect} from '@react-navigation/native';
 
 const NewDayScreen = ({route}) => {
   const navigation = useNavigation();
