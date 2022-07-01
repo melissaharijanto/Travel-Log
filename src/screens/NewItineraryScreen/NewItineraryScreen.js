@@ -17,6 +17,11 @@ import auth from '@react-native-firebase/auth';
 import storage from '@react-native-firebase/storage';
 import firestore, {firebase} from '@react-native-firebase/firestore';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper';
+import {HeaderWithoutDeleteIcon} from '../../components/Headers/Headers';
+import {
+  ReusableButton,
+  UploadImages,
+} from '../../components/ButtonsAfterLogin/ButtonsAfterLogin';
 
 const NewItineraryScreen = () => {
   // Navigation object.
@@ -282,21 +287,11 @@ const NewItineraryScreen = () => {
     <KeyboardAvoidingWrapper backgroundColor="#FFFFFF">
       <View style={styles.root}>
         {/* header */}
-        <View style={styles.header}>
-          <Back
-            size={35}
-            color="#808080"
-            name="chevron-left"
-            onPress={goBack}
-            style={{
-              flex: 1,
-              paddingTop: 2,
-            }}
-          />
-
-          <Text style={styles.headerText}>New Itinerary</Text>
-        </View>
-
+        <HeaderWithoutDeleteIcon
+          onPress={goBack}
+          text="New Itinerary"
+          flexValue={2.8}
+        />
         {/* Empty text field to make the shadow of the header visible. */}
         <Text />
 
@@ -325,18 +320,7 @@ const NewItineraryScreen = () => {
           <Text style={styles.text}>Cover Image</Text>
 
           <View style={styles.horizontal}>
-            <Pressable onPress={choosePhotoFromLibrary} style={styles.button}>
-              <ImageIcon
-                name="image"
-                size={18}
-                color="white"
-                style={{
-                  paddingHorizontal: '1%',
-                }}
-              />
-
-              <Text style={styles.buttonText}>Upload Image</Text>
-            </Pressable>
+            <UploadImages onPress={choosePhotoFromLibrary} />
             {isImageChosen ? (
               <Text style={[styles.setText, {paddingLeft: 20}]}>
                 Image uploaded.
@@ -347,9 +331,10 @@ const NewItineraryScreen = () => {
           {/* Field to input start date */}
           <Text style={styles.text}>Start Date</Text>
           <View style={styles.horizontal}>
-            <Pressable onPress={showStartDatePicker} style={styles.button}>
-              <Text style={styles.buttonText}>Pick Start Date</Text>
-            </Pressable>
+            <ReusableButton
+              onPress={showStartDatePicker}
+              text="Pick Start Date"
+            />
             <Text style={[styles.setText, {paddingLeft: 20}]}>
               {startDateString}
             </Text>
@@ -369,9 +354,7 @@ const NewItineraryScreen = () => {
           <Text style={styles.text}>End Date</Text>
 
           <View style={styles.horizontal}>
-            <Pressable onPress={showEndDatePicker} style={styles.button}>
-              <Text style={styles.buttonText}>Pick End Date</Text>
-            </Pressable>
+            <ReusableButton onPress={showEndDatePicker} text="Pick End Date" />
             <Text style={[styles.setText, {paddingLeft: 20}]}>
               {endDateString}
             </Text>
@@ -434,49 +417,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     width: '100%',
   },
-  button: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    padding: 5,
-    backgroundColor: '#70DAD3',
-    borderRadius: 4,
-    marginTop: 10,
-    marginBottom: 8,
-  },
-  buttonText: {
-    fontFamily: 'Poppins-Medium',
-    color: 'white',
-    paddingHorizontal: '2%',
-    paddingTop: '1%',
-  },
   error: {
     color: '#a3160b',
     fontFamily: 'Poppins-Italic',
     fontSize: 12,
     paddingLeft: 10,
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    height: 65,
-    width: '100%',
-    paddingLeft: 10,
-    elevation: 15,
-    shadowColor: '#70D9D3',
-    shadowOpacity: 1,
-  },
-  headerText: {
-    fontFamily: 'Poppins-Bold',
-    fontSize: 26,
-    color: '#3B4949',
-    justifyContent: 'center',
-    alignSelf: 'center',
-    alignItems: 'center',
-    paddingTop: 9,
-    flex: 2.8,
   },
   horizontal: {
     flexDirection: 'row',

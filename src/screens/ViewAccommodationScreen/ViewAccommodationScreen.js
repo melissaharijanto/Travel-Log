@@ -1,12 +1,12 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, Pressable} from 'react-native';
-import Back from 'react-native-vector-icons/Feather';
 import CustomButton from '../../components/CustomButton';
 import {firebase} from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
 import * as OpenAnything from 'react-native-openanything';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper';
+import {HeaderWithoutDeleteIcon} from '../../components/Headers/Headers';
 
 const ViewAccommodationScreen = ({route}) => {
   const {id, itineraryStart, itineraryEnd, itemId, owner} = route.params;
@@ -41,7 +41,7 @@ const ViewAccommodationScreen = ({route}) => {
 
   const getData = async () => {
     let unmounted = false;
-    await firestore()
+    firestore()
       .collection('itineraries')
       .doc(id)
       .collection('accommodation')
@@ -100,26 +100,11 @@ const ViewAccommodationScreen = ({route}) => {
     <KeyboardAvoidingWrapper backgroundColor="#FFFFFF">
       <View style={styles.root}>
         {/* header */}
-        <View style={styles.header}>
-          <Back
-            size={35}
-            name="chevron-left"
-            color="#808080"
-            onPress={() =>
-              navigation.navigate('NewAccommodation', {
-                id: id,
-                itineraryStart: itineraryStart,
-                itineraryEnd: itineraryEnd,
-                owner: owner,
-              })
-            }
-            style={{
-              flex: 1,
-              paddingTop: 2,
-            }}
-          />
-          <Text style={styles.headerText}>Accommodation</Text>
-        </View>
+        <HeaderWithoutDeleteIcon
+          onPress={() => navigation.goBack()}
+          text="Accommodation"
+          flexValue={3.5}
+        />
 
         {/* empty space so shadow can be visible */}
         <Text />
@@ -218,28 +203,6 @@ const styles = StyleSheet.create({
     color: 'white',
     paddingHorizontal: '2%',
     paddingTop: '1%',
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    height: 65,
-    width: '100%',
-    paddingLeft: 10,
-    elevation: 15,
-    shadowColor: '#70D9D3',
-    shadowOpacity: 1,
-  },
-  headerText: {
-    fontFamily: 'Poppins-Bold',
-    fontSize: 26,
-    color: '#3B4949',
-    justifyContent: 'center',
-    alignSelf: 'center',
-    alignItems: 'center',
-    paddingTop: 9,
-    flex: 3.5,
   },
   horizontal: {
     flexDirection: 'row',

@@ -9,6 +9,7 @@ import Activity from '../../../assets/images/Activity.png';
 import Transport from '../../../assets/images/Transport.png';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
+import {HeaderWithoutDeleteIcon} from '../../components/Headers/Headers';
 
 const NewDayScreen = ({route}) => {
   const navigation = useNavigation();
@@ -128,20 +129,11 @@ const NewDayScreen = ({route}) => {
 
   return (
     <View style={styles.root}>
-      <View style={styles.header}>
-        <Back
-          size={35}
-          name="chevron-left"
-          color="#808080"
-          onPress={goBack}
-          style={{
-            flex: 1,
-            paddingTop: 2,
-          }}
-        />
-
-        <Text style={styles.headerText}>{dayLabel}</Text>
-      </View>
+      <HeaderWithoutDeleteIcon
+        onPress={goBack}
+        text={dayLabel}
+        flexValue={1.45}
+      />
 
       <Text />
       <View style={styles.content}>

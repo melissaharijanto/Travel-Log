@@ -16,7 +16,11 @@ import ItineraryTab from '../../components/ItineraryTab';
 import InputFieldAfterLogin from '../../components/InputFieldAfterLogIn';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper';
 import {useFocusEffect} from '@react-navigation/native';
-import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
+import {
+  HomeUserSkeleton,
+  LatestItinerarySkeleton,
+  PastItinerariesSkeleton,
+} from '../../components/HomeSkeleton/HomeSkeleton';
 
 const HomeScreen = () => {
   /**
@@ -195,8 +199,6 @@ const HomeScreen = () => {
 
           querySnapshot.forEach(doc => {
             if (doc.exists) {
-              const {id} = doc.data();
-
               firestore()
                 .collection('itineraries')
                 .doc(doc.id)
@@ -212,11 +214,11 @@ const HomeScreen = () => {
                 });
             }
           });
-        });
-    }
 
-    if (loadingLatestItinerary) {
-      setLoadLatestItinerary(false);
+          if (loadingLatestItinerary) {
+            setLoadLatestItinerary(false);
+          }
+        });
     }
 
     console.log(loadingLatestItinerary);
@@ -293,12 +295,11 @@ const HomeScreen = () => {
                   setPastItineraries(itinerariesList);
                 });
             }
+            if (loadingPastItineraries) {
+              setLoadPastItineraries(false);
+            }
           });
         });
-    }
-
-    if (loadingPastItineraries) {
-      setLoadPastItineraries(false);
     }
 
     console.log(loadingPastItineraries);
@@ -320,20 +321,6 @@ const HomeScreen = () => {
       };
     }, []),
   );
-
-  useEffect(() => {
-    if (loadingUser || loadingLatestItinerary || loadingPastItineraries) {
-      setLoadUser(true);
-      setLoadLatestItinerary(true);
-      setLoadPastItineraries(true);
-    }
-
-    if (!loadingUser && !loadingLatestItinerary && !loadingPastItineraries) {
-      setLoadUser(false);
-      setLoadLatestItinerary(false);
-      setLoadPastItineraries(false);
-    }
-  }, [loadingUser, loadingLatestItinerary, loadingPastItineraries]);
 
   /**
    * Calls getLatestItinerary upon change to user's itinerary count.
@@ -364,70 +351,7 @@ const HomeScreen = () => {
         {/* header */}
 
         {loadingUser ? (
-          <SkeletonPlaceholder>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignSelf: 'flex-start',
-                justifyContent: 'center',
-                alignItems: 'flex-start',
-              }}>
-              <View style={{paddingRight: 30}}>
-                <View
-                  style={{
-                    width: 0.65 * Dimensions.get('window').width,
-                    height: 24,
-                    borderRadius: 4,
-                    marginBottom: '1%',
-                  }}
-                />
-                <View
-                  style={{
-                    marginTop: 7,
-                    width: 0.65 * Dimensions.get('window').width,
-                    height: 35,
-                    borderRadius: 4,
-                  }}
-                />
-              </View>
-              <View style={{width: 60, height: 60, borderRadius: 50}} />
-            </View>
-
-            <View style={{marginTop: '5.5%'}}>
-              <View style={{width: '85%', height: 24, marginBottom: '3%'}} />
-              <View
-                style={{
-                  borderRadius: 10,
-                  padding: 12,
-                  marginVertical: 5,
-                  alignItems: 'center',
-                  height: 54,
-                }}
-              />
-            </View>
-
-            <View style={{marginTop: '3%'}}>
-              <View style={{width: '60%', height: 24, marginBottom: '3%'}} />
-              <View
-                style={{
-                  borderRadius: 10,
-                  padding: 12,
-                  marginVertical: 5,
-                  alignItems: 'center',
-                  height: 54,
-                }}
-              />
-              <View
-                style={{
-                  borderRadius: 10,
-                  padding: 12,
-                  marginVertical: 5,
-                  alignItems: 'center',
-                  height: 54,
-                }}
-              />
-            </View>
-          </SkeletonPlaceholder>
+          <HomeUserSkeleton />
         ) : (
           <View style={{width: '100%'}}>
             <View style={styles.horizontal}>
@@ -474,30 +398,7 @@ const HomeScreen = () => {
         {/* block for latest itinerary; will only show if user has at least 1 itinerary. */}
         {itineraryCount >= 1 ? (
           loadingLatestItinerary ? (
-            <SkeletonPlaceholder>
-              <View style={{marginTop: '3%'}}>
-                <View
-                  style={{
-                    width: 0.6 * Dimensions.get('window').width,
-                    height: 24,
-                    borderRadius: 4,
-                  }}
-                />
-
-                <View
-                  style={{
-                    width:
-                      Dimensions.get('window').width -
-                      2 * 0.07 * Dimensions.get('window').width,
-                    height: Dimensions.get('window').width / 2,
-                    alignItems: 'flex-start',
-                    justifyContent: 'flex-end',
-                    borderRadius: 11,
-                    marginVertical: '2%',
-                  }}
-                />
-              </View>
-            </SkeletonPlaceholder>
+            <LatestItinerarySkeleton />
           ) : (
             <View style={{width: '100%'}}>
               <Text style={[styles.subtitle, {paddingTop: '5%'}]}>
@@ -520,30 +421,7 @@ const HomeScreen = () => {
         {/* block for past itineraries; will only show if user has more than 1 itinerary. */}
         {itineraryCount > 1 ? (
           loadingPastItineraries ? (
-            <SkeletonPlaceholder>
-              <View style={{marginTop: '6%'}}>
-                <View
-                  style={{
-                    width: 0.6 * Dimensions.get('window').width,
-                    height: 24,
-                    borderRadius: 4,
-                  }}
-                />
-
-                <View
-                  style={{
-                    width:
-                      Dimensions.get('window').width -
-                      2 * 0.07 * Dimensions.get('window').width,
-                    height: Dimensions.get('window').width / 2,
-                    alignItems: 'flex-start',
-                    justifyContent: 'flex-end',
-                    borderRadius: 11,
-                    marginVertical: '2%',
-                  }}
-                />
-              </View>
-            </SkeletonPlaceholder>
+            <PastItinerariesSkeleton />
           ) : (
             <View>
               <Text style={styles.subtitle}>Revisit your past itineraries</Text>

@@ -1,19 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  FlatList,
-  ActivityIndicator,
-} from 'react-native';
-import {StackRouter, useNavigation} from '@react-navigation/native';
+import {View, Text, Image, StyleSheet, FlatList} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import Logo from '../../../assets/images/logo3.png';
 import ItineraryTab from '../../components/ItineraryTab';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import {useFocusEffect} from '@react-navigation/native';
 import {SearchBar} from '@rneui/themed';
+import MainItinerarySkeleton from '../../components/MainItinerarySkeleton';
 
 /**
  * Anonymous class that renders MainItineraryScreen.
@@ -141,13 +135,12 @@ const MainItineraryScreen = () => {
                 setPastItineraries(itinerariesList);
               });
           }
+          if (loadingItineraries) {
+            setLoadItineraries(false);
+            console.log('reached here');
+          }
         });
       });
-
-    if (loadingItineraries) {
-      setLoadItineraries(false);
-      console.log('reached here');
-    }
 
     return () => {
       unmounted = true;
@@ -255,9 +248,7 @@ const MainItineraryScreen = () => {
       <Text />
       {itineraryCount > 0 ? (
         loadingItineraries ? (
-          <View style={{justifyContent: 'center'}}>
-            <ActivityIndicator size="large" color="#808080" />
-          </View>
+          <MainItinerarySkeleton />
         ) : (
           <View style={styles.content}>
             <FlatList

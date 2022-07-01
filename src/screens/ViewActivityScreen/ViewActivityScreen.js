@@ -7,6 +7,7 @@ import {firebase} from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
 import * as OpenAnything from 'react-native-openanything';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper';
+import {HeaderWithoutDeleteIcon} from '../../components/Headers/Headers';
 
 const ViewActivityScreen = ({route}) => {
   const {id, itemId, dayLabel, date, owner} = route.params;
@@ -95,26 +96,11 @@ const ViewActivityScreen = ({route}) => {
     <KeyboardAvoidingWrapper backgroundColor="#FFFFFF">
       <View style={styles.root}>
         {/* header */}
-        <View style={styles.header}>
-          <Back
-            size={35}
-            name="chevron-left"
-            color="#808080"
-            onPress={() =>
-              navigation.navigate('NewDay', {
-                id: id,
-                dayLabel: dayLabel,
-                date: date,
-                owner: owner,
-              })
-            }
-            style={{
-              flex: 1,
-              paddingTop: 2,
-            }}
-          />
-          <Text style={styles.headerText}>Activity</Text>
-        </View>
+        <HeaderWithoutDeleteIcon
+          onPress={() => navigation.goBack()}
+          text="Activity"
+          flexValue={1.8}
+        />
 
         {/* empty space so shadow can be visible */}
         <Text />

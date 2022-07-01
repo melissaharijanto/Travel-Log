@@ -1,14 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Pressable,
-  ActivityIndicator,
-} from 'react-native';
+import {View, Text, StyleSheet, ActivityIndicator} from 'react-native';
 import Back from 'react-native-vector-icons/Feather';
-import Document from 'react-native-vector-icons/Ionicons';
 import InputFieldAfterLogIn from '../../components/InputFieldAfterLogIn';
 import CustomButton from '../../components/CustomButton';
 import DocumentPicker, {
@@ -19,6 +12,11 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper';
+import {
+  ReusableButton,
+  UploadFiles,
+} from '../../components/ButtonsAfterLogin/ButtonsAfterLogin';
+import {HeaderWithoutDeleteIcon} from '../../components/Headers/Headers';
 
 /**
  * Anonymous class that renders AddTransportScreen.
@@ -371,26 +369,18 @@ const AddTransportScreen = ({route}) => {
     <KeyboardAvoidingWrapper backgroundColor="#FFFFFF">
       <View style={styles.root}>
         {/* Header */}
-        <View style={styles.header}>
-          <Back
-            size={35}
-            name="chevron-left"
-            color="#808080"
-            onPress={() =>
-              navigation.navigate('NewDay', {
-                id: id,
-                dayLabel: dayLabel,
-                date: date,
-                owner: owner,
-              })
-            }
-            style={{
-              flex: 1,
-              paddingTop: 2,
-            }}
-          />
-          <Text style={styles.headerText}>Transport</Text>
-        </View>
+        <HeaderWithoutDeleteIcon
+          onPress={() =>
+            navigation.navigate('NewDay', {
+              id: id,
+              dayLabel: dayLabel,
+              date: date,
+              owner: owner,
+            })
+          }
+          text="Transport"
+          flexValue={1.95}
+        />
 
         {/* Empty space so shadow can be visible */}
         <Text />
@@ -441,9 +431,10 @@ const AddTransportScreen = ({route}) => {
           <Text style={styles.text}>Start Time</Text>
           <View style={styles.horizontal}>
             {/* Button to set start time */}
-            <Pressable onPress={showStartDatePicker} style={styles.button}>
-              <Text style={styles.buttonText}>Pick Start Time</Text>
-            </Pressable>
+            <ReusableButton
+              onPress={showStartDatePicker}
+              text="Pick Start Time"
+            />
             {isTimeChosen ? (
               <Text style={[styles.setText, {paddingLeft: 20}]}>
                 {getTime(startTime)}
@@ -466,20 +457,9 @@ const AddTransportScreen = ({route}) => {
           <Text style={styles.text}>Additional Notes</Text>
           <View style={styles.horizontal}>
             {/* Button to pick a document */}
-            <Pressable onPress={chooseFile} style={styles.button}>
-              <Document
-                name="document-outline"
-                size={20}
-                color="white"
-                style={{
-                  paddingLeft: '1%',
-                }}
-              />
-
-              <Text style={styles.buttonText}>Upload Files</Text>
-            </Pressable>
+            <UploadFiles onPress={chooseFile} />
             {isDocChosen ? (
-              <Text style={[styles.setText, {paddingLeft: 20}]}>
+              <Text style={[styles.setText, {paddingLeft: 20, width: '65%'}]}>
                 {fileName}
               </Text>
             ) : null}
@@ -527,53 +507,16 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#333333',
   },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    height: 65,
-    width: '100%',
-    paddingLeft: 10,
-    elevation: 15,
-    shadowColor: '#70D9D3',
-    shadowOpacity: 1,
-  },
-  headerText: {
-    fontFamily: 'Poppins-Bold',
-    fontSize: 26,
-    color: '#3B4949',
-    justifyContent: 'center',
-    alignSelf: 'center',
-    alignItems: 'center',
-    paddingTop: 9,
-    flex: 1.95,
-  },
   horizontal: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
-  button: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    padding: 5,
-    backgroundColor: '#70DAD3',
-    borderRadius: 4,
-    marginTop: 10,
-    marginBottom: 8,
-  },
-  buttonText: {
-    fontFamily: 'Poppins-Medium',
-    color: 'white',
-    paddingHorizontal: '2%',
-    paddingTop: '1%',
-  },
   setText: {
     fontFamily: 'Poppins-Italic',
     color: '#333333',
     paddingTop: 2,
+    fontSize: 12,
   },
   text: {
     fontFamily: 'Poppins-Medium',

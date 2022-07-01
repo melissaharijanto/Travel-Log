@@ -1,16 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Pressable,
-  ActivityIndicator,
-  Alert,
-} from 'react-native';
-import Back from 'react-native-vector-icons/Feather';
+import {View, Text, StyleSheet, ActivityIndicator, Alert} from 'react-native';
 import CustomButton from '../../components/CustomButton';
-import Document from 'react-native-vector-icons/Ionicons';
 import firestore from '@react-native-firebase/firestore';
 import InputFieldAfterLogIn from '../../components/InputFieldAfterLogIn';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
@@ -19,8 +10,12 @@ import DocumentPicker, {
   types,
 } from 'react-native-document-picker';
 import storage from '@react-native-firebase/storage';
-import DeleteIcon from 'react-native-vector-icons/Feather';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper';
+import {
+  ReusableButton,
+  UploadFiles,
+} from '../../components/ButtonsAfterLogin/ButtonsAfterLogin';
+import {HeaderWithDeleteIcon} from '../../components/Headers/Headers';
 
 /**
  * Anonymous class that renders EditActivityScreen.
@@ -387,6 +382,13 @@ const EditActivityScreen = ({route}) => {
   };
 
   /**
+   * Go back to View Activity Screen.
+   */
+  const goBack = () => {
+    navigation.goBack();
+  };
+
+  /**
    * Fetches data from the database.
    *
    * @returns Clean-up function.
@@ -473,28 +475,12 @@ const EditActivityScreen = ({route}) => {
     <KeyboardAvoidingWrapper backgroundColor="#FFFFFF">
       <View style={styles.root}>
         {/* Header */}
-        <View style={styles.header}>
-          <Back
-            size={35}
-            name="chevron-left"
-            color="#808080"
-            onPress={() => navigation.goBack()}
-            style={{
-              flex: 1,
-              paddingTop: 2,
-            }}
-          />
-          <Text style={styles.headerText}>Activity</Text>
-          <DeleteIcon
-            name="trash-2"
-            size={25}
-            color="#808080"
-            onPress={confirmDelete}
-            style={{
-              paddingRight: 20,
-            }}
-          />
-        </View>
+        <HeaderWithDeleteIcon
+          back={goBack}
+          deleting={confirmDelete}
+          text="Activity"
+          flexValue={1.5}
+        />
 
         {/* Empty space so shadow can be visible */}
         <Text />
@@ -535,9 +521,10 @@ const EditActivityScreen = ({route}) => {
           <Text style={styles.field}>Start Time</Text>
 
           <View style={styles.horizontal}>
-            <Pressable onPress={showStartDatePicker} style={styles.button}>
-              <Text style={styles.buttonText}>Pick Start Time</Text>
-            </Pressable>
+            <ReusableButton
+              onPress={showStartDatePicker}
+              text="Pick Start Time"
+            />
             {isTimeChosen ? (
               <Text style={[styles.setText, {paddingLeft: 20}]}>
                 {getTime(startTime)}
@@ -559,18 +546,7 @@ const EditActivityScreen = ({route}) => {
           {/* Upload additional files */}
           <Text style={styles.field}>Additional Notes</Text>
           <View style={styles.horizontal}>
-            <Pressable onPress={chooseFile} style={styles.button}>
-              <Document
-                name="document-outline"
-                size={20}
-                color="white"
-                style={{
-                  paddingLeft: '1%',
-                }}
-              />
-
-              <Text style={styles.buttonText}>Upload Files</Text>
-            </Pressable>
+            <UploadFiles onPress={chooseFile} />
             {isDocChosen ? (
               <Text style={[styles.setText, {paddingLeft: 20}]}>
                 File uploaded.
@@ -623,48 +599,11 @@ const styles = StyleSheet.create({
     fontSize: 12,
     paddingLeft: 10,
   },
-  button: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    padding: 5,
-    backgroundColor: '#70DAD3',
-    borderRadius: 4,
-    marginTop: 10,
-    marginBottom: 8,
-  },
-  buttonText: {
-    fontFamily: 'Poppins-Medium',
-    color: 'white',
-    paddingHorizontal: '2%',
-    paddingTop: '1%',
-  },
   setText: {
     fontFamily: 'Poppins-Italic',
     color: '#333333',
     paddingTop: 2,
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    height: 65,
-    width: '100%',
-    paddingLeft: 10,
-    elevation: 15,
-    shadowColor: '#70D9D3',
-    shadowOpacity: 1,
-  },
-  headerText: {
-    fontFamily: 'Poppins-Bold',
-    fontSize: 26,
-    color: '#3B4949',
-    justifyContent: 'center',
-    alignSelf: 'center',
-    alignItems: 'center',
-    paddingTop: 9,
-    flex: 1.5,
+    fontSize: 12,
   },
   horizontal: {
     flexDirection: 'row',
@@ -672,14 +611,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   field: {
-    fontFamily: 'Poppins-Regular',
-    color: '#333333',
-    paddingTop: 2,
-  },
-  text: {
-    paddingVertical: 18,
     fontFamily: 'Poppins-Medium',
     color: '#333333',
+    paddingTop: 2,
   },
 });
 export default EditActivityScreen;

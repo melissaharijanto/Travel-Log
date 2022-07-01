@@ -1,26 +1,22 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ActivityIndicator,
-  Pressable,
-  Alert,
-} from 'react-native';
-import Back from 'react-native-vector-icons/Feather';
+import {View, Text, StyleSheet, ActivityIndicator, Alert} from 'react-native';
 import CustomButton from '../../components/CustomButton';
 import firestore from '@react-native-firebase/firestore';
 import InputFieldAfterLogIn from '../../components/InputFieldAfterLogIn';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import Document from 'react-native-vector-icons/Ionicons';
 import DocumentPicker, {
   isInProgress,
   types,
 } from 'react-native-document-picker';
 import storage from '@react-native-firebase/storage';
-import DeleteIcon from 'react-native-vector-icons/Feather';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper';
+import {
+  ReusableButton,
+  UploadFiles,
+} from '../../components/ButtonsAfterLogin/ButtonsAfterLogin';
+import {HeaderWithDeleteIcon} from '../../components/Headers/Headers';
+
 /**
  * Anonymous class that renders EditAccommodationScreen.
  *
@@ -430,6 +426,13 @@ const EditAccommodationScreen = ({route}) => {
   };
 
   /**
+   * Go back to View Accommodation Screen.
+   */
+  const goBack = () => {
+    navigation.goBack();
+  };
+
+  /**
    * Fetches data from Firestore Database on realtime.
    *
    * @returns Clean-up function.
@@ -511,37 +514,12 @@ const EditAccommodationScreen = ({route}) => {
     <KeyboardAvoidingWrapper backgroundColor="#FFFFFF">
       <View style={styles.root}>
         {/* header */}
-        <View style={styles.header}>
-          <Back
-            size={35}
-            name="chevron-left"
-            color="#808080"
-            onPress={() =>
-              navigation.navigate('ViewAccommodation', {
-                id: id,
-                itemId: itemId,
-                itineraryStart: itineraryStart,
-                itineraryEnd: itineraryEnd,
-                owner: owner,
-              })
-            }
-            style={{
-              flex: 1,
-              paddingTop: 2,
-            }}
-          />
-          <Text style={styles.headerText}>Accommodation</Text>
-
-          <DeleteIcon
-            name="trash-2"
-            size={25}
-            color="#808080"
-            onPress={confirmDelete}
-            style={{
-              paddingRight: 20,
-            }}
-          />
-        </View>
+        <HeaderWithDeleteIcon
+          back={goBack}
+          deleting={confirmDelete}
+          text="Accommodation"
+          flexValue={3.5}
+        />
 
         {/* empty space so shadow can be visible */}
         <Text />
@@ -569,9 +547,10 @@ const EditAccommodationScreen = ({route}) => {
           <Text style={styles.field}>Check In Date</Text>
 
           <View style={styles.horizontal}>
-            <Pressable onPress={showStartDatePicker} style={styles.button}>
-              <Text style={styles.buttonText}>Pick Check In Date</Text>
-            </Pressable>
+            <ReusableButton
+              onPress={showStartDatePicker}
+              text="Pick Check In Date"
+            />
             <Text style={[styles.setText, {paddingLeft: 20}]}>
               {startDateString}
             </Text>
@@ -593,9 +572,10 @@ const EditAccommodationScreen = ({route}) => {
           <Text style={styles.field}>Check Out Date</Text>
 
           <View style={styles.horizontal}>
-            <Pressable onPress={showEndDatePicker} style={styles.button}>
-              <Text style={styles.buttonText}>Pick Check Out Date</Text>
-            </Pressable>
+            <ReusableButton
+              onPress={showEndDatePicker}
+              text="Pick Check Out Date"
+            />
             <Text style={[styles.setText, {paddingLeft: 20}]}>
               {endDateString}
             </Text>
@@ -614,18 +594,7 @@ const EditAccommodationScreen = ({route}) => {
           {/* Upload additional files */}
           <Text style={styles.field}>Additional Notes</Text>
           <View style={styles.horizontal}>
-            <Pressable onPress={chooseFile} style={styles.button}>
-              <Document
-                name="document-outline"
-                size={20}
-                color="white"
-                style={{
-                  paddingLeft: '1%',
-                }}
-              />
-
-              <Text style={styles.buttonText}>Upload Files</Text>
-            </Pressable>
+            <UploadFiles onPress={chooseFile} />
             {isDocChosen ? (
               <Text style={[styles.setText, {paddingLeft: 20}]}>
                 File uploaded.
@@ -667,22 +636,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF',
   },
-  button: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    padding: 5,
-    backgroundColor: '#70DAD3',
-    borderRadius: 4,
-    marginTop: 10,
-    marginBottom: 8,
-  },
-  buttonText: {
-    fontFamily: 'Poppins-Medium',
-    color: 'white',
-    paddingHorizontal: '2%',
-    paddingTop: '1%',
-  },
   error: {
     color: '#a3160b',
     fontFamily: 'Poppins-Italic',
@@ -693,28 +646,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Italic',
     color: '#333333',
     paddingTop: 2,
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    height: 65,
-    width: '100%',
-    paddingLeft: 10,
-    elevation: 15,
-    shadowColor: '#70D9D3',
-    shadowOpacity: 1,
-  },
-  headerText: {
-    fontFamily: 'Poppins-Bold',
-    fontSize: 26,
-    color: '#3B4949',
-    justifyContent: 'center',
-    alignSelf: 'center',
-    alignItems: 'center',
-    paddingTop: 9,
-    flex: 3.5,
+    fontSize: 12,
   },
   horizontal: {
     flexDirection: 'row',
@@ -722,14 +654,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   field: {
-    fontFamily: 'Poppins-Regular',
-    color: '#333333',
-    paddingTop: 2,
-  },
-  text: {
-    paddingVertical: 18,
     fontFamily: 'Poppins-Medium',
     color: '#333333',
+    paddingTop: 2,
   },
 });
 export default EditAccommodationScreen;

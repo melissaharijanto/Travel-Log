@@ -1,14 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Pressable,
-  ActivityIndicator,
-} from 'react-native';
+import {View, Text, StyleSheet, ActivityIndicator} from 'react-native';
 import Back from 'react-native-vector-icons/Feather';
-import Document from 'react-native-vector-icons/Ionicons';
 import InputFieldAfterLogIn from '../../components/InputFieldAfterLogIn';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import CustomButton from '../../components/CustomButton';
@@ -19,6 +12,11 @@ import DocumentPicker, {
 import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper';
+import {
+  ReusableButton,
+  UploadFiles,
+} from '../../components/ButtonsAfterLogin/ButtonsAfterLogin';
+import {HeaderWithoutDeleteIcon} from '../../components/Headers/Headers';
 
 /**
  * Anonymous class that renders AddAccommodationScreen.
@@ -379,20 +377,11 @@ const AddAccommodationScreen = ({route}) => {
     <KeyboardAvoidingWrapper backgroundColor="#FFFFFF">
       <View style={styles.root}>
         {/* Header */}
-        <View style={styles.header}>
-          <Back
-            size={35}
-            name="chevron-left"
-            color="#808080"
-            onPress={() => navigation.goBack()}
-            style={{
-              flex: 1,
-              paddingTop: 2,
-            }}
-          />
-          <Text style={styles.headerText}>Accommodation</Text>
-        </View>
-
+        <HeaderWithoutDeleteIcon
+          onPress={() => navigation.goBack()}
+          text="Accommodation"
+          flexValue={3.5}
+        />
         {/* Empty space so shadow can be visible */}
         <Text />
 
@@ -419,9 +408,10 @@ const AddAccommodationScreen = ({route}) => {
           <Text style={styles.text}>Check In Date</Text>
           <View style={styles.horizontal}>
             {/* Button to pick check-in date */}
-            <Pressable onPress={showStartDatePicker} style={styles.button}>
-              <Text style={styles.buttonText}>Pick Check In Date</Text>
-            </Pressable>
+            <ReusableButton
+              onPress={showStartDatePicker}
+              text="Pick Check In Date"
+            />
             <Text style={[styles.setText, {paddingLeft: 20}]}>
               {startDateString}
             </Text>
@@ -444,9 +434,11 @@ const AddAccommodationScreen = ({route}) => {
 
           <View style={styles.horizontal}>
             {/* Button to pick check-out date */}
-            <Pressable onPress={showEndDatePicker} style={styles.button}>
-              <Text style={styles.buttonText}>Pick Check Out Date</Text>
-            </Pressable>
+            <ReusableButton
+              onPress={showEndDatePicker}
+              text="Pick Check Out Date"
+            />
+
             <Text style={[styles.setText, {paddingLeft: 20}]}>
               {endDateString}
             </Text>
@@ -466,19 +458,9 @@ const AddAccommodationScreen = ({route}) => {
           <Text style={styles.text}>Additional Notes</Text>
           <View style={styles.horizontal}>
             {/* Button to pick a document */}
-            <Pressable onPress={chooseFile} style={styles.button}>
-              <Document
-                name="document-outline"
-                size={20}
-                color="white"
-                style={{
-                  paddingLeft: '1%',
-                }}
-              />
-              <Text style={styles.buttonText}>Upload Files</Text>
-            </Pressable>
+            <UploadFiles onPress={chooseFile} />
             {isDocChosen ? (
-              <Text style={[styles.setText, {paddingLeft: 20}]}>
+              <Text style={[styles.setText, {paddingLeft: 20, width: '65%'}]}>
                 {fileName}
               </Text>
             ) : null}
@@ -530,53 +512,16 @@ const styles = StyleSheet.create({
     fontSize: 12,
     paddingLeft: 10,
   },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    height: 65,
-    width: '100%',
-    paddingLeft: 10,
-    elevation: 15,
-    shadowColor: '#70D9D3',
-    shadowOpacity: 1,
-  },
-  headerText: {
-    fontFamily: 'Poppins-Bold',
-    fontSize: 26,
-    color: '#3B4949',
-    justifyContent: 'center',
-    alignSelf: 'center',
-    alignItems: 'center',
-    paddingTop: 9,
-    flex: 3.8,
-  },
   horizontal: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
-  button: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    padding: 5,
-    backgroundColor: '#70DAD3',
-    borderRadius: 4,
-    marginTop: 10,
-    marginBottom: 8,
-  },
-  buttonText: {
-    fontFamily: 'Poppins-Medium',
-    color: 'white',
-    paddingHorizontal: '2%',
-    paddingTop: '1%',
-  },
   setText: {
     fontFamily: 'Poppins-Italic',
     color: '#333333',
     paddingTop: 2,
+    fontSize: 12,
   },
   text: {
     fontFamily: 'Poppins-Medium',

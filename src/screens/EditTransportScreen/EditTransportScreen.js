@@ -1,15 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Pressable,
-  ActivityIndicator,
-  Alert,
-} from 'react-native';
-import Back from 'react-native-vector-icons/Feather';
-import Document from 'react-native-vector-icons/Ionicons';
+import {View, Text, StyleSheet, ActivityIndicator, Alert} from 'react-native';
 import InputFieldAfterLogIn from '../../components/InputFieldAfterLogIn';
 import CustomButton from '../../components/CustomButton';
 import DocumentPicker, {
@@ -19,8 +10,12 @@ import DocumentPicker, {
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
-import DeleteIcon from 'react-native-vector-icons/Feather';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper';
+import {
+  ReusableButton,
+  UploadFiles,
+} from '../../components/ButtonsAfterLogin/ButtonsAfterLogin';
+import {HeaderWithDeleteIcon} from '../../components/Headers/Headers';
 
 /**
  * Anonymous class that renders EditTransportScreen.
@@ -468,6 +463,13 @@ const EditTransportScreen = ({route}) => {
   };
 
   /**
+   * Go back to View Transport Screen.
+   */
+  const goBack = () => {
+    navigation.goBack();
+  };
+
+  /**
    * Fetches data from database upon change of the route variable.
    */
   useEffect(() => {
@@ -523,28 +525,12 @@ const EditTransportScreen = ({route}) => {
     <KeyboardAvoidingWrapper backgroundColor="#FFFFFF">
       <View style={styles.root}>
         {/* header */}
-        <View style={styles.header}>
-          <Back
-            size={35}
-            name="chevron-left"
-            color="#808080"
-            onPress={() => navigation.goBack()}
-            style={{
-              flex: 1,
-              paddingTop: 2,
-            }}
-          />
-          <Text style={styles.headerText}>Transport</Text>
-          <DeleteIcon
-            name="trash-2"
-            size={25}
-            color="#808080"
-            onPress={confirmDelete}
-            style={{
-              paddingRight: 20,
-            }}
-          />
-        </View>
+        <HeaderWithDeleteIcon
+          back={goBack}
+          deleting={confirmDelete}
+          text="Transport"
+          flexValue={1.95}
+        />
 
         {/* empty space so shadow can be visible */}
         <Text />
@@ -558,7 +544,7 @@ const EditTransportScreen = ({route}) => {
             },
           ]}>
           {/* Field to input transport name. */}
-          <Text style={styles.text}>Mode of Transport</Text>
+          <Text style={styles.field}>Mode of Transport</Text>
 
           <InputFieldAfterLogIn
             placeholder="Mode of Transport"
@@ -569,7 +555,7 @@ const EditTransportScreen = ({route}) => {
           {showNameError ? <Text style={styles.error}>{nameError}</Text> : null}
 
           {/* Field to input start location */}
-          <Text style={styles.text}>Starting Point</Text>
+          <Text style={styles.field}>Starting Point</Text>
 
           <InputFieldAfterLogIn
             placeholder="Starting Point"
@@ -582,7 +568,7 @@ const EditTransportScreen = ({route}) => {
           ) : null}
 
           {/* Field to input destination*/}
-          <Text style={styles.text}>Destination</Text>
+          <Text style={styles.field}>Destination</Text>
 
           <InputFieldAfterLogIn
             placeholder="Destination"
@@ -592,11 +578,12 @@ const EditTransportScreen = ({route}) => {
 
           {showDestError ? <Text style={styles.error}>{destError}</Text> : null}
 
-          <Text style={styles.text}>Start Time</Text>
+          <Text style={styles.field}>Start Time</Text>
           <View style={styles.horizontal}>
-            <Pressable onPress={showStartDatePicker} style={styles.button}>
-              <Text style={styles.buttonText}>Pick Start Time</Text>
-            </Pressable>
+            <ReusableButton
+              onPress={showStartDatePicker}
+              text="Pick Start Time"
+            />
             {isTimeChosen ? (
               <Text style={[styles.setText, {paddingLeft: 20}]}>
                 {getTime(startTime)}
@@ -616,20 +603,9 @@ const EditTransportScreen = ({route}) => {
           ) : null}
 
           {/* Upload additional files */}
-          <Text style={styles.text}>Additional Notes</Text>
+          <Text style={styles.field}>Additional Notes</Text>
           <View style={styles.horizontal}>
-            <Pressable onPress={chooseFile} style={styles.button}>
-              <Document
-                name="document-outline"
-                size={20}
-                color="white"
-                style={{
-                  paddingLeft: '1%',
-                }}
-              />
-
-              <Text style={styles.buttonText}>Upload Files</Text>
-            </Pressable>
+            <UploadFiles onPress={chooseFile} />
             {isDocChosen ? (
               <Text style={[styles.setText, {paddingLeft: 20}]}>
                 File Uploaded.
@@ -679,55 +655,18 @@ const styles = StyleSheet.create({
     fontSize: 12,
     paddingLeft: 10,
   },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    height: 65,
-    width: '100%',
-    paddingLeft: 10,
-    elevation: 15,
-    shadowColor: '#70D9D3',
-    shadowOpacity: 1,
-  },
-  headerText: {
-    fontFamily: 'Poppins-Bold',
-    fontSize: 26,
-    color: '#3B4949',
-    justifyContent: 'center',
-    alignSelf: 'center',
-    alignItems: 'center',
-    paddingTop: 9,
-    flex: 1.95,
-  },
   horizontal: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
-  button: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    padding: 5,
-    backgroundColor: '#70DAD3',
-    borderRadius: 4,
-    marginTop: 10,
-    marginBottom: 8,
-  },
-  buttonText: {
-    fontFamily: 'Poppins-Medium',
-    color: 'white',
-    paddingHorizontal: '2%',
-    paddingTop: '1%',
-  },
   setText: {
     fontFamily: 'Poppins-Italic',
     color: '#333333',
     paddingTop: 2,
+    fontSize: 12,
   },
-  text: {
+  field: {
     fontFamily: 'Poppins-Medium',
     color: '#333333',
     paddingTop: 2,
