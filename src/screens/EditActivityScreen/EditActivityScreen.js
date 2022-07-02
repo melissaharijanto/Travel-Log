@@ -385,7 +385,13 @@ const EditActivityScreen = ({route}) => {
    * Go back to View Activity Screen.
    */
   const goBack = () => {
-    navigation.goBack();
+    navigation.navigate('ViewActivity', {
+      id: id,
+      dayLabel: dayLabel,
+      date: date,
+      itemId: itemId,
+      owner: owner,
+    });
   };
 
   /**

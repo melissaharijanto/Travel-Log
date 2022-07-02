@@ -39,6 +39,8 @@ const ViewAccommodationScreen = ({route}) => {
   const [fileName, setFileName] = useState(null);
   const [file, setFile] = useState(null);
 
+  const goBack = () => {};
+
   const getData = async () => {
     let unmounted = false;
     firestore()
@@ -101,7 +103,14 @@ const ViewAccommodationScreen = ({route}) => {
       <View style={styles.root}>
         {/* header */}
         <HeaderWithoutDeleteIcon
-          onPress={() => navigation.goBack()}
+          onPress={() =>
+            navigation.navigate('NewAccommodation', {
+              id: id,
+              itineraryStart: itineraryStart,
+              itineraryEnd: itineraryEnd,
+              owner: owner,
+            })
+          }
           text="Accommodation"
           flexValue={3.5}
         />

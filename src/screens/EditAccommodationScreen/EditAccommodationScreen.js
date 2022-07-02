@@ -429,7 +429,13 @@ const EditAccommodationScreen = ({route}) => {
    * Go back to View Accommodation Screen.
    */
   const goBack = () => {
-    navigation.goBack();
+    navigation.navigate('ViewAccommodation', {
+      id: id,
+      itemId: itemId,
+      itineraryStart: itineraryStart,
+      itineraryEnd: itineraryEnd,
+      owner: owner,
+    });
   };
 
   /**

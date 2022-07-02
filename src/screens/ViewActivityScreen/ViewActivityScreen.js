@@ -97,7 +97,14 @@ const ViewActivityScreen = ({route}) => {
       <View style={styles.root}>
         {/* header */}
         <HeaderWithoutDeleteIcon
-          onPress={() => navigation.goBack()}
+          onPress={() =>
+            navigation.navigate('NewDay', {
+              id: id,
+              dayLabel: dayLabel,
+              date: date,
+              owner: owner,
+            })
+          }
           text="Activity"
           flexValue={1.8}
         />

@@ -466,7 +466,13 @@ const EditTransportScreen = ({route}) => {
    * Go back to View Transport Screen.
    */
   const goBack = () => {
-    navigation.goBack();
+    navigation.navigate('ViewTransport', {
+      id: id,
+      dayLabel: dayLabel,
+      date: date,
+      owner: owner,
+      itemId: itemId,
+    });
   };
 
   /**
