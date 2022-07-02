@@ -44,6 +44,13 @@ export const UploadImages = ({onPress}) => {
   );
 };
 
+export const ViewFiles = ({onPress}) => {
+  return (
+    <Pressable style={styles.view} onPress={onPress}>
+      <Text style={styles.buttonText}>View file</Text>
+    </Pressable>
+  );
+};
 const styles = StyleSheet.create({
   button: {
     flexDirection: 'row',
@@ -60,5 +67,16 @@ const styles = StyleSheet.create({
     color: 'white',
     paddingHorizontal: '2%',
     paddingTop: '1%',
+  },
+  view: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 5,
+    backgroundColor: '#70DAD3',
+    borderRadius: 4,
+    marginTop: 10,
+    marginBottom: 8,
+    width: '25%',
   },
 });

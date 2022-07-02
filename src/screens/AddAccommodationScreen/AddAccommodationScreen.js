@@ -17,6 +17,10 @@ import {
   UploadFiles,
 } from '../../components/ButtonsAfterLogin/ButtonsAfterLogin';
 import {HeaderWithoutDeleteIcon} from '../../components/Headers/Headers';
+import {
+  FourLineBreak,
+  SmallLineBreak,
+} from '../../components/LineBreaks/LineBreaks';
 
 /**
  * Anonymous class that renders AddAccommodationScreen.
@@ -383,7 +387,7 @@ const AddAccommodationScreen = ({route}) => {
           flexValue={3.5}
         />
         {/* Empty space so shadow can be visible */}
-        <Text />
+        <SmallLineBreak />
 
         {/* Body */}
         <View
@@ -469,11 +473,7 @@ const AddAccommodationScreen = ({route}) => {
             Accepted file formats: .pdf, .docx, .jpeg, .png
           </Text>
 
-          {/* Line breaks */}
-          <Text>{'\n'}</Text>
-          <Text>{'\n'}</Text>
-          <Text>{'\n'}</Text>
-          <Text>{'\n'}</Text>
+          <FourLineBreak />
 
           <CustomButton text="Add" onPress={add} type="TERTIARY" />
 

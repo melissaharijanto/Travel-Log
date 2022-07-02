@@ -19,6 +19,7 @@ import EditProfilePicture from '../../../assets/images/EditProfilePicture.png';
 import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper';
+import {FourLineBreak} from '../../components/LineBreaks/LineBreaks';
 
 /**
  * Anonymous class that renders EditProfileScreen.
@@ -276,11 +277,7 @@ const EditProfileScreen = () => {
 
           <Text style={styles.userInfo}>{email}</Text>
 
-          <Text>
-            {'\n'}
-            {'\n'}
-            {'\n'}
-          </Text>
+          <FourLineBreak />
 
           {uploading ? (
             <View style={{justifyContent: 'center', alignItems: 'center'}}>

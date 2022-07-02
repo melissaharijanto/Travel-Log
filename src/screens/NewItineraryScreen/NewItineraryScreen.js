@@ -22,6 +22,10 @@ import {
   ReusableButton,
   UploadImages,
 } from '../../components/ButtonsAfterLogin/ButtonsAfterLogin';
+import {
+  FourLineBreak,
+  SmallLineBreak,
+} from '../../components/LineBreaks/LineBreaks';
 
 const NewItineraryScreen = () => {
   // Navigation object.
@@ -292,8 +296,8 @@ const NewItineraryScreen = () => {
           text="New Itinerary"
           flexValue={2.8}
         />
-        {/* Empty text field to make the shadow of the header visible. */}
-        <Text />
+
+        <SmallLineBreak />
 
         <View
           style={[
@@ -378,13 +382,7 @@ const NewItineraryScreen = () => {
             setValue={setNotes}
           />
 
-          {/* Line breaks. */}
-          <Text>
-            {'\n'}
-            {'\n'}
-            {'\n'}
-            {'\n'}
-          </Text>
+          <FourLineBreak />
 
           {/* Button to add itinerary to the database */}
           <CustomButton text="Add" type="TERTIARY" onPress={addNewItinerary} />

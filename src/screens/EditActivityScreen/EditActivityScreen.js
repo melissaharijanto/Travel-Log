@@ -16,6 +16,10 @@ import {
   UploadFiles,
 } from '../../components/ButtonsAfterLogin/ButtonsAfterLogin';
 import {HeaderWithDeleteIcon} from '../../components/Headers/Headers';
+import {
+  FourLineBreak,
+  SmallLineBreak,
+} from '../../components/LineBreaks/LineBreaks';
 
 /**
  * Anonymous class that renders EditActivityScreen.
@@ -489,7 +493,7 @@ const EditActivityScreen = ({route}) => {
         />
 
         {/* Empty space so shadow can be visible */}
-        <Text />
+        <SmallLineBreak />
 
         {/* Body */}
         <View
@@ -564,11 +568,7 @@ const EditActivityScreen = ({route}) => {
           </Text>
 
           {/* Line breaks */}
-          <Text>{'\n'}</Text>
-          <Text>{'\n'}</Text>
-          <Text>{'\n'}</Text>
-
-          <Text style={{paddingTop: 10}}>{'\n'}</Text>
+          <FourLineBreak />
 
           <CustomButton text="Update" onPress={update} type="TERTIARY" />
 

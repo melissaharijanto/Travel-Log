@@ -16,6 +16,10 @@ import {
   UploadFiles,
 } from '../../components/ButtonsAfterLogin/ButtonsAfterLogin';
 import {HeaderWithDeleteIcon} from '../../components/Headers/Headers';
+import {
+  FourLineBreak,
+  SmallLineBreak,
+} from '../../components/LineBreaks/LineBreaks';
 
 /**
  * Anonymous class that renders EditAccommodationScreen.
@@ -528,7 +532,7 @@ const EditAccommodationScreen = ({route}) => {
         />
 
         {/* empty space so shadow can be visible */}
-        <Text />
+        <SmallLineBreak />
 
         {/* body */}
         <View
@@ -608,13 +612,7 @@ const EditAccommodationScreen = ({route}) => {
             ) : null}
           </View>
 
-          {/* Line breaks */}
-          <Text>{'\n'}</Text>
-          <Text>{'\n'}</Text>
-          <Text>{'\n'}</Text>
-          <Text>{'\n'}</Text>
-          <Text>{'\n'}</Text>
-          <Text>{'\n'}</Text>
+          <FourLineBreak />
 
           <CustomButton text="Update" onPress={update} type="TERTIARY" />
 

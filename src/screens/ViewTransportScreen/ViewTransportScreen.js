@@ -1,12 +1,17 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet, Pressable} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import CustomButton from '../../components/CustomButton';
 import {firebase} from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
 import * as OpenAnything from 'react-native-openanything';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper';
 import {HeaderWithoutDeleteIcon} from '../../components/Headers/Headers';
+import {ViewFiles} from '../../components/ButtonsAfterLogin/ButtonsAfterLogin';
+import {
+  FourLineBreak,
+  SmallLineBreak,
+} from '../../components/LineBreaks/LineBreaks';
 
 const ViewTransportScreen = ({route}) => {
   const {id, itemId, dayLabel, date, owner} = route.params;
@@ -27,7 +32,6 @@ const ViewTransportScreen = ({route}) => {
   const [file, setFile] = useState(null);
 
   const getData = () => {
-    let unmounted = false;
     firestore()
       .collection('itineraries')
       .doc(id)
@@ -43,23 +47,14 @@ const ViewTransportScreen = ({route}) => {
           setFileUri(documentSnapshot.data().notes);
         }
       });
-
-    return () => {
-      unmounted = true;
-    };
   };
 
   const getFileName = () => {
-    let unmounted = false;
     if (fileUri != null) {
       setChosen(true);
       const fileNotes = firebase.storage().refFromURL(fileUri).name;
       setFileName(fileNotes);
     }
-
-    return () => {
-      unmounted = true;
-    };
   };
 
   useEffect(() => {
@@ -95,8 +90,7 @@ const ViewTransportScreen = ({route}) => {
           flexValue={1.95}
         />
 
-        {/* empty space so shadow can be visible */}
-        <Text />
+        <SmallLineBreak />
 
         {/* body */}
         <View
@@ -129,11 +123,7 @@ const ViewTransportScreen = ({route}) => {
           )}
 
           {fileUri != null ? (
-            <Pressable
-              style={styles.button}
-              onPress={() => OpenAnything.Web(fileUri)}>
-              <Text style={styles.buttonText}>View file</Text>
-            </Pressable>
+            <ViewFiles onPress={() => OpenAnything.Web(fileUri)} />
           ) : null}
 
           {/* Line breaks */}
@@ -144,10 +134,7 @@ const ViewTransportScreen = ({route}) => {
             </Text>
           )}
 
-          <Text>{'\n'}</Text>
-          <Text>{'\n'}</Text>
-          <Text>{'\n'}</Text>
-          <Text>{'\n'}</Text>
+          <FourLineBreak />
 
           <CustomButton
             text="Edit"
@@ -172,45 +159,6 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     backgroundColor: '#FFFFFF',
-  },
-  button: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 5,
-    backgroundColor: '#70DAD3',
-    borderRadius: 4,
-    marginTop: 10,
-    marginBottom: 8,
-    width: '25%',
-  },
-  buttonText: {
-    fontFamily: 'Poppins-Medium',
-    color: 'white',
-    paddingHorizontal: '2%',
-    paddingTop: '1%',
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    height: 65,
-    width: '100%',
-    paddingLeft: 10,
-    elevation: 15,
-    shadowColor: '#70D9D3',
-    shadowOpacity: 1,
-  },
-  headerText: {
-    fontFamily: 'Poppins-Bold',
-    fontSize: 26,
-    color: '#3B4949',
-    justifyContent: 'center',
-    alignSelf: 'center',
-    alignItems: 'center',
-    paddingTop: 9,
-    flex: 2,
   },
   horizontal: {
     flexDirection: 'row',

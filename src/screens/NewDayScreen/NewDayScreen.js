@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Image, StyleSheet, FlatList} from 'react-native';
+import {View, Image, StyleSheet, FlatList} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import Back from 'react-native-vector-icons/Feather';
 import ActivityTab from '../../components/ActivityTab';
 import TransportTab from '../../components/TransportTab';
 import ActionButton from 'react-native-action-button-warnings-fixed';
@@ -10,6 +9,8 @@ import Transport from '../../../assets/images/Transport.png';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import {HeaderWithoutDeleteIcon} from '../../components/Headers/Headers';
+import {SmallLineBreak} from '../../components/LineBreaks/LineBreaks';
+import NewDaySkeleton from '../../components/NewDaySkeleton';
 
 const NewDayScreen = ({route}) => {
   const navigation = useNavigation();
@@ -17,6 +18,8 @@ const NewDayScreen = ({route}) => {
   const [plans, setPlans] = useState(null);
 
   const {id, dayLabel, date, owner} = route.params;
+
+  const [loading, setLoading] = useState(true);
 
   // View-only function
   const viewOnly = () => {};
@@ -54,6 +57,9 @@ const NewDayScreen = ({route}) => {
       .then(querySnapshot => {
         if (querySnapshot.empty) {
           console.log('Query is empty.');
+          if (loading) {
+            setLoading(false);
+          }
           return;
         }
 
@@ -96,6 +102,9 @@ const NewDayScreen = ({route}) => {
             setPlans(plansList);
           }
         });
+        if (loading) {
+          setLoading(false);
+        }
       });
     return () => {
       unmounted = true;
@@ -104,7 +113,6 @@ const NewDayScreen = ({route}) => {
 
   useEffect(() => {
     let unmounted = false;
-
     if (auth().currentUser.uid === owner) {
       isOwner(true);
       console.log('Is owner!');
@@ -135,64 +143,67 @@ const NewDayScreen = ({route}) => {
         flexValue={1.45}
       />
 
-      <Text />
-      <View style={styles.content}>
-        <FlatList
-          data={plans}
-          numColumns={1}
-          renderItem={({item}) => {
-            if (item.type === 'activity') {
-              return (
-                <ActivityTab
-                  onPress={() => {
-                    if (itineraryOwner) {
-                      navigation.navigate('ViewActivity', {
-                        id: id,
-                        dayLabel: dayLabel,
-                        itemId: item.id,
-                        date: date,
-                        owner: owner,
-                      });
-                    } else {
-                      viewOnly();
-                    }
-                  }}
-                  text={item.name}
-                  subtext={`${getTime(item.time)} - ${item.location}`}
-                />
-              );
-            }
+      <SmallLineBreak />
 
-            if (item.type === 'transport') {
-              return (
-                <TransportTab
-                  onPress={() => {
-                    if (itineraryOwner) {
-                      navigation.navigate('ViewTransport', {
-                        id: id,
-                        dayLabel: dayLabel,
-                        itemId: item.id,
-                        date: date,
-                        owner: owner,
-                      });
-                    } else {
-                      viewOnly();
-                    }
-                  }}
-                  text={item.name}
-                  subtext={`${getTime(item.time)} - ${item.startingPoint} >> ${
-                    item.destination
-                  }`}
-                />
-              );
-            }
-          }}
-          keyExtractor={(contact, index) => String(index)}
-          ItemSeparatorComponent={() => <View style={{marginBottom: 5}} />}
-        />
-      </View>
+      {loading ? (
+        <NewDaySkeleton />
+      ) : (
+        <View style={styles.content}>
+          <FlatList
+            data={plans}
+            numColumns={1}
+            renderItem={({item}) => {
+              if (item.type === 'activity') {
+                return (
+                  <ActivityTab
+                    onPress={() => {
+                      if (itineraryOwner) {
+                        navigation.navigate('ViewActivity', {
+                          id: id,
+                          dayLabel: dayLabel,
+                          itemId: item.id,
+                          date: date,
+                          owner: owner,
+                        });
+                      } else {
+                        viewOnly();
+                      }
+                    }}
+                    text={item.name}
+                    subtext={`${getTime(item.time)} - ${item.location}`}
+                  />
+                );
+              }
 
-      {/* Edit action button onPress later */}
+              if (item.type === 'transport') {
+                return (
+                  <TransportTab
+                    onPress={() => {
+                      if (itineraryOwner) {
+                        navigation.navigate('ViewTransport', {
+                          id: id,
+                          dayLabel: dayLabel,
+                          itemId: item.id,
+                          date: date,
+                          owner: owner,
+                        });
+                      } else {
+                        viewOnly();
+                      }
+                    }}
+                    text={item.name}
+                    subtext={`${getTime(item.time)} - ${
+                      item.startingPoint
+                    } >> ${item.destination}`}
+                  />
+                );
+              }
+            }}
+            keyExtractor={(contact, index) => String(index)}
+            ItemSeparatorComponent={() => <View style={{marginBottom: 5}} />}
+          />
+        </View>
+      )}
       {itineraryOwner ? (
         <ActionButton
           shadowStyle={styles.shadow}
@@ -241,7 +252,7 @@ const NewDayScreen = ({route}) => {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    alignItems: 'flex-start',
+    alignItems: 'center',
     backgroundColor: 'white',
     width: '100%',
   },
@@ -249,28 +260,6 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingHorizontal: '5%',
     flex: 1,
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    height: 65,
-    width: '100%',
-    paddingLeft: 10,
-    elevation: 15,
-    shadowColor: '#70D9D3',
-    shadowOpacity: 1,
-  },
-  headerText: {
-    fontFamily: 'Poppins-Bold',
-    fontSize: 26,
-    color: '#3B4949',
-    justifyContent: 'center',
-    alignSelf: 'center',
-    alignItems: 'center',
-    paddingTop: 9,
-    flex: 1.45,
   },
   text: {
     fontFamily: 'Poppins-Medium',

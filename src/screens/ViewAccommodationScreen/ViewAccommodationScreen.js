@@ -7,6 +7,11 @@ import firestore from '@react-native-firebase/firestore';
 import * as OpenAnything from 'react-native-openanything';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper';
 import {HeaderWithoutDeleteIcon} from '../../components/Headers/Headers';
+import {ViewFiles} from '../../components/ButtonsAfterLogin/ButtonsAfterLogin';
+import {
+  FourLineBreak,
+  SmallLineBreak,
+} from '../../components/LineBreaks/LineBreaks';
 
 const ViewAccommodationScreen = ({route}) => {
   const {id, itineraryStart, itineraryEnd, itemId, owner} = route.params;
@@ -115,8 +120,7 @@ const ViewAccommodationScreen = ({route}) => {
           flexValue={3.5}
         />
 
-        {/* empty space so shadow can be visible */}
-        <Text />
+        <SmallLineBreak />
 
         {/* body */}
         <View
@@ -152,11 +156,7 @@ const ViewAccommodationScreen = ({route}) => {
           )}
 
           {fileUri != null ? (
-            <Pressable
-              style={styles.button}
-              onPress={() => OpenAnything.Web(fileUri)}>
-              <Text style={styles.buttonText}>View file</Text>
-            </Pressable>
+            <ViewFiles onPress={() => OpenAnything.Web(fileUri)} />
           ) : null}
 
           {/* Line breaks */}
@@ -167,10 +167,7 @@ const ViewAccommodationScreen = ({route}) => {
             </Text>
           )}
 
-          <Text>{'\n'}</Text>
-          <Text>{'\n'}</Text>
-          <Text>{'\n'}</Text>
-          <Text>{'\n'}</Text>
+          <FourLineBreak />
 
           <CustomButton
             text="Edit"
@@ -195,23 +192,6 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     backgroundColor: '#FFFFFF',
-  },
-  button: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 5,
-    backgroundColor: '#70DAD3',
-    borderRadius: 4,
-    marginTop: 10,
-    marginBottom: 8,
-    width: '25%',
-  },
-  buttonText: {
-    fontFamily: 'Poppins-Medium',
-    color: 'white',
-    paddingHorizontal: '2%',
-    paddingTop: '1%',
   },
   horizontal: {
     flexDirection: 'row',

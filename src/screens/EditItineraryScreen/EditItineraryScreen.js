@@ -11,6 +11,10 @@ import {firebase} from '@react-native-firebase/firestore';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper';
 import {HeaderWithDeleteIcon} from '../../components/Headers/Headers';
 import {UploadImages} from '../../components/ButtonsAfterLogin/ButtonsAfterLogin';
+import {
+  FourLineBreak,
+  SmallLineBreak,
+} from '../../components/LineBreaks/LineBreaks';
 
 /**
  * Anonymous class that renders EditItineraryScreen.
@@ -278,7 +282,7 @@ const EditItineraryScreen = ({route}) => {
           flexValue={2.2}
         />
 
-        <Text />
+        <SmallLineBreak />
 
         <View
           style={[
@@ -326,8 +330,6 @@ const EditItineraryScreen = ({route}) => {
             setValue={setNotes}
           />
 
-          <Text>{'\n'}</Text>
-
           {editing || deleting ? (
             <View
               style={{
@@ -338,12 +340,7 @@ const EditItineraryScreen = ({route}) => {
               <ActivityIndicator size="large" color="#000000" />
             </View>
           ) : (
-            <Text>
-              {'\n'}
-              {'\n'}
-              {'\n'}
-              {'\n'}
-            </Text>
+            <FourLineBreak />
           )}
 
           <CustomButton text="Cancel" type="QUATERNARY" onPress={goBack} />

@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet, Pressable, ScrollView} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import Back from 'react-native-vector-icons/Feather';
 import CustomButton from '../../components/CustomButton';
 import {firebase} from '@react-native-firebase/storage';
@@ -8,6 +8,11 @@ import firestore from '@react-native-firebase/firestore';
 import * as OpenAnything from 'react-native-openanything';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper';
 import {HeaderWithoutDeleteIcon} from '../../components/Headers/Headers';
+import {ViewFiles} from '../../components/ButtonsAfterLogin/ButtonsAfterLogin';
+import {
+  FourLineBreak,
+  SmallLineBreak,
+} from '../../components/LineBreaks/LineBreaks';
 
 const ViewActivityScreen = ({route}) => {
   const {id, itemId, dayLabel, date, owner} = route.params;
@@ -109,8 +114,7 @@ const ViewActivityScreen = ({route}) => {
           flexValue={1.8}
         />
 
-        {/* empty space so shadow can be visible */}
-        <Text />
+        <SmallLineBreak />
 
         {/* body */}
         <View
@@ -146,18 +150,10 @@ const ViewActivityScreen = ({route}) => {
           )}
 
           {fileUri != null ? (
-            <Pressable
-              style={styles.button}
-              onPress={() => OpenAnything.Web(fileUri)}>
-              <Text style={styles.buttonText}>View file</Text>
-            </Pressable>
+            <ViewFiles onPress={() => OpenAnything.Web(fileUri)} />
           ) : null}
 
-          {/* Line breaks */}
-          <Text>{'\n'}</Text>
-          <Text>{'\n'}</Text>
-          <Text>{'\n'}</Text>
-          <Text>{'\n'}</Text>
+          <FourLineBreak />
 
           {fileUri != null ? null : (
             <Text style={{paddingTop: 10}}>{'\n'}</Text>
@@ -186,45 +182,6 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     backgroundColor: '#FFFFFF',
-  },
-  button: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 5,
-    backgroundColor: '#70DAD3',
-    borderRadius: 4,
-    marginTop: 10,
-    marginBottom: 8,
-    width: '25%',
-  },
-  buttonText: {
-    fontFamily: 'Poppins-Medium',
-    color: 'white',
-    paddingHorizontal: '2%',
-    paddingTop: '1%',
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    height: 65,
-    width: '100%',
-    paddingLeft: 10,
-    elevation: 15,
-    shadowColor: '#70D9D3',
-    shadowOpacity: 1,
-  },
-  headerText: {
-    fontFamily: 'Poppins-Bold',
-    fontSize: 26,
-    color: '#3B4949',
-    justifyContent: 'center',
-    alignSelf: 'center',
-    alignItems: 'center',
-    paddingTop: 9,
-    flex: 1.8,
   },
   horizontal: {
     flexDirection: 'row',

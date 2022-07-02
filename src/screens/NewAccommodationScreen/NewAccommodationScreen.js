@@ -7,6 +7,8 @@ import Accommodation from '../../../assets/images/Accommodation.png';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import {HeaderWithoutDeleteIcon} from '../../components/Headers/Headers';
+import {SmallLineBreak} from '../../components/LineBreaks/LineBreaks';
+import NewDaySkeleton from '../../components/NewDaySkeleton';
 
 /**
  * Anonymous class that renders NewAccommodationScreen.
@@ -41,6 +43,12 @@ const NewAccommodationScreen = ({route}) => {
   const {id, itineraryStart, itineraryEnd, owner} = route.params;
 
   /**
+   * State to see whether the accommodation list is loading while fetching
+   * the list from the database.
+   */
+  const [loading, setLoading] = useState(true);
+
+  /**
    * State that can be true, or false. This state is used to facilitate the
    * 'View a friend's itinerary' feature. Can be true or false.
    */
@@ -67,6 +75,9 @@ const NewAccommodationScreen = ({route}) => {
       .orderBy('checkInDate')
       .onSnapshot(querySnapshot => {
         if (querySnapshot.empty) {
+          if (loading) {
+            setLoading(false);
+          }
           return;
         }
 
@@ -83,6 +94,9 @@ const NewAccommodationScreen = ({route}) => {
           });
           setAccommodation(accommodationList);
         });
+        if (loading) {
+          setLoading(false);
+        }
       });
     return () => {
       unmounted = true;
@@ -127,38 +141,43 @@ const NewAccommodationScreen = ({route}) => {
         flexValue={3.5}
       />
 
-      <Text />
-      <View style={styles.content}>
-        <FlatList
-          data={accommodation}
-          numColumns={1}
-          renderItem={({item}) => (
-            <AccommodationTab
-              onPress={() => {
-                if (itineraryOwner) {
-                  navigation.navigate('ViewAccommodation', {
-                    id: id,
-                    itineraryStart: itineraryStart,
-                    itineraryEnd: itineraryEnd,
-                    itemId: item.id,
-                    owner: owner,
-                  });
-                } else {
-                  viewOnly();
-                }
-              }}
-              text={item.name}
-              subtext={`${item.checkInDate
-                .toDate()
-                .toLocaleDateString()} - ${item.checkOutDate
-                .toDate()
-                .toLocaleDateString()}`}
-            />
-          )}
-          keyExtractor={(contact, index) => String(index)}
-          ItemSeparatorComponent={() => <View style={{marginBottom: 5}} />}
-        />
-      </View>
+      <SmallLineBreak />
+
+      {loading ? (
+        <NewDaySkeleton />
+      ) : (
+        <View style={styles.content}>
+          <FlatList
+            data={accommodation}
+            numColumns={1}
+            renderItem={({item}) => (
+              <AccommodationTab
+                onPress={() => {
+                  if (itineraryOwner) {
+                    navigation.navigate('ViewAccommodation', {
+                      id: id,
+                      itineraryStart: itineraryStart,
+                      itineraryEnd: itineraryEnd,
+                      itemId: item.id,
+                      owner: owner,
+                    });
+                  } else {
+                    viewOnly();
+                  }
+                }}
+                text={item.name}
+                subtext={`${item.checkInDate
+                  .toDate()
+                  .toLocaleDateString()} - ${item.checkOutDate
+                  .toDate()
+                  .toLocaleDateString()}`}
+              />
+            )}
+            keyExtractor={(contact, index) => String(index)}
+            ItemSeparatorComponent={() => <View style={{marginBottom: 5}} />}
+          />
+        </View>
+      )}
 
       {/* Edit action button onPress later */}
       {itineraryOwner ? (
@@ -192,7 +211,7 @@ const NewAccommodationScreen = ({route}) => {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    alignItems: 'flex-start',
+    alignItems: 'center',
     backgroundColor: 'white',
     width: '100%',
   },

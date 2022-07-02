@@ -15,6 +15,7 @@ import EditIcon from 'react-native-vector-icons/AntDesign';
 import CustomButton from '../../components/CustomButton';
 import firestore from '@react-native-firebase/firestore';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper';
+import {FourLineBreak} from '../../components/LineBreaks/LineBreaks';
 
 const ProfileScreen = () => {
   const user = auth().currentUser;
@@ -117,10 +118,7 @@ const ProfileScreen = () => {
             </Text>
           </View>
 
-          <Text>
-            {'\n'}
-            {'\n'}
-          </Text>
+          <FourLineBreak />
 
           <CustomButton
             text="Log Out"
