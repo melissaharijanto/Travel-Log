@@ -63,12 +63,22 @@ Design changes from Milestone #1:
 1. React state unmounted component errors, which we are planning to fix by re-evaluating all of the async functions.
 2. Buggy UI upon deleting objects, in which we will review our code and find more efficient/accurate ways to implement the functions. 
 
-## Testing
+## Testing (Last updated 2 July 2022)
 
 We would be happy if you are interested to try it out! Here are the steps to do so:
 
 Assuming that you have React Native CLI set up (https://reactnative.dev/docs/environment-setup), 
-1. Please access our repository with this link https://github.com/melissaharijanto/Travel-Log and fork it.
+1. Please access our repository with this link https://github.com/melissaharijanto/Travel-Log and fork it, or
+clone the repository to your local device by running this command.
+```
+git clone https://github.com/melissaharijanto/Travel-Log.git
+```
+If you have previously cloned the repository to your local device (from previous milestones), please run this
+command instead. 
+```
+cd Travel-Log
+git pull
+```
 2. Because the app is customized for android and uses React Native CLI, please use the following commands
 inside the root directory of the project:  
 ```
@@ -78,5 +88,18 @@ npx react-native run-android
 ```
 to run the app.
 
+Otherwise, if you have an Android device, you can do this instead.
+- Go to Settings > About phone > Software information and tap on your Build number 7 times.
+- Developer options will be enabled; go back to Settings > Developer options and enable 'USB Debugging'.
+- To confirm whether your device has been connected or not, run 
+```
+adb devices
+```
+in your terminal. 
+- Run the app by running 
+```
+npx react-native run-android
+```
+For more information on this method, please visit this link: https://reactnative.dev/docs/running-on-device.
 3. Have fun navigating through!
 

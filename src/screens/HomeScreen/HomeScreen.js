@@ -21,6 +21,7 @@ import {
   LatestItinerarySkeleton,
   PastItinerariesSkeleton,
 } from '../../components/HomeSkeleton/HomeSkeleton';
+import {HomeHeader} from '../../components/Headers/Headers';
 
 const HomeScreen = () => {
   /**
@@ -354,22 +355,13 @@ const HomeScreen = () => {
           <HomeUserSkeleton />
         ) : (
           <View style={{width: '100%'}}>
-            <View style={styles.horizontal}>
-              <View style={styles.header}>
-                <Text style={styles.welcome}>Welcome back to Travel Log,</Text>
-                <Text style={styles.title}>{name}!</Text>
-              </View>
-              <TouchableOpacity onPress={onClickProfile}>
-                <Image
-                  source={{
-                    uri: userData
-                      ? userData.userImg || defaultImage
-                      : defaultImage,
-                  }}
-                  style={styles.pfp}
-                />
-              </TouchableOpacity>
-            </View>
+            <HomeHeader
+              onPress={onClickProfile}
+              name={name}
+              uri={{
+                uri: userData ? userData.userImg || defaultImage : defaultImage,
+              }}
+            />
 
             <Text style={styles.subtitle}>Get started on a new itinerary!</Text>
             <CustomButton

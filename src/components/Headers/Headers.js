@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {Image, View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import Back from 'react-native-vector-icons/Feather';
 import DeleteIcon from 'react-native-vector-icons/Feather';
 
@@ -49,6 +49,20 @@ export const HeaderWithDeleteIcon = ({back, deleting, flexValue, text}) => {
   );
 };
 
+export const HomeHeader = ({onPress, uri, name}) => {
+  return (
+    <View style={styles.horizontal}>
+      <View style={styles.homeHeader}>
+        <Text style={styles.welcome}>Welcome back to Travel Log,</Text>
+        <Text style={styles.title}>{name}!</Text>
+      </View>
+      <TouchableOpacity onPress={onPress}>
+        <Image source={uri} style={styles.pfp} />
+      </TouchableOpacity>
+    </View>
+  );
+};
+
 const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
@@ -70,5 +84,31 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     paddingTop: 9,
+  },
+  homeHeader: {
+    paddingRight: 30,
+  },
+  horizontal: {
+    flexDirection: 'row',
+    alignSelf: 'flex-start',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    paddingBottom: '3%',
+    paddingHorizontal: '7%',
+  },
+  pfp: {
+    borderRadius: 60 / 2,
+    width: 60,
+    height: 60,
+  },
+  title: {
+    fontFamily: 'Poppins-SemiBold',
+    fontSize: 26,
+    color: '#3B4949',
+  },
+  welcome: {
+    fontFamily: 'Poppins-Regular',
+    fontSize: 18,
+    color: '#6C6C6C',
   },
 });
