@@ -67,7 +67,6 @@ Design changes from Milestone #1:
 
 We would be happy if you are interested to try it out! Here are the steps to do so:
 
-Assuming that you have React Native CLI set up (https://reactnative.dev/docs/environment-setup), 
 1. Please access our repository with this link https://github.com/melissaharijanto/Travel-Log and fork it, or
 clone the repository to your local device by running this command.
 ```
@@ -78,12 +77,16 @@ command instead.
 ```
 cd Travel-Log
 git pull
+npm install
 ```
-2. Because the app is customized for android and uses React Native CLI, please use the following commands
-inside the root directory of the project:  
+2. The app is customized for android and uses React Native CLI. If you do not have it set up yet, please refer to this link 
+(https://reactnative.dev/docs/environment-setup) to set it up.
+
+Please use the following commands in your terminal:
 ```
-npm start
+cd Travel-Log // go to the root directory of the project, if you're not in there yet.
 npm install // to install the required dependencies of the project.
+npm start
 npx react-native run-android
 ```
 to run the app.
@@ -101,5 +104,6 @@ in your terminal.
 npx react-native run-android
 ```
 For more information on this method, please visit this link: https://reactnative.dev/docs/running-on-device.
-3. Have fun navigating through!
+
+3. Have fun navigating through! If you face any troubles, please contact us through our Telegram handles:  @livmichelle / @melissaharijanto
 
