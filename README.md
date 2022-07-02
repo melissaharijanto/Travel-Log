@@ -91,7 +91,7 @@ npx react-native run-android
 ```
 to run the app.
 
-Otherwise, if you have an Android device, you can do this instead.
+Otherwise, if you have an Android device and would like to try it there instead of an emulator, you can do this instead.
 - Go to Settings > About phone > Software information and tap on your Build number 7 times.
 - Developer options will be enabled; go back to Settings > Developer options and enable 'USB Debugging'.
 - To confirm whether your device has been connected or not, run 
