@@ -63,9 +63,13 @@ Design changes from Milestone #1:
 1. React state unmounted component errors, which we are planning to fix by re-evaluating all of the async functions.
 2. Buggy UI upon deleting objects, in which we will review our code and find more efficient/accurate ways to implement the functions. 
 
-## Testing (Last updated 2 July 2022)
+## Testing (Last updated 3 July 2022)
 
 We would be happy if you are interested to try it out! Here are the steps to do so:
+
+If you have an Android device, we have an apk release that you can use to test our app! Since most phones now use ARM processors, it is recommended to download the apk customized for ARM64, with the file name `app-arm64-v8a-release.apk` via this link: https://drive.google.com/drive/folders/1bRMKL1-gXEHCNQtm2PtWu83xwtcKCWV4?usp=sharing. 
+
+Otherwise, you can try this way:
 
 1. Please access our repository with this link https://github.com/melissaharijanto/Travel-Log and fork it, or
 clone the repository to your local device by running this command.
@@ -77,7 +81,7 @@ command instead.
 ```
 cd Travel-Log
 git pull
-npm install
+npm install // to install the required dependencies of the project.
 ```
 2. The app is customized for android and uses React Native CLI. If you do not have it set up yet, please refer to this link 
 (https://reactnative.dev/docs/environment-setup) to set it up.
@@ -105,5 +109,5 @@ npx react-native run-android
 ```
 For more information on this method, please visit this link: https://reactnative.dev/docs/running-on-device.
 
-3. Have fun navigating through! If you face any troubles, please contact us through our Telegram handles:  @livmichelle / @melissaharijanto
+3. Have fun navigating through! If you face any troubles, please contact us through our Telegram handles:  @livmichelle / @melissaharijanto.
 

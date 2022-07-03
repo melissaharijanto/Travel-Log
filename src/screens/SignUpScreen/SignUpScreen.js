@@ -147,7 +147,6 @@ const SignUpScreen = () => {
                   setWaiting(false);
                 }
               });
-            setWaiting(false);
             return () => {
               unmounted = true;
             };
