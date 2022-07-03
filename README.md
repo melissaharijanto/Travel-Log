@@ -110,4 +110,10 @@ npx react-native run-android
 For more information on this method, please visit this link: https://reactnative.dev/docs/running-on-device.
 
 3. Have fun navigating through! If you face any troubles, please contact us through our Telegram handles:  @livmichelle / @melissaharijanto.
+You can sign in with our placeholder account to try the app's features:
+- Email: yeonjun@gmail.com
+- Password: 300500
+
+Or alternatively, if you want to test the 'Forget Password' function, please sign up with a new account with your
+**real** email, as it will be sent via a password-reset email!
 
