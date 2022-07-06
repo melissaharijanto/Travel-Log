@@ -14,6 +14,9 @@ import EditAccommodationScreen from '../screens/EditAccommodationScreen';
 import EditActivityScreen from '../screens/EditActivityScreen';
 import NewAccommodationScreen from '../screens/NewAccommodationScreen';
 import EditTransportScreen from '../screens/EditTransportScreen';
+import {MapsForAddingAccommodation} from '../screens/MapsScreen/MapsForAddingAccommodation';
+import {MapsForEditingAccommodation} from '../screens/MapsScreen/MapsForEditingAccommodation';
+import {ViewMap} from '../screens/MapsScreen/ViewMap';
 
 const ItineraryStack = createNativeStackNavigator();
 const ItineraryStackScreen = () => {
@@ -36,6 +39,13 @@ const ItineraryStackScreen = () => {
       <ItineraryStack.Screen
         name="AddAccommodation"
         component={AddAccommodationScreen}
+        initialParams={{
+          address: '',
+          location: {
+            longitude: 0,
+            latitude: 0,
+          },
+        }}
       />
       <ItineraryStack.Screen name="AddActivity" component={AddActivityScreen} />
       <ItineraryStack.Screen
@@ -57,6 +67,31 @@ const ItineraryStackScreen = () => {
       <ItineraryStack.Screen
         name="EditAccommodation"
         component={EditAccommodationScreen}
+        initialParams={{
+          address: '',
+          location: {
+            longitude: 0,
+            latitude: 0,
+          },
+        }}
+      />
+      <ItineraryStack.Screen
+        name="MapsEditAccommodation"
+        component={MapsForEditingAccommodation}
+      />
+      <ItineraryStack.Screen
+        name="ViewMap"
+        component={ViewMap}
+        initialParams={{
+          location: {
+            longitude: 0,
+            latitude: 0,
+          },
+        }}
+      />
+      <ItineraryStack.Screen
+        name="Maps"
+        component={MapsForAddingAccommodation}
       />
       <ItineraryStack.Screen
         name="EditActivity"
