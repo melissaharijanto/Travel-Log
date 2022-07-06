@@ -518,7 +518,14 @@ const EditAccommodationScreen = ({route}) => {
    */
   useEffect(() => {
     let unmounted = false;
-    setRegion(location);
+    if (region != undefined) {
+      setRegion(location);
+    } else {
+      setRegion({
+        longitude: 0,
+        latitude: 0,
+      });
+    }
     return () => {
       unmounted = true;
     };

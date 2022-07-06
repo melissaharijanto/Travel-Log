@@ -1,9 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
-import RNLocation from 'react-native-location';
-import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
-import CustomButton from '../../components/CustomButton';
 import {useNavigation} from '@react-navigation/native';
 import {HeaderWithoutDeleteIcon} from '../../components/Headers/Headers';
 
@@ -12,6 +9,16 @@ export const ViewMap = ({route}) => {
 
   const navigation = useNavigation();
 
+  const [region, setRegion] = useState({
+    latitude: 0,
+    longitude: 0,
+  });
+
+  useEffect(() => {
+    if (location != undefined) {
+      setRegion(location);
+    }
+  }, [route]);
   return (
     <View style={[styles.map, {backgroundColor: '#FFFFFF'}]}>
       <HeaderWithoutDeleteIcon
@@ -22,16 +29,16 @@ export const ViewMap = ({route}) => {
       <MapView
         style={styles.map}
         region={{
-          latitude: location.latitude,
-          longitude: location.longitude,
+          latitude: region.latitude,
+          longitude: region.longitude,
           latitudeDelta: 0.005,
           longitudeDelta: 0.005,
         }}
         provider={PROVIDER_GOOGLE}>
         <Marker
           coordinate={{
-            latitude: location.latitude,
-            longitude: location.longitude,
+            latitude: region.latitude,
+            longitude: region.longitude,
           }}
         />
       </MapView>
