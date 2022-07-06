@@ -327,7 +327,6 @@ const styles = StyleSheet.create({
     top: 30,
     right: 28,
   },
-
   name: {
     fontFamily: 'Poppins-SemiBold',
     fontSize: 26,
@@ -341,7 +340,6 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     paddingVertical: '1%',
   },
-
   userInfo: {
     fontFamily: 'Poppins-SemiBold',
     fontSize: 15,

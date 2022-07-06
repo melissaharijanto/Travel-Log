@@ -7,7 +7,10 @@ import firestore from '@react-native-firebase/firestore';
 import * as OpenAnything from 'react-native-openanything';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper';
 import {HeaderWithoutDeleteIcon} from '../../components/Headers/Headers';
-import {ViewFiles} from '../../components/ButtonsAfterLogin/ButtonsAfterLogin';
+import {
+  ReusableButton,
+  ViewFiles,
+} from '../../components/ButtonsAfterLogin/ButtonsAfterLogin';
 import {
   FourLineBreak,
   SmallLineBreak,
@@ -29,6 +32,9 @@ const ViewAccommodationScreen = ({route}) => {
   const [startDateString, setStartDateString] = useState('');
   const [endDateString, setEndDateString] = useState('');
 
+  // Google maps region.
+  const [region, setRegion] = useState();
+
   /*
         Once the date has been decided, the state will turn true
         and the selected dates will be displayed.
@@ -43,8 +49,6 @@ const ViewAccommodationScreen = ({route}) => {
   const [fileUri, setFileUri] = useState(null);
   const [fileName, setFileName] = useState(null);
   const [file, setFile] = useState(null);
-
-  const goBack = () => {};
 
   const getData = async () => {
     let unmounted = false;
@@ -64,6 +68,7 @@ const ViewAccommodationScreen = ({route}) => {
           setEndDateString(
             documentSnapshot.data().checkOutDate.toDate().toLocaleDateString(),
           );
+          setRegion(documentSnapshot.data().region);
           setFileUri(documentSnapshot.data().notes);
         }
       });
@@ -135,6 +140,17 @@ const ViewAccommodationScreen = ({route}) => {
 
           <Text style={[styles.text, {paddingLeft: 20}]}>{name}</Text>
 
+          <View style={{width: '33%'}}>
+            <ReusableButton
+              text="View in Maps"
+              onPress={() =>
+                navigation.navigate('ViewMap', {
+                  location: region,
+                })
+              }
+            />
+          </View>
+
           {/* Field to input check-in date. */}
           <Text style={styles.field}>Check In Date</Text>
 
@@ -178,6 +194,8 @@ const ViewAccommodationScreen = ({route}) => {
                 itineraryStart: itineraryStart,
                 itineraryEnd: itineraryEnd,
                 owner: owner,
+                address: name,
+                location: region,
               });
             }}
             type="TERTIARY"

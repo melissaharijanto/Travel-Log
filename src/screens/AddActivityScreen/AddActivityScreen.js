@@ -21,6 +21,11 @@ import {
   FourLineBreak,
   SmallLineBreak,
 } from '../../components/LineBreaks/LineBreaks';
+import {
+  ErrorMessage,
+  FieldName,
+} from '../../components/CustomTextStyles/CustomTextStyles';
+import {Field} from 'formik';
 
 /**
  * Anonymous class that renders AddActivityScreen.
@@ -341,15 +346,8 @@ const AddActivityScreen = ({route}) => {
         <SmallLineBreak />
 
         {/* Body */}
-        <View
-          style={[
-            styles.root,
-            {
-              paddingHorizontal: '8%',
-            },
-          ]}>
-          {/* Field to input activity name. */}
-          <Text style={styles.text}>Activity Name</Text>
+        <View style={[styles.root, {paddingHorizontal: '8%'}]}>
+          <FieldName text="Activity Name" />
 
           <InputFieldAfterLogIn
             placeholder="Activity Name"
@@ -357,9 +355,9 @@ const AddActivityScreen = ({route}) => {
             setValue={setName}
           />
 
-          {showNameError ? <Text style={styles.error}>{nameError}</Text> : null}
+          {showNameError ? <ErrorMessage text={nameError} /> : null}
 
-          <Text style={styles.text}>Location</Text>
+          <FieldName text="Location" />
 
           <InputFieldAfterLogIn
             placeholder="Location"
@@ -367,12 +365,10 @@ const AddActivityScreen = ({route}) => {
             setValue={setLocation}
           />
 
-          {showLocationError ? (
-            <Text style={styles.error}>{locationError}</Text>
-          ) : null}
+          {showLocationError ? <ErrorMessage text={locationError} /> : null}
 
           {/* Pick start time */}
-          <Text style={styles.text}>Start Time</Text>
+          <FieldName text="Start Time" />
           <View style={styles.horizontal}>
             {/* Button to pick start time */}
             <ReusableButton
@@ -393,12 +389,10 @@ const AddActivityScreen = ({route}) => {
             date={date.toDate()}
           />
 
-          {showStartError ? (
-            <Text style={styles.error}>{startError}</Text>
-          ) : null}
+          {showStartError ? <ErrorMessage text={startError} /> : null}
 
           {/* Upload additional files */}
-          <Text style={styles.text}>Additional Notes</Text>
+          <FieldName text="Additional Notes" />
           <View style={styles.horizontal}>
             {/* Button to pick a document */}
             <UploadFiles onPress={chooseFile} />
@@ -443,34 +437,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#333333',
   },
-  error: {
-    color: '#a3160b',
-    fontFamily: 'Poppins-Italic',
-    fontSize: 12,
-    paddingLeft: 10,
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    height: 65,
-    width: '100%',
-    paddingLeft: 10,
-    elevation: 15,
-    shadowColor: '#70D9D3',
-    shadowOpacity: 1,
-  },
-  headerText: {
-    fontFamily: 'Poppins-Bold',
-    fontSize: 26,
-    color: '#3B4949',
-    justifyContent: 'center',
-    alignSelf: 'center',
-    alignItems: 'center',
-    paddingTop: 9,
-    flex: 1.8,
-  },
   horizontal: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
@@ -481,11 +447,6 @@ const styles = StyleSheet.create({
     color: '#333333',
     paddingTop: 2,
     fontSize: 12,
-  },
-  text: {
-    fontFamily: 'Poppins-Medium',
-    color: '#333333',
-    paddingTop: 2,
   },
 });
 export default AddActivityScreen;

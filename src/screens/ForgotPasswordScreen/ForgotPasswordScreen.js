@@ -16,6 +16,7 @@ import {firebase} from '@react-native-firebase/auth';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper';
+import {ErrorMessage} from '../../components/CustomTextStyles/CustomTextStyles';
 
 /**
  * Anonymous class that renders ForgotPasswordScreen.
@@ -136,9 +137,7 @@ const ForgotPasswordScreen = () => {
                   type="PRIMARY"
                 />
 
-                {showMessage ? (
-                  <Text style={styles.error}>{message}</Text>
-                ) : null}
+                {showMessage ? <ErrorMessage text={message} /> : null}
               </>
             );
           }}
@@ -176,11 +175,6 @@ const styles = StyleSheet.create({
     width: '75%',
     maxWidth: 600,
     maxHeight: 140,
-  },
-  error: {
-    color: '#a3160b',
-    fontFamily: 'Poppins-Italic',
-    fontSize: 12,
   },
   text: {
     fontFamily: 'Poppins-SemiBold',

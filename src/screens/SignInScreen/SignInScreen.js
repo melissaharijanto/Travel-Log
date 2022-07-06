@@ -15,6 +15,7 @@ import auth from '@react-native-firebase/auth';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
+import {ErrorMessage} from '../../components/CustomTextStyles/CustomTextStyles';
 
 const SignInScreen = () => {
   const navigation = useNavigation();
@@ -116,9 +117,7 @@ const SignInScreen = () => {
                   type="PRIMARY"
                 />
 
-                {showMessage ? (
-                  <Text style={styles.error}>{message}</Text>
-                ) : null}
+                {showMessage ? <ErrorMessage text={message} /> : null}
               </>
             );
           }}
@@ -170,11 +169,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#70DAD3',
     height: Dimensions.get('window').height,
-  },
-  error: {
-    color: '#a3160b',
-    fontFamily: 'Poppins-Italic',
-    fontSize: 12,
   },
   logo: {
     width: '75%',

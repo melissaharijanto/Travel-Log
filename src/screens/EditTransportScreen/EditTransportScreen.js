@@ -20,6 +20,11 @@ import {
   FourLineBreak,
   SmallLineBreak,
 } from '../../components/LineBreaks/LineBreaks';
+import {
+  ErrorMessage,
+  FieldName,
+} from '../../components/CustomTextStyles/CustomTextStyles';
+import {Field} from 'formik';
 
 /**
  * Anonymous class that renders EditTransportScreen.
@@ -553,7 +558,7 @@ const EditTransportScreen = ({route}) => {
             },
           ]}>
           {/* Field to input transport name. */}
-          <Text style={styles.field}>Mode of Transport</Text>
+          <FieldName text="Mode of Transport" />
 
           <InputFieldAfterLogIn
             placeholder="Mode of Transport"
@@ -561,10 +566,10 @@ const EditTransportScreen = ({route}) => {
             setValue={setName}
           />
 
-          {showNameError ? <Text style={styles.error}>{nameError}</Text> : null}
+          {showNameError ? <ErrorMessage text={nameError} /> : null}
 
           {/* Field to input start location */}
-          <Text style={styles.field}>Starting Point</Text>
+          <FieldName text="Starting Point" />
 
           <InputFieldAfterLogIn
             placeholder="Starting Point"
@@ -572,12 +577,10 @@ const EditTransportScreen = ({route}) => {
             setValue={setStartingPoint}
           />
 
-          {showPointError ? (
-            <Text style={styles.error}>{pointError}</Text>
-          ) : null}
+          {showPointError ? <ErrorMessage text={pointError} /> : null}
 
           {/* Field to input destination*/}
-          <Text style={styles.field}>Destination</Text>
+          <FieldName text="Destination" />
 
           <InputFieldAfterLogIn
             placeholder="Destination"
@@ -585,9 +588,9 @@ const EditTransportScreen = ({route}) => {
             setValue={setDestination}
           />
 
-          {showDestError ? <Text style={styles.error}>{destError}</Text> : null}
+          {showDestError ? <ErrorMessage text={destError} /> : null}
 
-          <Text style={styles.field}>Start Time</Text>
+          <FieldName text="Start Time" />
           <View style={styles.horizontal}>
             <ReusableButton
               onPress={showStartDatePicker}
@@ -607,12 +610,10 @@ const EditTransportScreen = ({route}) => {
             date={date.toDate()}
           />
 
-          {showStartError ? (
-            <Text style={styles.error}>{startError}</Text>
-          ) : null}
+          {showStartError ? <ErrorMessage text={startError} /> : null}
 
           {/* Upload additional files */}
-          <Text style={styles.field}>Additional Notes</Text>
+          <FieldName text="Additional Notes" />
           <View style={styles.horizontal}>
             <UploadFiles onPress={chooseFile} />
             {isDocChosen ? (
@@ -656,12 +657,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#333333',
   },
-  error: {
-    color: '#a3160b',
-    fontFamily: 'Poppins-Italic',
-    fontSize: 12,
-    paddingLeft: 10,
-  },
   horizontal: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
@@ -672,11 +667,6 @@ const styles = StyleSheet.create({
     color: '#333333',
     paddingTop: 2,
     fontSize: 12,
-  },
-  field: {
-    fontFamily: 'Poppins-Medium',
-    color: '#333333',
-    paddingTop: 2,
   },
 });
 export default EditTransportScreen;

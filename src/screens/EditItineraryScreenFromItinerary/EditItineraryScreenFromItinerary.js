@@ -1,18 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Pressable,
-  Alert,
-  ActivityIndicator,
-} from 'react-native';
+import {View, Text, StyleSheet, Alert, ActivityIndicator} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import Back from 'react-native-vector-icons/Feather';
 import InputFieldAfterLogIn from '../../components/InputFieldAfterLogIn';
 import CustomButton from '../../components/CustomButton';
-import DeleteIcon from 'react-native-vector-icons/Feather';
-import ImageIcon from 'react-native-vector-icons/FontAwesome';
 import ImagePicker from 'react-native-image-crop-picker';
 import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
@@ -23,6 +13,9 @@ import {
   FourLineBreak,
   SmallLineBreak,
 } from '../../components/LineBreaks/LineBreaks';
+import {FieldName} from '../../components/CustomTextStyles/CustomTextStyles';
+import {UploadImages} from '../../components/ButtonsAfterLogin/ButtonsAfterLogin';
+import {HeaderWithDeleteIcon} from '../../components/Headers/Headers';
 
 /**
  * Anonymous class that renders EditItineraryScreenFromItinerary.
@@ -281,41 +274,21 @@ const EditItineraryScreenFromItinerary = ({route}) => {
   return (
     <KeyboardAvoidingWrapper backgroundColor="#FFFFFF">
       <View style={styles.root}>
-        <View style={styles.header}>
-          <Back
-            size={35}
-            name="chevron-left"
-            color="#808080"
-            onPress={goBack}
-            style={{
-              flex: 1,
-              paddingTop: 2,
-            }}
-          />
-
-          <Text style={styles.headerText}>Edit Itinerary</Text>
-          <DeleteIcon
-            name="trash-2"
-            size={25}
-            color="#808080"
-            onPress={confirmDelete}
-            style={{
-              paddingRight: 20,
-            }}
-          />
-        </View>
+        <HeaderWithDeleteIcon
+          back={goBack}
+          deleting={confirmDelete}
+          text="Edit Itinerary"
+          flexValue={2.2}
+        />
 
         <SmallLineBreak />
 
         <View
           style={[
             styles.root,
-            {
-              paddingHorizontal: '8%',
-              backgroundColor: 'white',
-            },
+            {paddingHorizontal: '8%', backgroundColor: 'white'},
           ]}>
-          <Text style={styles.text}>Title</Text>
+          <FieldName text="Title" />
 
           <InputFieldAfterLogIn
             placeholder="Title"
@@ -324,21 +297,10 @@ const EditItineraryScreenFromItinerary = ({route}) => {
             style={styles.textBox}
           />
 
-          <Text style={styles.text}>Cover Image</Text>
+          <FieldName text="Cover Image" />
 
           <View style={styles.horizontal}>
-            <Pressable onPress={choosePhotoFromLibrary} style={styles.button}>
-              <ImageIcon
-                name="image"
-                size={18}
-                color="white"
-                style={{
-                  paddingHorizontal: '1%',
-                }}
-              />
-
-              <Text style={styles.buttonText}>Upload Image</Text>
-            </Pressable>
+            <UploadImages onPress={choosePhotoFromLibrary} />
             {isImageChosen ? (
               <Text style={[styles.setText, {paddingLeft: 20}]}>
                 Image uploaded.
@@ -346,17 +308,17 @@ const EditItineraryScreenFromItinerary = ({route}) => {
             ) : null}
           </View>
 
-          <Text style={styles.text}>Start Date</Text>
+          <FieldName text="Start Date" />
           <Text style={styles.permanent}>
             {itinerary.startDate.toDate().toLocaleDateString()}
           </Text>
 
-          <Text style={styles.text}>End Date</Text>
+          <FieldName text="End Date" />
           <Text style={styles.permanent}>
             {itinerary.endDate.toDate().toLocaleDateString()}
           </Text>
 
-          <Text style={styles.text}>Additional Notes</Text>
+          <FieldName text="Additional Notes" />
 
           <InputFieldAfterLogIn
             placeholder="Notes"
@@ -393,44 +355,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     width: '100%',
   },
-  button: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    padding: 5,
-    backgroundColor: '#70DAD3',
-    borderRadius: 4,
-    marginTop: 10,
-    marginBottom: 8,
-  },
-  buttonText: {
-    fontFamily: 'Poppins-Medium',
-    color: 'white',
-    paddingHorizontal: '2%',
-    paddingTop: '1%',
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    height: 65,
-    width: '100%',
-    paddingLeft: 10,
-    elevation: 15,
-    shadowColor: '#70D9D3',
-    shadowOpacity: 1,
-  },
-  headerText: {
-    fontFamily: 'Poppins-Bold',
-    fontSize: 26,
-    color: '#3B4949',
-    justifyContent: 'center',
-    alignSelf: 'center',
-    alignItems: 'center',
-    paddingTop: 9,
-    flex: 2.2,
-  },
   horizontal: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
@@ -438,11 +362,6 @@ const styles = StyleSheet.create({
   },
   setText: {
     fontFamily: 'Poppins-Italic',
-    color: '#333333',
-    paddingTop: 2,
-  },
-  text: {
-    fontFamily: 'Poppins-Medium',
     color: '#333333',
     paddingTop: 2,
   },

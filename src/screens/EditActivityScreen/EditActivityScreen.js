@@ -20,6 +20,10 @@ import {
   FourLineBreak,
   SmallLineBreak,
 } from '../../components/LineBreaks/LineBreaks';
+import {
+  ErrorMessage,
+  FieldName,
+} from '../../components/CustomTextStyles/CustomTextStyles';
 
 /**
  * Anonymous class that renders EditActivityScreen.
@@ -492,19 +496,10 @@ const EditActivityScreen = ({route}) => {
           flexValue={1.5}
         />
 
-        {/* Empty space so shadow can be visible */}
         <SmallLineBreak />
 
-        {/* Body */}
-        <View
-          style={[
-            styles.root,
-            {
-              paddingHorizontal: '8%',
-            },
-          ]}>
-          {/* Displays accommodation name. */}
-          <Text style={styles.field}>Activity Name</Text>
+        <View style={[styles.root, {paddingHorizontal: '8%'}]}>
+          <FieldName text="Activity Name" />
 
           <InputFieldAfterLogIn
             placeholder="Activity Name"
@@ -512,10 +507,9 @@ const EditActivityScreen = ({route}) => {
             setValue={setName}
           />
 
-          {showNameError ? <Text style={styles.error}>{nameError}</Text> : null}
+          {showNameError ? <ErrorMessage text={nameError} /> : null}
 
-          {/* Displays Location. */}
-          <Text style={styles.field}>Location</Text>
+          <FieldName text="Location" />
 
           <InputFieldAfterLogIn
             placeholder="Location"
@@ -523,12 +517,9 @@ const EditActivityScreen = ({route}) => {
             setValue={setLocation}
           />
 
-          {showLocationError ? (
-            <Text style={styles.error}>{locationError}</Text>
-          ) : null}
+          {showLocationError ? <ErrorMessage text={locationError} /> : null}
 
-          {/* Displays start time. */}
-          <Text style={styles.field}>Start Time</Text>
+          <FieldName text="Start Time" />
 
           <View style={styles.horizontal}>
             <ReusableButton
@@ -549,12 +540,9 @@ const EditActivityScreen = ({route}) => {
             date={date.toDate()}
           />
 
-          {showStartError ? (
-            <Text style={styles.error}>{startError}</Text>
-          ) : null}
+          {showStartError ? <ErrorMessage text={startError} /> : null}
 
-          {/* Upload additional files */}
-          <Text style={styles.field}>Additional Notes</Text>
+          <FieldName text="Additional Notes" />
           <View style={styles.horizontal}>
             <UploadFiles onPress={chooseFile} />
             {isDocChosen ? (
@@ -573,11 +561,7 @@ const EditActivityScreen = ({route}) => {
           <CustomButton text="Update" onPress={update} type="TERTIARY" />
 
           {updating || deleting ? (
-            <View
-              style={{
-                paddingTop: 20,
-                alignSelf: 'center',
-              }}>
+            <View style={{paddingTop: 20, alignSelf: 'center'}}>
               <ActivityIndicator size="large" color="#000000" />
             </View>
           ) : (
@@ -599,12 +583,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#333333',
   },
-  error: {
-    color: '#a3160b',
-    fontFamily: 'Poppins-Italic',
-    fontSize: 12,
-    paddingLeft: 10,
-  },
   setText: {
     fontFamily: 'Poppins-Italic',
     color: '#333333',
@@ -615,11 +593,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-  },
-  field: {
-    fontFamily: 'Poppins-Medium',
-    color: '#333333',
-    paddingTop: 2,
   },
 });
 export default EditActivityScreen;

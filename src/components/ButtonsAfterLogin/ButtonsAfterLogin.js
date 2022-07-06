@@ -54,7 +54,7 @@ export const ViewFiles = ({onPress}) => {
 const styles = StyleSheet.create({
   button: {
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'center',
     padding: 5,
     backgroundColor: '#70DAD3',

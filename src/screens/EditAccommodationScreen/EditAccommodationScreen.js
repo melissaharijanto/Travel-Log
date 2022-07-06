@@ -20,6 +20,10 @@ import {
   FourLineBreak,
   SmallLineBreak,
 } from '../../components/LineBreaks/LineBreaks';
+import {
+  ErrorMessage,
+  FieldName,
+} from '../../components/CustomTextStyles/CustomTextStyles';
 
 /**
  * Anonymous class that renders EditAccommodationScreen.
@@ -31,7 +35,8 @@ const EditAccommodationScreen = ({route}) => {
   /**
    * Route parameters passed from the previous screen.
    */
-  const {id, itemId, itineraryStart, itineraryEnd, owner} = route.params;
+  const {id, itemId, itineraryStart, itineraryEnd, owner, address, location} =
+    route.params;
 
   /**
    * Navigation object.
@@ -41,7 +46,7 @@ const EditAccommodationScreen = ({route}) => {
   /**
    * State for accommodation name input field; default state is ''.
    */
-  const [name, setName] = useState('');
+  const [name, setName] = useState(address);
 
   /**
    * State for check-out date input field; default state is current date.
@@ -64,6 +69,12 @@ const EditAccommodationScreen = ({route}) => {
    * Will be displayed in form of mm/dd/yy.
    */
   const [endDateString, setEndDateString] = useState('');
+
+  /**
+   * Date string that will be displayed when the check-out date is picked.
+   * Will be displayed in form of mm/dd/yy.
+   */
+  const [region, setRegion] = useState(location);
 
   /**
    * State to display the date picker for the check-in date.
@@ -345,6 +356,7 @@ const EditAccommodationScreen = ({route}) => {
         checkInDate: startDate,
         checkOutDate: endDate,
         notes: fileUrl,
+        region: region,
       });
 
     // State to hide Activity Indicator.
@@ -456,7 +468,6 @@ const EditAccommodationScreen = ({route}) => {
       .doc(itemId)
       .onSnapshot(documentSnapshot => {
         if (documentSnapshot.exists) {
-          setName(documentSnapshot.data().name);
           setStartDate(documentSnapshot.data().checkInDate.toDate());
           setEndDate(documentSnapshot.data().checkOutDate.toDate());
           setStartDateString(
@@ -495,9 +506,30 @@ const EditAccommodationScreen = ({route}) => {
    * character is inputted into the name field.
    */
   useEffect(() => {
+    let unmounted = false;
     setShowNameError(false);
+    return () => {
+      unmounted = true;
+    };
   }, [name]);
 
+  /**
+   * Updates name to address name.
+   */
+  useEffect(() => {
+    let unmounted = false;
+    setRegion(location);
+    return () => {
+      unmounted = true;
+    };
+  }, [route]);
+
+  /**
+   * Updates name to address name.
+   */
+  useEffect(() => {
+    setName(address);
+  }, [route]);
   /**
    * Fetches data from database upon change of the route variable.
    */
@@ -523,7 +555,6 @@ const EditAccommodationScreen = ({route}) => {
   return (
     <KeyboardAvoidingWrapper backgroundColor="#FFFFFF">
       <View style={styles.root}>
-        {/* header */}
         <HeaderWithDeleteIcon
           back={goBack}
           deleting={confirmDelete}
@@ -531,19 +562,10 @@ const EditAccommodationScreen = ({route}) => {
           flexValue={3.5}
         />
 
-        {/* empty space so shadow can be visible */}
         <SmallLineBreak />
 
-        {/* body */}
-        <View
-          style={[
-            styles.root,
-            {
-              paddingHorizontal: '8%',
-            },
-          ]}>
-          {/* Field to input accommodation name. */}
-          <Text style={styles.field}>Accommodation Name</Text>
+        <View style={[styles.root, {paddingHorizontal: '8%'}]}>
+          <FieldName text="Accommodation Name" />
 
           <InputFieldAfterLogIn
             placeholder="Accommodation Name"
@@ -551,10 +573,27 @@ const EditAccommodationScreen = ({route}) => {
             setValue={setName}
           />
 
-          {showNameError ? <Text style={styles.error}>{nameError}</Text> : null}
+          {showNameError ? <ErrorMessage text={nameError} /> : null}
+
+          <View style={{width: '68%'}}>
+            <ReusableButton
+              text="Set Location via Google Maps"
+              onPress={() =>
+                navigation.navigate('MapsEditAccommodation', {
+                  id: id,
+                  itemId: itemId,
+                  itineraryStart: itineraryStart,
+                  itineraryEnd: itineraryEnd,
+                  owner: owner,
+                  address: address,
+                  location: location,
+                })
+              }
+            />
+          </View>
 
           {/* Field to input check-in date. */}
-          <Text style={styles.field}>Check In Date</Text>
+          <FieldName text="Check-In Date" />
 
           <View style={styles.horizontal}>
             <ReusableButton
@@ -574,13 +613,10 @@ const EditAccommodationScreen = ({route}) => {
             maximumDate={itineraryEnd.toDate()}
           />
 
-          {showStartError ? (
-            <Text style={styles.error}>{startError}</Text>
-          ) : null}
+          {showStartError ? <ErrorMessage text={startError} /> : null}
 
           {/* Field to input check-out date. */}
-          <Text style={styles.field}>Check Out Date</Text>
-
+          <FieldName text="Check-Out Date" />
           <View style={styles.horizontal}>
             <ReusableButton
               onPress={showEndDatePicker}
@@ -599,10 +635,10 @@ const EditAccommodationScreen = ({route}) => {
             maximumDate={itineraryEnd.toDate()}
           />
 
-          {showEndError ? <Text style={styles.error}>{endError}</Text> : null}
+          {showEndError ? <ErrorMessage text={endError} /> : null}
 
           {/* Upload additional files */}
-          <Text style={styles.field}>Additional Notes</Text>
+          <FieldName text="Additional Notes" />
           <View style={styles.horizontal}>
             <UploadFiles onPress={chooseFile} />
             {isDocChosen ? (
@@ -616,7 +652,7 @@ const EditAccommodationScreen = ({route}) => {
 
           <CustomButton text="Update" onPress={update} type="TERTIARY" />
 
-          {showError ? <Text style={styles.error}>{error}</Text> : null}
+          {showError ? <ErrorMessage text={error} /> : null}
 
           {updating || deleting ? (
             <View
@@ -640,12 +676,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF',
   },
-  error: {
-    color: '#a3160b',
-    fontFamily: 'Poppins-Italic',
-    fontSize: 12,
-    paddingLeft: 10,
-  },
   setText: {
     fontFamily: 'Poppins-Italic',
     color: '#333333',
@@ -656,11 +686,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-  },
-  field: {
-    fontFamily: 'Poppins-Medium',
-    color: '#333333',
-    paddingTop: 2,
   },
 });
 export default EditAccommodationScreen;

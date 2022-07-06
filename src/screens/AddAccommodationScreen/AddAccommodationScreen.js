@@ -1,7 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, ActivityIndicator} from 'react-native';
-import Back from 'react-native-vector-icons/Feather';
 import InputFieldAfterLogIn from '../../components/InputFieldAfterLogIn';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import CustomButton from '../../components/CustomButton';
@@ -21,6 +20,10 @@ import {
   FourLineBreak,
   SmallLineBreak,
 } from '../../components/LineBreaks/LineBreaks';
+import {
+  ErrorMessage,
+  FieldName,
+} from '../../components/CustomTextStyles/CustomTextStyles';
 
 /**
  * Anonymous class that renders AddAccommodationScreen.
@@ -32,7 +35,8 @@ const AddAccommodationScreen = ({route}) => {
   /**
    * Route parameters passed from the previous screen.
    */
-  const {id, itineraryStart, itineraryEnd, owner} = route.params;
+  const {id, itineraryStart, itineraryEnd, owner, address, location} =
+    route.params;
 
   /**
    * Navigation object.
@@ -352,6 +356,7 @@ const AddAccommodationScreen = ({route}) => {
         notes: fileUrl,
         type: 'accommodation',
         id: itemId,
+        region: location,
       });
 
     // State to hide Activity Indicator.
@@ -368,6 +373,10 @@ const AddAccommodationScreen = ({route}) => {
       unmounted = true;
     };
   };
+
+  useEffect(() => {
+    setName(address);
+  }, [route]);
 
   /**
    * The state of setShowNameError will be false once a
@@ -389,16 +398,8 @@ const AddAccommodationScreen = ({route}) => {
         {/* Empty space so shadow can be visible */}
         <SmallLineBreak />
 
-        {/* Body */}
-        <View
-          style={[
-            styles.root,
-            {
-              paddingHorizontal: '8%',
-            },
-          ]}>
-          {/* Field to input accommodation name. */}
-          <Text style={styles.text}>Accommodation Name</Text>
+        <View style={[styles.root, {paddingHorizontal: '8%'}]}>
+          <FieldName text="Accommodation Name" />
 
           <InputFieldAfterLogIn
             placeholder="Accommodation Name"
@@ -406,10 +407,26 @@ const AddAccommodationScreen = ({route}) => {
             setValue={setName}
           />
 
-          {showNameError ? <Text style={styles.error}>{nameError}</Text> : null}
+          {showNameError ? <ErrorMessage text={nameError} /> : null}
+
+          <View style={{width: '68%'}}>
+            <ReusableButton
+              text="Set Location via Google Maps"
+              onPress={() =>
+                navigation.navigate('Maps', {
+                  id: id,
+                  itineraryStart: itineraryStart,
+                  itineraryEnd: itineraryEnd,
+                  owner: owner,
+                  address: address,
+                  location: location,
+                })
+              }
+            />
+          </View>
 
           {/* Field to input check-in date. */}
-          <Text style={styles.text}>Check In Date</Text>
+          <FieldName text="Check-In Date" />
           <View style={styles.horizontal}>
             {/* Button to pick check-in date */}
             <ReusableButton
@@ -429,12 +446,10 @@ const AddAccommodationScreen = ({route}) => {
             maximumDate={itineraryEnd.toDate()}
           />
 
-          {showStartError ? (
-            <Text style={styles.error}>{startError}</Text>
-          ) : null}
+          {showStartError ? <ErrorMessage text={startError} /> : null}
 
           {/* Field to input check-out date */}
-          <Text style={styles.text}>Check Out Date</Text>
+          <FieldName text="Check-Out Date" />
 
           <View style={styles.horizontal}>
             {/* Button to pick check-out date */}
@@ -456,10 +471,10 @@ const AddAccommodationScreen = ({route}) => {
             maximumDate={itineraryEnd.toDate()}
           />
 
-          {showEndError ? <Text style={styles.error}>{endError}</Text> : null}
+          {showEndError ? <ErrorMessage text={endError} /> : null}
 
           {/* Upload additional files */}
-          <Text style={styles.text}>Additional Notes</Text>
+          <FieldName text="Additional Notes" />
           <View style={styles.horizontal}>
             {/* Button to pick a document */}
             <UploadFiles onPress={chooseFile} />
@@ -477,7 +492,7 @@ const AddAccommodationScreen = ({route}) => {
 
           <CustomButton text="Add" onPress={add} type="TERTIARY" />
 
-          {showError ? <Text style={styles.error}>{error}</Text> : null}
+          {showError ? <ErrorMessage text={error} /> : null}
 
           {adding ? (
             <View
@@ -506,12 +521,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#333333',
   },
-  error: {
-    color: '#a3160b',
-    fontFamily: 'Poppins-Italic',
-    fontSize: 12,
-    paddingLeft: 10,
-  },
   horizontal: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
@@ -522,11 +531,6 @@ const styles = StyleSheet.create({
     color: '#333333',
     paddingTop: 2,
     fontSize: 12,
-  },
-  text: {
-    fontFamily: 'Poppins-Medium',
-    color: '#333333',
-    paddingTop: 2,
   },
 });
 export default AddAccommodationScreen;

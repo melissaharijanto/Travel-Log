@@ -4,9 +4,11 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import ProfileScreen from '../screens/ProfileScreen';
 import HomeIcon from 'react-native-vector-icons/Entypo';
 import ItineraryIcon from 'react-native-vector-icons/MaterialIcons';
+import FeaturedIcon from 'react-native-vector-icons/Entypo';
 import ProfileIcon from 'react-native-vector-icons/FontAwesome';
 import HomeStackScreen from './HomeStackScreen';
 import ItineraryStackScreen from './ItineraryStackScreen';
+import FeaturedScreen from '../screens/FeaturedScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -40,6 +42,31 @@ const BottomTabNavigator = () => {
                   },
                 ]}>
                 Home
+              </Text>
+            </View>
+          ),
+        }}
+      />
+
+      <Tab.Screen
+        name="Featured"
+        component={FeaturedScreen}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <View style={styles.root}>
+              <FeaturedIcon
+                size={20}
+                name="star"
+                color={focused ? '#3B4949' : '#94C2C6'}
+              />
+              <Text
+                style={[
+                  styles.text,
+                  {
+                    color: focused ? '#3B4949' : '#94C2C6',
+                  },
+                ]}>
+                Featured
               </Text>
             </View>
           ),

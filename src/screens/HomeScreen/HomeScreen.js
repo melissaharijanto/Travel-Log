@@ -1,13 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-  Dimensions,
-  FlatList,
-} from 'react-native';
+import {View, Text, StyleSheet, Dimensions, FlatList} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
@@ -22,12 +14,21 @@ import {
   PastItinerariesSkeleton,
 } from '../../components/HomeSkeleton/HomeSkeleton';
 import {HomeHeader} from '../../components/Headers/Headers';
+import {
+  ErrorMessage,
+  HomeSubtitle,
+} from '../../components/CustomTextStyles/CustomTextStyles';
 
-const HomeScreen = () => {
+const HomeScreen = ({route}) => {
   /**
    * Gets authentication data of the current user logged in.
    */
   const user = auth().currentUser;
+
+  /**
+   * Route parameters.
+   */
+  const {status} = route.params;
 
   /**
    * Navigation object.
@@ -320,7 +321,7 @@ const HomeScreen = () => {
       return () => {
         unmounted = true;
       };
-    }, []),
+    }, [route]),
   );
 
   /**
@@ -363,25 +364,24 @@ const HomeScreen = () => {
               }}
             />
 
-            <Text style={styles.subtitle}>Get started on a new itinerary!</Text>
+            <HomeSubtitle text="Get started on a new itinerary!" />
             <CustomButton
               text="+ New Itinerary"
               onPress={addNewItinerary}
               type="QUINARY"
             />
 
-            <Text style={[styles.subtitle, {paddingTop: '3%'}]}>
-              View a friend's itinerary
-            </Text>
+            <HomeSubtitle
+              text="View a friend's itinerary"
+              style={{paddingTop: '3%'}}
+            />
             <InputFieldAfterLogin
               placeholder="Enter the code here..."
               value={code}
               setValue={setCode}
             />
 
-            {showError ? (
-              <Text style={styles.error}>{errorMessage}</Text>
-            ) : null}
+            {showError ? <ErrorMessage text={errorMessage} /> : null}
 
             <CustomButton text="View" onPress={viewItinerary} type="QUINARY" />
           </View>
@@ -393,9 +393,10 @@ const HomeScreen = () => {
             <LatestItinerarySkeleton />
           ) : (
             <View style={{width: '100%'}}>
-              <Text style={[styles.subtitle, {paddingTop: '5%'}]}>
-                Your latest itinerary
-              </Text>
+              <HomeSubtitle
+                text="Your latest itinerary"
+                style={{paddingTop: '5%'}}
+              />
 
               <ItineraryTab
                 onPress={() => {
@@ -416,7 +417,7 @@ const HomeScreen = () => {
             <PastItinerariesSkeleton />
           ) : (
             <View>
-              <Text style={styles.subtitle}>Revisit your past itineraries</Text>
+              <HomeSubtitle text="Revisit your past itineraries" />
               <View>
                 <FlatList
                   data={pastItineraries}
@@ -452,50 +453,6 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     paddingHorizontal: '7%',
     paddingTop: '10%',
-  },
-  error: {
-    color: '#a3160b',
-    fontFamily: 'Poppins-Italic',
-    fontSize: 12,
-    paddingLeft: 10,
-  },
-  header: {
-    paddingRight: 30,
-  },
-  horizontal: {
-    flexDirection: 'row',
-    alignSelf: 'flex-start',
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-    paddingBottom: '3%',
-    paddingHorizontal: '7%',
-  },
-  horizontalScrollContainers: {
-    width:
-      Dimensions.get('window').width -
-      2 * 0.07 * Dimensions.get('window').width,
-    marginRight: 10,
-  },
-  pfp: {
-    borderRadius: 60 / 2,
-    width: 60,
-    height: 60,
-  },
-  title: {
-    fontFamily: 'Poppins-SemiBold',
-    fontSize: 26,
-    color: '#3B4949',
-  },
-  subtitle: {
-    fontFamily: 'Poppins-Medium',
-    fontSize: 18,
-    color: '#000000',
-    paddingBottom: '1%',
-  },
-  welcome: {
-    fontFamily: 'Poppins-Regular',
-    fontSize: 18,
-    color: '#6C6C6C',
   },
 });
 

@@ -21,6 +21,11 @@ import {
   FourLineBreak,
   SmallLineBreak,
 } from '../../components/LineBreaks/LineBreaks';
+import {
+  ErrorMessage,
+  FieldName,
+} from '../../components/CustomTextStyles/CustomTextStyles';
+import {Field} from 'formik';
 
 /**
  * Anonymous class that renders AddTransportScreen.
@@ -388,16 +393,8 @@ const AddTransportScreen = ({route}) => {
 
         <SmallLineBreak />
 
-        {/* Body */}
-        <View
-          style={[
-            styles.root,
-            {
-              paddingHorizontal: '8%',
-            },
-          ]}>
-          {/* Field to input transport name. */}
-          <Text style={styles.text}>Mode of Transport</Text>
+        <View style={[styles.root, {paddingHorizontal: '8%'}]}>
+          <FieldName text="Mode of Transport" />
 
           <InputFieldAfterLogIn
             placeholder="Mode of Transport"
@@ -405,10 +402,10 @@ const AddTransportScreen = ({route}) => {
             setValue={setName}
           />
 
-          {showNameError ? <Text style={styles.error}>{nameError}</Text> : null}
+          {showNameError ? <ErrorMessage text={nameError} /> : null}
 
           {/* Field to input starting point */}
-          <Text style={styles.text}>Starting Point</Text>
+          <FieldName text="Starting Point" />
 
           <InputFieldAfterLogIn
             placeholder="Starting Point"
@@ -416,22 +413,19 @@ const AddTransportScreen = ({route}) => {
             setValue={setStartingPoint}
           />
 
-          {showPointError ? (
-            <Text style={styles.error}>{pointError}</Text>
-          ) : null}
+          {showPointError ? <ErrorMessage text={pointError} /> : null}
 
           {/* Field to input destination*/}
-          <Text style={styles.text}>Destination</Text>
-
+          <FieldName text="Destination" />
           <InputFieldAfterLogIn
             placeholder="Destination"
             value={destination}
             setValue={setDestination}
           />
 
-          {showDestError ? <Text style={styles.error}>{destError}</Text> : null}
+          {showDestError ? <ErrorMessage text={destError} /> : null}
 
-          <Text style={styles.text}>Start Time</Text>
+          <FieldName text="Start Time" />
           <View style={styles.horizontal}>
             {/* Button to set start time */}
             <ReusableButton
@@ -452,12 +446,10 @@ const AddTransportScreen = ({route}) => {
             date={date.toDate()}
           />
 
-          {showStartError ? (
-            <Text style={styles.error}>{startError}</Text>
-          ) : null}
+          {showStartError ? <ErrorMessage text={startError} /> : null}
 
           {/* Upload additional files */}
-          <Text style={styles.text}>Additional Notes</Text>
+          <FieldName text="Additional Notes" />
           <View style={styles.horizontal}>
             {/* Button to pick a document */}
             <UploadFiles onPress={chooseFile} />
@@ -497,12 +489,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF',
   },
-  error: {
-    color: '#a3160b',
-    fontFamily: 'Poppins-Italic',
-    fontSize: 12,
-    paddingLeft: 10,
-  },
   acceptedFiles: {
     fontFamily: 'Poppins-Italic',
     fontSize: 12,
@@ -518,11 +504,6 @@ const styles = StyleSheet.create({
     color: '#333333',
     paddingTop: 2,
     fontSize: 12,
-  },
-  text: {
-    fontFamily: 'Poppins-Medium',
-    color: '#333333',
-    paddingTop: 2,
   },
 });
 export default AddTransportScreen;

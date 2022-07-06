@@ -7,10 +7,8 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import Back from 'react-native-vector-icons/Feather';
 import InputFieldAfterLogIn from '../../components/InputFieldAfterLogIn';
 import CustomButton from '../../components/CustomButton';
-import ImageIcon from 'react-native-vector-icons/FontAwesome';
 import ImagePicker from 'react-native-image-crop-picker';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import auth from '@react-native-firebase/auth';
@@ -26,6 +24,10 @@ import {
   FourLineBreak,
   SmallLineBreak,
 } from '../../components/LineBreaks/LineBreaks';
+import {
+  ErrorMessage,
+  FieldName,
+} from '../../components/CustomTextStyles/CustomTextStyles';
 
 const NewItineraryScreen = () => {
   // Navigation object.
@@ -308,20 +310,17 @@ const NewItineraryScreen = () => {
             },
           ]}>
           {/* Field to input title */}
-          <Text style={styles.text}>Title</Text>
-
+          <FieldName text="Title" />
           <InputFieldAfterLogIn
             placeholder="Title"
             value={title}
             setValue={setTitle}
           />
 
-          {showTitleError ? (
-            <Text style={styles.error}>{titleError}</Text>
-          ) : null}
+          {showTitleError ? <ErrorMessage text={titleError} /> : null}
 
           {/* Field to input cover image */}
-          <Text style={styles.text}>Cover Image</Text>
+          <FieldName text="Cover Image" />
 
           <View style={styles.horizontal}>
             <UploadImages onPress={choosePhotoFromLibrary} />
@@ -333,7 +332,7 @@ const NewItineraryScreen = () => {
           </View>
 
           {/* Field to input start date */}
-          <Text style={styles.text}>Start Date</Text>
+          <FieldName text="Start Date" />
           <View style={styles.horizontal}>
             <ReusableButton
               onPress={showStartDatePicker}
@@ -350,12 +349,10 @@ const NewItineraryScreen = () => {
             onCancel={hideDatePicker}
           />
 
-          {showStartError ? (
-            <Text style={styles.error}>{startError}</Text>
-          ) : null}
+          {showStartError ? <ErrorMessage text={startError} /> : null}
 
           {/* Field to input end date */}
-          <Text style={styles.text}>End Date</Text>
+          <FieldName text="End Date" />
 
           <View style={styles.horizontal}>
             <ReusableButton onPress={showEndDatePicker} text="Pick End Date" />
@@ -371,10 +368,10 @@ const NewItineraryScreen = () => {
             minimumDate={startDate}
           />
 
-          {showEndError ? <Text style={styles.error}>{endError}</Text> : null}
+          {showEndError ? <ErrorMessage text={endError} /> : null}
 
           {/* Field to input additional notes. */}
-          <Text style={styles.text}>Additional Notes</Text>
+          <FieldName text="Additional Notes" />
 
           <InputFieldAfterLogIn
             placeholder="Notes"
@@ -387,7 +384,7 @@ const NewItineraryScreen = () => {
           {/* Button to add itinerary to the database */}
           <CustomButton text="Add" type="TERTIARY" onPress={addNewItinerary} />
 
-          {showError ? <Text style={styles.error}>{error}</Text> : null}
+          {showError ? <ErrorMessage text={error} /> : null}
 
           {/* ActivityIndicator will show when adding itinerary to database
                     (adding is set to true). */}
@@ -415,12 +412,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     width: '100%',
   },
-  error: {
-    color: '#a3160b',
-    fontFamily: 'Poppins-Italic',
-    fontSize: 12,
-    paddingLeft: 10,
-  },
   horizontal: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
@@ -428,11 +419,6 @@ const styles = StyleSheet.create({
   },
   setText: {
     fontFamily: 'Poppins-Italic',
-    color: '#333333',
-    paddingTop: 2,
-  },
-  text: {
-    fontFamily: 'Poppins-Medium',
     color: '#333333',
     paddingTop: 2,
   },

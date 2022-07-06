@@ -15,6 +15,7 @@ import {
   FourLineBreak,
   SmallLineBreak,
 } from '../../components/LineBreaks/LineBreaks';
+import {FieldName} from '../../components/CustomTextStyles/CustomTextStyles';
 
 /**
  * Anonymous class that renders EditItineraryScreen.
@@ -151,7 +152,9 @@ const EditItineraryScreen = ({route}) => {
       .then(() => {
         console.log('Deleted.');
         setDeleting(false);
-        navigation.navigate('HomeScreen');
+        navigation.navigate('HomeScreen', {
+          status: 'Updated!',
+        });
       })
       .catch(e => {
         console.log(e);
@@ -292,7 +295,7 @@ const EditItineraryScreen = ({route}) => {
               backgroundColor: 'white',
             },
           ]}>
-          <Text style={styles.text}>Title</Text>
+          <FieldName text="Title" />
 
           <InputFieldAfterLogIn
             placeholder="Title"
@@ -301,7 +304,7 @@ const EditItineraryScreen = ({route}) => {
             style={styles.textBox}
           />
 
-          <Text style={styles.text}>Cover Image</Text>
+          <FieldName text="Cover Image" />
 
           <View style={styles.horizontal}>
             <UploadImages onPress={choosePhotoFromLibrary} />
@@ -312,17 +315,17 @@ const EditItineraryScreen = ({route}) => {
             ) : null}
           </View>
 
-          <Text style={styles.text}>Start Date</Text>
+          <FieldName text="Start Date" />
           <Text style={styles.permanent}>
             {itinerary.startDate.toDate().toLocaleDateString()}
           </Text>
 
-          <Text style={styles.text}>End Date</Text>
+          <FieldName text="End Date" />
           <Text style={styles.permanent}>
             {itinerary.endDate.toDate().toLocaleDateString()}
           </Text>
 
-          <Text style={styles.text}>Additional Notes</Text>
+          <FieldName text="Additional Notes" />
 
           <InputFieldAfterLogIn
             placeholder="Notes"

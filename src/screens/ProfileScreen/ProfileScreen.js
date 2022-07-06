@@ -136,14 +136,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: '10%',
   },
-
   background: {
     height: Dimensions.get('window').height,
     width: Dimensions.get('window').width,
     alignItems: 'center',
     paddingHorizontal: '10%',
   },
-
   pfp: {
     borderRadius: 150 / 2,
     width: 150,
@@ -152,7 +150,6 @@ const styles = StyleSheet.create({
     borderColor: '#70D9D3',
     top: '12%',
   },
-
   name: {
     fontFamily: 'Poppins-SemiBold',
     fontSize: 26,

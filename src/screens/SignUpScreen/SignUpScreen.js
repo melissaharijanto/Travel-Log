@@ -17,6 +17,7 @@ import firestore from '@react-native-firebase/firestore';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper';
+import {ErrorMessage} from '../../components/CustomTextStyles/CustomTextStyles';
 
 const SignUpScreen = () => {
   const [message, setMessage] = useState(null);
@@ -195,9 +196,7 @@ const SignUpScreen = () => {
                   type="PRIMARY"
                 />
 
-                {showMessage ? (
-                  <Text style={styles.error}>{message}</Text>
-                ) : null}
+                {showMessage ? <ErrorMessage text={message} /> : null}
               </>
             );
           }}
