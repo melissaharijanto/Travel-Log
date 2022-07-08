@@ -1,13 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
-import {useNavigation} from '@react-navigation/native';
 import {HeaderWithoutDeleteIcon} from '../../components/Headers/Headers';
 
-export const ViewMap = ({route}) => {
+export const ViewMap = ({route, navigation}) => {
   const {location} = route.params;
-
-  const navigation = useNavigation();
 
   const [region, setRegion] = useState({
     latitude: 0,

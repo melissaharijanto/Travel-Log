@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, Image, StyleSheet, FlatList} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
 import AccommodationTab from '../../components/AccommodationTab';
 import ActionButton from 'react-native-action-button-warnings-fixed';
 import Accommodation from '../../../assets/images/Accommodation.png';
@@ -22,14 +21,10 @@ import NewDaySkeleton from '../../components/NewDaySkeleton';
  * first made it.
  *
  * @param {*} route Argument that carries over the parameters passed from the previous screen.
+ * @param {*} navigation Navigation prop.
  * @returns Render of NewAccommodationScreen.
  */
-const NewAccommodationScreen = ({route}) => {
-  /**
-   * Navigation object.
-   */
-  const navigation = useNavigation();
-
+const NewAccommodationScreen = ({route, navigation}) => {
   /**
    * State for accommodation list.
    * Once initialized, it will be an array to store the

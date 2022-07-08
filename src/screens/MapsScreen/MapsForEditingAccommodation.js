@@ -3,9 +3,8 @@ import {StyleSheet, View} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
 import CustomButton from '../../components/CustomButton';
-import {useNavigation} from '@react-navigation/native';
 
-export const MapsForEditingAccommodation = ({route}) => {
+export const MapsForEditingAccommodation = ({route, navigation}) => {
   const {id, itemId, itineraryStart, itineraryEnd, owner, address, location} =
     route.params;
   const [region, setRegion] = useState({
@@ -13,8 +12,6 @@ export const MapsForEditingAccommodation = ({route}) => {
     longitude: 0,
   });
   const [addressName, setAddressName] = useState(address);
-
-  const navigation = useNavigation();
 
   useEffect(() => {
     if (location != undefined) {
@@ -28,12 +25,11 @@ export const MapsForEditingAccommodation = ({route}) => {
         placeholder="Search"
         onPress={(data, details = null) => {
           setAddressName(details.name);
-          console.log(addressName);
           setRegion({
             latitude: details.geometry.location.lat,
             longitude: details.geometry.location.lng,
           });
-
+          console.log(addressName);
           console.log(region.latitude);
           console.log(region.longitude);
         }}

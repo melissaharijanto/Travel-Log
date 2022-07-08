@@ -1,12 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Pressable,
-  ActivityIndicator,
-} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {View, Text, StyleSheet, ActivityIndicator} from 'react-native';
 import InputFieldAfterLogIn from '../../components/InputFieldAfterLogIn';
 import CustomButton from '../../components/CustomButton';
 import ImagePicker from 'react-native-image-crop-picker';
@@ -29,10 +22,7 @@ import {
   FieldName,
 } from '../../components/CustomTextStyles/CustomTextStyles';
 
-const NewItineraryScreen = () => {
-  // Navigation object.
-  const navigation = useNavigation();
-
+const NewItineraryScreen = ({navigation}) => {
   // States for the input fields.
   const [title, setTitle] = useState('');
   const [notes, setNotes] = useState('');

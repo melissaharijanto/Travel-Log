@@ -1,6 +1,5 @@
-import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet, Pressable} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import CustomButton from '../../components/CustomButton';
 import {firebase} from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
@@ -16,10 +15,8 @@ import {
   SmallLineBreak,
 } from '../../components/LineBreaks/LineBreaks';
 
-const ViewAccommodationScreen = ({route}) => {
+const ViewAccommodationScreen = ({route, navigation}) => {
   const {id, itineraryStart, itineraryEnd, itemId, owner} = route.params;
-
-  const navigation = useNavigation();
 
   // Set initial states of each field to be empty.
   const [name, setName] = useState('');

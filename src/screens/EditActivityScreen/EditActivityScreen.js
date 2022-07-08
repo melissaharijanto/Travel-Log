@@ -1,4 +1,3 @@
-import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, ActivityIndicator, Alert} from 'react-native';
 import CustomButton from '../../components/CustomButton';
@@ -29,9 +28,10 @@ import {
  * Anonymous class that renders EditActivityScreen.
  *
  * @param {*} route Argument that carries over the parameters passed from the previous screen.
+ * @param {*} navigation Navigation prop.
  * @returns Render of EditActivityScreen.
  */
-const EditActivityScreen = ({route}) => {
+const EditActivityScreen = ({route, navigation}) => {
   /**
    * Route parameters passed from the previous screen.
    */
@@ -54,11 +54,6 @@ const EditActivityScreen = ({route}) => {
     }
     return `${hours}:${minutes}`;
   };
-
-  /**
-   * Navigation object.
-   */
-  const navigation = useNavigation();
 
   /**
    * State for activity name input field; default state is ''.

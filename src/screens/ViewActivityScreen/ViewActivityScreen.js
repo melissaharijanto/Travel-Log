@@ -1,7 +1,5 @@
-import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import Back from 'react-native-vector-icons/Feather';
 import CustomButton from '../../components/CustomButton';
 import {firebase} from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
@@ -14,7 +12,7 @@ import {
   SmallLineBreak,
 } from '../../components/LineBreaks/LineBreaks';
 
-const ViewActivityScreen = ({route}) => {
+const ViewActivityScreen = ({route, navigation}) => {
   const {id, itemId, dayLabel, date, owner} = route.params;
 
   const getTime = time => {
@@ -28,8 +26,6 @@ const ViewActivityScreen = ({route}) => {
     }
     return `${hours}:${minutes}`;
   };
-
-  const navigation = useNavigation();
 
   // Set initial states of each field to be empty.
   const [name, setName] = useState(null);

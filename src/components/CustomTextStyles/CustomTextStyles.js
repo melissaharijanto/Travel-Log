@@ -12,6 +12,15 @@ export const ErrorMessage = ({text}) => {
 export const HomeSubtitle = ({text, style}) => {
   return <Text style={[styles.subtitle, style]}>{text}</Text>;
 };
+
+export const FeaturedTitle = ({text, style}) => {
+  return <Text style={[styles.featuredTitle, style]}>{text}</Text>;
+};
+
+export const FeaturedSubtitle = ({text}) => {
+  return <Text style={styles.featuredSubtitle}>{text}</Text>;
+};
+
 const styles = StyleSheet.create({
   error: {
     color: '#a3160b',
@@ -29,5 +38,15 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#000000',
     paddingBottom: '1%',
+  },
+  featuredTitle: {
+    color: 'white',
+    fontFamily: 'Poppins-Bold',
+    fontSize: 36,
+  },
+  featuredSubtitle: {
+    color: '#3B4949',
+    fontFamily: 'Poppins-Regular',
+    fontSize: 14,
   },
 });

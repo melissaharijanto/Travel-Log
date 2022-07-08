@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet, Dimensions, FlatList} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {View, StyleSheet, FlatList} from 'react-native';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import CustomButton from '../../components/CustomButton';
@@ -19,7 +18,7 @@ import {
   HomeSubtitle,
 } from '../../components/CustomTextStyles/CustomTextStyles';
 
-const HomeScreen = ({route}) => {
+const HomeScreen = ({route, navigation}) => {
   /**
    * Gets authentication data of the current user logged in.
    */
@@ -29,11 +28,6 @@ const HomeScreen = ({route}) => {
    * Route parameters.
    */
   const {status} = route.params;
-
-  /**
-   * Navigation object.
-   */
-  const navigation = useNavigation();
 
   /**
    * Navigates to a page to create new itinerary.

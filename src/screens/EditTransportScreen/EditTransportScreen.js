@@ -1,4 +1,3 @@
-import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, ActivityIndicator, Alert} from 'react-native';
 import InputFieldAfterLogIn from '../../components/InputFieldAfterLogIn';
@@ -32,12 +31,7 @@ import {Field} from 'formik';
  * @param {*} route Argument that carries over the parameters passed from the previous screen.
  * @returns Render of EditTransportScreen.
  */
-const EditTransportScreen = ({route}) => {
-  /**
-   * Navigation object.
-   */
-  const navigation = useNavigation();
-
+const EditTransportScreen = ({route, navigation}) => {
   /**
    * Route parameters passed from the previous screen.
    */

@@ -1,4 +1,3 @@
-import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import CustomButton from '../../components/CustomButton';
@@ -13,10 +12,8 @@ import {
   SmallLineBreak,
 } from '../../components/LineBreaks/LineBreaks';
 
-const ViewTransportScreen = ({route}) => {
+const ViewTransportScreen = ({route, navigation}) => {
   const {id, itemId, dayLabel, date, owner} = route.params;
-
-  const navigation = useNavigation();
 
   // Set initial states of each field to be empty.
   const [name, setName] = useState();
