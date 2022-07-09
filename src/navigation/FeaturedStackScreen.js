@@ -17,6 +17,7 @@ import EditTransportScreen from '../screens/EditTransportScreen';
 import {MapsForAddingAccommodation} from '../screens/MapsScreen/MapsForAddingAccommodation';
 import {MapsForEditingAccommodation} from '../screens/MapsScreen/MapsForEditingAccommodation';
 import {ViewMap} from '../screens/MapsScreen/ViewMap';
+import TopBarNavigator from './TopBarNavigator';
 
 const FeaturedStack = createNativeStackNavigator();
 const FeaturedStackScreen = () => {
@@ -102,6 +103,13 @@ const FeaturedStackScreen = () => {
       <FeaturedStack.Screen
         name="EditTransport"
         component={EditTransportScreen}
+      />
+      <FeaturedStack.Screen
+        name="Recommendations"
+        component={TopBarNavigator}
+        options={{
+          headerShown: true,
+        }}
       />
     </FeaturedStack.Navigator>
   );

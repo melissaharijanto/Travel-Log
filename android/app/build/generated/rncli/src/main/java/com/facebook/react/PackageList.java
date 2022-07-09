@@ -41,6 +41,8 @@ import com.BV.LinearGradient.LinearGradientPackage;
 import com.github.reactnativecommunity.location.RNLocationPackage;
 // react-native-maps
 import com.airbnb.android.react.maps.MapsPackage;
+// react-native-pager-view
+import com.reactnativepagerview.PagerViewPackage;
 // react-native-reanimated
 import com.swmansion.reanimated.ReanimatedPackage;
 // react-native-safe-area-context
@@ -109,6 +111,7 @@ public class PackageList {
       new LinearGradientPackage(),
       new RNLocationPackage(),
       new MapsPackage(),
+      new PagerViewPackage(),
       new ReanimatedPackage(),
       new SafeAreaContextPackage(),
       new RNScreensPackage(),

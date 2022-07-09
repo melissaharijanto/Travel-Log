@@ -1,13 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  StyleSheet,
-  Image,
-  FlatList,
-  Text,
-  Dimensions,
-} from 'react-native';
-import Logo from '../../../assets/images/logo3.png';
+import {View, StyleSheet, FlatList, Dimensions} from 'react-native';
 import {
   FeaturedSubtitle,
   FeaturedTitle,
@@ -179,7 +171,14 @@ const FeaturedScreen = ({navigation}) => {
             showsHorizontalScrollIndicator={false}
             numColumns={1}
             renderItem={({item}) => (
-              <RecommendationTab image={item.imgUrl} onPress={() => {}} />
+              <RecommendationTab
+                image={item.imgUrl}
+                onPress={() => {
+                  navigation.navigate('Recommendations', {
+                    id: item.id,
+                  });
+                }}
+              />
             )}
             ItemSeparatorComponent={() => <View style={{marginRight: 10}} />}
             keyExtractor={(contact, index) => String(index)}
