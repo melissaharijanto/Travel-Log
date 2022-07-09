@@ -40,6 +40,7 @@
 		1ED8C4092EDD4B27BA902BFE /* Poppins-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B0BBEC3C60F479F865D4DD8 /* Poppins-BoldItalic.otf */; };
 		B7848024376B4482965A2DAB /* Poppins-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4347A0D5A45C4BC0B392C176 /* Poppins-ExtraBold.otf */; };
 		EA18BE5C051140F094729866 /* Poppins-ExtraBoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0D0D15B0BA6947AEB3E869D9 /* Poppins-ExtraBoldItalic.otf */; };
+		FAA2A74F99B04DFFA3F33647 /* Symbola.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7582A1C4201412E83E5BE1D /* Symbola.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 		4B0BBEC3C60F479F865D4DD8 /* Poppins-BoldItalic.otf */ = {isa = PBXFileReference; name = "Poppins-BoldItalic.otf"; path = "../assets/fonts/Poppins-BoldItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		4347A0D5A45C4BC0B392C176 /* Poppins-ExtraBold.otf */ = {isa = PBXFileReference; name = "Poppins-ExtraBold.otf"; path = "../assets/fonts/Poppins-ExtraBold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		0D0D15B0BA6947AEB3E869D9 /* Poppins-ExtraBoldItalic.otf */ = {isa = PBXFileReference; name = "Poppins-ExtraBoldItalic.otf"; path = "../assets/fonts/Poppins-ExtraBoldItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C7582A1C4201412E83E5BE1D /* Symbola.ttf */ = {isa = PBXFileReference; name = "Symbola.ttf"; path = "../assets/fonts/Symbola.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +232,7 @@
 				4B0BBEC3C60F479F865D4DD8 /* Poppins-BoldItalic.otf */,
 				4347A0D5A45C4BC0B392C176 /* Poppins-ExtraBold.otf */,
 				0D0D15B0BA6947AEB3E869D9 /* Poppins-ExtraBoldItalic.otf */,
+				C7582A1C4201412E83E5BE1D /* Symbola.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				1ED8C4092EDD4B27BA902BFE /* Poppins-BoldItalic.otf in Resources */,
 				B7848024376B4482965A2DAB /* Poppins-ExtraBold.otf in Resources */,
 				EA18BE5C051140F094729866 /* Poppins-ExtraBoldItalic.otf in Resources */,
+				FAA2A74F99B04DFFA3F33647 /* Symbola.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

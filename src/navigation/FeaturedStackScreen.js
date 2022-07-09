@@ -1,5 +1,7 @@
 import React from 'react';
+import {View} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Back from 'react-native-vector-icons/Feather';
 import FeaturedScreen from '../screens/FeaturedScreen/FeaturedScreen';
 import NewDayScreen from '../screens/NewDayScreen';
 import EditItineraryScreen from '../screens/EditItineraryScreen/EditItineraryScreen';
@@ -109,6 +111,10 @@ const FeaturedStackScreen = () => {
         component={TopBarNavigator}
         options={{
           headerShown: true,
+          headerTitleStyle: {
+            fontFamily: 'Poppins-Bold',
+          },
+          headerTintColor: '#3B4949',
         }}
       />
     </FeaturedStack.Navigator>
