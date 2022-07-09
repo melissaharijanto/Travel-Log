@@ -42,6 +42,7 @@ const AccommodationRecs = ({navigation, route}) => {
             } else if (ratings == 5) {
               stars = fiveStars;
             }
+
             accommodationList.push({
               name: name,
               address: address,
