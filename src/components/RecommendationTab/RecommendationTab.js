@@ -8,8 +8,8 @@ const RecommendationTab = ({image, onPress}) => {
       <Image
         source={{uri: image}}
         style={{
-          width: width - 2 * 0.07 * width,
-          height: ((width - 2 * 0.07 * width) / 16) * 9,
+          width: 350,
+          height: 175,
           borderRadius: 11,
         }}
       />

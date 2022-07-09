@@ -11,19 +11,15 @@ import {
 import EditIcon from 'react-native-vector-icons/AntDesign';
 import CopyIcon from 'react-native-vector-icons/MaterialIcons';
 import Back from 'react-native-vector-icons/Feather';
-import {useNavigation} from '@react-navigation/native';
 import DayTab from '../../components/DayTab';
 import Clipboard from '@react-native-community/clipboard';
 import firestore from '@react-native-firebase/firestore';
 import AccommodationMainTab from '../../components/AccommodationMainTab';
 import auth from '@react-native-firebase/auth';
 
-const OpeningItineraryScreen = ({route}) => {
+const OpeningItineraryScreen = ({route, navigation}) => {
   // Initializing parameters passed by previous route.
   const {itinerary} = route.params;
-
-  // Navigation object.
-  const navigation = useNavigation();
 
   /*
         Custom date string; will return date in the format as shown in the

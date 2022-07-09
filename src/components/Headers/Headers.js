@@ -2,6 +2,7 @@ import React from 'react';
 import {Image, View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import Back from 'react-native-vector-icons/Feather';
 import DeleteIcon from 'react-native-vector-icons/Feather';
+import Logo from '../../../assets/images/logo3.png';
 
 export const HeaderWithoutDeleteIcon = ({onPress, flexValue, text}) => {
   return (
@@ -63,6 +64,13 @@ export const HomeHeader = ({onPress, uri, name}) => {
   );
 };
 
+export const LogoOnlyHeader = ({borderBottomWidth}) => {
+  return (
+    <View style={[styles.logoHeader, {borderBottomWidth: borderBottomWidth}]}>
+      <Image source={Logo} style={styles.logo} resizeMode="contain" />
+    </View>
+  );
+};
 const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
@@ -84,6 +92,24 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     paddingTop: 9,
+  },
+  logoHeader: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    height: 65,
+    width: '100%',
+    paddingLeft: 10,
+    elevation: 15,
+    shadowColor: '#70D9D3',
+    shadowOpacity: 1,
+    borderBottomColor: '#BBC6D0',
+  },
+  logo: {
+    width: '50%',
+    maxWidth: 700,
+    maxHeight: 200,
   },
   homeHeader: {
     paddingRight: 30,

@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, Alert, ActivityIndicator} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
 import InputFieldAfterLogIn from '../../components/InputFieldAfterLogIn';
 import CustomButton from '../../components/CustomButton';
 import ImagePicker from 'react-native-image-crop-picker';
@@ -22,14 +21,10 @@ import {FieldName} from '../../components/CustomTextStyles/CustomTextStyles';
  * This page will be accessed from the Home Stack.
  *
  * @param {*} route Argument that carries over the parameters passed from the previous screen.
+ * @param {*} navigation Navigation prop.
  * @returns Render of EditItineraryScreen.
  */
-const EditItineraryScreen = ({route}) => {
-  /**
-   * Navigation object.
-   */
-  const navigation = useNavigation();
-
+const EditItineraryScreen = ({route, navigation}) => {
   /**
    * Route parameters passed from the previous screen.
    */

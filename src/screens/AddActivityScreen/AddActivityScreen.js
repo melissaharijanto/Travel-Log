@@ -1,4 +1,3 @@
-import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, ActivityIndicator} from 'react-native';
 import Back from 'react-native-vector-icons/Feather';
@@ -31,14 +30,10 @@ import {Field} from 'formik';
  * Anonymous class that renders AddActivityScreen.
  *
  * @param {*} route Argument that carries over the parameters passed from the previous screen.
+ * @param {*} navigation Navigation prop.
  * @returns Render of AddActivityScreen.
  */
-const AddActivityScreen = ({route}) => {
-  /**
-   * Navigation object.
-   */
-  const navigation = useNavigation();
-
+const AddActivityScreen = ({route, navigation}) => {
   /**
    * Route parameters passed from the previous screen.
    */

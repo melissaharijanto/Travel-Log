@@ -11,7 +11,6 @@ import {
 import Logo from '../../../assets/images/logo2.png';
 import CustomInputField from '../../components/CustomInputField';
 import CustomButton from '../../components/CustomButton';
-import {useNavigation} from '@react-navigation/native';
 import {firebase} from '@react-native-firebase/auth';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
@@ -21,14 +20,10 @@ import {ErrorMessage} from '../../components/CustomTextStyles/CustomTextStyles';
 /**
  * Anonymous class that renders ForgotPasswordScreen.
  *
+ * @param {*} navigation Navigation prop.
  * @returns Render of ForgotPasswordScreen.
  */
-const ForgotPasswordScreen = () => {
-  /**
-   * Navigation object.
-   */
-  const navigation = useNavigation();
-
+const ForgotPasswordScreen = ({navigation}) => {
   /**
    * State for error messages.
    */

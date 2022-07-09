@@ -1,4 +1,3 @@
-import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, ActivityIndicator} from 'react-native';
 import InputFieldAfterLogIn from '../../components/InputFieldAfterLogIn';
@@ -29,19 +28,15 @@ import {
  * Anonymous class that renders AddAccommodationScreen.
  *
  * @param {*} route Argument that carries over the parameters passed from the previous screen.
+ * @param {*} navigation Navigation prop.
  * @returns Render of AddAccommodationScreen.
  */
-const AddAccommodationScreen = ({route}) => {
+const AddAccommodationScreen = ({route, navigation}) => {
   /**
    * Route parameters passed from the previous screen.
    */
   const {id, itineraryStart, itineraryEnd, owner, address, location} =
     route.params;
-
-  /**
-   * Navigation object.
-   */
-  const navigation = useNavigation();
 
   /**
    * State for accommodation name input field; default state is ''.

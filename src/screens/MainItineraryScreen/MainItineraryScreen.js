@@ -1,25 +1,19 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Image, StyleSheet, FlatList} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import Logo from '../../../assets/images/logo3.png';
+import {View, Text, StyleSheet, FlatList} from 'react-native';
 import ItineraryTab from '../../components/ItineraryTab';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import {useFocusEffect} from '@react-navigation/native';
 import {SearchBar} from '@rneui/themed';
 import MainItinerarySkeleton from '../../components/MainItinerarySkeleton';
+import {LogoOnlyHeader} from '../../components/Headers/Headers';
 
 /**
  * Anonymous class that renders MainItineraryScreen.
  *
  * @returns render of MainItineraryScreen.
  */
-const MainItineraryScreen = () => {
-  /**
-   * Navigation Object.
-   */
-  const navigation = useNavigation();
-
+const MainItineraryScreen = ({navigation}) => {
   /**
    * Gets authentication data of the current user logged in.
    */
@@ -179,6 +173,7 @@ const MainItineraryScreen = () => {
   useFocusEffect(
     React.useCallback(() => {
       let unmounted = false;
+      setLoadItineraries(true);
       getUser();
       return () => {
         unmounted = true;
@@ -216,9 +211,7 @@ const MainItineraryScreen = () => {
   return (
     <View style={styles.root}>
       {/* header */}
-      <View style={styles.header}>
-        <Image source={Logo} style={styles.logo} resizeMode="contain" />
-      </View>
+      <LogoOnlyHeader />
       <View style={{width: '100%'}}>
         <SearchBar
           placeholder="Search Here..."

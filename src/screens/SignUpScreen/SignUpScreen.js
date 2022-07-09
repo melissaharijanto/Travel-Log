@@ -11,7 +11,6 @@ import {
 import Logo from '../../../assets/images/logo2.png';
 import CustomInputField from '../../components/CustomInputField';
 import CustomButton from '../../components/CustomButton';
-import {useNavigation} from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import {Formik} from 'formik';
@@ -19,7 +18,7 @@ import * as Yup from 'yup';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper';
 import {ErrorMessage} from '../../components/CustomTextStyles/CustomTextStyles';
 
-const SignUpScreen = () => {
+const SignUpScreen = ({navigation}) => {
   const [message, setMessage] = useState(null);
   const [showMessage, setShowMessage] = useState(false);
   const [waiting, setWaiting] = useState(false);
@@ -41,56 +40,6 @@ const SignUpScreen = () => {
       .min(6, 'Password is too short!')
       .required('Password is required!'),
   });
-
-  const navigation = useNavigation();
-
-  const onSignUpPressed = async () => {
-    await auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(async () => {
-        await firestore()
-          .collection('users')
-          .doc(auth().currentUser.uid)
-          .set({
-            name: name,
-            email: email,
-            createdAt: firestore.Timestamp.fromDate(new Date()),
-            userImg: null,
-            itineraries: 0,
-          });
-        console.log('User account created & signed in!');
-      })
-      .catch(error => {
-        if (error.code === 'auth/user-not-found') {
-          console.log(
-            'There is no existing user record corresponding to the provided identifier.',
-          );
-        }
-
-        if (error.code === 'auth/invalid-email') {
-          console.log('That email address is invalid!');
-        }
-
-        Alert.alert(
-          error.code,
-          error.message,
-          [
-            {
-              text: 'OK',
-              onPress: () => console.log('OK Pressed'),
-              style: 'OK',
-            },
-          ],
-          {
-            cancelable: true,
-            onDismiss: () =>
-              console.log(
-                'This alert was dismissed by tapping outside of the alert dialog.',
-              ),
-          },
-        );
-      });
-  };
 
   const onLogInPressed = () => {
     navigation.navigate('SignIn');

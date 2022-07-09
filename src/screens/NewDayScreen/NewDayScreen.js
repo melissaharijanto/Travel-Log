@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {View, Image, StyleSheet, FlatList} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
 import ActivityTab from '../../components/ActivityTab';
 import TransportTab from '../../components/TransportTab';
 import ActionButton from 'react-native-action-button-warnings-fixed';
@@ -12,9 +11,7 @@ import {HeaderWithoutDeleteIcon} from '../../components/Headers/Headers';
 import {SmallLineBreak} from '../../components/LineBreaks/LineBreaks';
 import NewDaySkeleton from '../../components/NewDaySkeleton';
 
-const NewDayScreen = ({route}) => {
-  const navigation = useNavigation();
-
+const NewDayScreen = ({route, navigation}) => {
   const [plans, setPlans] = useState(null);
 
   const {id, dayLabel, date, owner} = route.params;

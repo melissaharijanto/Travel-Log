@@ -1,7 +1,5 @@
-import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, ActivityIndicator} from 'react-native';
-import Back from 'react-native-vector-icons/Feather';
 import InputFieldAfterLogIn from '../../components/InputFieldAfterLogIn';
 import CustomButton from '../../components/CustomButton';
 import DocumentPicker, {
@@ -31,14 +29,10 @@ import {Field} from 'formik';
  * Anonymous class that renders AddTransportScreen.
  *
  * @param {*} route Argument that carries over the parameters passed from the previous screen.
+ * @param {*} navigation Navigation prop.
  * @returns Render of AddTransportScreen.
  */
-const AddTransportScreen = ({route}) => {
-  /**
-   * Navigation object.
-   */
-  const navigation = useNavigation();
-
+const AddTransportScreen = ({route, navigation}) => {
   /**
    * Route parameters passed from the previous screen.
    */

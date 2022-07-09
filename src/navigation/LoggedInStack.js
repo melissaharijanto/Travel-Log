@@ -10,7 +10,6 @@ const LoggedInNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="HomeWithBottomTab" component={BottomTabNavigator} />
-
       <Stack.Screen name="EditProfile" component={EditProfileScreen} />
     </Stack.Navigator>
   );

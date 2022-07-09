@@ -8,7 +8,7 @@ import FeaturedIcon from 'react-native-vector-icons/Entypo';
 import ProfileIcon from 'react-native-vector-icons/FontAwesome';
 import HomeStackScreen from './HomeStackScreen';
 import ItineraryStackScreen from './ItineraryStackScreen';
-import FeaturedScreen from '../screens/FeaturedScreen';
+import FeaturedStackScreen from './FeaturedStackScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -50,7 +50,7 @@ const BottomTabNavigator = () => {
 
       <Tab.Screen
         name="Featured"
-        component={FeaturedScreen}
+        component={FeaturedStackScreen}
         options={{
           tabBarIcon: ({focused}) => (
             <View style={styles.root}>

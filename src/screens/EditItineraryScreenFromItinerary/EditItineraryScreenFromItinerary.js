@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, Alert, ActivityIndicator} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
 import InputFieldAfterLogIn from '../../components/InputFieldAfterLogIn';
 import CustomButton from '../../components/CustomButton';
 import ImagePicker from 'react-native-image-crop-picker';
@@ -22,14 +21,10 @@ import {HeaderWithDeleteIcon} from '../../components/Headers/Headers';
  * This page will be accessed from the Itinerary Stack.
  *
  * @param {*} route Argument that carries over the parameters passed from the previous screen.
+ * @param {*} navigation Navigation prop.
  * @returns Render of EditItineraryScreenFromItinerary.
  */
-const EditItineraryScreenFromItinerary = ({route}) => {
-  /**
-   * Navigation object.
-   */
-  const navigation = useNavigation();
-
+const EditItineraryScreenFromItinerary = ({route, navigation}) => {
   /**
    * Route parameters passed from the previous screen.
    */

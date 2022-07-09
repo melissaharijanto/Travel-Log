@@ -4,17 +4,15 @@ import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import RNLocation from 'react-native-location';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
 import CustomButton from '../../components/CustomButton';
-import {useNavigation} from '@react-navigation/native';
 
 LogBox.ignoreLogs(['new NativeEventEmitter']); // Ignore log notification by messagerr
 
-export const MapsForAddingAccommodation = ({route}) => {
+export const MapsForAddingAccommodation = ({route, navigation}) => {
   const {id, itineraryStart, itineraryEnd, owner, address, location} =
     route.params;
   const [region, setRegion] = useState(location);
   const [addressName, setAddressName] = useState(address);
 
-  const navigation = useNavigation();
   const setInitialLocation = () => {
     RNLocation.configure({
       distanceFilter: 100,

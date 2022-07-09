@@ -9,7 +9,6 @@ import {
   ActivityIndicator,
   TouchableOpacity,
 } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
 import Background from '../../../assets/images/profile-background.png';
 import CustomButton from '../../components/CustomButton';
@@ -24,18 +23,14 @@ import {FourLineBreak} from '../../components/LineBreaks/LineBreaks';
 /**
  * Anonymous class that renders EditProfileScreen.
  *
+ * @param {*} navigation Navigation prop.
  * @returns Render of EditProfileScreen
  */
-const EditProfileScreen = () => {
+const EditProfileScreen = ({navigation}) => {
   /**
    * Fetches data of the current user logged into the app.
    */
   const user = auth().currentUser;
-
-  /**
-   * Navigation object.
-   */
-  const navigation = useNavigation();
 
   /**
    * State for user's name. Default state is the user's

@@ -10,16 +10,13 @@ import {
 import Logo from '../../../assets/images/logo2.png';
 import CustomInputField from '../../components/CustomInputField';
 import CustomButton from '../../components/CustomButton';
-import {useNavigation} from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import {ErrorMessage} from '../../components/CustomTextStyles/CustomTextStyles';
 
-const SignInScreen = () => {
-  const navigation = useNavigation();
-
+const SignInScreen = ({navigation}) => {
   const [message, setMessage] = useState(null);
   const [showMessage, setShowMessage] = useState(false);
   const [waiting, setWaiting] = useState(false);
