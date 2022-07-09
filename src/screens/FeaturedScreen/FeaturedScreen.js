@@ -30,10 +30,11 @@ const FeaturedScreen = ({navigation}) => {
           return;
         }
         querySnapshot.forEach(doc => {
-          const {imgUrl} = doc.data();
+          const {imgUrl, id} = doc.data();
 
           recommendations.push({
             imgUrl: imgUrl,
+            id: id,
           });
         });
 
@@ -175,7 +176,10 @@ const FeaturedScreen = ({navigation}) => {
                 image={item.imgUrl}
                 onPress={() => {
                   navigation.navigate('Recommendations', {
-                    id: item.id,
+                    screen: 'Accommodation',
+                    params: {
+                      id: item.id,
+                    },
                   });
                 }}
               />

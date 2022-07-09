@@ -66,6 +66,8 @@ export const MapsForAddingAccommodation = ({route, navigation}) => {
         onPress={(data, details = null) => {
           setAddressName(details.name);
           console.log(addressName);
+          console.log(details.geometry.location.lat);
+          console.log(details.geometry.location.lng);
           setRegion({
             latitude: details.geometry.location.lat,
             longitude: details.geometry.location.lng,
