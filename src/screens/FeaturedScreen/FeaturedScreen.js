@@ -7,19 +7,20 @@ import {
 } from '../../components/CustomTextStyles/CustomTextStyles';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper';
 import firestore from '@react-native-firebase/firestore';
-import {useFocusEffect} from '@react-navigation/native';
 import {SmallLineBreak} from '../../components/LineBreaks/LineBreaks';
 import RecommendationTab from '../../components/RecommendationTab';
 import ItineraryTab from '../../components/ItineraryTab';
 import auth from '@react-native-firebase/auth';
 import {LogoOnlyHeader} from '../../components/Headers/Headers';
+import FeaturedSkeleton from '../../components/FeaturedSkeleton';
 
 const width = Dimensions.get('window').width;
 
-const FeaturedScreen = ({navigation}) => {
+const FeaturedScreen = ({navigation, route}) => {
   const [recommendationList, setRecommendationList] = useState([]);
   const [itineraries, setItineraries] = useState([]);
   const [featuredItineraries, setFeaturedItineraries] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const getRecommendations = async () => {
     const recommendations = [];
@@ -50,6 +51,9 @@ const FeaturedScreen = ({navigation}) => {
       .where('owner', '!=', auth().currentUser.uid)
       .onSnapshot(querySnapshot => {
         if (querySnapshot.empty) {
+          if (loading) {
+            setLoading(false);
+          }
           return;
         }
 
@@ -99,27 +103,20 @@ const FeaturedScreen = ({navigation}) => {
       }
     }
     setFeaturedItineraries(randomItineraryList);
+
+    if (loading) {
+      setLoading(false);
+    }
   };
 
-  useFocusEffect(
-    React.useCallback(() => {
-      let unmounted = false;
-      getRecommendations();
-      return () => {
-        unmounted = true;
-      };
-    }, []),
-  );
+  useEffect(() => {
+    getRecommendations();
+  }, [route]);
 
-  useFocusEffect(
-    React.useCallback(() => {
-      let unmounted = false;
-      getItineraries();
-      return () => {
-        unmounted = true;
-      };
-    }, []),
-  );
+  useEffect(() => {
+    let unmounted = false;
+    getItineraries();
+  }, [route]);
 
   useEffect(() => {
     let unmounted = false;
@@ -132,65 +129,69 @@ const FeaturedScreen = ({navigation}) => {
 
   return (
     <KeyboardAvoidingWrapper backgroundColor="#FFFFFF">
-      <View style={styles.root}>
-        <View style={styles.circle}>
-          <FeaturedTitle
-            text="Discover More."
-            style={{paddingTop: width / 2 + 20, lineHeight: 5}}
-          />
-          <FeaturedSubtitle text="Here are some recommendations for you." />
-        </View>
-        <LogoOnlyHeader borderBottomWidth={1} />
-        <SmallLineBreak />
-
-        <View style={styles.content}>
-          <HomeSubtitle text="Featured Itineraries" />
-          <FlatList
-            data={featuredItineraries}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            numColumns={1}
-            renderItem={({item}) => (
-              <ItineraryTab
-                text={item.title}
-                image={item.coverImage}
-                onPress={() => {
-                  navigation.navigate('OpenItinerary', {
-                    itinerary: item,
-                  });
-                }}
-              />
-            )}
-            ItemSeparatorComponent={() => <View style={{marginRight: 10}} />}
-            keyExtractor={(contact, index) => String(index)}
-          />
-
-          <HomeSubtitle text="View Our Recommendations!" />
-          <FlatList
-            data={recommendationList}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            numColumns={1}
-            renderItem={({item}) => (
-              <RecommendationTab
-                image={item.imgUrl}
-                onPress={() => {
-                  navigation.navigate('Recommendations', {
-                    screen: 'Accommodation',
-                    params: {
-                      id: item.id,
-                    },
-                  });
-                }}
-              />
-            )}
-            ItemSeparatorComponent={() => <View style={{marginRight: 10}} />}
-            keyExtractor={(contact, index) => String(index)}
-          />
-
+      {loading ? (
+        <FeaturedSkeleton />
+      ) : (
+        <View style={styles.root}>
+          <View style={styles.circle}>
+            <FeaturedTitle
+              text="Discover More."
+              style={{paddingTop: width / 2 + 20, lineHeight: 5}}
+            />
+            <FeaturedSubtitle text="Here are some recommendations for you." />
+          </View>
+          <LogoOnlyHeader borderBottomWidth={1} />
           <SmallLineBreak />
+
+          <View style={styles.content}>
+            <HomeSubtitle text="Featured Itineraries" />
+            <FlatList
+              data={featuredItineraries}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              numColumns={1}
+              renderItem={({item}) => (
+                <ItineraryTab
+                  text={item.title}
+                  image={item.coverImage}
+                  onPress={() => {
+                    navigation.navigate('OpenItinerary', {
+                      itinerary: item,
+                    });
+                  }}
+                />
+              )}
+              ItemSeparatorComponent={() => <View style={{marginRight: 10}} />}
+              keyExtractor={(contact, index) => String(index)}
+            />
+
+            <HomeSubtitle text="View Our Recommendations!" />
+            <FlatList
+              data={recommendationList}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              numColumns={1}
+              renderItem={({item}) => (
+                <RecommendationTab
+                  image={item.imgUrl}
+                  onPress={() => {
+                    navigation.navigate('Recommendations', {
+                      screen: 'Accommodation',
+                      params: {
+                        id: item.id,
+                      },
+                    });
+                  }}
+                />
+              )}
+              ItemSeparatorComponent={() => <View style={{marginRight: 10}} />}
+              keyExtractor={(contact, index) => String(index)}
+            />
+
+            <SmallLineBreak />
+          </View>
         </View>
-      </View>
+      )}
     </KeyboardAvoidingWrapper>
   );
 };
@@ -211,7 +212,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   content: {
-    paddingLeft: '7%',
+    paddingLeft: '5%',
     paddingRight: '2%',
     flex: 1,
     paddingTop: '48%',
