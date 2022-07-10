@@ -1,9 +1,7 @@
 import React, {useEffect} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import AccommodationRecs from '../screens/RecommendationScreens/AccommodationRecs';
-import ActivitiesRecs from '../screens/RecommendationScreens/ActivitiesRecs';
-import RestaurantRecs from '../screens/RecommendationScreens/RestaurantRecs';
+import RecommendationScreen from '../screens/RecommendationScreen';
 
 const Tab = createMaterialTopTabNavigator();
 const TopBarNavigator = ({route}) => {
@@ -25,18 +23,18 @@ const TopBarNavigator = ({route}) => {
       }}>
       <Tab.Screen
         name="Accommodation"
-        component={AccommodationRecs}
-        initialParams={{id: route.params.id}}
+        component={RecommendationScreen}
+        initialParams={{id: route.params.id, type: 'accommodations'}}
       />
       <Tab.Screen
         name="Restaurants"
-        component={RestaurantRecs}
-        initialParams={{id: route.params.id}}
+        component={RecommendationScreen}
+        initialParams={{id: route.params.id, type: 'restaurants'}}
       />
       <Tab.Screen
         name="Activities"
-        component={ActivitiesRecs}
-        initialParams={{id: route.params.id}}
+        component={RecommendationScreen}
+        initialParams={{id: route.params.id, type: 'activities'}}
       />
     </Tab.Navigator>
   );

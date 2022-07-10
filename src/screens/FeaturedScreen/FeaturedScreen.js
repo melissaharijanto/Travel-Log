@@ -176,10 +176,7 @@ const FeaturedScreen = ({navigation}) => {
                 image={item.imgUrl}
                 onPress={() => {
                   navigation.navigate('Recommendations', {
-                    screen: 'Accommodation',
-                    params: {
-                      id: item.id,
-                    },
+                    id: item.id,
                   });
                 }}
               />
