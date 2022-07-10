@@ -155,8 +155,8 @@ const FeaturedScreen = ({navigation, route}) => {
                   text={item.title}
                   image={item.coverImage}
                   onPress={() => {
-                    navigation.navigate('OpenItinerary', {
-                      itinerary: item,
+                    navigation.navigate('Recommendations', {
+                      id: item.id,
                     });
                   }}
                 />
@@ -175,12 +175,11 @@ const FeaturedScreen = ({navigation, route}) => {
                 <RecommendationTab
                   image={item.imgUrl}
                   onPress={() => {
-                    navigation.navigate('Recommendations', {
-                      screen: 'Accommodation',
-                      params: {
+                    {
+                      navigation.navigate('Recommendations', {
                         id: item.id,
-                      },
-                    });
+                      });
+                    }
                   }}
                 />
               )}
