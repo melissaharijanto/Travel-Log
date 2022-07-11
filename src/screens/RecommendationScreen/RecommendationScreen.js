@@ -8,7 +8,6 @@ const RecommendationScreen = ({navigation, route}) => {
   const [recommendation, setRecommendation] = useState();
 
   useEffect(() => {
-    console.log(id);
     if (type == 'accommodations') {
       getAccommodationRecs();
     }
@@ -40,7 +39,8 @@ const RecommendationScreen = ({navigation, route}) => {
         }
         querySnapshot.forEach(doc => {
           if (doc.exists) {
-            const {name, address, price, location, img} = doc.data();
+            const {name, address, price, location, img, site, desc} =
+              doc.data();
 
             activitiesList.push({
               name: name,
@@ -48,6 +48,8 @@ const RecommendationScreen = ({navigation, route}) => {
               ratings: price,
               img: img,
               location: location,
+              site: site,
+              desc: desc,
             });
           }
         });
@@ -72,7 +74,8 @@ const RecommendationScreen = ({navigation, route}) => {
         }
         querySnapshot.forEach(doc => {
           if (doc.exists) {
-            const {name, address, price, location, img} = doc.data();
+            const {name, address, price, location, img, site, desc} =
+              doc.data();
 
             restaurantList.push({
               name: name,
@@ -80,6 +83,8 @@ const RecommendationScreen = ({navigation, route}) => {
               ratings: price,
               img: img,
               location: location,
+              site: site,
+              desc: desc,
             });
           }
         });
@@ -105,7 +110,8 @@ const RecommendationScreen = ({navigation, route}) => {
 
         querySnapshot.forEach(doc => {
           if (doc.exists) {
-            const {name, ratings, address, img, location} = doc.data();
+            const {name, ratings, address, img, location, site, desc} =
+              doc.data();
 
             let stars = '';
 
@@ -122,6 +128,8 @@ const RecommendationScreen = ({navigation, route}) => {
               ratings: stars,
               img: img,
               location: location,
+              site: site,
+              desc: desc,
             });
           }
         });
@@ -141,8 +149,14 @@ const RecommendationScreen = ({navigation, route}) => {
               ratings={item.ratings}
               image={item.img}
               onPress={() => {
-                navigation.navigate('ViewMap', {
+                navigation.navigate('MapsForRecommendation', {
+                  type: type,
                   location: item.location,
+                  name: item.name,
+                  address: item.address,
+                  ratings: item.ratings,
+                  site: item.site,
+                  desc: item.desc,
                 });
               }}
             />

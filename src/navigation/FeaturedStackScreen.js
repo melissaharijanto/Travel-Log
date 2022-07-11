@@ -18,6 +18,7 @@ import NewAccommodationScreen from '../screens/NewAccommodationScreen';
 import EditTransportScreen from '../screens/EditTransportScreen';
 import {MapsForAddingAccommodation} from '../screens/MapsScreen/MapsForAddingAccommodation';
 import {MapsForEditingAccommodation} from '../screens/MapsScreen/MapsForEditingAccommodation';
+import {MapsForRecommendationScreen} from '../screens/MapsScreen/MapsForRecommendationScreen';
 import {ViewMap} from '../screens/MapsScreen/ViewMap';
 import TopBarNavigator from './TopBarNavigator';
 
@@ -105,6 +106,16 @@ const FeaturedStackScreen = () => {
       <FeaturedStack.Screen
         name="EditTransport"
         component={EditTransportScreen}
+      />
+      <FeaturedStack.Screen
+        name="MapsForRecommendation"
+        component={MapsForRecommendationScreen}
+        initialParams={{
+          location: {
+            longitude: 0,
+            latitude: 0,
+          },
+        }}
       />
       <FeaturedStack.Screen
         name="Recommendations"
