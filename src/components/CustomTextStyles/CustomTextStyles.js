@@ -1,5 +1,7 @@
 import React from 'react';
-import {StyleSheet, Text} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import Entypo from 'react-native-vector-icons/Entypo';
 
 export const FieldName = ({text}) => {
   return <Text style={styles.field}>{text}</Text>;
@@ -19,6 +21,58 @@ export const FeaturedTitle = ({text, style}) => {
 
 export const FeaturedSubtitle = ({text}) => {
   return <Text style={styles.featuredSubtitle}>{text}</Text>;
+};
+
+export const LocationName = ({text}) => {
+  return <Text style={styles.locationName}>{text}</Text>;
+};
+
+export const LocationAddress = ({text}) => {
+  return (
+    <View style={{flexDirection: 'row', paddingTop: 3}}>
+      <Ionicons name="location-sharp" size={20} color="#3B494990" />
+      <Text style={styles.address}>{text}</Text>
+    </View>
+  );
+};
+
+export const Ratings = ({text}) => {
+  return (
+    <View>
+      <Text
+        style={{
+          fontFamily: 'Poppings-Regular',
+          fontSize: 20,
+          paddingBottom: 5,
+          lineHeight: 17.5,
+          color: '#FFCA28',
+        }}>
+        {text}
+      </Text>
+    </View>
+  );
+};
+
+export const PriceTag = ({text}) => {
+  return (
+    <View style={{flexDirection: 'row'}}>
+      <Ionicons name="pricetag" size={20} color="#3B494990" />
+      <Text style={styles.address}>{text}</Text>
+    </View>
+  );
+};
+
+export const WebsiteLink = ({text}) => {
+  return (
+    <View style={{flexDirection: 'row', paddingTop: 3}}>
+      <Entypo name="link" size={20} color="#3B494990" />
+      <Text style={styles.address}>{text}</Text>
+    </View>
+  );
+};
+
+export const Description = ({text}) => {
+  return <Text style={styles.description}>{text}</Text>;
 };
 
 const styles = StyleSheet.create({
@@ -48,5 +102,24 @@ const styles = StyleSheet.create({
     color: '#3B4949',
     fontFamily: 'Poppins-Regular',
     fontSize: 14,
+  },
+  locationName: {
+    fontFamily: 'Poppins-SemiBold',
+    fontSize: 20,
+    paddingTop: 15,
+    color: '#3B4949',
+  },
+  address: {
+    fontFamily: 'Poppins-Regular',
+    fontSize: 14,
+    paddingLeft: 4,
+    color: '#3B494990',
+  },
+  description: {
+    fontFamily: 'Poppins-Regular',
+    fontSize: 13,
+    color: '#808080',
+    textAlign: 'justify',
+    lineHeight: 20,
   },
 });
