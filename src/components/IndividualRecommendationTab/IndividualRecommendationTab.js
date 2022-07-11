@@ -25,7 +25,14 @@ const IndividualRecommendationTab = ({
         <View style={{paddingLeft: 10, width: '80%'}}>
           <Text style={styles.title}>{name}</Text>
           <Text style={styles.subtitle}>{address}</Text>
-          <Text style={{color: '#3B4949'}}>{ratings}</Text>
+          <Text
+            style={{
+              color: '#3B4949',
+              fontFamily: 'Poppins-Regular',
+              fontSize: 12,
+            }}>
+            {ratings}
+          </Text>
         </View>
       </View>
     </Pressable>
