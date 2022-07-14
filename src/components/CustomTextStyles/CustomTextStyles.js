@@ -44,7 +44,7 @@ export const Ratings = ({text}) => {
           fontFamily: 'Poppings-Regular',
           fontSize: 20,
           paddingBottom: 5,
-          lineHeight: 17.5,
+          lineHeight: 23,
           color: '#FFCA28',
         }}>
         {text}
