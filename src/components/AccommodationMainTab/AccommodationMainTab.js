@@ -3,7 +3,10 @@ import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 
 const AccommodationMainTab = ({onPress}) => {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.container}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={styles.container}
+      testID="button">
       <View style={{paddingLeft: 13}}>
         <Text style={styles.text}>Accommodation</Text>
       </View>

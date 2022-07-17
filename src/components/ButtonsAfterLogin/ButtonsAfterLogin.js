@@ -5,7 +5,7 @@ import ImageIcon from 'react-native-vector-icons/FontAwesome';
 
 export const ReusableButton = ({onPress, text}) => {
   return (
-    <Pressable onPress={onPress} style={styles.button}>
+    <Pressable onPress={onPress} style={styles.button} testID="button">
       <Text style={styles.buttonText}>{text}</Text>
     </Pressable>
   );
@@ -13,7 +13,7 @@ export const ReusableButton = ({onPress, text}) => {
 
 export const UploadFiles = ({onPress}) => {
   return (
-    <Pressable onPress={onPress} style={styles.button}>
+    <Pressable onPress={onPress} style={styles.button} testID="button">
       <Document
         name="document-outline"
         size={20}
@@ -29,7 +29,7 @@ export const UploadFiles = ({onPress}) => {
 
 export const UploadImages = ({onPress}) => {
   return (
-    <Pressable onPress={onPress} style={styles.button}>
+    <Pressable onPress={onPress} style={styles.button} testID="button">
       <ImageIcon
         name="image"
         size={18}
@@ -46,7 +46,7 @@ export const UploadImages = ({onPress}) => {
 
 export const ViewFiles = ({onPress}) => {
   return (
-    <Pressable style={styles.view} onPress={onPress}>
+    <Pressable style={styles.view} onPress={onPress} testID="button">
       <Text style={styles.buttonText}>View file</Text>
     </Pressable>
   );

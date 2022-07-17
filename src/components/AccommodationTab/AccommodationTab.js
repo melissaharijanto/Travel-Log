@@ -8,9 +8,11 @@ const AccommodationTab = ({onPress, text, subtext, isActive, onLongPress}) => {
       onPress={onPress}
       style={styles.container}
       disabled={isActive}
-      onLongPress={onLongPress}>
+      onLongPress={onLongPress}
+      testID="button">
       <View style={styles.horizontal}>
         <Image
+          accessibilityRole="image"
           source={Accommodation}
           style={[styles.icon, styles.horizontal]}
         />

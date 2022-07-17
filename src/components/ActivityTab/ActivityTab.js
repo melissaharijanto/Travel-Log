@@ -4,9 +4,16 @@ import Activity from '../../../assets/images/Activity.png';
 
 const ActivityTab = ({onPress, text, subtext}) => {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.container}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={styles.container}
+      testID="button">
       <View style={styles.horizontal}>
-        <Image source={Activity} style={[styles.icon, styles.horizontal]} />
+        <Image
+          source={Activity}
+          accessibilityRole="image"
+          style={[styles.icon, styles.horizontal]}
+        />
         <View style={{width: '75%'}}>
           <Text style={styles.text}>{text}</Text>
           <Text style={styles.subtext}>{subtext}</Text>
