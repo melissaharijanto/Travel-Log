@@ -156,7 +156,7 @@ const FeaturedScreen = ({navigation, route}) => {
                   image={item.coverImage}
                   onPress={() => {
                     navigation.navigate('OpenItinerary', {
-                      id: item.id,
+                      itinerary: item,
                     });
                   }}
                 />
