@@ -8,10 +8,15 @@ const TransportTab = ({onPress, text, subtext, isActive, onLongPress}) => {
       onPress={onPress}
       style={styles.container}
       onLongPress={onLongPress}
-      disabled={isActive}>
-      <View style={styles.horizontal}>
-        <Image source={Transport} style={[styles.icon, styles.horizontal]} />
-        <View style={{width: '75%'}}>
+      disabled={isActive}
+      testID="button">
+      <View style={styles.horizontal} testID="container">
+        <Image
+          source={Transport}
+          style={[styles.icon, styles.horizontal]}
+          accessibilityRole="image"
+        />
+        <View style={{width: '75%'}} testID="text container">
           <Text style={styles.text}>{text}</Text>
           <Text style={styles.subtext}>{subtext}</Text>
         </View>

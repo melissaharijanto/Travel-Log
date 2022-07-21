@@ -1,10 +1,9 @@
 import React from 'react';
-import {TouchableOpacity, Image, Dimensions} from 'react-native';
+import {TouchableOpacity, Image} from 'react-native';
 
 const RecommendationTab = ({image, onPress}) => {
-  const width = Dimensions.get('window').width;
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={onPress} testID="button">
       <Image
         source={{uri: image}}
         style={{
@@ -12,6 +11,7 @@ const RecommendationTab = ({image, onPress}) => {
           height: 175,
           borderRadius: 11,
         }}
+        accessibilityRole="image"
       />
     </TouchableOpacity>
   );

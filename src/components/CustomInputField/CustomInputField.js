@@ -12,7 +12,7 @@ const CustomInputField = ({
 }) => {
   return (
     <View style={{width: '100%'}}>
-      <View style={styles.container}>
+      <View style={styles.container} testID="container">
         <TextInput
           value={value}
           onChangeText={setValue}
@@ -22,11 +22,14 @@ const CustomInputField = ({
           secureTextEntry={secureTextEntry} // for passwords
           maxLength={maxLength}
           onBlur={onBlur}
+          testID="text input"
         />
       </View>
       {error ? (
         <View>
-          <Text style={styles.error}>{error}</Text>
+          <Text style={styles.error} testID="error">
+            {error}
+          </Text>
         </View>
       ) : null}
     </View>

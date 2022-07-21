@@ -14,14 +14,19 @@ const IndividualRecommendationTab = ({
         {backgroundColor: pressed ? '#E8F3F4' : '#FFFFFF'},
         styles.button,
       ]}
-      onPress={onPress}>
+      onPress={onPress}
+      testID="button">
       <View
         style={{
           flexDirection: 'row',
           justifyContent: 'center',
           alignItems: 'flex-start',
         }}>
-        <Image source={{uri: image}} style={{width: 75, height: 75}} />
+        <Image
+          source={{uri: image}}
+          style={{width: 75, height: 75}}
+          accessibilityRole="image"
+        />
         <View style={{paddingLeft: 10, width: '80%'}}>
           <Text style={styles.title}>{name}</Text>
           <Text style={styles.subtitle}>{address}</Text>
