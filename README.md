@@ -63,7 +63,13 @@ Design changes from Milestone #1:
 1. React state unmounted component errors, which we are planning to fix by re-evaluating all of the async functions.
 2. Buggy UI upon deleting objects, in which we will review our code and find more efficient/accurate ways to implement the functions. 
 
-## Testing (Last updated 3 July 2022)
+## Testing methods
+We used React Native Testing Library and Jest to test the components (Unit Testing). To run the test cases, run `npm test` on the root directory of the project.
+
+Due to a few errors, we are not able to implement Integration Testing with the testing library (NativeEventError), so we decided to implement user testing by distributing our apk to 10 people and asking them to fill in a form about its functionalities. The results of the from can be seen in this link: 
+<link here>
+
+## Installation
 
 We would be happy if you are interested to try it out! Here are the steps to do so:
 
