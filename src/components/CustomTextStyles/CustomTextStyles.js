@@ -29,7 +29,7 @@ export const LocationName = ({text}) => {
 
 export const LocationAddress = ({text}) => {
   return (
-    <View style={{flexDirection: 'row', paddingTop: 3}}>
+    <View style={{flexDirection: 'row', paddingTop: 3}} testID="container">
       <Ionicons name="location-sharp" size={20} color="#3B494990" />
       <Text style={styles.address}>{text}</Text>
     </View>
@@ -55,7 +55,7 @@ export const Ratings = ({text}) => {
 
 export const PriceTag = ({text}) => {
   return (
-    <View style={{flexDirection: 'row'}}>
+    <View style={{flexDirection: 'row'}} testID="container">
       <Ionicons name="pricetag" size={20} color="#3B494990" />
       <Text style={styles.address}>{text}</Text>
     </View>
@@ -64,7 +64,7 @@ export const PriceTag = ({text}) => {
 
 export const WebsiteLink = ({text}) => {
   return (
-    <View style={{flexDirection: 'row', paddingTop: 3}}>
+    <View style={{flexDirection: 'row', paddingTop: 3}} testID="container">
       <Entypo name="link" size={20} color="#3B494990" />
       <Text style={styles.address}>{text}</Text>
     </View>

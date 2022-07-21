@@ -2,12 +2,12 @@ import React from 'react';
 import {Text} from 'react-native';
 
 export const SmallLineBreak = () => {
-  return <Text />;
+  return <Text testID="text" />;
 };
 
 export const FourLineBreak = () => {
   return (
-    <Text>
+    <Text testID="text">
       {'\n'}
       {'\n'}
       {'\n'}

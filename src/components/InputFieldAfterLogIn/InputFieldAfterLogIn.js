@@ -9,7 +9,7 @@ const InputFieldAfterLogIn = ({
   maxLength,
 }) => {
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="container">
       <TextInput
         value={value}
         onChangeText={setValue}
@@ -18,6 +18,7 @@ const InputFieldAfterLogIn = ({
         style={styles.input}
         secureTextEntry={secureTextEntry} // for passwords
         maxLength={maxLength}
+        testID="text input"
       />
     </View>
   );

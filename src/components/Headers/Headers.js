@@ -6,7 +6,7 @@ import Logo from '../../../assets/images/logo3.png';
 
 export const HeaderWithoutDeleteIcon = ({onPress, flexValue, text}) => {
   return (
-    <View style={styles.header}>
+    <View style={styles.header} testID="header container">
       <Back
         size={35}
         name="chevron-left"
@@ -24,7 +24,7 @@ export const HeaderWithoutDeleteIcon = ({onPress, flexValue, text}) => {
 
 export const HeaderWithDeleteIcon = ({back, deleting, flexValue, text}) => {
   return (
-    <View style={styles.header}>
+    <View style={styles.header} testID="header container">
       <Back
         size={35}
         name="chevron-left"
@@ -52,13 +52,13 @@ export const HeaderWithDeleteIcon = ({back, deleting, flexValue, text}) => {
 
 export const HomeHeader = ({onPress, uri, name}) => {
   return (
-    <View style={styles.horizontal}>
-      <View style={styles.homeHeader}>
+    <View style={styles.horizontal} testID="align">
+      <View style={styles.homeHeader} testID="container">
         <Text style={styles.welcome}>Welcome back to Travel Log,</Text>
         <Text style={styles.title}>{name}!</Text>
       </View>
       <TouchableOpacity onPress={onPress}>
-        <Image source={uri} style={styles.pfp} />
+        <Image source={uri} style={styles.pfp} accessibilityRole="image" />
       </TouchableOpacity>
     </View>
   );
@@ -66,8 +66,15 @@ export const HomeHeader = ({onPress, uri, name}) => {
 
 export const LogoOnlyHeader = ({borderBottomWidth}) => {
   return (
-    <View style={[styles.logoHeader, {borderBottomWidth: borderBottomWidth}]}>
-      <Image source={Logo} style={styles.logo} resizeMode="contain" />
+    <View
+      style={[styles.logoHeader, {borderBottomWidth: borderBottomWidth}]}
+      testID="container">
+      <Image
+        source={Logo}
+        style={styles.logo}
+        resizeMode="contain"
+        accessibilityRole="image"
+      />
     </View>
   );
 };

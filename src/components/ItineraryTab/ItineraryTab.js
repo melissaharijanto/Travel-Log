@@ -11,11 +11,16 @@ const ItineraryTab = ({image, onPress, text}) => {
   const placeholder =
     'https://firebasestorage.googleapis.com/v0/b/travellog-d79e2.appspot.com/o/itineraryImagePlaceholder.png?alt=media&token=5ebb4e2b-9305-48d2-927e-dc637197f2df';
   return (
-    <TouchableOpacity onPress={onPress} button style={styles.button}>
+    <TouchableOpacity
+      onPress={onPress}
+      button
+      style={styles.button}
+      testID="button">
       <ImageBackground
         style={styles.image}
         imageStyle={{borderRadius: 11}}
-        source={{uri: image ? image || placeholder : placeholder}}>
+        source={{uri: image ? image || placeholder : placeholder}}
+        accessibilityRole="image">
         <Text style={styles.text}>{text}</Text>
       </ImageBackground>
     </TouchableOpacity>

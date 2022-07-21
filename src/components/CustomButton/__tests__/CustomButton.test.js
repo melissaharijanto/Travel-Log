@@ -79,5 +79,108 @@ describe('CustomButton', () => {
         marginVertical: 5,
       });
     });
+
+    it('tertiary button', () => {
+      const screen = render(
+        <CustomButton
+          text="Custom Button"
+          onPress={mockOnPress}
+          type="TERTIARY"
+        />,
+      );
+
+      const button = screen.getByTestId('button');
+      expect(button.props.style[0]).toEqual({
+        width: '100%',
+        borderRadius: 50,
+        padding: 12,
+        marginVertical: 5,
+        alignItems: 'center',
+      });
+      expect(button.props.style[1]).toEqual({
+        backgroundColor: '#70D9D3',
+        elevation: 4,
+        elevation: 10,
+        shadowColor: '#70D9D3',
+        shadowOffset: {
+          width: 0,
+          height: 0,
+          shadowOpacity: 1.0,
+        },
+      });
+
+      const text = screen.getByText('Custom Button');
+      expect(text.props.style[1]).toEqual({
+        color: 'white',
+        fontFamily: 'Poppins-SemiBold',
+      });
+    });
+
+    it('quaternary button', () => {
+      const screen = render(
+        <CustomButton
+          text="Custom Button"
+          onPress={mockOnPress}
+          type="QUATERNARY"
+        />,
+      );
+
+      const button = screen.getByTestId('button');
+      expect(button.props.style[0]).toEqual({
+        width: '100%',
+        borderRadius: 50,
+        padding: 12,
+        marginVertical: 5,
+        alignItems: 'center',
+      });
+      expect(button.props.style[1]).toEqual({
+        backgroundColor: 'white',
+        borderColor: '#70D9D3',
+        borderWidth: 1,
+        elevation: 10,
+        shadowColor: '#70D9D3',
+        shadowOffset: {
+          width: 0,
+          height: 0,
+          shadowOpacity: 1.0,
+        },
+      });
+
+      const text = screen.getByText('Custom Button');
+      expect(text.props.style[1]).toEqual({
+        color: '#70D9D3',
+        fontFamily: 'Poppins-Regular',
+      });
+    });
+
+    it('quinary button', () => {
+      const screen = render(
+        <CustomButton
+          text="Custom Button"
+          onPress={mockOnPress}
+          type="QUINARY"
+        />,
+      );
+
+      const button = screen.getByTestId('button');
+      expect(button.props.style[0]).toEqual({
+        width: '100%',
+        borderRadius: 50,
+        padding: 12,
+        marginVertical: 5,
+        alignItems: 'center',
+      });
+      expect(button.props.style[1]).toEqual({
+        backgroundColor: '#94C2C6',
+        borderRadius: 11,
+      });
+
+      const text = screen.getByText('Custom Button');
+      expect(text.props.style[1]).toEqual({
+        fontFamily: 'Poppins-Medium',
+        fontSize: 18,
+        color: 'white',
+      });
+    });
   });
 });

@@ -1,6 +1,7 @@
 import React from 'react';
 import {fireEvent, render} from '@testing-library/react-native';
 import AccommodationTab from '../AccommodationTab';
+import Accommodation from '../../../../assets/images/Accommodation.png';
 
 const mockOnPress = jest.fn();
 const eventData = {
@@ -16,6 +17,7 @@ describe('AccommodationTab', () => {
       const screen = render(<AccommodationTab />);
       const image = screen.getByRole('image');
       expect(image).not.toBeNull();
+      expect(image.props.source).toEqual(Accommodation);
     });
   });
 

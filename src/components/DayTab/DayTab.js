@@ -3,12 +3,12 @@ import {View, Text, Pressable, StyleSheet} from 'react-native';
 
 const DayTab = ({onPress, text, subtext}) => {
   return (
-    <Pressable onPress={onPress} style={styles.container}>
+    <Pressable onPress={onPress} style={styles.container} testID="container">
       <View style={styles.horizontal}>
-        <View style={[styles.textAlign, {width: '25%'}]}>
+        <View style={[styles.textAlign, {width: '25%'}]} testID="text align">
           <Text style={styles.text}>{text}</Text>
         </View>
-        <View style={styles.subtextAlign}>
+        <View style={styles.subtextAlign} testID="subtext align">
           <Text style={styles.subtext}>{subtext}</Text>
         </View>
       </View>
