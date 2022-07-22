@@ -173,7 +173,6 @@ const MainItineraryScreen = ({navigation}) => {
   useFocusEffect(
     React.useCallback(() => {
       let unmounted = false;
-      setLoadItineraries(true);
       getUser();
       return () => {
         unmounted = true;
