@@ -10,10 +10,10 @@ Aided by React Native and Firebase, we plan to make an app that provides user au
 ## Overview
 
 <p float="left">
-    <img src="https://github.com/melissaharijanto/Travel-Log/blob/main/assets/gifs/HomeScreen.gif" width='25%'/>
-    <img src="https://github.com/melissaharijanto/Travel-Log/blob/main/assets/gifs/FeaturedScreen.gif" width='25%'/>
-    <img src="https://github.com/melissaharijanto/Travel-Log/blob/main/assets/gifs/MainItineraryScreen.gif" width='25%'/>
-    <img src="https://github.com/melissaharijanto/Travel-Log/blob/main/assets/gifs/ProfileScreen.gif" width='25%'/>
+    <img src="https://github.com/melissaharijanto/Travel-Log/blob/main/assets/gifs/HomeScreen.gif" width='23%'/>
+    <img src="https://github.com/melissaharijanto/Travel-Log/blob/main/assets/gifs/FeaturedScreen.gif" width='23%'/>
+    <img src="https://github.com/melissaharijanto/Travel-Log/blob/main/assets/gifs/MainItineraryScreen.gif" width='23%'/>
+    <img src="https://github.com/melissaharijanto/Travel-Log/blob/main/assets/gifs/ProfileScreen.gif" width='23%'/>
 </p>
 
 A mobile application built to assist users in making their travel itinerary.
