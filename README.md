@@ -17,7 +17,8 @@ Aided by React Native and Firebase, we plan to make an app that provides user au
 </p>
 
 A mobile application built to assist users in making their travel itinerary.
-Made with React Native combined with Firebase to assist user authentication.
+Made with React Native combined with Firebase to assist user authentication, as well as Google Maps API to show maps for 
+some features.
 
 ## Motivation
 As avid travelers, we believe that planning your own trips would bring more freedom and flexibility in travelling as opposed to hopping in on tours. However, planning our own trip comes with a lot of hassle. Compounded with the lack of a proper trip-planning platform (opting for notes/google docs with limited planning features), detailing an itinerary might deter one’s enthusiasm of travelling.
@@ -39,9 +40,11 @@ We hope to provide a one-stop application that would not only ease, but also enc
 6. Editing the details of the itinerary, accommodation, activities and transport. 
 7. Need references? Out of ideas on where to go? Access another person's itinerary by entering the itinerary's unique code (view-only).
 8. Have too many itineraries? Search your itineraries based on their titles!
+9. View recommendations and recommended itineraries from the app.
+10. Set the location for your accommodations via Google Maps.
 
 To view the features of each page, please refer to this document: 
-https://docs.google.com/document/d/1Rbl5xvDYa3nckiapXDep-_QBE1GBdg1VTyXYMsfY-6E/edit?usp=sharing (Last updated as of Milestone #2)
+https://docs.google.com/document/d/1Rbl5xvDYa3nckiapXDep-_QBE1GBdg1VTyXYMsfY-6E/edit?usp=sharing (Last updated as of Milestone #3)
 
 ## Design of the App
 Link to Figma: https://www.figma.com/file/CKGloIToiN5VlPJoaYpxCx/Travel-Log---Clean (Last updated as of Milestone #1)
@@ -55,25 +58,22 @@ Concepts to Be Tackled: https://docs.google.com/spreadsheets/d/1Y0crUXilsoeYeINN
 As of submission of Milestone #1, only the front end for the Login and Sign Up pages are finished, along with the navigations.
 
 As of submission of Milestone #2, the main features of the app are complete and ready to use.
+
+As of submission of Milestone #3, we added the implementation of Google Maps API, as well as a Featured screen where users can access itineraries recommended by the system and recommendations for accommodations, activities, and restaurants for several cities. We also added testing; more can be seen in the **Testing methods** block below.
     
 Design changes from Milestone #1:
 1. We previously planned to use a drag-and-drop flatlist to rearrange the days activities, but the animation could not seem to work on the emulator. Hence, we decided to change it so that it implements the time (based on one of the previous milestone's review) and set a function that automatically sorts based on the time.
 2. Accommodation is now a property that the itinerary has, and the property of a single day. Changes have been reflected in both the app and the features doc.
 
-## Problems Faced
-1. React state unmounted component errors, which we are planning to fix by re-evaluating all of the async functions.
-2. Buggy UI upon deleting objects, in which we will review our code and find more efficient/accurate ways to implement the functions. 
-
 ## Testing methods
 We used React Native Testing Library and Jest to test the components (Unit Testing). To run the test cases, run `npm test` on the root directory of the project.
 
-Due to a few errors, we are not able to implement Integration Testing with the testing library (NativeEventError), so we decided to implement user testing by distributing our apk to 10 people and asking them to fill in a form about its functionalities. The results of the from can be seen in this link: 
-<link here>
+Due to a few errors, we are not able to implement Integration Testing with the testing library (NativeEventError), so we decided to implement user testing by distributing our apk to 10 people (mainly university students) and asking them to fill in a form about its functionalities. The form is set to anonymous in an attempt to maintain objectivity of the responses. The results of the form can be seen in this link: 
+https://docs.google.com/spreadsheets/d/1jWGdPQogBsgr9BT4jBwYNIArUPwaPlW-X3HUOd_Nt8I/edit?usp=sharing
+
+The link to the form can be seen here: https://docs.google.com/forms/d/13HqR6ZaJr3cNKarSHqOrV8jqXvz_9OpZRbYv0hLqMGw/viewform?edit_requested=true
 
 ## Installation
-
-
-
 We would be happy if you are interested to try it out! Here are the steps to do so:
 
 If you have an Android device, we have an apk release that you can use to test our app! Since most phones now use ARM processors, it is recommended to download the apk customized for ARM64, with the file name `app-arm64-v8a-release.apk` via this link: https://drive.google.com/drive/folders/1bRMKL1-gXEHCNQtm2PtWu83xwtcKCWV4?usp=sharing. **If you have a previously installed version of the apk, please uninstall it from your device before installing the current updated version.**
