@@ -43,46 +43,45 @@ We hope to provide a one-stop application that would not only ease, but also enc
 9. View recommendations and recommended itineraries from the app.
 10. Set the location for your accommodations via Google Maps.
 
-To view the features of each page, please refer to this document: 
-https://docs.google.com/document/d/1Rbl5xvDYa3nckiapXDep-_QBE1GBdg1VTyXYMsfY-6E/edit?usp=sharing (Last updated as of Milestone #3)
+To view the features of each page, please refer to this [document](https://docs.google.com/document/d/1Rbl5xvDYa3nckiapXDep-_QBE1GBdg1VTyXYMsfY-6E/edit?usp=sharing) (Last updated as of Milestone #3)
 
 ## Design of the App
-Link to Figma: https://www.figma.com/file/CKGloIToiN5VlPJoaYpxCx/Travel-Log---Clean (Last updated as of Milestone #1)
+Access it [here](https://www.figma.com/file/CKGloIToiN5VlPJoaYpxCx/Travel-Log---Clean). (Last updated as of Milestone #1)
 
 ## Development Plan and Concepts to Be Tackled
-Development Plan & Project Log: https://docs.google.com/spreadsheets/d/1mYGnZncCnt-LIcZ3JnWp9C4aTH9PHHvQ91TdY70SNvM/edit?usp=sharing
+[Development Plan & Project Log](https://docs.google.com/spreadsheets/d/1mYGnZncCnt-LIcZ3JnWp9C4aTH9PHHvQ91TdY70SNvM/edit?usp=sharing)
 
-Concepts to Be Tackled: https://docs.google.com/spreadsheets/d/1Y0crUXilsoeYeINNn7aszfTQVOCKPAFMgXpoaLp5qiQ/edit?usp=sharing
+[Concepts to Be Tackled](https://docs.google.com/spreadsheets/d/1Y0crUXilsoeYeINNn7aszfTQVOCKPAFMgXpoaLp5qiQ/edit?usp=sharing)
 
 ## Progress
 As of submission of Milestone #1, only the front end for the Login and Sign Up pages are finished, along with the navigations.
 
 As of submission of Milestone #2, the main features of the app are complete and ready to use.
 
-As of submission of Milestone #3, we added the implementation of Google Maps API, as well as a Featured screen where users can access itineraries recommended by the system and recommendations for accommodations, activities, and restaurants for several cities. We also added testing; more can be seen in the **Testing methods** block below.
+As of submission of Milestone #3, we added the implementation of **Google Maps API**, as well as a **Featured Screen** where users can access itineraries recommended by the system and recommendations for accommodations, activities, and restaurants for several cities. We also added testing; more can be seen in the **Testing Methods** block below.
     
 Design changes from Milestone #1:
 1. We previously planned to use a drag-and-drop flatlist to rearrange the days activities, but the animation could not seem to work on the emulator. Hence, we decided to change it so that it implements the time (based on one of the previous milestone's review) and set a function that automatically sorts based on the time.
 2. Accommodation is now a property that the itinerary has, and the property of a single day. Changes have been reflected in both the app and the features doc.
 
-## Testing methods
+## Testing Methods
 We used **React Native Testing Library** and **Jest** to test the components (Unit Testing). To run the test cases, run `npm test` on the root directory of the project.
 
 Due to a few errors, we are not able to implement Integration Testing with the testing library (NativeEventError due to some packages used), so we decided to implement **user testing** by distributing our apk to 10 people (mainly university students) and asking them to fill in a form about its functionalities. The form is set to anonymous in an attempt to maintain objectivity of the responses. The results of the form can be seen in this link: 
-bit.ly/TravelLogResponse
+[bit.ly/TravelLogResponse](https://bit.ly/TravelLogResponse)
 
-The link to the form can be seen here: bit.ly/TravelLogTest
+The link to the form can be seen here: [bit.ly/TravelLogTest](https://bit.ly/TravelLogTest)
 
 ## Installation
 We would be happy if you are interested to try it out! Here are the steps to do so:
 
 **If you have a previously installed version of the apk, please uninstall it from your device before installing the current updated version.**
 
-If you have an Android device, we have an apk release that you can use to test our app! Since most phones now use ARM processors, it is recommended to download the apk customized for ARM64, with the file name `app-arm64-v8a-release.apk` via this link: bit.ly/Travel-Log
+If you have an Android device, we have an apk release that you can use to test our app! Download it via this link: [bit.ly/Travel-Log](https://bit.ly/Travel-Log).
 
 Otherwise, you can try this way:
 
-1. Please access our repository with this link https://github.com/melissaharijanto/Travel-Log and fork it, or
+1. Please access our repository with this [link](https://github.com/melissaharijanto/Travel-Log) and fork it, or
 clone the repository to your local device by running this command.
 ```
 git clone https://github.com/melissaharijanto/Travel-Log.git
@@ -94,8 +93,7 @@ cd Travel-Log
 git pull
 npm install // to install the required dependencies of the project.
 ```
-2. The app is customized for android and uses React Native CLI. If you do not have it set up yet, please refer to this link 
-(https://reactnative.dev/docs/environment-setup) to set it up.
+2. The app is customized for android and uses React Native CLI. If you do not have it set up yet, please refer to this [link](https://reactnative.dev/docs/environment-setup) to set it up.
 
 Please use the following commands in your terminal:
 ```
@@ -118,7 +116,7 @@ in your terminal.
 ```
 npx react-native run-android
 ```
-For more information on this method, please visit this link: https://reactnative.dev/docs/running-on-device.
+For more information on this method, please visit this [link](https://reactnative.dev/docs/running-on-device).
 
 3. Have fun navigating through! If you face any troubles, please contact us through our Telegram handles:  @livmichelle / @melissaharijanto.
 You can sign in with our placeholder account to try the app's features:
