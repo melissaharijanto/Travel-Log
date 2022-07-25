@@ -76,7 +76,9 @@ The link to the form can be seen here: https://docs.google.com/forms/d/13HqR6ZaJ
 ## Installation
 We would be happy if you are interested to try it out! Here are the steps to do so:
 
-If you have an Android device, we have an apk release that you can use to test our app! Since most phones now use ARM processors, it is recommended to download the apk customized for ARM64, with the file name `app-arm64-v8a-release.apk` via this link: https://drive.google.com/drive/folders/1bRMKL1-gXEHCNQtm2PtWu83xwtcKCWV4?usp=sharing. **If you have a previously installed version of the apk, please uninstall it from your device before installing the current updated version.**
+**If you have a previously installed version of the apk, please uninstall it from your device before installing the current updated version.**
+
+If you have an Android device, we have an apk release that you can use to test our app! Since most phones now use ARM processors, it is recommended to download the apk customized for ARM64, with the file name `app-arm64-v8a-release.apk` via this link: https://drive.google.com/drive/folders/1bRMKL1-gXEHCNQtm2PtWu83xwtcKCWV4?usp=sharing. 
 
 Otherwise, you can try this way:
 
