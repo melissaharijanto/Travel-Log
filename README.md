@@ -67,7 +67,7 @@ Design changes from Milestone #1:
 ## Testing Methods
 We used **React Native Testing Library** and **Jest** to test the components (Unit Testing). To run the test cases, run `npm test` on the root directory of the project. View the testing details [here](https://docs.google.com/spreadsheets/d/1EdNT1dn18pMYQa4-DGHjWVTmhJTYfwondj1h50ABxcU/edit?usp=sharing).
 
-Due to a few errors, we are not able to implement Integration Testing with the testing library (NativeEventError due to some packages used), so we decided to implement **user testing** by distributing our apk to 10 people (mainly university students) and asking them to fill in a form about its functionalities. The form is set to anonymous in an attempt to maintain objectivity of the responses. The results of the form can be seen in this link: 
+Due to a few errors, we are not able to implement Integration Testing with the testing library (NativeEventError due to some packages used), so we decided to implement **user testing** by distributing our apk to 10 people (mainly university students) and asking them to fill in a form about its **functionalities**, as well as **UI/UX**. The form is set to anonymous in an attempt to maintain objectivity of the responses. The results of the form can be seen in this link: 
 [bit.ly/TravelLogResponse](https://bit.ly/TravelLogResponse)
 
 The link to the form can be seen here: [bit.ly/TravelLogTest](https://bit.ly/TravelLogTest)
