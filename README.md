@@ -43,10 +43,10 @@ We hope to provide a one-stop application that would not only ease, but also enc
 9. View recommendations and recommended itineraries from the app.
 10. Set the location for your accommodations via Google Maps.
 
-To view the features of each page, please refer to this [document](https://docs.google.com/document/d/1Rbl5xvDYa3nckiapXDep-_QBE1GBdg1VTyXYMsfY-6E/edit?usp=sharing) (Last updated as of Milestone #3)
+To view the features of each page, please refer to this [document](https://docs.google.com/document/d/1Rbl5xvDYa3nckiapXDep-_QBE1GBdg1VTyXYMsfY-6E/edit?usp=sharing). (Last updated as of Milestone #3)
 
 ## Design of the App
-Access it [here](https://www.figma.com/file/CKGloIToiN5VlPJoaYpxCx/Travel-Log---Clean). (Last updated as of Milestone #1)
+Access it [here](https://www.figma.com/file/CKGloIToiN5VlPJoaYpxCx/Travel-Log---Clean). (Last updated as of Milestone #1).
 
 ## Development Plan and Concepts to Be Tackled
 [Development Plan & Project Log](https://docs.google.com/spreadsheets/d/1mYGnZncCnt-LIcZ3JnWp9C4aTH9PHHvQ91TdY70SNvM/edit?usp=sharing)
@@ -71,6 +71,22 @@ Due to a few errors, we are not able to implement Integration Testing with the t
 [bit.ly/TravelLogResponse](https://bit.ly/TravelLogResponse)
 
 The link to the form can be seen here: [bit.ly/TravelLogTest](https://bit.ly/TravelLogTest)
+
+## Software Engineering Practices
+- 1.5 Exception Handling
+- 3.5 RCS: Branching
+- 3.6 RCS: Creating Pull Requests
+- 4.6 RCS: Managing Pull Requests
+- 5.4 Code Quality
+    - Avoid Deep Nesting
+    - Avoid Magic Numbers
+    - Do not 'trip up' readers
+    - Naming Rules
+- 6.4 Logging
+- 6.5 Markdown
+    - For GitHub README.md
+- 7.6 Project Management: Scheduling & Tracking
+    - via Project Log & Development Plan
 
 ## Installation
 We would be happy if you are interested to try it out! Here are the steps to do so:
