@@ -1,13 +1,13 @@
 # Introduction
 
-Travel Log is a mobile application built to assist users in making their travel itinerary. It is a React Native application with Firebase to provide a non-SQL database. This application also utilizes Google Maps API to show recommendations on where to go during your vacation trips.
+**Travel Log** is a mobile application built to assist users in making their travel itinerary. It is a **React Native** application with **Firebase** to provide a non-SQL database. This application also utilizes **Google Maps API** to show recommendations on where to go during your vacation trips.
 
-This project is made for ERC11PM's CP2106 Project (Apollo Level) in the National University of Singapore. Our team consists of Melissa Anastasia Harijanto and Livia Michelle Iskandar Leo. 
+This project is made for **ERC11PM's CP2106 Project (Apollo Level)** in the National University of Singapore. Our team consists of <a href="https://github.com/melissaharijanto">Melissa Anastasia Harijanto</a> and <a href="https://github.com/liviamil">Livia Michelle Iskandar Leo</a>. 
 
 <img src="./gifs/HomeScreen.gif" width="24%">
 <img src="./gifs/FeaturedScreen.gif" width="24%">
 <img src="./gifs/MainItineraryScreen.gif" width="24%">
-<img src="./gifs/ProfileScreen.gif" width="24%"> 
+<img src="./gifs/ProfileScreen.gif" width="24%">
 
 ## Table of Contents
 - [Motivation](#motivation)
@@ -54,9 +54,13 @@ Due to a few errors, we are not able to implement Integration Testing with the t
 The link to the form can be seen <a href="https://docs.google.com/forms/d/13HqR6ZaJr3cNKarSHqOrV8jqXvz_9OpZRbYv0hLqMGw/viewform?edit_requested=true">here</a>.
 
 ## Installation
-We would be happy if you are interested to try it out! Here are the steps to do so:
 
-**If you have a previously installed version of the apk, please uninstall it from your device before installing the current updated version.**
+{: .note-title}
+> Important Note
+>
+> **If you have a previously installed version of the apk, please uninstall it from your device before installing the current updated version.**
+
+We would be happy if you are interested to try it out!
 
 If you have an Android device, we have an apk release that you can use to test our app! Since most phones now use ARM processors, it is recommended to download the apk customized for ARM64, with the file name `app-arm64-v8a-release.apk` via <a href="https://drive.google.com/drive/folders/1bRMKL1-gXEHCNQtm2PtWu83xwtcKCWV4?usp=sharing">this link</a>. 
 
