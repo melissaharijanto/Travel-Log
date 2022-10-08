@@ -29,7 +29,7 @@ cd Travel-Log
 git pull
 npm install // to install the required dependencies of the project.
 ```
-2. The app is customized for android and uses React Native CLI. If you do not have it set up yet, please refer to <a href="https://reactnative.dev/docs/environment-setup">this link</a> to set it up.
+2. The app uses React Native CLI. If you do not have it set up yet, please refer to <a href="https://reactnative.dev/docs/environment-setup">this link</a> to set it up.
 
 Please use the following commands in your terminal:
 ```
