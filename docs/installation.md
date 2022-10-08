@@ -15,7 +15,7 @@ permalink: /
 
 We would be happy if you are interested to try our application out!
 
-[Download TravelLog here!](https://drive.google.com/file/d/1btqUkEVeYYCeM1tJqklh7v3JmKq8REor/view?usp=sharing){: .btn }
+[Download TravelLog here!](https://drive.google.com/file/d/1btqUkEVeYYCeM1tJqklh7v3JmKq8REor/view?usp=sharing){: .btn-green }
 
 If you do not have an Android device, you can try this way:
 
