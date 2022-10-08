@@ -4,7 +4,6 @@ It is a mobile application built to assist users in making their travel itinerar
 during your vacation trips.
 
 ## Table of Contents
-- [Overview](#overview)
 - [Motivation](#motivation)
 - [User Stories](#user-stories)
 - [Aim](#aim)
@@ -12,17 +11,6 @@ during your vacation trips.
 - [Initial Design Prototype](#initial-design-prototype)
 - [Testing Methods](#testing-methods)
 - [Installation](#installation)
-
-
-
-## Overview
-
-<p float="left">
-    <img src="../assets/gifs/HomeScreen.gif" width='23%'/>
-    <img src="../assets/gifs/FeaturedScreen.gif" width='23%'/>
-    <img src="../assets/gifs/MainItineraryScreen.gif" width='23%'/>
-    <img src="../assets/gifs/ProfileScreen.gif" width='23%'/>
-</p>
 
 ## Motivation
 As avid travelers, we believe that planning your own trips would bring more freedom and flexibility in travelling as opposed to hopping in on tours. However, planning our own trip comes with a lot of hassle. Compounded with the lack of a proper trip-planning platform (opting for notes/google docs with limited planning features), detailing an itinerary might deter one’s enthusiasm of travelling.
