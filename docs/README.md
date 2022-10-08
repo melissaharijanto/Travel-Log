@@ -1,8 +1,6 @@
-# Travel Log
-
 Travel Log is made for our CP2106 Project (Apollo Level) in the National University of Singapore. It is a React Native application with Firebase to provide a non-SQL database.
 
-Travel Log is a mobile application built to assist users in making their travel itinerary. This application also utilizes Google Maps API to show recommendations on where to go
+It is a mobile application built to assist users in making their travel itinerary. This application also utilizes Google Maps API to show recommendations on where to go
 during your vacation trips.
 
 ## Table of Contents
@@ -19,10 +17,10 @@ during your vacation trips.
 ## Overview
 
 <p float="left">
-    <img src="https://github.com/melissaharijanto/Travel-Log/blob/main/assets/gifs/HomeScreen.gif" width='23%'/>
-    <img src="https://github.com/melissaharijanto/Travel-Log/blob/main/assets/gifs/FeaturedScreen.gif" width='23%'/>
-    <img src="https://github.com/melissaharijanto/Travel-Log/blob/main/assets/gifs/MainItineraryScreen.gif" width='23%'/>
-    <img src="https://github.com/melissaharijanto/Travel-Log/blob/main/assets/gifs/ProfileScreen.gif" width='23%'/>
+    <img src="../assets/gifs/HomeScreen.gif" width='23%'/>
+    <img src="../assets/gifs/FeaturedScreen.gif" width='23%'/>
+    <img src="../assets/gifs/MainItineraryScreen.gif" width='23%'/>
+    <img src="../assets/gifs/ProfileScreen.gif" width='23%'/>
 </p>
 
 ## Motivation
