@@ -1,8 +1,8 @@
-<img src="../assets/images/logo2.png" width="500">
-Travel Log is made for our CP2106 Project (Apollo Level) in the National University of Singapore. It is a React Native application with Firebase to provide a non-SQL database.
+## What is Travel Log?
 
-It is a mobile application built to assist users in making their travel itinerary. This application also utilizes Google Maps API to show recommendations on where to go
-during your vacation trips.
+Travel Log is a mobile application built to assist users in making their travel itinerary. It is a React Native application with Firebase to provide a non-SQL database. This application also utilizes Google Maps API to show recommendations on where to go during your vacation trips.
+
+This project is made for ERC11PM's CP2106 Project (Apollo Level) in the National University of Singapore. Our team consists of Melissa Anastasia Harijanto and Livia Michelle Iskandar Leo. 
 
 ## Table of Contents
 - [Motivation](#motivation)
