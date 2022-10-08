@@ -1,6 +1,5 @@
 ---
 title: Home
-nav_order: 1
 ---
 Travel Log is made for our CP2106 Project (Apollo Level) in the National University of Singapore. It is a React Native application with Firebase to provide a non-SQL database.
 
