@@ -64,7 +64,7 @@ The link to the form can be seen <a href="https://docs.google.com/forms/d/13HqR6
 {: .note-title}
 > Important Note
 >
-> **If you have a previously installed version of the apk, please uninstall it from your device before installing the current updated version.**
+> If you have a previously installed version of the apk, please uninstall it from your device before installing the current updated version.
 
 We would be happy if you are interested to try it out!
 
