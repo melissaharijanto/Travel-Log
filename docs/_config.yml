@@ -22,12 +22,9 @@ callouts:
   important:
     title: Important
     color: blue
-  new:
-    title: New
-    color: green
   note:
     title: Note
-    color: #52a8a3
+    color: green
   warning:
     title: Warning
     color: red
