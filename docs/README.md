@@ -7,7 +7,7 @@ This project is made for ERC11PM's CP2106 Project (Apollo Level) in the National
 <img src="./gifs/HomeScreen.gif" width="20%">
 <img src="./gifs/FeaturedScreen.gif" width="20%">
 <img src="./gifs/MainItineraryScreen.gif" width="20%">
-<img src="./gifs/ProfileScreen" width="20%">
+<img src="./gifs/ProfileScreen.gif" width="20%">
 
 ## Table of Contents
 - [Motivation](#motivation)
