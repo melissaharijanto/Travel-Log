@@ -14,10 +14,8 @@ nav_order: 1
 #### Features
 - Users can toggle between these three pages.
 - When users forget their password, a password-reset email will be sent to the email address linked to the account.
-{: .warning-title}
-> User Note
->
-> If the email is not registered/format is invalid, an error message will show.
+{: .highlight}
+> **User Note:** If the email is not registered/format is invalid, an error message will show.
 
 {: .note-title }
 > Developer Note
