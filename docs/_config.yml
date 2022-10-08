@@ -14,7 +14,7 @@ search:
   rel_url: false
   button: false
 color_scheme: colors
-logo: "./images/logo3.png"
+logo: "./images/travelLog.png"
 
 callouts:
   highlight:
