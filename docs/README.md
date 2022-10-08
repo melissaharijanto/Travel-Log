@@ -1,4 +1,4 @@
-## What is Travel Log?
+# Introduction
 
 Travel Log is a mobile application built to assist users in making their travel itinerary. It is a React Native application with Firebase to provide a non-SQL database. This application also utilizes Google Maps API to show recommendations on where to go during your vacation trips.
 
