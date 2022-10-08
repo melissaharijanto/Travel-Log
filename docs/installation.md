@@ -7,7 +7,7 @@ nav_order: 3
 # Installation
 
 {: .note-title}
-> Important Note
+> Before You Install...
 >
 > - This application customized for **Android devices**.
 > - If you have a previously installed version of the apk, please uninstall it from your device before installing the current updated version.
