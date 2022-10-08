@@ -11,7 +11,7 @@ search:
   preview_words_before: 5
   preview_words_after: 10
   tokenizer_separator: /[\s/]+/
-  rel_url: true
+  rel_url: false
   button: false
 color_scheme: colors
 logo: "./images/logo3.png"
