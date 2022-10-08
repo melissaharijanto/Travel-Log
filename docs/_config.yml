@@ -9,4 +9,8 @@ search.preview_words_before: 5
 search.preview_words_after: 10
 search.tokenizer_separator: /[\s/]+/
 color_scheme: colors
+<<<<<<< HEAD
 logo: "./images/logo2.png"
+=======
+logo: "./images/logo3.png"
+>>>>>>> 90d176118fba434ed4a9e7d7da34131f0e1ab20e
