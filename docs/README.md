@@ -105,5 +105,3 @@ You can sign in with our placeholder account to try the app's features:
 
 Or alternatively, if you want to test the 'Forget Password' function, please sign up with a new account with your
 **real** email, as it will be sent via a password-reset email!
-
-{jtd.setTheme("colors")}
