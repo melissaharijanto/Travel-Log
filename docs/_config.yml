@@ -9,4 +9,4 @@ search.preview_words_before: 5
 search.preview_words_after: 10
 search.tokenizer_separator: /[\s/]+/
 color_scheme: colors
-logo: "./images/logo2.png""
+logo: "./images/logo2.png"
