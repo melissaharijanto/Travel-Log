@@ -11,10 +11,9 @@ nav_order: 3
 >
 > - This application customized for **Android devices**.
 > - If you have a previously installed version of the apk, please uninstall it from your device before installing the current updated version.
-
 We would be happy if you are interested to try our application out!
 
-[Download TravelLog here!](https://drive.google.com/file/d/1btqUkEVeYYCeM1tJqklh7v3JmKq8REor/view?usp=sharing){: .btn-green }
+[Download TravelLog here!](https://drive.google.com/file/d/1btqUkEVeYYCeM1tJqklh7v3JmKq8REor/view?usp=sharing){: .btn .btn-green }
 
 If you do not have an Android device, you can try this way:
 
