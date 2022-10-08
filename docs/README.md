@@ -4,9 +4,9 @@ Travel Log is a mobile application built to assist users in making their travel 
 
 This project is made for ERC11PM's CP2106 Project (Apollo Level) in the National University of Singapore. Our team consists of Melissa Anastasia Harijanto and Livia Michelle Iskandar Leo. 
 
-<img src="./gifs/HomeScreen.gif" width="24%"> &nbsp;
-<img src="./gifs/FeaturedScreen.gif" width="24%"> &nbsp;
-<img src="./gifs/MainItineraryScreen.gif" width="24%"> &nbsp;
+<img src="./gifs/HomeScreen.gif" width="24%">
+<img src="./gifs/FeaturedScreen.gif" width="24%">
+<img src="./gifs/MainItineraryScreen.gif" width="24%">
 <img src="./gifs/ProfileScreen.gif" width="24%"> 
 
 ## Table of Contents
