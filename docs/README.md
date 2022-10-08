@@ -5,13 +5,22 @@ during your vacation trips.
 
 ## Table of Contents
 - [Overview](#overview)
+{:toc}
 - [Motivation](#motivation)
+{:toc}
 - [User Stories](#user-stories)
+{:toc}
 - [Aim](#aim)
+{:toc}
 - [Features](#features)
+{:toc}
 - [Initial Design Prototype](#initial-design-prototype)
+{:toc}
 - [Testing Methods](#testing-methods)
+{:toc}
 - [Installation](#installation)
+{:toc}
+
 
 
 ## Overview
