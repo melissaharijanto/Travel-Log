@@ -9,7 +9,4 @@ permalink: /docs/features
 
 The following is the complete feature list of our application.
 
-#### Table of Contents
-{: .no_toc .text-delta}
-
 {: .fs-6 .fw-300 }
