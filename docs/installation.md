@@ -12,11 +12,11 @@ nav_order: 3
 > - This application customized for **Android devices**.
 > - If you have a previously installed version of the apk, please uninstall it from your device before installing the current updated version.
 
-#### We would be happy if you are interested to try our application out!
+### We would be happy if you are interested to try our application out!
 
 [Download TravelLog here!](https://drive.google.com/file/d/1btqUkEVeYYCeM1tJqklh7v3JmKq8REor/view?usp=sharing){: .btn .btn-green }
 
-#### If you do not have an Android device, you can try this method:
+### If you do not have an Android device, you can try this method:
 
 1. Please clone the repository to your local device by running this command.
 ```
@@ -54,10 +54,13 @@ npx react-native run-android
 ```
 For more information on this method, please visit <a href="https://reactnative.dev/docs/running-on-device">React's official documentation</a>.
 
-3. Have fun navigating through! If you face any troubles, please contact us through our Telegram handles:  @livmichelle / @melissaharijanto.
-You can sign in with our placeholder account to try the app's features:
+Have fun navigating through! You can sign in with our placeholder account to try the app's features:
 - Email: yeonjun@gmail.com
 - Password: 300500
 
 Or alternatively, if you want to test the 'Forget Password' function, please sign up with a new account with your
 **real** email, as it will be sent via a password-reset email!
+
+### Facing any issues?
+
+Please raise an issue in our <a href="https://github.com/melissaharijanto/Travel-Log/issues">GitHub repository</a>.
