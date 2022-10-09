@@ -42,26 +42,25 @@ npx react-native run-android
 ```
 to run the app.
 
-Otherwise, if you have an Android device and would like to try it there instead of an emulator, you can do this instead.
-- Go to Settings > About phone > Software information and tap on your Build number 7 times.
-- Developer options will be enabled; go back to Settings > Developer options and enable 'USB Debugging'.
-- To confirm whether your device has been connected or not, run 
+### Install via USB Debugging
+
+{: .highlight}
+Slight knowledge of Command-Line Interface (CLI) is required for this method.
+
+1. Go to Settings > About phone > Software information and tap on your Build number 7 times.
+2. Developer options will be enabled; go back to Settings > Developer options and enable 'USB Debugging'.
+3. To confirm whether your device has been connected or not, run 
 ```
 adb devices
 ```
 in your terminal. 
-- Run the app by running 
+4. Run the app by running 
 ```
 npx react-native run-android
 ```
-For more information on this method, please visit <a href="https://reactnative.dev/docs/running-on-device">React's official documentation</a>.
+5. For more information on this method, please visit <a href="https://reactnative.dev/docs/running-on-device">React's official documentation</a>.
 
-Have fun navigating through! You can sign in with our placeholder account to try the app's features:
-- Email: yeonjun@gmail.com
-- Password: 300500
-
-Or alternatively, if you want to test the 'Forget Password' function, please sign up with a new account with your
-**real** email, as it will be sent via a password-reset email!
+6. Have fun navigating through!
 
 ### Facing any issues?
 
