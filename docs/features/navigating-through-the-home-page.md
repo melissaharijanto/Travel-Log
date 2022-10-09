@@ -5,9 +5,8 @@ parent: Features
 nav_order: 2
 ---
 # Navigating Through the Home Page
-<p align="center">
-  <img src="../images/features/home-page.gif" width="50%">
-</p>
+ 
+ <img src="../images/features/home-page.gif" width="30%">
 
 #### Features
 - Here, you are able to create a new itinerary by clicking on the `+ New Itinerary` button.
