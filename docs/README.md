@@ -19,7 +19,6 @@ This project is made for **ERC11PM's CP2106 Project (Apollo Level)** in the Nati
 - [Motivation](#motivation)
 - [User Stories](#user-stories)
 - [Aim](#aim)
-- [Features](#features)
 - [Initial Design Prototype](#initial-design-prototype)
 - [Testing Methods](#testing-methods)
 
