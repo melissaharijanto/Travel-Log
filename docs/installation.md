@@ -18,7 +18,9 @@ We would be happy if you are interested to try our application out!
 > - This application customized for **Android devices**.
 > - If you have a previously installed version of the apk, please uninstall it from your device before installing the current updated version.
 
-### If you do not have an Android device, you can try this method:
+### Install via React Native's Android Emulator
+
+<hr>
 
 1. Please clone the repository to your local device by running this command.
 ```
@@ -31,18 +33,19 @@ cd Travel-Log
 git pull
 npm install // to install the required dependencies of the project.
 ```
-2. The app uses React Native CLI. If you do not have it set up yet, please refer to <a href="https://reactnative.dev/docs/environment-setup">this link</a> to set it up.
+2. The app uses React Native CLI. If you do not have it set up yet, please refer to <a href="https://reactnative.dev/docs/environment-setup">React Native's official documentation</a> to set it up.
 
-Please use the following commands in your terminal:
+3. Please use the following commands in your terminal:
 ```
-cd Travel-Log // go to the root directory of the project, if you're not in there yet.
+cd Travel-Log // go to the root directory of the project if you are not in there yet.
 npm install // to install the required dependencies of the project.
 npm start
 npx react-native run-android
 ```
-to run the app.
 
 ### Install via USB Debugging
+
+<hr>
 
 {: .highlight}
 Slight knowledge of Command-Line Interface (CLI) is required for this method.
@@ -58,7 +61,7 @@ in your terminal.
 ```
 npx react-native run-android
 ```
-5. For more information on this method, please visit <a href="https://reactnative.dev/docs/running-on-device">React's official documentation</a>.
+5. For more information on this method, please visit <a href="https://reactnative.dev/docs/running-on-device">React Native's official documentation</a>.
 
 6. Have fun navigating through!
 
