@@ -18,4 +18,4 @@ nav_order: 1
 {: .note-title }
 > Developer Note
 >
-> Upon logging in or signing up, users will be redirected to another page, which is implemented by a different stack For reference of implementation, see the file `index.js` in the <a href="https://github.com/melissaharijanto/Travel-Log/tree/main/src/navigation">navigation</a> folder of the repo.
+> Upon logging in or signing up, users will be redirected to another page, which is implemented by a different stack. For reference of implementation, see the file `index.js` in the <a href="https://github.com/melissaharijanto/Travel-Log/tree/main/src/navigation">navigation</a> folder of the repo.
