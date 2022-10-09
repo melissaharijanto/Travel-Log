@@ -5,11 +5,12 @@ parent: Features
 nav_order: 5
 ---
 # Viewing Itineraries
+{: .no_toc }
 
 ## Table of contents
 {: .no_toc .text-delta }
 
-1. TOC
+- TOC
 {:toc}
 
 <hr>
@@ -30,7 +31,7 @@ This allows you to view five of your most recent itineraries.
 
 ## Viewing others' itineraries
 
-<img src="../images/features/featured.gif" width="30%"> &nbsp;
+<img src="../images/features/featured-page.gif" width="30%"> &nbsp;
 <img src="../images/features/home-page.gif" width="30%"> 
 
 #### To view others' itineraries, you can either:
