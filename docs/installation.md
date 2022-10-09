@@ -18,7 +18,13 @@ We would be happy if you are interested to try our application out!
 > - This application customized for **Android devices**.
 > - If you have a previously installed version of the apk, please uninstall it from your device before installing the current updated version.
 
-### Install via React Native's Android Emulator
+## Table of contents
+{: .no_toc .text-delta }
+
+- TOC
+{:toc}
+
+## Install via React Native's Android Emulator
 
 <hr>
 
@@ -43,7 +49,7 @@ npm start
 npx react-native run-android
 ```
 
-### Install via USB Debugging
+## Install via USB Debugging
 
 <hr>
 
@@ -65,6 +71,8 @@ npx react-native run-android
 
 6. Have fun navigating through!
 
-### Facing any issues?
+## Facing any issues?
+
+<hr>
 
 Please raise an issue in our <a href="https://github.com/melissaharijanto/Travel-Log/issues">GitHub repository</a>.
