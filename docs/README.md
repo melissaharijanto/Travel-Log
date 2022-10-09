@@ -49,7 +49,7 @@ We hope to provide a one-stop application that would not only ease, but also enc
 To view the features of each page, please refer to <a href="https://docs.google.com/document/d/1Rbl5xvDYa3nckiapXDep-_QBE1GBdg1VTyXYMsfY-6E/edit?usp=sharing"> this document</a>.
 
 ## Initial Design Prototype
-<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FCKGloIToiN5VlPJoaYpxCx%2FTravel-Log---Clean%3Fnode-id%3D0%253A1" allowfullscreen></iframe>
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FCKGloIToiN5VlPJoaYpxCx%2FTravel-Log---Clean%3Fnode-id%3D0%253A1" allowfullscreen></iframe>
 
 ## Testing methods
 We used **React Native Testing Library** and **Jest** to test the components (Unit Testing). To run the test cases, run `npm test` on the root directory of the project.
