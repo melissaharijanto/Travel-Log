@@ -11,11 +11,16 @@ permalink: /
 Make It a Seamless Planning Experience.
 {: .fs-6 .fw-300 }
 
+[Download Now](https://drive.google.com/file/d/1btqUkEVeYYCeM1tJqklh7v3JmKq8REor/view){: .btn .btn-green }
+[View it on GitHub](https://github.com/melissaharijanto/Travel-Log){: .btn .btn-outline }]
+
 ## Table of contents
 {: .no_toc .text-delta }
 
 1. TOC
 {:toc}
+
+<hr>
 
 ## Introduction
 
