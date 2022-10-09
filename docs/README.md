@@ -34,20 +34,6 @@ As avid travelers, we believe that planning your own trips would bring more free
 ## Aim
 We hope to provide a one-stop application that would not only ease, but also encourage people to plan their own travels – solo or in a group. Users could easily add their planned activities, transport, and accommodation by our built-in functions that guides them in filling in their travel details. We hope that users could spend less time making a visual, detailed travel itinerary.
 
-## Features
-1. User authentication - sign up, log in and resetting your account password via a password reset email.
-2. Setting up your own profile by changing your profile picture and setting up your display name.
-3. Creating new itineraries and accessing/editing previous ones that have been made.
-4. Automatically generate tabs for separate days upon creating a new itinerary.
-5. Automatically sort each day's activities based on the time that is inputted upon adding new activities.
-6. Editing the details of the itinerary, accommodation, activities and transport. 
-7. Need references? Out of ideas on where to go? Access another person's itinerary by entering the itinerary's unique code (view-only).
-8. Have too many itineraries? Search your itineraries based on their titles!
-9. View recommendations and recommended itineraries from the app.
-10. Set the location for your accommodations via Google Maps.
-
-To view the features of each page, please refer to <a href="https://docs.google.com/document/d/1Rbl5xvDYa3nckiapXDep-_QBE1GBdg1VTyXYMsfY-6E/edit?usp=sharing"> this document</a>.
-
 ## Initial Design Prototype
 <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FCKGloIToiN5VlPJoaYpxCx%2FTravel-Log---Clean%3Fnode-id%3D0%253A1" allowfullscreen></iframe>
 
