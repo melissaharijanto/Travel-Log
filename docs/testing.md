@@ -6,7 +6,7 @@ nav_order: 3
 
 # Testing Methods
 
-We used <b><a href="https://testing-library.com/docs/react-native-testing-library/intro/">React Native Testing Library</a></b> and <b><a href="https://jestjs.io/docs/tutorial-react-native">Jest</a></b> to test the components (Unit Testing). 
+We used <a href="https://testing-library.com/docs/react-native-testing-library/intro/">React Native Testing Library</a> and <a href="https://jestjs.io/docs/tutorial-react-native">Jest</a> to test the components (Unit Testing). 
 
 To run the test cases, run `npm test` on the root directory of the project.
 
