@@ -24,9 +24,9 @@ We would be happy if you are interested to try our application out!
 - TOC
 {:toc}
 
-## Install via React Native's Android Emulator
-
 <hr>
+
+## Install via React Native's Android Emulator
 
 1. Please clone the repository to your local device by running this command.
 ```
@@ -49,9 +49,9 @@ npm start
 npx react-native run-android
 ```
 
-## Install via USB Debugging
-
 <hr>
+
+## Install via USB Debugging
 
 {: .highlight}
 Slight knowledge of Command-Line Interface (CLI) is required for this method.
@@ -71,8 +71,8 @@ npx react-native run-android
 
 6. Have fun navigating through!
 
-## Facing any issues?
-
 <hr>
+
+## Facing any issues?
 
 Please raise an issue in our <a href="https://github.com/melissaharijanto/Travel-Log/issues">GitHub repository</a>.
