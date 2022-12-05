@@ -17,8 +17,7 @@ nav_order: 5
 
 ## Viewing your own itineraries
 
-<img src="../images/features/home-page.gif" width="30%"> &nbsp;
-<img src="../images/features/main-itinerary.gif" width="30%">
+<img src="../images/features/featured-page.gif" width="30%"> &nbsp;
 
 #### To view your own itineraries, you can either:
 {: .no_toc}
