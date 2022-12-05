@@ -17,7 +17,8 @@ nav_order: 5
 
 ## Viewing your own itineraries
 
-<img src="../images/features/featured-page.gif" width="30%"> &nbsp;
+<img src="../images/features/home-page.gif" width="30%"> &nbsp;
+<img src="../images/features/main-itinerary.gif" width="30%">
 
 #### To view your own itineraries, you can either:
 {: .no_toc}
@@ -30,7 +31,7 @@ This allows you to view five of your most recent itineraries.
 
 ## Viewing others' itineraries
 
-<img src="../images/features/featured.png" width="30%"> &nbsp;
+<img src="../images/features/featured-page.gif" width="30%"> &nbsp;
 <img src="../images/features/home-page.gif" width="30%"> 
 
 #### To view others' itineraries, you can either:
