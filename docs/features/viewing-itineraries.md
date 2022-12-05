@@ -38,4 +38,4 @@ This allows you to view five of your most recent itineraries.
 {: .no_toc}
 
 - View them through the `Featured` page. To navigate to this page, click the `Featured` button in the bottom tab navigator. Every time you open the application, Travel Log will recommend three random itineraries that you can explore.
-- If you have a specific itinerary you want to find, simply go to the `Home` page and enter the code in the `View your friend's itineary` section.
+- If you have a specific itinerary you want to find, simply go to the `Home` page and enter the code in the `View a friend's itinerary` section.

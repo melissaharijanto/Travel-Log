@@ -21,7 +21,7 @@ To view travel recommendations, you can do so in the `Featured` page, where you 
 
 <img src="../images/features/featured-page.gif" width="30%"> &nbsp;
 
-#### When you press any of the tabs under `View our recommendations`:
+#### When you press any of the tabs under `VIEW OUR RECOMMENDATIONS`:
 {: .no_toc}
 
 - The application categorizes its recommendations to three categories: `Accommodation`, `Restaurants`, `Activities`.
