@@ -7,7 +7,7 @@ nav_order: 5
 # Future Developments
 
 Due to time constraints, there are quite some features that we were not able to implement. Here are some of the things that we are planning to implement in future iterations: 
-
+git
 - The option to make an itinerary public or private
 This feature is quite important, as not everyone would like their travel plans to be exposed; we are aware that this might also cause privacy issues, so implementing this leaves the decision of sharing their itineraries to the users themselves.
 
