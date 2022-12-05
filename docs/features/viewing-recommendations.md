@@ -32,7 +32,7 @@ To view travel recommendations, you can do so in the `Featured` page, where you 
 
 ## Viewing Others' Itineraries
 
-<img src="../images/features/featured-page.png" width="30%"> &nbsp;
+<img src="../images/features/featured.png" width="30%"> &nbsp;
 
 #### To view others' itineraries, you can either:
 {: .no_toc}
